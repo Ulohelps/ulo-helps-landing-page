@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ulo-orange: #f97316;
+  --ulo-blue: #0ea5e9;
+  --ulo-dark: #1e293b;
+  --ulo-gray: #64748b;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .ulo-logo {
+    @apply flex items-center gap-2 text-2xl font-bold;
+  }
+
+  .ulo-logo-icon {
+    @apply w-8 h-8 bg-gradient-to-r from-orange-400 to-orange-500 rounded-lg flex items-center justify-center text-white text-sm font-bold;
+  }
+
+  .ulo-button-primary {
+    @apply bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors;
+  }
+
+  .ulo-button-secondary {
+    @apply bg-white hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-lg font-medium border border-gray-300 transition-colors;
+  }
+
+  .ulo-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-colors;
+  }
+
+  .ulo-progress-step {
+    @apply flex items-center text-sm font-medium;
+  }
+
+  .ulo-progress-step.active {
+    @apply text-orange-600;
+  }
+
+  .ulo-progress-step.completed {
+    @apply text-blue-600;
+  }
+
+  .ulo-progress-step.inactive {
+    @apply text-gray-400;
+  }
+}
