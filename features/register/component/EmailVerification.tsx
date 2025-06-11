@@ -33,13 +33,14 @@ const EmailVerification = ({
       return;
     }
     setIsLoading(true);
-    setStep(2);
     try {
       await sendEmailVerification(email);
       toast({
         title: "OTP sent",
         description: "A new verification code has been sent to your email",
       });
+      setStep(2);
+      setIsLoading(false);
     } catch (error: any) {
       toast({
         title: "Failed to resend OTP",

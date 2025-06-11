@@ -40,7 +40,6 @@ export default function Verify({ email }: { email: string }) {
     }
 
     setIsLoading(true);
-    setStep(3);
 
     try {
       await verifyEmail(email, otp);
@@ -48,6 +47,7 @@ export default function Verify({ email }: { email: string }) {
         title: "Email verified successfully",
         description: "Your email has been verified",
       });
+      setIsLoading(false);
       setStep(3);
     } catch (error: any) {
       toast({

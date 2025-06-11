@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 interface User {
   id: string;
   phone: string;
-  email?: string;
+  email: string;
   role: "CAREGIVER" | "CARESEEKER";
   emailVerified: boolean;
   phoneVerified: boolean;
@@ -39,7 +39,7 @@ interface AuthState {
     firstName: string,
     lastName: string,
     password: string,
-    phone?: string
+    phone: string
   ) => Promise<{ success: boolean; user?: User }>;
   sendEmailVerification: (email: string) => Promise<void>;
   logout: () => void;
@@ -129,7 +129,7 @@ export const useAuthStore = create<AuthState>()(
         firstName: string,
         lastName: string,
         password: string,
-        phone?: string
+        phone: string
       ) => {
         set({ isLoading: true });
 
@@ -141,7 +141,13 @@ export const useAuthStore = create<AuthState>()(
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ email, password, firstName, lastName }),
+              body: JSON.stringify({
+                email,
+                password,
+                firstName,
+                lastName,
+                phone,
+              }),
             }
           );
 

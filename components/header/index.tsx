@@ -26,7 +26,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
 const navLinks = [
   { href: "/dashboard", label: "Home" },
@@ -36,6 +37,12 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuthStore();
+  const handleLogout = () => {
+    logout();
+    router.push("/auth/login");
+  };
   return (
     <header className=" shadow-md  bg-white px-4 md:px-12 py-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -137,7 +144,10 @@ export default function Header() {
                   Active
                 </div>
               </div>
-              <DropdownMenuItem className="text-[#D42620] px-6 py-4">
+              <DropdownMenuItem
+                className="text-[#D42620] px-6 py-4"
+                onClick={handleLogout}
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span className="text-[400] text-sm font-normal">Log out</span>
               </DropdownMenuItem>

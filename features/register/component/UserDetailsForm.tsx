@@ -61,7 +61,8 @@ export default function UserDetailsForm({ email }: { email: string }) {
         email,
         formData.firstName,
         formData.lastName,
-        password
+        password,
+        formData.phone
       );
 
       if (result.success) {
@@ -69,6 +70,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
           title: "Registration successful",
           description: "Please verify your phone number to continue",
         });
+        router.push("/dashboard");
       }
     } catch (error: any) {
       toast({
