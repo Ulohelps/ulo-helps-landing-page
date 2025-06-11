@@ -12,16 +12,21 @@ import Logo from "@/public/FINAL ULO Logo_approved_main.svg";
 import Image from "next/image";
 import { Loader } from "lucide-react";
 import { PasswordInput } from "@/components/password-input";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
 export default function ResetPasswordPage() {
   const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isResending, setIsResending] = useState(false);
+  const [timer, setTimer] = useState(30);
 
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
+
+  const { sendOtp } = useAuthStore();
 
   const email = searchParams.get("email") || "";
 
@@ -90,19 +95,47 @@ export default function ResetPasswordPage() {
     }
   };
 
+  const handleResendOtp = async () => {
+    setIsResending(true);
+    try {
+      await sendOtp(email);
+      toast({
+        title: "OTP sent",
+        description: "A new verification code has been sent to your email",
+      });
+      setTimer(60); // Restart countdown
+    } catch (error: any) {
+      toast({
+        title: "Failed to resend OTP",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setIsResending(false);
+    }
+  };
+
+  useEffect(() => {
+    if (timer <= 0) return;
+    const countdown = setInterval(() => setTimer((prev) => prev - 1), 1000);
+    return () => clearInterval(countdown);
+  }, [timer]);
+
   return (
     <div className="flex items-center flex-col bg-white border border-[#E4E7EC] rounded-[20px] px-6 py-10 my-10 mx-auto max-w-[556px]">
-      <div className="flex flex-col  w-full gap-3 border-b pb-5 border-[#D0D5DD]">
-        <Image src={Logo} alt="" />
-        <p className="text-2xl text-[#344054] font-bold">Check your email</p>
-        <p className="text-base text-[#344054] ">
+      <div className="w-full">
+        <Image src={Logo} alt="" width={67} height={32} />
+        <p className="text-2xl text-[#344054] font-bold mt-2">
+          Check your email
+        </p>
+        <p className="text-base text-[#344054] mt-2">
           We sent a reset code to {email}. Enter the code below to reset your
           password.
         </p>
       </div>
       <div className="w-full mt-6">
         <div className="bg-white">
-          <form className="w-full  space-y-6" onSubmit={handleSubmit}>
+          <form className="w-full  space-y-8" onSubmit={handleSubmit}>
             <div>
               <Label
                 htmlFor="otp"
@@ -119,7 +152,7 @@ export default function ResetPasswordPage() {
                 placeholder="Enter 6-digit code"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                className="border border-[#D0D5DD] rounded-[10px] text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
+                className="border border-[#D0D5DD] rounded-[12px] text-sm text-[#344054] font-normal px-3 focus:outline-none"
               />
             </div>
             <div>
@@ -134,7 +167,7 @@ export default function ResetPasswordPage() {
                   <PasswordInput
                     id="password"
                     placeholder="Enter your password"
-                    className="border border-[#D0D5DD] rounded-[10px] text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
+                    className="mt-[2px] border border-[#D0D5DD] rounded-[12px] text-sm text-[#344054] font-normal px-3 focus:outline-none"
                     name="password"
                     required
                     value={password}
@@ -203,7 +236,7 @@ export default function ResetPasswordPage() {
             <div className="flex justify-center mt-6 w-full">
               <Button
                 type="submit"
-                className="text-base text-[#06212C] w-full hover:bg-[#F6AA3D]/50 font-semibold py-3 px-6 rounded-[80px] cursor-pointe"
+                className="text-base text-[#06212C] w-full hover:bg-[#F6AA3D]/50 font-semibold p-6 rounded-[80px] cursor-pointer shadow-md"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -214,6 +247,26 @@ export default function ResetPasswordPage() {
               </Button>
             </div>
           </form>
+          <div className="mt-6 text-center text-sm text-[#344054] font-normal">
+            Didn’t get a code?{" "}
+            {timer > 0 ? (
+              <span>
+                Resend code in <span className="font-medium">{timer}s</span>
+              </span>
+            ) : (
+              <button
+                onClick={handleResendOtp}
+                disabled={isResending}
+                className="disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isResending ? (
+                  <Loader className="animate-spin w-4 h-4 inline" />
+                ) : (
+                  "Resend code"
+                )}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

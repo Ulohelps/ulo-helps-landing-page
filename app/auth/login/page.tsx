@@ -62,21 +62,21 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 md:px-10 py-4  md:py-10 md:my-10 ">
-      <div className="bg-[#B4E1F3] hidden md:block h-[740px] w-full md:w-1/2 rounded-[24px]"></div>
-      <div className="flex flex-col  w-full md:w-1/2  px-4">
-        <div className="flex flex-col w-full gap-3 border-b pb-5 border-[#D0D5DD]">
-          <Image src={Logo} alt="" />
-          <p className="text-2xl text-[#344054] font-bold">
+    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1124px] mx-auto md:px-10 py-4  md:py-10 md:my-10 ">
+      <div className="bg-[#B4E1F3] hidden md:block h-[740px] w-full md:w-3/5 rounded-[24px]"></div>
+      <div className="flex flex-col  w-full md:w-2/5  px-4">
+        <div className="w-full gap-2">
+          <Image src={Logo} alt="" width={67} height={32} />
+          <p className="text-2xl text-[#344054] font-bold mt-2">
             Welcome back to Ulo
           </p>
-          <p className="text-base text-[#344054] ">
+          <p className="text-base text-[#344054] mt-2">
             Continue where you left off by logging in with your account
             credentials below.
           </p>
         </div>
 
-        <form className="w-full mt-6 space-y-4" onSubmit={handleLogin}>
+        <form className="w-full mt-6 " onSubmit={handleLogin}>
           <div>
             <Label
               className="text-sm text-[#344054] font-normal"
@@ -90,10 +90,10 @@ export default function LoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 rounded-[10px] bg-white border-[#D0D5DD] text-sm text-[#344054] font-normal"
+              className="mt-[2px] rounded-[12px] bg-white border-[#D0D5DD] text-sm text-[#344054] font-normal py-3"
             />
           </div>
-          <div className="grid gap-4 w-full">
+          <div className="grid gap-4 w-full mt-8">
             <div className="grid gap-2">
               <Label
                 htmlFor="password"
@@ -104,7 +104,7 @@ export default function LoginPage() {
               <PasswordInput
                 id="password"
                 placeholder="Enter your password"
-                className="border border-[#D0D5DD] rounded-md text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
+                className="mt-[2px] rounded-[12px] bg-white border-[#D0D5DD] text-sm text-[#344054] font-normal py-3"
                 name="password"
                 required
                 value={password}
@@ -114,22 +114,22 @@ export default function LoginPage() {
           </div>
           <Link
             href="/auth/forgot-password"
-            className="text-base text-[#1DA5DB] font-semibold mt-2 mb-8"
+            className="text-base block text-[#1DA5DB] font-semibold mt-4"
           >
             Forgot your password?
           </Link>
-          <div className="flex justify-center w-full">
+          <div className="flex justify-center w-full mt-8">
             <Button
               type="submit"
-              className="text-base w-full hover:bg-[#F6AA3D]/50 text-[#06212C] font-semibold py-4 px-6 rounded-[80px] cursor-pointer"
+              className="text-base w-full hover:bg-[#F6AA3D]/50 text-[#06212C] font-semibold p-6 rounded-[80px] cursor-pointer shadow-md"
             >
               {isLoading ? <Loader className="animate-spin" /> : "Log in"}
             </Button>
           </div>
         </form>
-        <div className="mt-4">
+        <div className="mt-5">
           <div className="text-center">
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-[#344054] ">
               Already have an account?{" "}
             </span>
             <Link
@@ -141,14 +141,14 @@ export default function LoginPage() {
           </div>
         </div>
         <div className="flex items-center gap-2 mt-4">
-          <div className="h-[1px] w-[48%] bg-[#D0D5DD]" />
-          <span className="text-sm text-[#98A2B3] font-semibold">OR</span>
-          <div className="h-[1px] w-[48%] bg-[#D0D5DD]" />
+          <div className="h-[1px] w-[48%] bg-[#E4E7EC]" />
+          <span className="text-[10px] text-[#98A2B3] font-semibold">OR</span>
+          <div className="h-[1px] w-[48%] bg-[#E4E7EC]" />
         </div>
-        <div className="flex justify-center mt-6 w-full">
+        <div className="flex justify-center mt-4 w-full">
           <Button
             type="button"
-            className="text-base text-[#06212C] w-full bg-white border border-[#D0D5DD] font-semibold py-4 px-6 rounded-[80px] cursor-pointer"
+            className="text-base text-[#06212C] w-full bg-white border border-[#D0D5DD] font-semibold p-6 rounded-[80px] cursor-pointer"
             disabled={googleLoading}
           >
             {googleLoading ? (

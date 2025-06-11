@@ -29,6 +29,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   //const [confirmPassword, setConfirmPassword] = useState("");
+  const [agree, setAgree] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -91,19 +92,21 @@ export default function UserDetailsForm({ email }: { email: string }) {
   };
 
   return (
-    <div className="flex flex-col  w-full md:w-1/2  md:px-4">
-      <div className="flex flex-col w-full gap-3 ">
-        <Image src={Logo} alt="" />
-        <p className="text-2xl text-[#344054] font-bold">One last step...</p>
-        <p className="text-base text-[#344054] ">
+    <div className="flex flex-col  w-full md:w-2/5 md:px-4">
+      <div className="w-full gap-2 ">
+        <Image src={Logo} alt="" width={67} height={32} />
+        <p className="text-2xl text-[#344054] font-bold mt-2">
+          One last step...
+        </p>
+        <p className="text-base text-[#344054] font-normal mt-2">
           Tell us about yourself. Fill the fields below to provide basic
           information for your ULO profile.
         </p>
       </div>
 
-      <div className="w-full mt-3">
-        <div className="py-8">
-          <form className="w-full space-y-4" onSubmit={handleRegister}>
+      <div className="w-full mt-8">
+        <div className="">
+          <form className="w-full space-y-6" onSubmit={handleRegister}>
             <div>
               <Label
                 className="text-sm text-[#344054] font-normal"
@@ -117,7 +120,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
                 required
                 value={formData.firstName || ""}
                 onChange={(e) => handleInputChange("firstName", e.target.value)}
-                className="mt-1 bg-white rounded-[10px] border-[#D0D5DD] text-sm text-[#344054] font-normal"
+                className="mt-1 bg-white rounded-[12px] py-3 border-[#D0D5DD] text-sm text-[#344054] font-normal"
               />
             </div>
             <div>
@@ -133,7 +136,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
                 required
                 value={formData.lastName || ""}
                 onChange={(e) => handleInputChange("lastName", e.target.value)}
-                className="mt-1 bg-white rounded-[10px] border-[#D0D5DD] text-sm text-[#344054] font-normal"
+                className="mt-1 bg-white rounded-[12px] py-3 border-[#D0D5DD] text-sm text-[#344054] font-normal"
               />
             </div>
             <PhoneInputField
@@ -152,7 +155,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
                   <PasswordInput
                     id="password"
                     placeholder="Enter your password"
-                    className="border border-[#D0D5DD] rounded-[10px] text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
+                    className="border border-[#D0D5DD] rounded-[12px] py-3 text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
                     name="password"
                     required
                     value={password}
@@ -160,7 +163,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
                   />
                 </div>
               </div>
-              <div className="mt-2 space-y-1">
+              <div className="mt-4 space-y-2">
                 {[
                   {
                     label: "Minimum of 6 characterss",
@@ -183,7 +186,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
                     className="flex items-center gap-2 text-sm w-full"
                   >
                     <div
-                      className={`w-4 h-4 text-sm flex items-center justify-center rounded-full ${
+                      className={`w-4 h-4 text-xs flex items-center justify-center rounded-full ${
                         check.passed
                           ? "bg-[#099137] text-white"
                           : "bg-[#98A2B3]"
@@ -210,7 +213,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
                   <PasswordInput
                     id="confirmPassword"
                     placeholder="Enter your password"
-                    className="border border-[#D0D5DD] rounded-[10px] text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
+                    className="border border-[#D0D5DD] rounded-[12px] py-3 text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
                     name="confirmPassword"
                     required
                     value={confirmPassword}
@@ -218,12 +221,12 @@ export default function UserDetailsForm({ email }: { email: string }) {
                   />
                 </div>
               </div> */}
-            <div className="flex items-center space-x-2">
+            <div className="flex space-x-2">
               <Checkbox
-                id="backgroundConsent"
-                checked={false}
-                onCheckedChange={() => {}}
-                className="border-[#333333]"
+                id="agree"
+                checked={agree}
+                onCheckedChange={(checked) => setAgree(!!checked)}
+                className="border-[#667185] rounded-md h-5 w-5"
               />
               <Label
                 htmlFor="backgroundConsent"
@@ -238,8 +241,8 @@ export default function UserDetailsForm({ email }: { email: string }) {
             <div className="flex justify-center mt-6 w-full">
               <Button
                 type="submit"
-                className="text-base text-[#06212C] w-full hover:bg-[#F6AA3D]/50 font-semibold py-4 px-6 rounded-[80px] cursor-pointer"
-                disabled={isLoading}
+                className="text-base text-[#06212C] w-full hover:bg-[#F6AA3D]/50 font-semibold p-6 rounded-[80px] cursor-pointer"
+                disabled={isLoading || !agree}
               >
                 {isLoading ? (
                   <Loader className="animate-spin" />

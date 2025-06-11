@@ -13,8 +13,8 @@ export default function Register() {
   const { step } = useAuthStore();
 
   return (
-    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 py-4 md:px-10  md:py-10 md:my-10 ">
-      <div className="bg-[#B4E1F3] hidden md:block h-[740px] w-full md:w-1/2 rounded-[24px]"></div>
+    <div className="flex items-center flex-col md:flex-row justify-between gap-4 max-w-[1124px] max-h-[740px] mx-auto my-20">
+      <div className="bg-[#B4E1F3] hidden md:block h-[740px] w-full md:w-3/5 rounded-[24px]"></div>
       {step === 1 && <EmailVerification email={email} setEmail={setEmail} />}
       {step === 2 && <Verify email={email} />}
       {step === 3 && <UserDetailsForm email={email} />}

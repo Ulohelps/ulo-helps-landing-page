@@ -53,19 +53,19 @@ const EmailVerification = ({
   };
 
   return (
-    <div className="flex flex-col  w-full md:w-1/2 md:px-4">
-      <div className="flex flex-col w-full gap-3 ">
-        <Image src={Logo} alt="" />
-        <p className="text-2xl text-[#344054] font-bold">Welcome to ULO</p>
-        <p className="text-base text-[#344054] ">
+    <div className="flex flex-col  w-full md:w-2/5 md:px-4">
+      <div className=" w-full">
+        <Image src={Logo} alt="" width={67} height={32} />
+        <p className="text-2xl text-[#344054] font-bold mt-2">Welcome to ULO</p>
+        <p className="text-base text-[#344054] font-normal mt-2">
           Sign up by entering your email address in the field below. We’ll send
           a code to verify your email address.
         </p>
       </div>
 
-      <div className="w-full mt-3">
-        <div className="py-8">
-          <form className="w-full space-y-4" onSubmit={handleSendOtp}>
+      <div className="w-full mt-6">
+        <div className="">
+          <form className="w-full space-y-8" onSubmit={handleSendOtp}>
             <div>
               <Label
                 className="text-sm text-[#344054] font-normal"
@@ -79,14 +79,14 @@ const EmailVerification = ({
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 bg-white rounded-[10px] border-[#D0D5DD] text-sm text-[#344054] font-normal"
+                className="mt-[2px] bg-white rounded-[12px] border-[#D0D5DD] text-sm text-[#344054] font-normal py-3"
               />
             </div>
 
-            <div className="flex justify-center mt-6 w-full">
+            <div className="flex justify-center w-full">
               <Button
                 type="submit"
-                className="text-base text-[#06212C] w-full hover:bg-[#F6AA3D]/50 font-semibold py-4 px-6 rounded-[80px] cursor-pointer"
+                className="text-base text-[#06212C] w-full hover:bg-[#F6AA3D]/50 font-semibold p-6 rounded-[80px] cursor-pointer shadow-md"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -98,32 +98,32 @@ const EmailVerification = ({
             </div>
           </form>
 
-          <div className="mt-4">
+          <div className="mt-5">
             <div className="text-center">
-              <span className="text-sm text-gray-600">
+              <span className="text-base text-[#344054] font-normal">
                 Already have an account?{" "}
               </span>
               <Link
                 href="/auth/login"
-                className="text-sm font-medium text-[#1DA5DB] hover:text-blue-300"
+                className="text-base font-medium text-[#1DA5DB] hover:text-blue-300"
               >
-                log in
+                Log in
               </Link>
             </div>
           </div>
           <div className="flex items-center gap-2 mt-4">
-            <div className="h-[1px] w-[48%] bg-[#D0D5DD]" />
-            <span className="text-sm text-[#98A2B3] font-semibold">OR</span>
-            <div className="h-[1px] w-[48%] bg-[#D0D5DD]" />
+            <div className="h-[1px] w-[48%] bg-[#E4E7EC]" />
+            <span className="text-[10px] text-[#98A2B3] font-semibold">OR</span>
+            <div className="h-[1px] w-[48%] bg-[#E4E7EC]" />
           </div>
         </div>
-        <div className="flex justify-center  w-full">
+        <div className="flex justify-center  w-full mt-4">
           <Button
             type="button"
-            className="text-base text-[#06212C] w-full bg-white border border-[#D0D5DD] font-semibold py-4 px-6 rounded-[80px] cursor-pointer"
+            className="text-base text-[#344054] w-full bg-white border border-[#D0D5DD] font-semibold p-6 rounded-[80px] cursor-pointer"
             disabled={isLoading}
           >
-            {isLoading ? (
+            {false ? (
               <Loader className="animate-spin" />
             ) : (
               <p className="flex items-center gap-2">

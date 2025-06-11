@@ -16,7 +16,7 @@ export default function Verify({ email }: { email: string }) {
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isResending, setIsResending] = useState(false);
-  const [timer, setTimer] = useState(60); // Start with 60 seconds
+  const [timer, setTimer] = useState(30);
 
   const router = useRouter();
   const { toast } = useToast();
@@ -81,20 +81,22 @@ export default function Verify({ email }: { email: string }) {
   };
 
   return (
-    <div className="flex flex-col w-full md:w-1/2 md:px-4">
-      <div className="flex flex-col w-full gap-3">
-        <Image src={Logo} alt="Ulo logo" />
-        <p className="text-2xl text-[#344054] font-bold">Check your email</p>
-        <p className="text-base text-[#344054] text-justify font-normal">
+    <div className="flex flex-col w-full md:w-2/5 md:px-6">
+      <div className="w-full gap-3">
+        <Image src={Logo} alt="Ulo logo" width={67} height={32} />
+        <p className="text-2xl text-[#344054] font-bold mt-2">
+          Check your email
+        </p>
+        <p className="text-base text-[#344054] text-justify font-normal mt-2">
           We sent a verification code to
           <span className="font-semibold"> {email}</span>. Please enter the code
           in the field below to continue.
         </p>
       </div>
 
-      <div className="w-full mt-3">
-        <div className="py-8">
-          <form className="space-y-6 w-full" onSubmit={handleVerify}>
+      <div className="w-full mt-6">
+        <div className="">
+          <form className="space-y-8 w-full" onSubmit={handleVerify}>
             <div>
               <Label
                 htmlFor="otp"
@@ -111,23 +113,27 @@ export default function Verify({ email }: { email: string }) {
                 placeholder="Enter 6-digit code"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                className="border bg-white border-[#D0D5DD] rounded-[10px] text-sm text-[#344054] font-normal h-10 px-3 focus:outline-none"
+                className="border bg-white border-[#D0D5DD] rounded-[12px] text-sm text-[#344054] font-normal  py-3 focus:outline-none"
               />
             </div>
 
-            <div className="flex justify-center mt-6 w-full">
+            <div className="flex justify-center w-full">
               <Button
                 type="submit"
-                className="text-base w-full text-[#06212C] font-semibold hover:bg-[#F6AA3D]/50 py-3 px-6 rounded-[80px]"
+                className="text-base w-full text-[#06212C] font-semibold hover:bg-[#F6AA3D]/50 p-6 rounded-[80px] cursor-pointer shadow-md"
                 disabled={isLoading || otp.length !== 6}
               >
-                {isLoading ? "Verifying..." : "Verify code"}
+                {isLoading ? (
+                  <Loader className="animate-spin" />
+                ) : (
+                  "Verify code"
+                )}
               </Button>
             </div>
           </form>
 
           <div className="mt-6 text-center text-sm text-[#344054] font-normal">
-            Didn’t get a code?
+            Didn’t get a code?{" "}
             {timer > 0 ? (
               <span>
                 Resend code in <span className="font-medium">{timer}s</span>
