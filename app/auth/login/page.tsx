@@ -62,7 +62,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1124px] mx-auto md:px-10 py-4  md:py-10 md:my-10 ">
+    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1124px] mx-auto md:px-10 py-4  md:py-10 md:my-20 ">
       <div className="bg-[#B4E1F3] hidden md:block h-[740px] w-full md:w-3/5 rounded-[24px]"></div>
       <div className="flex flex-col  w-full md:w-2/5  px-4">
         <div className="w-full gap-2">
