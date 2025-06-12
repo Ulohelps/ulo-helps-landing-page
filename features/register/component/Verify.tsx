@@ -81,7 +81,7 @@ export default function Verify({ email }: { email: string }) {
   };
 
   return (
-    <div className="flex flex-col w-full md:w-2/5 md:px-6">
+    <div className="flex flex-col w-full md:w-2/5 px-4">
       <div className="w-full gap-3">
         <Image src={Logo} alt="Ulo logo" width={67} height={32} />
         <p className="text-2xl text-[#344054] font-bold mt-2">

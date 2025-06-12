@@ -92,7 +92,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
   };
 
   return (
-    <div className="flex flex-col  w-full md:w-2/5 md:px-4">
+    <div className="flex flex-col  w-full md:w-2/5 px-4">
       <div className="w-full gap-2 ">
         <Image src={Logo} alt="" width={67} height={32} />
         <p className="text-2xl text-[#344054] font-bold mt-2">
