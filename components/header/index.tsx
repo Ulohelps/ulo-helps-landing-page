@@ -45,7 +45,7 @@ export default function Header() {
   };
   return (
     <header className=" shadow-md  bg-white px-4 md:px-12 py-4">
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <div className="mx-auto flex max-w-[1136px] items-center justify-between">
         {/* Left side - Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image src={UloLogo} alt="Ulo logo" width={83} height={40} />

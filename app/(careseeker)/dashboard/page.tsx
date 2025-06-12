@@ -1,7 +1,12 @@
 import React from "react";
+import Dashboard from "@/features/dashboard";
 
-const dasboard = () => {
-  return <div>holla</div>;
+const DashboardPage = () => {
+  return (
+    <div>
+      <Dashboard />
+    </div>
+  );
 };
 
-export default dasboard;
+export default DashboardPage;
