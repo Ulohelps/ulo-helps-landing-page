@@ -43,7 +43,7 @@ export default function ResetPasswordPage() {
       toast({
         title: "Passwords don't match",
         description: "Please make sure your passwords match",
-        variant: "destructive",
+        variant: "error",
       });
       return;
     }
@@ -52,7 +52,7 @@ export default function ResetPasswordPage() {
       toast({
         title: "Password too short",
         description: "Password must be at least 6 characters long",
-        variant: "destructive",
+        variant: "error",
       });
       return;
     }
@@ -78,6 +78,7 @@ export default function ResetPasswordPage() {
         toast({
           title: "Password reset successful",
           description: "Your password has been updated",
+          variant: "success",
         });
 
         router.push("/auth/login");
@@ -88,7 +89,7 @@ export default function ResetPasswordPage() {
       toast({
         title: "Password reset failed",
         description: error.message || "Please try again",
-        variant: "destructive",
+        variant: "error",
       });
     } finally {
       setIsLoading(false);
@@ -108,7 +109,7 @@ export default function ResetPasswordPage() {
       toast({
         title: "Failed to resend OTP",
         description: error.message,
-        variant: "destructive",
+        variant: "error",
       });
     } finally {
       setIsResending(false);

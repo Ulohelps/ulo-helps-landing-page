@@ -50,7 +50,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
       toast({
         title: "Password too short",
         description: "Password must be at least 6 characters long",
-        variant: "destructive",
+        variant: "error",
       });
       return;
     }
@@ -70,6 +70,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
         toast({
           title: "Registration successful",
           description: "Please verify your phone number to continue",
+          variant: "success",
         });
         router.push("/dashboard");
       }
@@ -77,7 +78,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
       toast({
         title: "Registration failed",
         description: error.message || "Please try again",
-        variant: "destructive",
+        variant: "error",
       });
     } finally {
       setIsLoading(false);

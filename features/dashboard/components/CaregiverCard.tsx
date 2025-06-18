@@ -1,9 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MapPin, CircleCheck, Wallet } from "lucide-react";
+import { MapPin, Wallet } from "lucide-react";
 import Image from "next/image";
 import VerifiedIcon from "@/components/icons/verified.svg";
+import { useState } from "react";
 
 export interface Caregiver {
   name: string;
@@ -16,29 +17,52 @@ export interface Caregiver {
 }
 
 export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <div className=" flex items-center border border-[#D0D5DD] rounded-[24px] p-4 w-full space-y-2 shadow-sm">
-      <Image
-        src={caregiver.avatarUrl}
-        alt={caregiver.name}
-        width={1000}
-        height={1000}
-        className="w-[272px]  object-cover rounded-[12px]"
-      />
-      <div className="px-6 py-5">
-        <div className="flex items-center gap-2 mt-2">
-          <h3 className="text-base text-[#344054] font-semibold">
-            {caregiver.name}
-          </h3>
-          <Image src={VerifiedIcon} alt="" />
+    <div className="flex flex-col md:flex-row border border-[#D0D5DD] max-w-[556px] rounded-[24px] p-4 w-full shadow-sm group transition">
+      {/* Image and Connect Button */}
+      <div
+        className="relative w-full lg:w-1/2 h-[240px] md:h-auto rounded-[12px] overflow-hidden"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        <Image
+          src={caregiver.avatarUrl}
+          alt={caregiver.name}
+          width={1000}
+          height={1000}
+          className="object-cover w-full h-full rounded-[12px]"
+        />
+        <div
+          className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${
+            hovered ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <Button className="text-[#344054] font-medium px-6 py-2 rounded-full transition">
+            Connect
+          </Button>
         </div>
-        <p className="text-sm text-[#344054] font-normal mt-2">
-          {caregiver.job}
-        </p>
-        <p className="text-sm text-[#667185] font-normal mt-3">
-          {caregiver.bio}
-        </p>
-        <div className="border-t border-[#E4E7EC] mt-3 space-y-3 pt-4">
+      </div>
+
+      {/* Info */}
+      <div className="px-0 md:px-6 py-5 flex flex-col justify-between flex-1">
+        <div>
+          <div className="flex items-center gap-2 mt-2">
+            <h3 className="text-base text-[#344054] font-semibold">
+              {caregiver.name}
+            </h3>
+            <Image src={VerifiedIcon} alt="" />
+          </div>
+          <p className="text-sm text-[#344054] font-normal mt-2">
+            {caregiver.job}
+          </p>
+          <p className="text-sm text-[#667185] font-normal mt-3">
+            {caregiver.bio}
+          </p>
+        </div>
+
+        <div className="border-t border-[#E4E7EC] mt-4 pt-4 space-y-3">
           <div className="flex items-center text-sm gap-2 text-[#475367] font-normal">
             <MapPin size={16} />
             <span>{caregiver.location}</span>
@@ -47,16 +71,13 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
             <Wallet size={16} />
             {caregiver.priceRange}
           </div>
-          <div className="flex items-center gap-2  text-sm text-[#475367] font-normal">
-            <div className="flex items-center justify-center h-5 w-5 p-[6px] bg-[#B5E3C4] rounded-full">
+          <div className="flex items-center gap-2 text-sm text-[#475367] font-normal">
+            <div className="flex items-center justify-center h-5 w-5 bg-[#B5E3C4] rounded-full">
               <div className="h-2 w-2 bg-[#0F973D] rounded-full animate-pulse" />
             </div>
-
             {caregiver.availability}
           </div>
         </div>
-
-        <Button className="mt-2 w-full hidden">Connect</Button>
       </div>
     </div>
   );

@@ -44,6 +44,7 @@ export default function ForgotPasswordPage() {
         toast({
           title: "Reset code sent",
           description: "We've sent a password reset code to your email",
+          variant:"success"
         });
 
         router.push(`/auth/reset-password?email=${encodeURIComponent(email)}`);
@@ -54,7 +55,7 @@ export default function ForgotPasswordPage() {
       toast({
         title: "Failed to send reset code",
         description: error.message || "Please try again",
-        variant: "destructive",
+        variant: "error",
       });
     } finally {
       setIsLoading(false);

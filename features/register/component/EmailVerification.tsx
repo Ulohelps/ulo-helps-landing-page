@@ -28,7 +28,7 @@ const EmailVerification = ({
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email address",
-        variant: "destructive",
+        variant: "error",
       });
       return;
     }
@@ -38,6 +38,7 @@ const EmailVerification = ({
       toast({
         title: "OTP sent",
         description: "A new verification code has been sent to your email",
+        variant: "success",
       });
       setStep(2);
       setIsLoading(false);
@@ -45,7 +46,7 @@ const EmailVerification = ({
       toast({
         title: "Failed to resend OTP",
         description: error.message,
-        variant: "destructive",
+        variant: "error",
       });
     } finally {
       setIsLoading(false);

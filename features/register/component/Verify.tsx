@@ -34,7 +34,7 @@ export default function Verify({ email }: { email: string }) {
       toast({
         title: "Invalid OTP",
         description: "Please enter a 6-digit verification code",
-        variant: "destructive",
+        variant: "error",
       });
       return;
     }
@@ -53,7 +53,7 @@ export default function Verify({ email }: { email: string }) {
       toast({
         title: "Verification failed",
         description: error.message || "Invalid verification code",
-        variant: "destructive",
+        variant: "error",
       });
     } finally {
       setIsLoading(false);
@@ -67,13 +67,14 @@ export default function Verify({ email }: { email: string }) {
       toast({
         title: "OTP sent",
         description: "A new verification code has been sent to your email",
+        variant:"success"
       });
       setTimer(60); // Restart countdown
     } catch (error: any) {
       toast({
         title: "Failed to resend OTP",
         description: error.message,
-        variant: "destructive",
+        variant: "error",
       });
     } finally {
       setIsResending(false);

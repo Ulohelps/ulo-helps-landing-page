@@ -38,6 +38,7 @@ export default function LoginPage() {
         toast({
           title: "Login successful",
           description: "Welcome back!",
+          variant: "success",
         });
 
         router.push("/dashboard");
@@ -48,12 +49,13 @@ export default function LoginPage() {
         toast({
           title: "email verification required",
           description: "We've sent you a verification code",
+          variant:"success"
         });
       } else {
         toast({
           title: "Login failed",
           description: error.message || "Please check your credentials",
-          variant: "destructive",
+          variant: "error",
         });
       }
     } finally {
