@@ -1,11 +1,12 @@
-import React from 'react';
+import FindCaregiver from "@/features/find-caregivers";
+import React from "react";
 
-const FindCaregiver = () => {
-        return (
-                <div>
-                        find caregiver page
-                </div>
-        );
+const FindCaregiverPage = () => {
+  return (
+    <div>
+      <FindCaregiver />
+    </div>
+  );
 };
 
-export default FindCaregiver;
+export default FindCaregiverPage;

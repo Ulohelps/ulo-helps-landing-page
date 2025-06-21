@@ -5,6 +5,7 @@ import { MapPin, Wallet } from "lucide-react";
 import Image from "next/image";
 import VerifiedIcon from "@/components/icons/verified.svg";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export interface Caregiver {
   name: string;
@@ -19,8 +20,10 @@ export interface Caregiver {
 export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
   const [hovered, setHovered] = useState(false);
 
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col md:flex-row border border-[#D0D5DD] max-w-[556px] rounded-[24px] p-4 w-full shadow-sm group transition">
+    <div className="flex flex-col lg:flex-row border border-[#D0D5DD] max-w-[556px] rounded-[24px] p-4 w-full shadow-sm group transition">
       {/* Image and Connect Button */}
       <div
         className="relative w-full lg:w-1/2 h-[240px] md:h-auto rounded-[12px] overflow-hidden"
@@ -39,7 +42,10 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
             hovered ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Button className="text-[#344054] font-medium px-6 py-2 rounded-full transition">
+          <Button
+            onClick={() => router.push("/find-caregiver/2403430")}
+            className="text-[#344054] font-medium px-6 py-2 rounded-full transition"
+          >
             Connect
           </Button>
         </div>
