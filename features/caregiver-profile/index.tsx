@@ -1,99 +1,91 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import User from "@/public/images/Image.png"
-import GuardIcon from "@/public/icons/gaurd.svg"
-import whatsappIcon from "@/public/icons/Brands.svg"
-import CautionIcon from "@/public/icons/caution.svg"
-import { Mail, Phone, } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import User from "@/public/images/Image.png";
+import GuardIcon from "@/public/icons/gaurd.svg";
 
-interface CaregiverProfileProps {
-  connected?: boolean
-}
+import CustomModal from "@/components/custom-modal";
+import { useState } from "react";
+import ConnectionCard from "./components/ConnectionCard";
 
-export default function CaregiverProfile({ connected=true }: CaregiverProfileProps) {
+export default function CaregiverProfile() {
+  const [connected, setConnected] = useState(false);
+  const [isSubscribed, SetIsSubscribed] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleSubscribe = () => {
+    // logic to start subscription
+    setOpen(false);
+    SetIsSubscribed(true);
+    setConnected(true);
+  };
+  const handleConnect = () => {
+    if (isSubscribed) {
+      setConnected(true);
+    } else {
+      setOpen(true);
+    }
+  };
   return (
     <div>
-        <div className="bg-[#E9F6FC] w-full px-4 md:px-8 lg:px-12 py-8">
-         <div className="flex items-center gap-6 max-w-[1136px] mx-auto relative">
-          <div className="w-[266px] min-h-[288px] relative overflow-hidden border border-gray-300">
-            <Image
-              src={User}
-              alt="Caregiver name"
-              width={120}
-              height={120}
-              className="object-cover w-full h-full "
-            />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-2xl font-semibold text-[#1D2739]">Oluwatosin Johnson</h2>
-              <Image src={GuardIcon} alt="guard icon"/>
-            </div>
-            <p className="text-[#475367] text-base mb-2">Housekeeper</p>
-            <p className="max-w-[446px] text-[#667085] text-base leading-relaxed">
-              I’ve worked as a housekeeper for over 7 years, supporting busy families and elderly clients with
-              cleaning, cooking, and errands. I’m known for being dependable, friendly, and quick to notice what
-              needs to be done without being asked...
-            </p>
-          </div>
-        {/* RIGHT: Contact Card */}
-        <Card className="w-full max-w-[347px] shadow-md absolute top-0 right-0 bg-white rounded-[20px] border border-[#E4E7EC]">
-          <CardContent className="space-y-6 py-6">
-            <h4 className="font-semibold text-base text-[#667185] border-b pb-4 border-[#E4E7EC]">Connect with Oluwatosin</h4>
-
-            <div
-              className="space-y-4 transition-all duration-300"
+      <CustomModal
+        open={open}
+        success={false}
+        onClose={() => setOpen(false)}
+        title="You don’t have an active subscription"
+        description="Start a 1-month ULO subscription to connect with caregivers. To get started, click the 'Start subscription' button below and proceed to make payment of NGN30,000 only."
+        buttons={
+          <>
+            <Button
+              variant="outline"
+              className="w-[103px] bg-white"
+              onClick={() => setOpen(false)}
             >
-              <div className="px-3 py-2 border border-[#B4E1F3] rounded-[12px] bg-[#E9F6FC]">
-                  <div className="flex items-center gap-2 mb-3"> 
-                    <Mail className="h-[14px] w-4 text-[#00ABA5]" />
-                    <span className="text-sm text-[#667185]">connect via mail</span>
-                  </div>
-                  <p className={`text-lg text-[#344054] ${!connected && "filter blur-sm pointer-events-none select-none"}`}>user@ulohelps.com</p>
-              </div>
-              <div className="px-3 py-2 border border-[#B4E1F3] rounded-[12px] bg-[#E9F6FC]">
-                  <div className="flex items-center gap-2 mb-3"> 
-                    <Phone className="h-[14px] w-4 text-[#AB5BA6]" />
-                    <span className="text-sm text-[#667185]">connect via phone</span>
-                  </div>
-                  <p className={`text-lg text-[#344054] ${!connected && "filter blur-sm pointer-events-none select-none"}`}>+234 801 234 5678</p>
-              </div>
-              <div className="px-3 py-2 border border-[#B4E1F3] rounded-[12px] bg-[#E9F6FC]">
-                  <div className="flex items-center gap-2 mb-3"> 
-                    <Image src={whatsappIcon} alt="whatsapp icon"width={16} height={14} />
-                    <span className="text-sm text-[#667185]">connect via whatsapp</span>
-                  </div>
-                  <p className={`text-lg text-[#344054] ${!connected && "filter blur-sm pointer-events-none select-none"}`}>+234 801 234 5678</p>
-              </div>
+              cancel
+            </Button>
+            <Button
+              className="w-[186px] bg-[#F6AA3D] hover:bg-[#e19a32] text-[#1D2739] font-semibold"
+              onClick={handleSubscribe}
+            >
+              Start subscription
+            </Button>
+          </>
+        }
+      />
+      <div className="bg-[#E9F6FC] w-full px-4 md:px-8 lg:px-12 py-8">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 max-w-[1136px] mx-auto relative">
+          <div className="flex flex-col items-center md:flex-row gap-4 lg:w-[70%]">
+            <div className="w-[266px] min-h-[288px] relative overflow-hidden border border-gray-300">
+              <Image
+                src={User}
+                alt="Caregiver name"
+                width={120}
+                height={120}
+                className="object-cover w-full h-full "
+              />
             </div>
-
-            {/* Connect / Save */}
-            {!connected && (
-              <div className="space-y-3 pt-3">
-                <Button className="w-full font-semibold text-base">Connect</Button>
-                <Button variant="outline" className="w-full text-base text-[#344054] font-semibold">
-                  Save profile
-                </Button>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-2xl font-semibold text-[#1D2739]">
+                  Oluwatosin Johnson
+                </h2>
+                <Image src={GuardIcon} alt="guard icon" />
               </div>
-              )}
-              {connected && (
-                <div className="space-y-3 pt-3">
-                  <div className="bg-[#00ABA5] flex items-center gap-3 p-2 rounded-[12px]">
-                    <Image src={CautionIcon} alt="caution icon" />
-                    <p className="text-sm text-white font-normal">You connected with Oluwatosin on the 19th of June, 2025.</p>
-                  </div>
-                  <Button variant="outline" className="w-full text-base text-[#344054] font-semibold">
-                    View safety guidelines
-                  </Button>
-                </div>
-              )}
-          </CardContent>
-        </Card>
+              <p className="text-[#475367] text-base mb-2">Housekeeper</p>
+              <p className="max-w-[446px] text-[#667085] text-base leading-relaxed">
+                I’ve worked as a housekeeper for over 7 years, supporting busy
+                families and elderly clients with cleaning, cooking, and
+                errands. I’m known for being dependable, friendly, and quick to
+                notice what needs to be done without being asked...
+              </p>
+            </div>
+          </div>
+          {/* RIGHT: Contact Card */}
+          <ConnectionCard connected={connected} handleConnect={handleConnect} />
         </div>
       </div>
-      </div>
-  )
+    </div>
+  );
 }

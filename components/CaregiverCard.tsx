@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MapPin, Wallet } from "lucide-react";
+import { Bookmark, MapPin, Wallet } from "lucide-react";
 import Image from "next/image";
 import VerifiedIcon from "@/components/icons/verified.svg";
 import { useState } from "react";
@@ -24,7 +24,6 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
 
   return (
     <div className="flex flex-col lg:flex-row border border-[#D0D5DD] max-w-[556px] rounded-[24px] p-4 w-full shadow-sm group transition">
-      {/* Image and Connect Button */}
       <div
         className="relative w-full lg:w-1/2 h-[240px] md:h-auto rounded-[12px] overflow-hidden"
         onMouseEnter={() => setHovered(true)}
@@ -38,13 +37,19 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
           className="object-cover w-full h-full rounded-[12px]"
         />
         <div
-          className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${
+          className={`absolute bottom-6 px-4 flex items-center justify-center gap-4 transition-opacity duration-300 w-full ${
             hovered ? "opacity-100" : "opacity-0"
           }`}
         >
           <Button
+            className="text-[#344054] hover:bg-white font-medium bg-white border-[#D0D5DD] rounded-full transition h-12 w-12 p-[24px]"
+            variant="outline"
+          >
+            <Bookmark />
+          </Button>
+          <Button
             onClick={() => router.push("/find-caregiver/2403430")}
-            className="text-[#344054] font-medium px-6 py-2 rounded-full transition"
+            className="text-[#344054] font-medium px-6 py-2 rounded-full transition w-full "
           >
             Connect
           </Button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { CaregiverCard, Caregiver } from "./CaregiverCard";
+import { CaregiverCard, Caregiver } from "../../../components/CaregiverCard";
 import ArrowLeft from "@/components/icons/arrowleft.svg";
 import ArrowRight from "@/components/icons/arrowright.svg";
 import Image from "next/image";

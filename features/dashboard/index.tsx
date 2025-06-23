@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CaregiverSection } from "./components/CaregiverSection";
 import { Search } from "lucide-react";
+import { CaregiverFilterBar } from "@/components/caregiver-filter-bar";
 
 const dummyCaregivers = [
   {
@@ -40,24 +41,7 @@ export default function Dashboard() {
           </p>
 
           {/* Search Filter */}
-          <div className="w-full bg-white border border-[#D0D5DD] rounded-[16px] mt-8 px-4 py-4 flex flex-col md:flex-row md:items-center md:h-[72px] gap-4 md:gap-2">
-            <Input
-              placeholder="Search by keyword"
-              className="px-3 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none md:border-r"
-            />
-            <Input
-              placeholder="Service: All"
-              className="px-3 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none md:border-r"
-            />
-            <Input
-              placeholder="Location: All"
-              className="px-3 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none"
-            />
-            <Button className="flex items-center justify-center gap-2 w-full md:w-auto py-3 h-full text-base text-[#1D2739] font-semibold rounded-[12px] md:rounded-l-none md:rounded-r-[16px]">
-              <Search size={18} />
-              Find caregivers
-            </Button>
-          </div>
+          <CaregiverFilterBar />
         </div>
       </div>
 
