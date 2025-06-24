@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { CaregiverSection } from "./components/CaregiverSection";
-import { Search } from "lucide-react";
+import UserImage from "@/public/images/Image.png";
 import { CaregiverFilterBar } from "@/components/caregiver-filter-bar";
 
 const dummyCaregivers = [
@@ -14,7 +14,7 @@ const dummyCaregivers = [
     location: "Ogudu GRA, Lagos",
     priceRange: "NGN 50k - 80k",
     availability: "Available",
-    avatarUrl: "/images/image.png",
+    avatarUrl: typeof UserImage === "string" ? UserImage : UserImage.src,
   },
   {
     name: "Daniel Nwankwo",
@@ -23,10 +23,9 @@ const dummyCaregivers = [
     location: "Ogudu GRA, Lagos",
     priceRange: "NGN 50k - 80k",
     availability: "Available",
-    avatarUrl: "/images/image.png",
+    avatarUrl: typeof UserImage === "string" ? UserImage : UserImage.src,
   },
 ];
-
 export default function Dashboard() {
   return (
     <div>

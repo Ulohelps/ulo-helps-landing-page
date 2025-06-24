@@ -9,6 +9,7 @@ import FilterIcon from "@/public/icons/filter.svg";
 import { CaregiverCard } from "../../components/CaregiverCard";
 import FilterPanel from "@/components/filter-panel";
 import { CaregiverFilterBar } from "@/components/caregiver-filter-bar";
+import UserImage from "@/public/images/Image.png";
 
 const dummyCaregivers = [
   {
@@ -18,7 +19,7 @@ const dummyCaregivers = [
     location: "Ogudu GRA, Lagos",
     priceRange: "NGN 50k - 80k",
     availability: "Available",
-    avatarUrl: "/images/image.png",
+    avatarUrl: typeof UserImage === "string" ? UserImage : UserImage.src,
   },
   {
     name: "Daniel Nwankwo",
@@ -27,7 +28,7 @@ const dummyCaregivers = [
     location: "Ogudu GRA, Lagos",
     priceRange: "NGN 50k - 80k",
     availability: "Available",
-    avatarUrl: "/images/image.png",
+    avatarUrl: typeof UserImage === "string" ? UserImage : UserImage.src,
   },
 ];
 

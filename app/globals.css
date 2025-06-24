@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --ulo-orange: #f97316;
+  --ulo-orange: #f6aa3d;
   --ulo-blue: #0ea5e9;
   --ulo-dark: #1e293b;
   --ulo-gray: #64748b;
@@ -54,4 +54,20 @@
   .ulo-progress-step.inactive {
     @apply text-gray-400;
   }
+}
+
+[data-slider-thumb] {
+  background-color: #1570ef;
+  border: 2px solid white;
+  width: 18px;
+  height: 18px;
+}
+
+[data-slider-track] {
+  background-color: #e4e7ec;
+  height: 4px;
+}
+
+[data-slider-range] {
+  background-color: #1570ef;
 }
