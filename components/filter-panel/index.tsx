@@ -19,6 +19,41 @@ type Props = {
   onClose: () => void;
 };
 
+const experienceLevels = [
+  { value: "LESS_THAN_1_YEAR", label: "Less than 1 year" },
+  { value: "ONE_TO_TWO_YEARS", label: "1 - 2 years" },
+  { value: "THREE_TO_FOUR_YEARS", label: "3 - 4 years" },
+  { value: "FIVE_TO_SEVEN_YEARS", label: "5 - 7 years" },
+  { value: "EIGHT_TO_TEN_YEARS", label: "8 - 10 years" },
+  { value: "OVER_TEN_YEARS", label: "Over 10 years" },
+];
+
+const languageOptions = [
+  "English",
+  "Igbo",
+  "Yoruba",
+  "Hausa",
+  "Fulani",
+  "Ijesa",
+  "Egba",
+  "Calabar",
+  "Edo",
+  "French",
+  "Spanish",
+];
+const ethnicityOptions = [
+  "Igbo",
+  "Yoruba",
+  "Hausa",
+  "Fulani",
+  "Efik",
+  "Tiv",
+  "Ijesa",
+  "Egba",
+  "Calabar",
+  "Edo",
+];
+
 const FilterPanel = ({ visible, onClose }: Props) => {
   const [rateRange, setRateRange] = useState<[number, number]>([3, 300]);
   const [experience, setExperience] = useState("");
@@ -87,10 +122,9 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                 <SelectValue placeholder="Select option" />
               </SelectTrigger>
               <SelectContent className="bg-white rounded-[12px] border border-[#D0D5DD] text-[#667085]">
-                <SelectItem value="0.5">0.5 years</SelectItem>
-                <SelectItem value="1">1 year</SelectItem>
-                <SelectItem value="2">2 years</SelectItem>
-                <SelectItem value="3">3+ years</SelectItem>
+                {experienceLevels.map((level) => (
+                  <SelectItem value={level.value}>{level.label}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -159,7 +193,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
               onValueChange={setEthnicity}
               className="flex justify-start gap-2 flex-wrap"
             >
-              {["Yoruba", "Igbo", "Hausa", "Other"].map((label) => (
+              {ethnicityOptions.map((label) => (
                 <ToggleGroupItem
                   key={label}
                   value={label.toLowerCase()}
@@ -182,7 +216,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
               onValueChange={setLanguages}
               className="flex justify-start gap-2 flex-wrap"
             >
-              {["English", "Yoruba", "Igbo", "Hausa", "Other"].map((label) => (
+              {languageOptions.map((label) => (
                 <ToggleGroupItem
                   key={label}
                   value={label.toLowerCase()}

@@ -32,7 +32,7 @@ import { useAuthStore } from "@/lib/stores/auth-store";
 const navLinks = [
   { href: "/dashboard", label: "Home" },
   { href: "/connections", label: "Connections" },
-  { href: "/saved", label: "Saved caregivers" },
+  { href: "/saved-caregivers", label: "Saved caregivers" },
 ];
 
 export default function Header() {

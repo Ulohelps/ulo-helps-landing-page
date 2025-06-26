@@ -12,6 +12,38 @@ import {
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+const lagosLGA = [
+  "Agege",
+  "Ajeromi-Ifelodun",
+  "Alimosho",
+  "Amuwo-Odofin",
+  "Apapa",
+  "Badagry",
+  "Epe",
+  "Eti Osa",
+  "Ibeju-Lekki",
+  "Ifako-Ijaiye",
+  "Ikeja",
+  "Ikorodu",
+  "Kosofe",
+  "Lagos Island",
+  "Lagos Mainland",
+  "Mushin",
+  "Ojo",
+  "Oshodi-Isolo",
+  "Shomolu",
+];
+const serviceTypes = [
+  { id: "CHILDCARE_NANNY", label: "Childcare (Nanny)" },
+  { id: "ELDER_CARE", label: "Elder care" },
+  { id: "CLEANER", label: "Cleaner" },
+  { id: "COOK", label: "Cook" },
+  { id: "CHEF", label: "Chef" },
+  { id: "DRIVER", label: "Driver" },
+  { id: "HOUSEKEEPER", label: "Housekeeper" },
+  { id: "LAUNDRY_WASHER", label: "Laundry Man/Washer" },
+];
+
 export function CaregiverFilterBar() {
   const router = useRouter();
   return (
@@ -27,9 +59,11 @@ export function CaregiverFilterBar() {
         </SelectTrigger>
         <SelectContent className="bg-[#FFFFFF] rounded-[16px] border-none p-2 text-base text-[#344054] font-normal">
           <SelectItem value="all">All</SelectItem>
-          <SelectItem value="nursing">Nursing</SelectItem>
-          <SelectItem value="personal-care">Personal Care</SelectItem>
-          <SelectItem value="therapy">Therapy</SelectItem>
+          {serviceTypes.map((service) => (
+            <SelectItem value={service.id} key={service.id}>
+              {service.label}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
 
@@ -39,9 +73,11 @@ export function CaregiverFilterBar() {
         </SelectTrigger>
         <SelectContent className="bg-[#FFFFFF] rounded-[16px] border-none p-2 text-base text-[#344054] font-normal">
           <SelectItem value="all">All</SelectItem>
-          <SelectItem value="lagos">Lagos</SelectItem>
-          <SelectItem value="abuja">Abuja</SelectItem>
-          <SelectItem value="portharcourt">Port Harcourt</SelectItem>
+          {lagosLGA.map((lga) => (
+            <SelectItem value={lga} key={lga}>
+              {lga}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
 
