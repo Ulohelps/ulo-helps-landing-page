@@ -130,7 +130,10 @@ export default function Header() {
               align="end"
               className="w-56 border-none rounded-[20px] px-0 bg-white shadow-lg"
             >
-              <DropdownMenuItem className="px-6 py-4">
+              <DropdownMenuItem
+                className="px-6 py-4 cursor-pointer"
+                onClick={() => router.push("/account-settings")}
+              >
                 <User className="mr-2 text-[#475367] h-4 w-4" />
                 <span className="text-sm font-normal text-[#344054]">
                   Account settings
