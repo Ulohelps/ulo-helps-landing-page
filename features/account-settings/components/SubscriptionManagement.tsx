@@ -1,7 +1,14 @@
-import React from "react";
+import SubscriptionCard from "./SubscriptionCard";
+import SubscriptionStatusCard from "./SubscriptionStatusCard";
+import BillingHistoryTable from "./BillingHistoryTable";
 
-const SubscriptionManagement = () => {
-  return <div>subscription</div>;
-};
+export default function SubscriptionManagement() {
+  return (
+    <div className="w-full">
+      <SubscriptionCard />
 
-export default SubscriptionManagement;
+      {/* Billing History */}
+      <BillingHistoryTable />
+    </div>
+  );
+}
