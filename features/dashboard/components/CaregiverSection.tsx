@@ -5,7 +5,7 @@ import ArrowLeft from "@/components/icons/arrowleft.svg";
 import ArrowRight from "@/components/icons/arrowright.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export function CaregiverSection({
   title,
@@ -16,6 +16,7 @@ export function CaregiverSection({
   caregivers: Caregiver[];
   showAllLink?: string;
 }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const ITEMS_PER_PAGE = 2;
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -25,7 +26,6 @@ export function CaregiverSection({
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
-
   const handlePrev = () => {
     setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
   };
@@ -33,9 +33,17 @@ export function CaregiverSection({
   const handleNext = () => {
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
   };
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
+  };
 
   return (
     <section className="my-10 space-y-4 border border-[#E4E7EC] rounded-[24px]">
+      {/* Header */}
       <div className="flex justify-between items-center border-b border-[#E4E7EC] p-3 md:p-6">
         <h2 className="text-base md:text-xl text-[#344054] font-semibold">
           Find{" "}
@@ -50,6 +58,7 @@ export function CaregiverSection({
           </span>{" "}
           on ULO
         </h2>
+
         {showAllLink && (
           <Link
             href={"/find-caregiver"}
@@ -60,39 +69,47 @@ export function CaregiverSection({
         )}
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-4 px-3 py-2 md:px-6 md:py-5">
-        {currentCaregivers.map((caregiver, idx) => (
-          <CaregiverCard caregiver={caregiver} key={idx} />
-        ))}
-      </div>
-
-      <div className="flex items-center justify-center gap-6 px-3 py-2 md:px-6 md:py-5 border-t border-[#D0D5DD]">
-        <button
-          onClick={handlePrev}
-          disabled={currentPage === 0}
-          className="flex items-center justify-center p-[14px] border border-[#D0D5DD] h-12 w-12 rounded-full disabled:opacity-50"
-        >
-          <Image src={ArrowLeft} alt="Previous" />
-        </button>
-
-        <div className="flex items-center gap-1">
-          {Array.from({ length: totalPages }).map((_, idx) => (
-            <div
-              key={idx}
-              className={`w-[6px] h-[6px] rounded-full ${
-                idx === currentPage ? "bg-[#1DA5DB]" : "bg-[#98A2B3]"
-              }`}
-            />
-          ))}
+      {/* Scrollable Cards */}
+      <div className="relative">
+        <div className="overflow-x-auto md:overflow-hidden px-3 md:px-6 py-5 scrollbar-hide">
+          <div
+            ref={scrollRef}
+            className="flex gap-4 w-full min-w-[300px] md:min-w-0"
+          >
+            {caregivers.map((caregiver, idx) => (
+              <CaregiverCard caregiver={caregiver} key={idx} />
+            ))}
+          </div>
         </div>
 
-        <button
-          onClick={handleNext}
-          disabled={currentPage === totalPages - 1}
-          className="flex items-center justify-center p-[14px] border border-[#D0D5DD] h-12 w-12 rounded-full disabled:opacity-50"
-        >
-          <Image src={ArrowRight} alt="Next" />
-        </button>
+        <div className="flex justify-center gap-6 px-6 py-5 border-t border-[#D0D5DD]">
+          <button
+            onClick={handlePrev}
+            disabled={currentPage === 0}
+            className="flex items-center justify-center p-[14px] border border-[#D0D5DD] h-12 w-12 rounded-full disabled:opacity-50"
+          >
+            <Image src={ArrowLeft} alt="Previous" />
+          </button>
+
+          <div className="flex items-center gap-1">
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <div
+                key={idx}
+                className={`w-[6px] h-[6px] rounded-full ${
+                  idx === currentPage ? "bg-[#1DA5DB]" : "bg-[#98A2B3]"
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={handleNext}
+            disabled={currentPage === totalPages - 1}
+            className="flex items-center justify-center p-[14px] border border-[#D0D5DD] h-12 w-12 rounded-full disabled:opacity-50"
+          >
+            <Image src={ArrowRight} alt="Next" />
+          </button>
+        </div>
       </div>
     </section>
   );

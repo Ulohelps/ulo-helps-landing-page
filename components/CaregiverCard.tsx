@@ -19,11 +19,11 @@ export interface Caregiver {
 
 export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
   const [hovered, setHovered] = useState(false);
-
   const router = useRouter();
 
   return (
-    <div className="flex flex-col lg:flex-row border border-[#D0D5DD] max-w-[556px] rounded-[24px] p-4 w-full shadow-sm group transition">
+    <div className="flex-shrink-0 w-full sm:w-[450px] md:w-[500px] lg:w-[556px] flex flex-col lg:flex-row border border-[#D0D5DD] rounded-[24px] p-4 shadow-sm group transition">
+      {/* Image section */}
       <div
         className="relative w-full lg:w-1/2 h-[240px] md:h-auto rounded-[12px] overflow-hidden"
         onMouseEnter={() => setHovered(true)}
@@ -63,7 +63,7 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
             <h3 className="text-base text-[#344054] font-semibold">
               {caregiver.name}
             </h3>
-            <Image src={VerifiedIcon} alt="" />
+            <Image src={VerifiedIcon} alt="Verified" />
           </div>
           <p className="text-sm text-[#344054] font-normal mt-2">
             {caregiver.job}

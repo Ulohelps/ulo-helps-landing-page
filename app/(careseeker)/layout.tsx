@@ -12,7 +12,7 @@ export default function CaregiverLayout({
     <AuthProvider>
       <ProtectedRoute requiredRole="CARESEEKER">
         <Header />
-        <div className="mt-[74px]">{children}</div>
+        <div className="px-4 md:px-2mt-[74px]">{children}</div>
       </ProtectedRoute>
     </AuthProvider>
   );

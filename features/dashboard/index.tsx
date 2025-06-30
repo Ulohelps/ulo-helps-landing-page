@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CaregiverSection } from "./components/CaregiverSection";
 import UserImage from "@/public/images/Image.png";
 import { CaregiverFilterBar } from "@/components/caregiver-filter-bar";
-import HeaderWrapper from "@/components/header-wrap";
+import HeroImage from "../../public/images/hero-pic.png";
 
 const dummyCaregivers = [
   {
@@ -29,24 +29,32 @@ const dummyCaregivers = [
 ];
 export default function Dashboard() {
   return (
-    <div>
-      {/* Header */}
-      <HeaderWrapper>
-        <div className="max-w-[1136px] mx-auto pb-16 relative">
-          <h1 className="text-2xl lg:text-[28px] text-[#06212C] font-semibold">
+    <div className="mt-[120px] md:mt-[150px]">
+      <div
+        className="flex flex-col justify-between max-w-[1136px] md:h-[358px] mx-auto px-4 md:px-8 lg:px-12 py-[72px] rounded-[24px] relative "
+        style={{
+          backgroundImage: `url(${
+            typeof HeroImage === "string" ? HeroImage : HeroImage.src
+          })`,
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+        }}
+      >
+        <div>
+          <h1 className="text-2xl lg:text-[28px] text-white font-semibold">
             Welcome back, Nkechi
           </h1>
-          <p className="text-base lg:text-lg font-normal text-[#344054] mt-1">
+          <p className="text-base lg:text-lg font-normal text-[#F7F9FC] mt-2">
             What do you want to do today?
           </p>
-
-          {/* Search Filter */}
-          <CaregiverFilterBar />
         </div>
-      </HeaderWrapper>
+
+        {/* Search Filter */}
+        <CaregiverFilterBar />
+      </div>
 
       {/* Caregiver Sections */}
-      <div className="max-w-[1136px] mx-auto px-4 md:px-8 mt-12 space-y-10">
+      <div className="max-w-[1136px] mx-auto mt-12 space-y-10">
         <CaregiverSection
           title="Nannies"
           caregivers={dummyCaregivers}
