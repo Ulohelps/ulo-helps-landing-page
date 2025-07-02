@@ -66,8 +66,7 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
       await careseekersService.changePassword(payload);
       set({ isUpdating: false });
     } catch (error: any) {
-      const errorMessage =
-        error.response?.data?.message || "Password change failed";
+      const errorMessage = error || "Password change failed";
       set({ error: errorMessage, isUpdating: false });
       throw new Error(errorMessage);
     }

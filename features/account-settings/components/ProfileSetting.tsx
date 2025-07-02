@@ -106,7 +106,7 @@ const ProfileSetting = () => {
       toast({
         title: "Failed upload",
         description: "Error uploading photo",
-        variant: "success",
+        variant: "error",
       });
     }
   };
@@ -119,16 +119,16 @@ const ProfileSetting = () => {
       await fetchProfile();
       setIsLoading(false);
       toast({
-        title: "Photo upload",
-        description: "Photo uploaded successfully",
+        title: "profile update",
+        description: "updated your name successfully",
         variant: "success",
       });
     } catch (error) {
       console.log(error);
       toast({
-        title: "Failed upload",
-        description: "Error uploading photo",
-        variant: "success",
+        title: "Failed update profile",
+        description: "Error updating profile",
+        variant: "error",
       });
     }
   };
@@ -222,9 +222,8 @@ const ProfileSetting = () => {
           btnText1="Cancel"
           onConfirm={() => handleConfirm(modalKey)}
           loading={isLoading}
-        >
-          {getModalContent(modalKey)}
-        </SettingsModal>
+          children={getModalContent(modalKey)}
+        />
       ))}
 
       {/* Profile sections */}

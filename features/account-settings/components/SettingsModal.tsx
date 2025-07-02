@@ -45,9 +45,9 @@ const SettingsModal = ({
             {title}
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-base text-[#667185] font-normal mt-2 px-4 md:px-8 md:py-4">
+        <div className="text-base text-[#667185] font-normal mt-2 px-4 md:px-8 md:py-4">
           {children}
-        </DialogDescription>
+        </div>
 
         <DialogFooter
           className="px-4 md:px-8 py-6 bg-[#F7F9FC] border-t border-[#E4E7EC] gap-3"
