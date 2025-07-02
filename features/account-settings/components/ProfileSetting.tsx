@@ -9,17 +9,28 @@ import EditNameModal from "./modal-content/EditNameModal";
 import VerifyPhoneModal from "./modal-content/EditPhoneModal";
 import VerifyEmailModal from "./modal-content/EditEmailModal";
 import Image from "next/image";
+import { useCareseekersStore } from "@/lib/stores/careseeker-store";
+import { useToast } from "@/hooks/use-toast";
 
 type ModalKeys = "uploadPhoto" | "editName" | "changePhone" | "changeEmail";
 
 const ProfileSetting = () => {
+  const { profile, uploadProfilePicture, updateProfile, fetchProfile } =
+    useCareseekersStore();
+
   const [photo, setPhoto] = useState<File | null>(null);
+
+  const [firstName, setFirstName] = useState(profile?.firstName || "");
+  const [lastName, setLastName] = useState(profile?.lastName || "");
+
   const [openModals, setOpenModals] = useState<Record<ModalKeys, boolean>>({
     uploadPhoto: false,
     editName: false,
     changePhone: false,
     changeEmail: false,
   });
+
+  const { toast } = useToast();
 
   const modalTitles: Record<ModalKeys, string> = {
     uploadPhoto: "Change profile photo",
@@ -77,6 +88,51 @@ const ProfileSetting = () => {
     }, 1000);
   };
 
+  const handlePhotoUpload = async () => {
+    setIsLoading(true);
+    try {
+      if (photo) {
+        await uploadProfilePicture(photo);
+        await fetchProfile();
+        setIsLoading(false);
+        toast({
+          title: "Photo upload",
+          description: "Photo uploaded successfully",
+          variant: "success",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Failed upload",
+        description: "Error uploading photo",
+        variant: "success",
+      });
+    }
+  };
+
+  const handleNameChange = async () => {
+    setIsLoading(true);
+    const payload = { firstName, lastName };
+    try {
+      await updateProfile(payload);
+      await fetchProfile();
+      setIsLoading(false);
+      toast({
+        title: "Photo upload",
+        description: "Photo uploaded successfully",
+        variant: "success",
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Failed upload",
+        description: "Error uploading photo",
+        variant: "success",
+      });
+    }
+  };
+
   const handleConfirm = (modalKey: ModalKeys) => {
     if (modalKey === "changePhone") {
       if (verificationStep.phone === "input") {
@@ -90,13 +146,12 @@ const ProfileSetting = () => {
       } else {
         handleVerify("email");
       }
-    } else {
-      // Handle other modals
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        handleClose();
-      }, 1000);
+    } else if (modalKey === "uploadPhoto") {
+      handlePhotoUpload();
+      handleClose();
+    } else if (modalKey === "editName") {
+      handleNameChange();
+      handleClose();
     }
   };
 
@@ -105,7 +160,14 @@ const ProfileSetting = () => {
       case "uploadPhoto":
         return <UploadPhotoModal onFileChange={setPhoto} photo={photo} />;
       case "editName":
-        return <EditNameModal />;
+        return (
+          <EditNameModal
+            firstName={firstName}
+            lastName={lastName}
+            setFirstName={setFirstName}
+            setLastName={setLastName}
+          />
+        );
       case "changePhone":
         return (
           <VerifyPhoneModal
@@ -169,9 +231,9 @@ const ProfileSetting = () => {
       <div className="flex flex-col items-center md:flex-row md:items-end justify-between gap-4 border-b border-[#E4E7EC] py-6">
         <div className="flex flex-col">
           <p className="text-sm text-[#475367] font-normal">Profile photo</p>
-          {photo ? (
+          {profile?.profileImageUrl ? (
             <Image
-              src={URL.createObjectURL(photo)}
+              src={profile?.profileImageUrl}
               alt="user profile picture"
               width={80}
               height={80}
@@ -200,8 +262,8 @@ const ProfileSetting = () => {
       <div className="flex flex-col items-center md:flex-row md:items-center gap-4 justify-between border-b border-[#E4E7EC] py-6">
         <div className="flex md:flex-col items-center justify-center md:items-start md:justify-between gap-4 md:gap-2 w-full">
           <p className="text-sm text-[#475367] font-normal">Name</p>
-          <p className="text-base text-[#344054] font-normal">
-            Nkechi Williams
+          <p className="text-base text-[#344054] font-normal capitalize">
+            {firstName} {lastName}
           </p>
         </div>
         <Button
@@ -217,7 +279,7 @@ const ProfileSetting = () => {
         <div className="flex md:flex-col items-center justify-center md:items-start md:justify-between gap-4 md:gap-2 w-full">
           <p className="text-sm text-[#475367] font-normal">Phone number</p>
           <p className="text-base text-[#344054] font-normal">
-            +234 812 345 6789
+            {profile?.user.phone}
           </p>
         </div>
         <Button
@@ -233,7 +295,7 @@ const ProfileSetting = () => {
         <div className="flex md:flex-col items-center justify-center md:items-start md:justify-between gap-4 md:gap-2 w-full">
           <p className="text-sm text-[#475367] font-normal">Email</p>
           <p className="text-base text-[#344054] font-normal">
-            nkechi@example.com
+            {profile?.user.email}
           </p>
         </div>
         <Button

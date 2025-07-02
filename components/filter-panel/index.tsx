@@ -9,10 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Input } from "../ui/input";
 
 type Props = {
   visible: boolean;
@@ -131,30 +133,37 @@ const FilterPanel = ({ visible, onClose }: Props) => {
 
           {/* Monthly Rate */}
           <div>
-            <label className="text-base font-semibold text-[#667185] block mb-4">
+            <Label className="text-base font-semibold text-[#667185] block mb-4">
               Filter by rate
-            </label>
-            <p className="text-xs text-[#667085] mb-4">Monthly rate</p>
-            <div>
-              <Slider
-                value={rateRange}
-                onValueChange={(value) =>
-                  setRateRange(value as [number, number])
-                }
-                min={10}
-                max={300}
-                step={10}
-                minStepsBetweenThumbs={1}
-              />
-              <div className="flex justify-between text-base text-[#98A2B3] mt-4">
-                <span>{formatCurrency(10)}</span>
-                <span>{formatCurrency(30)}</span>
-                <span>{formatCurrency(70)}</span>
-                <span>{formatCurrency(300)}K</span>
+            </Label>
+            <div className="flex items-center gap-6">
+              <div className="w-full">
+                <Label className="text-sm text-[#344054] font-normal">
+                  From
+                </Label>
+                <div className="flex items-center">
+                  <div className="inline-flex bg-[#F0F2F5] items-center h-10 px-3 border border-[#D0D5DD] border-r-0 rounded-l-[10px] text-sm text-[#344054] font-normal">
+                    NGN
+                  </div>
+                  <Input
+                    type="text"
+                    placeholder=""
+                    className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px] bg-white focus:outline-none focus:border-0 text-sm text-[#344054] font-normal"
+                  />
+                </div>
               </div>
-              <div className="flex justify-between mt-1 text-xs text-[var(--ulo-orange)] font-medium">
-                <span>{formatCurrency(rateRange[0])}</span>
-                <span>{formatCurrency(rateRange[1])}</span>
+              <div className="w-full">
+                <Label className="text-sm text-[#344054] font-normal">To</Label>
+                <div className="flex items-center">
+                  <div className="inline-flex bg-[#F0F2F5] items-center h-10 px-3 border border-[#D0D5DD] border-r-0 rounded-l-[10px] text-sm text-[#344054] font-normal">
+                    NGN
+                  </div>
+                  <Input
+                    type="text"
+                    placeholder=""
+                    className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px] bg-white focus:outline-none focus:border-0 text-sm text-[#344054] font-normal"
+                  />
+                </div>
               </div>
             </div>
           </div>

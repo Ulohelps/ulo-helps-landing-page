@@ -9,9 +9,9 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
 });
 export const metadata: Metadata = {
-  title: "Ulohelps - Caregiver Network",
+  title: "Ulohelps - Careseeker Network",
   description:
-    "Join the ULO Caregiver Network and connect with families who need your care",
+    "Discover trusted caregivers and join a supportive community with the ULO Careseeker Network.",
   generator: "v0.dev",
 };
 

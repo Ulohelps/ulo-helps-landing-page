@@ -3,7 +3,19 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const EditNameModal = () => (
+interface FormDataProps {
+  firstName: string;
+  lastName: string;
+  setFirstName: (val: string) => void;
+  setLastName: (val: string) => void;
+}
+
+const EditNameModal = ({
+  firstName,
+  lastName,
+  setFirstName,
+  setLastName,
+}: FormDataProps) => (
   <div className="space-y-4">
     <div className="space-y-2">
       <Label htmlFor="firstName" className="text-sm text-[#344054] font-light">
@@ -14,8 +26,8 @@ const EditNameModal = () => (
         type="text"
         required
         placeholder="Enter first name"
-        value={"Nkechi"}
-        onChange={() => {}}
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
         className="mt-1 h-11 rounded-xl border-gray-300"
       />
     </div>
@@ -26,8 +38,8 @@ const EditNameModal = () => (
       <Input
         type="text"
         placeholder="Enter last name"
-        defaultValue="Williams"
-        onChange={() => {}}
+        defaultValue={lastName}
+        onChange={(e) => setLastName(e.target.value)}
         className="mt-1 h-11 rounded-xl border-gray-300"
       />
     </div>

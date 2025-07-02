@@ -12,7 +12,7 @@ import NotificationPreferences from "./components/NotificationPreferences";
 
 export default function AccountSettings() {
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       {/* Header Section */}
       <HeaderWrapper>
         <div className="max-w-[1136px] mx-auto py-12">

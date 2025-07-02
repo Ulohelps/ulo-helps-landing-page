@@ -55,7 +55,7 @@ export default function CaregiverProfile() {
     }
   };
   return (
-    <div>
+    <div className="">
       <CustomModal
         open={open}
         success={false}
@@ -98,8 +98,11 @@ export default function CaregiverProfile() {
           ))}
         </div>
         <div className="w-full lg:w-[65%]">
-          {userDetails.map((detail) => (
-            <div className="flex items-center justify-between py-4 border-b border-[#E4E7EC]">
+          {userDetails.map((detail, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between py-4 border-b border-[#E4E7EC]"
+            >
               <p className="text-base text-[#475367] font-normal">
                 {detail.label}
               </p>

@@ -6,6 +6,7 @@ import { CaregiverSection } from "./components/CaregiverSection";
 import UserImage from "@/public/images/Image.png";
 import { CaregiverFilterBar } from "@/components/caregiver-filter-bar";
 import HeroImage from "../../public/images/hero-pic.png";
+import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 
 const dummyCaregivers = [
   {
@@ -28,6 +29,8 @@ const dummyCaregivers = [
   },
 ];
 export default function Dashboard() {
+  const { profile } = useCareseekersStore();
+ 
   return (
     <div className="mt-[120px] md:mt-[150px]">
       <div
@@ -42,7 +45,7 @@ export default function Dashboard() {
       >
         <div>
           <h1 className="text-2xl lg:text-[28px] text-white font-semibold">
-            Welcome back, Nkechi
+            Welcome back, {profile?.firstName}
           </h1>
           <p className="text-base lg:text-lg font-normal text-[#F7F9FC] mt-2">
             What do you want to do today?

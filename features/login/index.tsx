@@ -1,7 +1,5 @@
 "use client";
 
-import type React from "react";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -21,7 +19,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const [googleLoading, setGoogleLoading] = useState(false);
 
   const router = useRouter();
@@ -41,14 +38,13 @@ export default function Login() {
           description: "Welcome back!",
           variant: "success",
         });
-
         router.push("/dashboard");
       }
     } catch (error: any) {
       if (error.message.includes("email not verified")) {
         await sendOtp(email);
         toast({
-          title: "email verification required",
+          title: "Email verification required",
           description: "We've sent you a verification code",
           variant: "success",
         });
@@ -64,10 +60,25 @@ export default function Login() {
     }
   };
 
+  const handleGoogleSignIn = () => {
+    setGoogleLoading(true);
+    try {
+      // Redirect to backend OAuth endpoint
+      window.location.href = `https://ulo-v1-stagging-be-b9a3d3832785.herokuapp.com/api/v1/auth/google`;
+    } catch (error) {
+      toast({
+        title: "Google sign-in failed",
+        description: "Please try again",
+        variant: "error",
+      });
+      setGoogleLoading(false);
+    }
+  };
+
   return (
-    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1124px] mx-auto md:px-10 py-4  md:py-10 md:my-20 ">
+    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1124px] mx-auto md:px-10 py-4 md:py-10 md:my-20">
       <Slideshow />
-      <div className="flex flex-col  w-full md:w-2/5  px-4">
+      <div className="flex flex-col w-full md:w-2/5 px-4">
         <div className="w-full gap-2">
           <Image src={Logo} alt="" width={67} height={32} />
           <p className="text-2xl text-[#344054] font-bold mt-2">
@@ -79,7 +90,7 @@ export default function Login() {
           </p>
         </div>
 
-        <form className="w-full mt-6 " onSubmit={handleLogin}>
+        <form className="w-full mt-6" onSubmit={handleLogin}>
           <div>
             <Label
               className="text-sm text-[#344054] font-normal"
@@ -125,6 +136,7 @@ export default function Login() {
             <Button
               type="submit"
               className="text-base w-full hover:bg-[#F6AA3D]/50 text-[#06212C] font-semibold p-6 rounded-[80px] cursor-pointer shadow-md"
+              disabled={isLoading}
             >
               {isLoading ? <Loader className="animate-spin" /> : "Log in"}
             </Button>
@@ -132,14 +144,14 @@ export default function Login() {
         </form>
         <div className="mt-5">
           <div className="text-center">
-            <span className="text-sm text-[#344054] ">
-              Already have an account?{" "}
+            <span className="text-sm text-[#344054]">
+              Don't have an account?{" "}
             </span>
             <Link
               href="/auth/register"
               className="text-sm font-medium text-[#1DA5DB] hover:text-blue-300"
             >
-              sign up
+              Sign up
             </Link>
           </div>
         </div>
@@ -151,16 +163,17 @@ export default function Login() {
         <div className="flex justify-center mt-4 w-full">
           <Button
             type="button"
-            className="text-base text-[#06212C] w-full bg-white border border-[#D0D5DD] font-semibold p-6 rounded-[80px] cursor-pointer"
+            className="text-base text-[#06212C] w-full bg-white border border-[#D0D5DD] font-semibold p-6 rounded-[80px] cursor-pointer hover:bg-gray-50"
+            onClick={handleGoogleSignIn}
             disabled={googleLoading}
           >
             {googleLoading ? (
               <Loader className="animate-spin" />
             ) : (
-              <p className="flex items-center gap-2">
-                <Image src={GoogleIcon} width={20} height={20} alt="" /> Sign up
-                with Google
-              </p>
+              <span className="flex items-center justify-center gap-2">
+                <Image src={GoogleIcon} width={20} height={20} alt="Google" />
+                Sign in with Google
+              </span>
             )}
           </Button>
         </div>

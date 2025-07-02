@@ -6,6 +6,7 @@ import Image from "next/image";
 import VerifiedIcon from "@/components/icons/verified.svg";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export interface Caregiver {
   name: string;
@@ -22,7 +23,10 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
   const router = useRouter();
 
   return (
-    <div className="flex-shrink-0 w-full sm:w-[450px] md:w-[500px] lg:w-[556px] flex flex-col lg:flex-row border border-[#D0D5DD] rounded-[24px] p-4 shadow-sm group transition">
+    <Link
+      href={`/find-caregiver/${caregiver.name}`}
+      className="flex-shrink-0 w-full  flex flex-col lg:flex-row border border-[#D0D5DD] rounded-[24px] p-4 shadow-sm group transition"
+    >
       {/* Image section */}
       <div
         className="relative w-full lg:w-1/2 h-[240px] md:h-auto rounded-[12px] overflow-hidden"
@@ -90,6 +94,6 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

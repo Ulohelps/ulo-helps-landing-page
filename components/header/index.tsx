@@ -28,6 +28,7 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/auth-store";
+import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 
 const navLinks = [
   { href: "/dashboard", label: "Home" },
@@ -36,9 +37,11 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const { profile } = useCareseekersStore();
+  const { logout } = useAuthStore();
   const pathname = usePathname();
   const router = useRouter();
-  const { logout } = useAuthStore();
+
   const handleLogout = () => {
     logout();
     router.push("/auth/login");
@@ -109,16 +112,20 @@ export default function Header() {
               3
             </Badge>
           </div>
-          <div className="rounded-full flex items-center justify-center border border-[#344054] h-8 w-8 ml-2">
-            <User2 className="w-6 h-6" />
-            {/*   <Image
-                src="/user.jpg"
-                alt="Avatar"
-                width={32}
-                height={32}
-                className="rounded-full object-cover"
-              /> */}
-          </div>
+
+          {profile?.profileImageUrl ? (
+            <Image
+              src={profile?.profileImageUrl}
+              alt="user profile picture"
+              width={80}
+              height={80}
+              className="w-8 h-8 rounded-full object-cover"
+            />
+          ) : (
+            <div className="rounded-full flex items-center justify-center border border-[#344054] h-8 w-8 ml-2">
+              <User2 className=" text-[#475367] w-6 h-6" />
+            </div>
+          )}
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -131,10 +138,23 @@ export default function Header() {
               className="w-56 border-none rounded-[20px] px-0 bg-white shadow-lg"
             >
               <DropdownMenuItem
-                className="px-6 py-4 cursor-pointer"
+                className="flex items-center px-6 py-4 cursor-pointer"
                 onClick={() => router.push("/account-settings")}
               >
-                <User className="mr-2 text-[#475367] h-4 w-4" />
+                {profile?.profileImageUrl ? (
+                  <Image
+                    src={profile?.profileImageUrl}
+                    alt="user profile picture"
+                    width={80}
+                    height={80}
+                    className="h-4 w-4 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-6 w-6 rounded-full border-2 border-[#344054] p-1">
+                    <User className=" text-[#475367] h-4 w-4" />
+                  </div>
+                )}
+
                 <span className="text-sm font-normal text-[#344054]">
                   Account settings
                 </span>

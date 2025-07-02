@@ -4,6 +4,7 @@ import { User2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ChangeEvent } from "react";
 import Image from "next/image";
+import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 
 interface UploadPhotoModalProps {
   onFileChange: (file: File | null) => void;
@@ -16,15 +17,21 @@ const UploadPhotoModal = ({ onFileChange, photo }: UploadPhotoModalProps) => {
     onFileChange(file);
   };
 
+  const { profile } = useCareseekersStore();
+
   return (
     <div
       className="flex flex-col md:flex-row items-center justify-between cursor-pointer"
       onClick={() => document.getElementById("profilePhoto")?.click()}
     >
       <div className="flex items-center gap-4">
-        {photo ? (
+        {photo || profile?.profileImageUrl ? (
           <Image
-            src={URL.createObjectURL(photo)}
+            src={
+              photo
+                ? URL.createObjectURL(photo)
+                : profile?.profileImageUrl || ""
+            }
             alt="user profile picture"
             width={80}
             height={80}
@@ -38,9 +45,9 @@ const UploadPhotoModal = ({ onFileChange, photo }: UploadPhotoModalProps) => {
           <span className="text-base text-[#344054] font-medium">
             Upload your image
           </span>
-          <div className="text-xs text-[#98A2B3] font-normal">
+          <p className="text-xs text-[#98A2B3] font-normal">
             PDF format <span className="font-semibold">• Max. 5MB</span>
-          </div>
+          </p>
         </div>
       </div>
       <input

@@ -9,7 +9,7 @@ import HeaderWrapper from "@/components/header-wrap";
 
 export default function Connections() {
   return (
-    <div className="w-full relative">
+    <div className="relative w-full">
       {/* Header Section */}
       <HeaderWrapper>
         <div className="max-w-[1136px] mx-auto pb-16">

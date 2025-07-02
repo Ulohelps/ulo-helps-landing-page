@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/auth-store";
+import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -17,6 +18,11 @@ export function ProtectedRoute({
 }: ProtectedRouteProps) {
   const router = useRouter();
   const { isAuthenticated, user, isHydrated } = useAuthStore();
+  const { fetchProfile } = useCareseekersStore();
+
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   useEffect(() => {
     if (!isHydrated) return;

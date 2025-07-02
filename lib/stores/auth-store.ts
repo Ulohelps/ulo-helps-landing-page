@@ -1,6 +1,8 @@
+// src/lib/stores/auth-store.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { jwtDecode } from "jwt-decode";
+import { authService } from "../services/authService";
 
 interface User {
   id: string;
@@ -12,13 +14,6 @@ interface User {
   profileIncomplete: boolean;
   lastStep?: string;
 }
-interface PersonalDetailsForm {
-  email: string;
-  firstName: string;
-  lastName: string;
-  phone: string;
-  password: string;
-}
 
 interface AuthState {
   user: User | null;
@@ -28,7 +23,10 @@ interface AuthState {
   isLoading: boolean;
   step: number;
   isHydrated: boolean;
-  // Actions
+  error: string | null;
+
+  setToken: (accessToken: string, refreshToken: string) => void;
+
   login: (
     email: string,
     password: string
@@ -46,14 +44,10 @@ interface AuthState {
   sendOtp: (email: string) => Promise<void>;
   verifyEmail: (email: string, otp: string) => Promise<void>;
   refreshAccessToken: () => Promise<void>;
-  setUser: (user: User) => void;
+  setUser: (user: Partial<User>) => void;
   initialize: () => Promise<void>;
+  clearError: () => void;
 }
-
-const API_BASE_URL =
-  "https://ulo-v1-stagging-be-b9a3d3832785.herokuapp.com/api/v1";
-// "https://ulo-v1-stagging-be-b9a3d3832785.herokuapp.com/api/v1"
-// "http://localhost:3200/api/v1";
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -65,202 +59,166 @@ export const useAuthStore = create<AuthState>()(
       isLoading: false,
       isHydrated: false,
       step: 1,
-      login: async (email: string, password: string) => {
-        set({ isLoading: true });
+      error: null,
 
+      login: async (email, password) => {
+        set({ isLoading: true, error: null });
         try {
-          const response = await fetch(
-            `${API_BASE_URL}/auth/careseeker/login`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ email, password }),
-            }
-          );
+          const response = await authService.login({ email, password });
+          const { accessToken, refreshToken, ...userData } = response.data;
 
-          const data = await response.json();
+          set({
+            user: userData,
+            accessToken,
+            refreshToken,
+            isAuthenticated: true,
+            isLoading: false,
+          });
 
-          if (!response.ok) {
-            throw new Error(data.message || "Login failed");
-          }
-
-          if (data.success) {
-            const { accessToken, refreshToken, ...userData } = data.data;
-
-            set({
-              user: userData,
-              accessToken,
-              refreshToken,
-              isAuthenticated: true,
-              isLoading: false,
-            });
-
-            return { success: true, user: userData };
-          } else {
-            throw new Error(data.message || "Login failed");
-          }
+          return { success: true, user: userData };
         } catch (error) {
-          set({ isLoading: false });
+          set({
+            isLoading: false,
+            error: error instanceof Error ? error.message : "Login failed",
+          });
           throw error;
         }
       },
-      sendEmailVerification: async (email: string) => {
-        const response = await fetch(
-          `${API_BASE_URL}/auth/careseeker/pre-register`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email }),
-          }
-        );
 
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || "Failed to send OTP");
-        }
-      },
-      register: async (
-        email: string,
-        firstName: string,
-        lastName: string,
-        password: string,
-        phone: string
-      ) => {
-        set({ isLoading: true });
-
+      register: async (email, firstName, lastName, password, phone) => {
+        set({ isLoading: true, error: null });
         try {
-          const response = await fetch(
-            `${API_BASE_URL}/auth/careseeker/register`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                email,
-                password,
-                firstName,
-                lastName,
-                phone,
-              }),
-            }
-          );
+          const response = await authService.register({
+            email,
+            firstName,
+            lastName,
+            password,
+            phone,
+          });
+          const { accessToken, refreshToken, ...userData } = response.data;
 
-          const data = await response.json();
+          set({
+            user: userData,
+            accessToken,
+            refreshToken,
+            isAuthenticated: true,
+            isLoading: false,
+          });
 
-          if (!response.ok) {
-            throw new Error(data.message || "Registration failed");
-          }
-
-          if (data.success) {
-            const { accessToken, refreshToken, ...userData } = data.data;
-
-            set({
-              user: userData,
-              accessToken,
-              refreshToken,
-              isAuthenticated: true,
-              isLoading: false,
-            });
-
-            return { success: true, user: userData };
-          } else {
-            throw new Error(data.message || "Registration failed");
-          }
+          return { success: true, user: userData };
         } catch (error) {
-          set({ isLoading: false });
+          set({
+            isLoading: false,
+            error:
+              error instanceof Error ? error.message : "Registration failed",
+          });
           throw error;
         }
       },
-      setStep: (step: number) => {
-        set({ step });
+
+      sendEmailVerification: async (email) => {
+        set({ isLoading: true, error: null });
+        try {
+          await authService.sendEmailVerification(email);
+          set({ isLoading: false });
+        } catch (error) {
+          set({
+            isLoading: false,
+            error:
+              error instanceof Error
+                ? error.message
+                : "Failed to send verification",
+          });
+          throw error;
+        }
       },
+
+      setStep: (step) => set({ step }),
+
       logout: () => {
         set({
           user: null,
           accessToken: null,
           refreshToken: null,
           isAuthenticated: false,
+          step: 1,
+          error: null,
         });
       },
 
-      sendOtp: async (email: string) => {
-        const response = await fetch(`${API_BASE_URL}/auth/verify/email/send`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || "Failed to send OTP");
-        }
-      },
-
-      verifyEmail: async (email: string, otp: string) => {
-        const response = await fetch(`${API_BASE_URL}/auth/verify/email`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, otp }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || "Email verification failed");
-        }
-
-        // Update user's phone verification status
-        const { user } = get();
-        if (user) {
+      sendOtp: async (email) => {
+        set({ isLoading: true, error: null });
+        try {
+          await authService.sendOtp(email);
+          set({ isLoading: false });
+        } catch (error) {
           set({
-            user: { ...user, phoneVerified: true },
+            isLoading: false,
+            error:
+              error instanceof Error ? error.message : "Failed to send OTP",
           });
+          throw error;
+        }
+      },
+
+      verifyEmail: async (email, otp) => {
+        set({ isLoading: true, error: null });
+        try {
+          await authService.verifyEmail({ email, otp });
+          set((state) => ({
+            user: state.user ? { ...state.user, emailVerified: true } : null,
+            isLoading: false,
+          }));
+        } catch (error) {
+          set({
+            isLoading: false,
+            error:
+              error instanceof Error ? error.message : "Verification failed",
+          });
+          throw error;
         }
       },
 
       refreshAccessToken: async () => {
         const { refreshToken } = get();
-
         if (!refreshToken) {
           throw new Error("No refresh token available");
         }
 
-        const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ refreshToken }),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          // Refresh token is invalid, logout user
+        try {
+          const response = await authService.refreshToken(refreshToken);
+          set({
+            accessToken: response.data.accessToken,
+            refreshToken: response.data.refreshToken,
+          });
+        } catch (error) {
           get().logout();
-          throw new Error("Session expired");
+          throw error;
         }
-
+      },
+      setToken: (accessToken: string, refreshToken: string) => {
         set({
-          accessToken: data.data.accessToken,
-          refreshToken: data.data.refreshToken,
+          accessToken,
+          refreshToken,
+          isAuthenticated: true,
         });
+
+        try {
+          const decoded = jwtDecode<User>(accessToken);
+          set({
+            user: decoded,
+          });
+        } catch (e) {
+          console.error("Invalid token format");
+        }
       },
 
-      setUser: (user: User) => {
-        set({ user });
+      setUser: (user) => {
+        set((state) => ({
+          user: state.user ? { ...state.user, ...user } : null,
+        }));
       },
+
       initialize: async () => {
         const { accessToken } = get();
         if (!accessToken) {
@@ -269,32 +227,28 @@ export const useAuthStore = create<AuthState>()(
         }
 
         try {
-          // Verify token expiration client-side
           const decodedToken = jwtDecode(accessToken);
           const isExpired = decodedToken.exp
             ? decodedToken.exp * 1000 < Date.now()
             : false;
 
           if (isExpired) {
-            const { refreshToken } = get();
-            if (refreshToken) {
-              await get().refreshAccessToken();
-            } else {
-              get().logout();
-            }
+            await get().refreshAccessToken();
           } else {
             set({
               user: decodedToken as User,
               isAuthenticated: true,
-              isHydrated: true,
             });
           }
         } catch (error) {
+          console.error("Initialization error:", error);
           get().logout();
         } finally {
           set({ isHydrated: true });
         }
       },
+
+      clearError: () => set({ error: null }),
     }),
     {
       name: "auth-storage",
@@ -305,8 +259,10 @@ export const useAuthStore = create<AuthState>()(
         isAuthenticated: state.isAuthenticated,
       }),
       onRehydrateStorage: () => (state) => {
-        state && (state.isHydrated = true);
+        state?.initialize();
       },
     }
   )
 );
+
+export const authStore = useAuthStore;
