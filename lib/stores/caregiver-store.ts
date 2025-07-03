@@ -1,12 +1,6 @@
-// stores/caregiver-store.ts
 import { create } from "zustand";
-import { api } from "../api/api";
-import type {
-  Caregiver,
-  SearchCaregiversParams,
-  CaregiverSearchResult,
-} from "@/types/caregiver";
 import { caregiverService } from "../services/caregiverService";
+import type { Caregiver, SearchCaregiversParams } from "@/types/caregiver";
 
 interface CaregiverStoreState {
   caregivers: Caregiver[];
@@ -15,18 +9,33 @@ interface CaregiverStoreState {
   searchParams: SearchCaregiversParams;
   totalResults: number;
 
+  // Individual service states
+  drivers: Caregiver[];
+  nannies: Caregiver[];
+  housekeepers: Caregiver[];
+  chefs: Caregiver[];
+
   // Actions
   searchCaregivers: (params: SearchCaregiversParams) => Promise<void>;
   resetSearch: () => void;
   setSearchParams: (params: Partial<SearchCaregiversParams>) => void;
+
+  getDrivers: () => Promise<void>;
+  getNannies: () => Promise<void>;
+  getHousekeepers: () => Promise<void>;
+  getChefs: () => Promise<void>;
+  fetchByServiceType: (serviceType: string) => Promise<Caregiver[]>;
 }
 
 export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
   caregivers: [],
+  drivers: [],
+  nannies: [],
+  housekeepers: [],
+  chefs: [],
   loading: false,
   error: null,
   totalResults: 0,
-  hasMore: false,
   searchParams: {
     page: 1,
     limit: 10,
@@ -74,8 +83,41 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
       searchParams: {
         ...state.searchParams,
         ...params,
-        page: 1, // Reset to first page when params change
+        page: 1,
       },
     }));
+  },
+
+  // Reusable function to fetch by service type
+  fetchByServiceType: async (serviceType: string) => {
+    try {
+      const response = await caregiverService.getCaregivers({
+        page: 1,
+        limit: 10,
+        serviceTypes: [serviceType],
+      });
+      return response.data;
+    } catch (error: any) {
+      console.error(`Failed to fetch ${serviceType}:`, error);
+      return [];
+    }
+  },
+
+  // Individual loaders
+  getDrivers: async () => {
+    const data = await get().fetchByServiceType("DRIVER");
+    set({ drivers: data });
+  },
+  getNannies: async () => {
+    const data = await get().fetchByServiceType("CHILDCARE_NANNY");
+    set({ nannies: data });
+  },
+  getHousekeepers: async () => {
+    const data = await get().fetchByServiceType("HOUSEKEEPER");
+    set({ housekeepers: data });
+  },
+  getChefs: async () => {
+    const data = await get().fetchByServiceType("CHEF");
+    set({ chefs: data });
   },
 }));

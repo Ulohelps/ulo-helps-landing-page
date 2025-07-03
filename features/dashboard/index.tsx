@@ -7,6 +7,8 @@ import UserImage from "@/public/images/Image.png";
 import { CaregiverFilterBar } from "@/components/caregiver-filter-bar";
 import HeroImage from "../../public/images/hero-pic.png";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
+import { useCaregiverStore } from "@/lib/stores/caregiver-store";
+import { useEffect } from "react";
 
 const dummyCaregivers = [
   {
@@ -30,7 +32,31 @@ const dummyCaregivers = [
 ];
 export default function Dashboard() {
   const { profile } = useCareseekersStore();
- 
+  const {
+    searchCaregivers,
+    drivers,
+    nannies,
+    chefs,
+    housekeepers,
+    getChefs,
+    getDrivers,
+    getNannies,
+    getHousekeepers,
+  } = useCaregiverStore();
+
+  // Fetch caregivers on mount
+  useEffect(() => {
+    getDrivers();
+    getNannies();
+    getHousekeepers();
+    getChefs();
+  }, []);
+
+  console.log("Drivers:", drivers);
+  console.log("Nannies:", nannies);
+  console.log("Housekeepers:", housekeepers);
+  console.log("Chefs:", chefs);
+
   return (
     <div className="mt-[120px] md:mt-[150px]">
       <div
