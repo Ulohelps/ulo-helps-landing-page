@@ -2,8 +2,8 @@
 
 import { CaregiverCard, Caregiver } from "../../../components/CaregiverCard";
 import ArrowLeft from "@/components/icons/arrowleft.svg";
-import ArrowRight from "@/components/icons/arrowright.svg";
 import Image from "next/image";
+import ArrowRight from "@/components/icons/arrowright.svg";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
@@ -71,11 +71,12 @@ export function CaregiverSection({
 
       {/* Scrollable Cards */}
       <div className="relative">
-        <div className="overflow-x-auto md:overflow-hidden px-3 md:px-6 py-5 scrollbar-hide">
+        <div className="overflow-x-auto md:overflow-auto px-3 md:px-6 py-5 scrollbar-hide">
           <div
             ref={scrollRef}
-            className="flex gap-4 w-full min-w-[300px] md:min-w-0"
+            className="flex gap-4 md:grid md:grid-cols-2 w-full min-w-[300px] md:min-w-0"
           >
+            {/* grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1136px] mx-auto px-4 md:px-8 mt-8 */}
             {caregivers.map((caregiver, idx) => (
               <CaregiverCard caregiver={caregiver} key={idx} />
             ))}

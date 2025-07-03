@@ -1,16 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { Settings } from "lucide-react";
 import React, { useState } from "react";
 import SettingsModal from "./SettingsModal";
 import ChangePassword from "./modal-content/ChangePassword";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const SecuritySettings = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [isloading, setIsLoading] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [openmodal, setOpenModal] = useState(false);
+
+  const router = useRouter();
 
   const { changePassword, error } = useCareseekersStore();
 
@@ -85,7 +87,11 @@ const SecuritySettings = () => {
           </p>
         </div>
 
-        <Button variant="destructive" className="text-base font-semibold">
+        <Button
+          variant="destructive"
+          className="text-base font-semibold"
+          onClick={() => router.push("/account-settings/delete-account")}
+        >
           Delete account
         </Button>
       </div>

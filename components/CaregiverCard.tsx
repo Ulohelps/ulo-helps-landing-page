@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Bookmark, MapPin, Wallet } from "lucide-react";
+import Bag from "@/components/icons/bag.svg";
 import Image from "next/image";
 import VerifiedIcon from "@/components/icons/verified.svg";
 import { useState } from "react";
@@ -69,9 +70,12 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
             </h3>
             <Image src={VerifiedIcon} alt="Verified" />
           </div>
-          <p className="text-sm text-[#344054] font-normal mt-2">
-            {caregiver.job}
-          </p>
+          <div className="flex items-center gap-2 mt-2">
+            <Image src={Bag} alt="bag icon" />
+            <p className="text-sm text-[#344054] font-normal ">
+              {caregiver.job}
+            </p>
+          </div>
           <p className="text-sm text-[#667185] font-normal mt-3">
             {caregiver.bio}
           </p>

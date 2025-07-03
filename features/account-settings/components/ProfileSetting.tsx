@@ -12,7 +12,12 @@ import Image from "next/image";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { useToast } from "@/hooks/use-toast";
 
-type ModalKeys = "uploadPhoto" | "editName" | "changePhone" | "changeEmail";
+type ModalKeys =
+  | "uploadPhoto"
+  | "editName"
+  | "changePhone"
+  | "changeEmail"
+  | "deletePhoto";
 
 const ProfileSetting = () => {
   const { profile, uploadProfilePicture, updateProfile, fetchProfile } =
@@ -28,6 +33,7 @@ const ProfileSetting = () => {
     editName: false,
     changePhone: false,
     changeEmail: false,
+    deletePhoto: false,
   });
 
   const { toast } = useToast();
@@ -37,6 +43,7 @@ const ProfileSetting = () => {
     editName: "Edit your name",
     changePhone: "Change phone number",
     changeEmail: "Change email address",
+    deletePhoto: "Remove profile photo",
   };
   const [verificationStep, setVerificationStep] = useState<{
     phone: "input" | "verify";
@@ -64,6 +71,7 @@ const ProfileSetting = () => {
       editName: false,
       changePhone: false,
       changeEmail: false,
+      deletePhoto: false,
     });
     setIsLoading(false);
   };
@@ -190,6 +198,13 @@ const ProfileSetting = () => {
             }
           />
         );
+      case "deletePhoto":
+        return (
+          <p className="text-base text-[#344054] font-normal">
+            You’re about to delete your profile photo. Are you sure you want to
+            proceed?
+          </p>
+        );
       default:
         return null;
     }
@@ -206,6 +221,10 @@ const ProfileSetting = () => {
         ? "Send verification code"
         : "Verify & Save changes";
     }
+    if (key === "deletePhoto") {
+      return "Yes, remove profile photo";
+    }
+
     return "Save changes";
   };
 
@@ -245,7 +264,11 @@ const ProfileSetting = () => {
           )}
         </div>
         <div className="flex flex-col md:flex-row items-center gap-2">
-          <Button variant="outline" className="text-base font-semibold">
+          <Button
+            variant="outline"
+            className="text-base font-semibold"
+            onClick={() => openModal("deletePhoto")}
+          >
             Remove profile photo
           </Button>
           <Button

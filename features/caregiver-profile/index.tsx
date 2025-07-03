@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import HeaderWrapper from "@/components/header-wrap";
 import { Calendar, CircleAlert, MapPin, Wallet } from "lucide-react";
 import Box from "./components/Box";
+import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
+import { TabsTrigger } from "@radix-ui/react-tabs";
 
 const headerContent = [
   {
@@ -87,38 +89,70 @@ export default function CaregiverProfile() {
           <ConnectionCard connected={connected} handleConnect={handleConnect} />
         </div>
       </HeaderWrapper>
-      <div className="max-w-[1136px] mx-auto mt-8 px-4 md:px-8 lg:px-12 py-8">
-        <div className="flex flex-col md:flex-row gap-2 items-center justify-between w-full lg:w-[65%]">
-          {headerContent.map((content, idx) => (
-            <Box
-              key={idx}
-              icon={content.icon}
-              description={content.description}
-            />
-          ))}
-        </div>
-        <div className="w-full lg:w-[65%]">
-          {userDetails.map((detail, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between py-4 border-b border-[#E4E7EC]"
+      <div className="max-w-[1136px] mx-auto mt-6 px-4 md:px-8 lg:px-12 py-8">
+        <Tabs defaultValue="profileDetails" className="w-full">
+          <TabsList className="w-full md:w-[65%] flex items-center justify-start">
+            <TabsTrigger
+              value="profileDetails"
+              className="text-left text-[#475367] px-0 pb-4 text-base font-semibold w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
             >
-              <p className="text-base text-[#475367] font-normal">
-                {detail.label}
-              </p>
-              <p className="text-base text-[#344054] font-semibold">
-                {detail.detail}
-              </p>
+              Profile Details
+            </TabsTrigger>
+            <TabsTrigger
+              value="employmentHistory"
+              className="text-[#475367] px-0 pb-4 text-base font-semibold w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+            >
+              Employement History
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent
+            value="profileDetails"
+            className="w-full lg:w-[65%] mt-8"
+          >
+            <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
+              {headerContent.map((content, idx) => (
+                <Box
+                  key={idx}
+                  icon={content.icon}
+                  description={content.description}
+                />
+              ))}
             </div>
-          ))}
-          <div className="flex items-center justify-between py-4">
-            <p className="text-base text-[#475367] font-normal">Levels</p>
-            <p className="flex items-center gap-2 text-base text-[#344054] font-semibold">
-              Level 1{" "}
-              <CircleAlert className="text-[#1DA5DB]" strokeWidth={1.5} />
+            <div className="">
+              {userDetails.map((detail, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between py-4 border-b border-[#E4E7EC]"
+                >
+                  <p className="text-base text-[#475367] font-normal">
+                    {detail.label}
+                  </p>
+                  <p className="text-base text-[#344054] font-semibold">
+                    {detail.detail}
+                  </p>
+                </div>
+              ))}
+              <div className="flex items-center justify-between py-4">
+                <p className="text-base text-[#475367] font-normal">Levels</p>
+                <p className="flex items-center gap-2 text-base text-[#344054] font-semibold">
+                  Level 1{" "}
+                  <CircleAlert className="text-[#1DA5DB]" strokeWidth={1.5} />
+                </p>
+              </div>
+            </div>
+          </TabsContent>
+          <TabsContent
+            value="employmentHistory"
+            className="w-full lg:w-[65%] mt-8"
+          >
+            <h2 className="text-base text-[#344054] font-semibold">
+              Head Housekeeper
+            </h2>
+            <p className="text-sm text-[#667185] font-normal mt-2">
+              May 2023 - June 2025
             </p>
-          </div>
-        </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
