@@ -1,10 +1,15 @@
 import CaregiverProfile from "@/features/caregiver-profile";
 import React from "react";
 
-const CaregiverProfilePage = () => {
+interface CaregiverProfilePageProps {
+  params: { caregiver_id: string };
+}
+
+const CaregiverProfilePage = ({ params }: CaregiverProfilePageProps) => {
+  const { caregiver_id } = params;
   return (
     <div>
-      <CaregiverProfile />
+      <CaregiverProfile id={caregiver_id} />
     </div>
   );
 };

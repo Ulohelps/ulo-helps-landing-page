@@ -3,17 +3,17 @@ import { caregiverService } from "../services/caregiverService";
 import type { Caregiver, SearchCaregiversParams } from "@/types/caregiver";
 
 interface CaregiverStoreState {
-  caregivers: Caregiver[];
+  caregivers: Caregiver[] | null;
   loading: boolean;
   error: string | null;
   searchParams: SearchCaregiversParams;
   totalResults: number;
 
   // Individual service states
-  drivers: Caregiver[];
-  nannies: Caregiver[];
-  housekeepers: Caregiver[];
-  chefs: Caregiver[];
+  drivers: Caregiver[] | null;
+  nannies: Caregiver[] | null;
+  housekeepers: Caregiver[] | null;
+  chefs: Caregiver[] | null;
 
   // Actions
   searchCaregivers: (params: SearchCaregiversParams) => Promise<void>;
@@ -28,11 +28,11 @@ interface CaregiverStoreState {
 }
 
 export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
-  caregivers: [],
-  drivers: [],
-  nannies: [],
-  housekeepers: [],
-  chefs: [],
+  caregivers: null,
+  drivers: null,
+  nannies: null,
+  housekeepers: null,
+  chefs: null,
   loading: false,
   error: null,
   totalResults: 0,
@@ -42,6 +42,8 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
     search: "",
     serviceTypes: [],
     location: "",
+    maxSalary: 0,
+    minSalary: 0,
   },
 
   searchCaregivers: async (params) => {
@@ -49,7 +51,7 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
     try {
       const response = await caregiverService.getCaregivers(params);
       set({
-        caregivers: response.data.caregivers,
+        caregivers: response.data,
         totalResults: response.data.total,
         searchParams: params,
         loading: false,

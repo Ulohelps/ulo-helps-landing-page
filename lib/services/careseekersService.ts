@@ -1,3 +1,4 @@
+import { connect } from "http2";
 import { api } from "../api/api";
 
 interface ChangePasswordPayload {
@@ -52,5 +53,11 @@ export const careseekersService = {
         "Content-Type": "multipart/form-data",
       },
     });
+  },
+  getConnectedCaregivers: async () => {
+    return api.get("/connections/connected");
+  },
+  connectWithCaregiver: async (caregiverId: string) => {
+    return api.post(`/connections/${caregiverId}`);
   },
 };

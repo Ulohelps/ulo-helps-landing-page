@@ -10,6 +10,7 @@ import { Calendar, CircleAlert, MapPin, Wallet } from "lucide-react";
 import Box from "./components/Box";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { TabsTrigger } from "@radix-ui/react-tabs";
+import { careseekersService } from "@/lib/services/careseekersService";
 
 const headerContent = [
   {
@@ -38,10 +39,18 @@ const userDetails = [
   { label: "Open to live-in jobs?", detail: "Yes" },
 ];
 
-export default function CaregiverProfile() {
+export default function CaregiverProfile({ id }: { id: string }) {
   const [connected, setConnected] = useState(false);
   const [isSubscribed, SetIsSubscribed] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const handleConnectToCaregiver = async () => {
+    try {
+      const response = await careseekersService.connectWithCaregiver(id);
+    } catch (error) {
+      console.error("Error connecting to caregiver:", error);
+    }
+  };
 
   const handleSubscribe = () => {
     // logic to start subscription
@@ -86,7 +95,10 @@ export default function CaregiverProfile() {
         <div className="flex flex-col lg:flex-row lg:items-center gap-6 max-w-[1136px] mx-auto relative">
           <Header />
           {/* RIGHT: Contact Card */}
-          <ConnectionCard connected={connected} handleConnect={handleConnect} />
+          <ConnectionCard
+            connected={connected}
+            handleConnect={handleConnectToCaregiver}
+          />
         </div>
       </HeaderWrapper>
       <div className="max-w-[1136px] mx-auto mt-6 px-4 md:px-8 lg:px-12 py-8">

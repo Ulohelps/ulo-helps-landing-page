@@ -1,14 +1,33 @@
 // types/caregiver.ts
 export interface Caregiver {
-  id: string;
+  additionalInfo: string;
+  availabilityComplete: boolean;
+  backgroundCheckConsent: boolean;
+  bio: string;
+  createdAt: string;
+  criminalBackground: boolean;
+  currentlyAvailable: string;
+  dateOfBirth: string;
+  educationLevel: "PRIMARY" | "SECONDARY" | "TERTIARY";
+  ethnicity: string;
+  expectedMonthlySalary: number;
+  experienceLevel: string;
   firstName: string;
+  gender: string;
+  id: string;
+  isBookmarked: boolean;
+  isConnected: false;
+  isHired: false;
+  languagesSpoken: string[];
   lastName: string;
+  lgaOfResidence: string;
+  literacyLevelDesc: string | null;
+  openToLiveIn: true;
+  personalDetailsComplete: boolean;
+  profileComplete: true;
+  profileImageUrl: string;
+  rejectionReason: null;
   serviceTypes: string[];
-  location: string;
-  salary: number;
-  profileImageUrl?: string;
-  rating?: number;
-  // Add other caregiver fields as needed
 }
 
 export interface SearchCaregiversParams {

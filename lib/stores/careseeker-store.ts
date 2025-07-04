@@ -1,4 +1,3 @@
-// src/stores/careseekersStore.ts
 import { create } from "zustand";
 import { careseekersService } from "../services/careseekersService";
 import type {
@@ -18,6 +17,9 @@ interface CareseekerStoreState {
   updateProfile: (payload: UpdateProfilePayload) => Promise<CareseekerProfile>;
   changePassword: (payload: ChangePasswordPayload) => Promise<void>;
   uploadProfilePicture: (file: File) => Promise<string>;
+  connectWithCaregiver: (caregiverId: string) => Promise<void>;
+  getConnectedCaregivers: () => Promise<void>;
+
   reset: () => void;
 }
 
@@ -96,7 +98,28 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
       throw new Error(errorMessage);
     }
   },
-
+  connectWithCaregiver: async (caregiverId) => {
+    set({ isUpdating: true, error: null });
+    try {
+      await careseekersService.connectWithCaregiver(caregiverId);
+      set({ isUpdating: false });
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || "Connection failed";
+      set({ error: errorMessage, isUpdating: false });
+      throw new Error(errorMessage);
+    }
+  },
+  getConnectedCaregivers: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await careseekersService.getConnectedCaregivers();
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || "Failed to fetch connections";
+      set({ error: errorMessage, isLoading: false });
+      throw new Error(errorMessage);
+    }
+  },
   reset: () =>
     set({
       profile: null,

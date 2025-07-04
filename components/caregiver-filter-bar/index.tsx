@@ -48,7 +48,7 @@ const serviceTypes = [
 
 export function CaregiverFilterBar() {
   const router = useRouter();
-  const { searchCaregivers, setSearchParams } = useCaregiverStore();
+  const { searchCaregivers } = useCaregiverStore();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<string>("all");
@@ -59,35 +59,41 @@ export function CaregiverFilterBar() {
     );
   };
 
+  const buildQueryParams = () => {
+    const query: Record<string, string> = {};
+
+    if (searchTerm.trim()) query.search = searchTerm.trim();
+    if (selectedServices.length > 0)
+      query.serviceTypes = selectedServices.join(",");
+    if (selectedLocation !== "all") query.location = selectedLocation;
+
+    return new URLSearchParams(query).toString();
+  };
+
   const handleSearch = async () => {
     const params = {
       page: 1,
       limit: 10,
-      search: searchTerm,
+      search: searchTerm.trim(),
       serviceTypes: selectedServices.length > 0 ? selectedServices : undefined,
       location: selectedLocation !== "all" ? selectedLocation : undefined,
     };
 
     try {
-      setSearchParams(params);
       await searchCaregivers(params);
-      router.push("/find-caregiver");
+
+      const queryString = buildQueryParams();
+      if (queryString) {
+        router.push(`/find-caregiver?${queryString}`);
+      }
     } catch (error) {
       console.error("Search failed:", error);
     }
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (searchTerm) {
-        setSearchParams({ search: searchTerm, page: 1 });
-      }
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [searchTerm, setSearchParams]);
-
   return (
     <div className="w-full max-w-[1136px] mx-auto bg-white border border-[#D0D5DD] rounded-[16px] mt-8 flex flex-col md:flex-row md:items-center md:h-[72px] overflow-hidden md:gap-2">
+      {/* Search input */}
       <Input
         placeholder="Search by keyword"
         className="py-3 text-base text-[#667185] font-normal px-4 md:px-8 border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none md:border-r"
@@ -96,7 +102,7 @@ export function CaregiverFilterBar() {
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
 
-      {/* Custom multi-select serviceTypes */}
+      {/* Multi-select service types */}
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -125,7 +131,7 @@ export function CaregiverFilterBar() {
         </PopoverContent>
       </Popover>
 
-      {/* Location select (unchanged) */}
+      {/* Location select */}
       <select
         className="px-4 md:px-8 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none h-full"
         value={selectedLocation}
@@ -139,6 +145,7 @@ export function CaregiverFilterBar() {
         ))}
       </select>
 
+      {/* Search button */}
       <Button
         onClick={handleSearch}
         className="flex items-center justify-center gap-2 w-full md:w-auto py-3 h-full text-base text-[#1D2739] font-semibold rounded-t-none rounded-b-[12px] md:rounded-[12px] md:rounded-l-none md:rounded-r-[16px]"

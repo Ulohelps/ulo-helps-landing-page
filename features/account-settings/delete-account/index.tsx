@@ -40,8 +40,8 @@ const DeleteAccount = () => {
               onValueChange={(value) => setReason(value)}
               className="space-y-3"
             >
-              {deleteReason.map((reason) => (
-                <div className="flex items-center space-x-3">
+              {deleteReason.map((reason, idx) => (
+                <div className="flex items-center space-x-3" key={idx}>
                   <RadioGroupItem className="w-4 h-4" value={reason} id="" />
                   <Label
                     htmlFor=""

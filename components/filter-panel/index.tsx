@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
 import {
   Select,
   SelectContent,
@@ -9,11 +8,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useCaregiverStore } from "@/lib/stores/caregiver-store";
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 
 type Props = {
@@ -63,8 +64,51 @@ const FilterPanel = ({ visible, onClose }: Props) => {
   const [ethnicity, setEthnicity] = useState<string[]>([]);
   const [languages, setLanguages] = useState<string[]>([]);
 
-  const formatCurrency = (value: number) => {
-    return `NGN ${value}${value >= 1000 ? "K" : ""}`;
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { searchCaregivers, setSearchParams } = useCaregiverStore();
+
+  // Prefill from URL query
+  useEffect(() => {
+    const min = searchParams.get("minSalary");
+    const max = searchParams.get("maxSalary");
+    const exp = searchParams.get("experienceLevel");
+    const g = searchParams.get("gender");
+    const eth = searchParams.get("ethnicity");
+    const langs = searchParams.get("languages");
+
+    if (min && max) setRateRange([+min, +max]);
+    if (exp) setExperience(exp);
+    if (g) setGender(g.split(","));
+    if (eth) setEthnicity(eth.split(","));
+    if (langs) setLanguages(langs.split(","));
+  }, [visible]);
+
+  const handleApplyFilters = () => {
+    const query: Record<string, any> = {};
+
+    const search = searchParams.get("search");
+    const location = searchParams.get("location");
+    const serviceTypes = searchParams.get("serviceTypes");
+
+    if (search) query.search = search;
+    if (location) query.location = location;
+    if (serviceTypes) query.serviceTypes = serviceTypes;
+
+    if (rateRange[0]) query.minSalary = rateRange[0];
+    if (rateRange[1]) query.maxSalary = rateRange[1];
+    if (experience) query.experienceLevel = experience;
+    if (gender.length) query.gender = gender.join(",");
+    if (ethnicity.length) query.ethnicity = ethnicity.join(",");
+    if (languages.length) query.languages = languages.join(",");
+
+    const queryString = new URLSearchParams(query).toString();
+
+    setSearchParams({ ...query, page: 1, limit: 10 });
+    searchCaregivers({ ...query, page: 1, limit: 10 });
+
+    router.push(`/find-caregiver?${queryString}`);
+    onClose();
   };
 
   const clearFilters = () => {
@@ -123,15 +167,17 @@ const FilterPanel = ({ visible, onClose }: Props) => {
               <SelectTrigger className="border-[#D0D5DD] rounded-[12px] py-3 px-4 text-[#667085] h-10">
                 <SelectValue placeholder="Select option" />
               </SelectTrigger>
-              <SelectContent className="bg-white rounded-[12px] border border-[#D0D5DD] text-[#667085]">
+              <SelectContent className="bg-white rounded-[20px]">
                 {experienceLevels.map((level) => (
-                  <SelectItem value={level.value}>{level.label}</SelectItem>
+                  <SelectItem key={level.value} value={level.value}>
+                    {level.label}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
 
-          {/* Monthly Rate */}
+          {/* Salary range */}
           <div>
             <Label className="text-base font-semibold text-[#667185] block mb-4">
               Filter by rate
@@ -146,9 +192,15 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                     NGN
                   </div>
                   <Input
-                    type="text"
-                    placeholder=""
-                    className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px] bg-white focus:outline-none focus:border-0 text-sm text-[#344054] font-normal"
+                    type="number"
+                    value={rateRange[0]}
+                    onChange={(e) =>
+                      setRateRange([
+                        parseInt(e.target.value || "0"),
+                        rateRange[1],
+                      ])
+                    }
+                    className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px]"
                   />
                 </div>
               </div>
@@ -159,9 +211,15 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                     NGN
                   </div>
                   <Input
-                    type="text"
-                    placeholder=""
-                    className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px] bg-white focus:outline-none focus:border-0 text-sm text-[#344054] font-normal"
+                    type="number"
+                    value={rateRange[1]}
+                    onChange={(e) =>
+                      setRateRange([
+                        rateRange[0],
+                        parseInt(e.target.value || "0"),
+                      ])
+                    }
+                    className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px]"
                   />
                 </div>
               </div>
@@ -183,7 +241,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                 <ToggleGroupItem
                   key={label}
                   value={label.toLowerCase()}
-                  className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white bg-white text-[#344054] border border-[#D0D5DD] rounded-[8px] px-2 py-[6px] text-sm font-medium h-8"
+                  className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white"
                 >
                   {label}
                 </ToggleGroupItem>
@@ -206,7 +264,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                 <ToggleGroupItem
                   key={label}
                   value={label.toLowerCase()}
-                  className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white bg-white text-[#344054] border border-[#D0D5DD] rounded-[8px] px-2 py-[6px] text-sm font-medium h-8"
+                  className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white"
                 >
                   {label}
                 </ToggleGroupItem>
@@ -229,7 +287,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                 <ToggleGroupItem
                   key={label}
                   value={label.toLowerCase()}
-                  className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white bg-white text-[#344054] border border-[#D0D5DD] rounded-[8px] px-2 py-[6px] text-sm font-medium h-8"
+                  className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white"
                 >
                   {label}
                 </ToggleGroupItem>
@@ -242,12 +300,15 @@ const FilterPanel = ({ visible, onClose }: Props) => {
         <div className="flex justify-between bg-[#F7F9FC] gap-2 p-8 border-t border-[#E4E7EC]">
           <Button
             variant="outline"
-            className=" text-[#344054] bg-white border-[#D0D5DD] h-9"
             onClick={clearFilters}
+            className="text-[#344054] bg-white border-[#D0D5DD] h-9"
           >
             Clear filters
           </Button>
-          <Button className="bg-[var(--ulo-orange)] hover:bg-[var(--ulo-orange)]/90 h-9">
+          <Button
+            className="bg-[var(--ulo-orange)] hover:bg-[var(--ulo-orange)]/90 h-9"
+            onClick={handleApplyFilters}
+          >
             Apply filters
           </Button>
         </div>

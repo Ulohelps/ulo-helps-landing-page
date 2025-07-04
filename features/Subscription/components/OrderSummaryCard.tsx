@@ -1,10 +1,24 @@
+"use client";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, RotateCcw, TriangleAlert } from "lucide-react";
+import { subscriptionService } from "@/lib/services/subscriptionService";
+import { useRouter } from "next/navigation";
 
 export default function OrderSummaryCard() {
+  const router = useRouter();
+
+  const handleStartSubscription = async () => {
+    const payload = { plan: "UNLIMITED_CONNECTIONS" };
+    try {
+      const res = await subscriptionService.startSubscription(payload);
+      router.push(res.data.authorization_url);
+    } catch (error) {
+      console.error("Failed to start subscription:", error);
+    }
+  };
   return (
     <Card className="w-full flex-shrink-0 lg:w-[40%] border-[#E4E7EC] rounded-[24px] p-0 overflow-hidden">
       <CardHeader className="p-6 border-b border-[#E4E7EC] bg-[#F7F9FC]">
@@ -52,7 +66,12 @@ export default function OrderSummaryCard() {
               NGN 30,000
             </span>
           </div>
-          <Button className="w-full px-6 py-3 mt-6">Pay NGN 30,000 now</Button>
+          <Button
+            className="w-full px-6 py-3 mt-6"
+            onClick={handleStartSubscription}
+          >
+            Pay NGN 30,000 now
+          </Button>
         </div>
 
         {/* Notes */}
@@ -64,7 +83,7 @@ export default function OrderSummaryCard() {
               height={15}
               width={15}
             />
-            <span>Automatically renews every month on the 13th.</span>
+            <span>Automatically renews every month.</span>
           </div>
           <div className="flex items-start gap-2 justify-center">
             <TriangleAlert

@@ -10,30 +10,9 @@ import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { useCaregiverStore } from "@/lib/stores/caregiver-store";
 import { useEffect } from "react";
 
-const dummyCaregivers = [
-  {
-    name: "Daniel Nwankwo",
-    job: "Driver",
-    bio: "This is the bio preview for caregiver previews...",
-    location: "Ogudu GRA, Lagos",
-    priceRange: "NGN 50k - 80k",
-    availability: "Available",
-    avatarUrl: typeof UserImage === "string" ? UserImage : UserImage.src,
-  },
-  {
-    name: "Daniel Nwankwo",
-    job: "Driver",
-    bio: "This is the bio preview for caregiver previews...",
-    location: "Ogudu GRA, Lagos",
-    priceRange: "NGN 50k - 80k",
-    availability: "Available",
-    avatarUrl: typeof UserImage === "string" ? UserImage : UserImage.src,
-  },
-];
 export default function Dashboard() {
   const { profile } = useCareseekersStore();
   const {
-    searchCaregivers,
     drivers,
     nannies,
     chefs,
@@ -52,13 +31,8 @@ export default function Dashboard() {
     getChefs();
   }, []);
 
-  console.log("Drivers:", drivers);
-  console.log("Nannies:", nannies);
-  console.log("Housekeepers:", housekeepers);
-  console.log("Chefs:", chefs);
-
   return (
-    <div className="mt-[120px] md:mt-[150px]">
+    <div className="mt-[120px] md:mt-[150px] px-3">
       <div
         className="flex flex-col justify-between max-w-[1136px] md:h-[358px] mx-auto px-4 md:px-8 lg:px-12 py-[72px] rounded-[24px] relative "
         style={{
@@ -86,23 +60,27 @@ export default function Dashboard() {
       <div className="max-w-[1136px] mx-auto mt-12 space-y-10">
         <CaregiverSection
           title="Nannies"
-          caregivers={dummyCaregivers}
-          showAllLink="/nannies"
+          caregivers={nannies}
+          showAllLink="CHILDCARE_NANNY"
+          isLoading={nannies ? false : true}
         />
         <CaregiverSection
           title="Drivers"
-          caregivers={dummyCaregivers}
-          showAllLink="/drivers"
+          caregivers={drivers}
+          showAllLink="DRIVER"
+          isLoading={drivers ? false : true}
         />
         <CaregiverSection
           title="Housekeepers"
-          caregivers={dummyCaregivers}
-          showAllLink="/housekeepers"
+          caregivers={housekeepers}
+          showAllLink="HOUSEKEEPER"
+          isLoading={housekeepers ? false : true}
         />
         <CaregiverSection
           title="Chefs"
-          caregivers={dummyCaregivers}
-          showAllLink="/chefs"
+          caregivers={chefs}
+          showAllLink="CHEF"
+          isLoading={chefs ? false : true}
         />
       </div>
     </div>

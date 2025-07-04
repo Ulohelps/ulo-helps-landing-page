@@ -6,8 +6,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Users } from "lucide-react";
 import EmptyConnections from "./components/EmptyConnections";
 import HeaderWrapper from "@/components/header-wrap";
+import { useCareseekersStore } from "@/lib/stores/careseeker-store";
+import { useEffect } from "react";
 
 export default function Connections() {
+  const { getConnectedCaregivers } = useCareseekersStore();
+
+  // Fetch connected caregivers on mount
+  useEffect(() => {
+    getConnectedCaregivers();
+  }, []);
+
   return (
     <div className="relative w-full">
       {/* Header Section */}
