@@ -1,20 +1,35 @@
 "use client";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Users } from "lucide-react";
+import SkeletonCard from "@/features/find-caregivers/components/CaregiverSkeleton";
 import EmptyConnections from "./components/EmptyConnections";
 import HeaderWrapper from "@/components/header-wrap";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Caregiver } from "@/types/caregiver";
+import { CaregiverCard } from "@/components/CaregiverCard";
+
+interface ConnectionsProps {
+  connectionId: string;
+  caregiver: Caregiver;
+  connectedAt: string;
+}
 
 export default function Connections() {
+  const [connectedCaregivers, setConnectedcaregivers] = useState<
+    ConnectionsProps[] | null
+  >(null);
+
   const { getConnectedCaregivers } = useCareseekersStore();
 
   // Fetch connected caregivers on mount
+  const fetchConnectedCaregivers = async () => {
+    const res = await getConnectedCaregivers();
+    console.log("Connected Caregivers:", res);
+    setConnectedcaregivers(res.data);
+  };
   useEffect(() => {
-    getConnectedCaregivers();
+    fetchConnectedCaregivers();
   }, []);
 
   return (
@@ -53,10 +68,28 @@ export default function Connections() {
 
           {/* Active Tab Content */}
           <TabsContent value="active">
-            <EmptyConnections
-              title="You haven’t connected with any caregivers"
-              description="Explore and connect with caregivers on the ULO platform by clicking the button below."
-            />
+            {Array.isArray(connectedCaregivers) &&
+              connectedCaregivers.length < 0 && (
+                <EmptyConnections
+                  title="You haven’t connected with any caregivers"
+                  description="Explore and connect with caregivers on the ULO platform by clicking the button below."
+                />
+              )}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1136px] mx-auto px-2 my-8">
+              {connectedCaregivers === null
+                ? Array.from({ length: 4 }).map((_, idx) => (
+                    <SkeletonCard key={idx} />
+                  ))
+                : Array.isArray(connectedCaregivers) &&
+                  connectedCaregivers.length > 0 &&
+                  connectedCaregivers.map((caregiver) => (
+                    <CaregiverCard
+                      key={caregiver.caregiver.id}
+                      caregiver={caregiver.caregiver}
+                    />
+                  ))}
+            </div>
           </TabsContent>
 
           {/* Hired Tab Content */}

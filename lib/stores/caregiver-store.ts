@@ -25,6 +25,7 @@ interface CaregiverStoreState {
   getHousekeepers: () => Promise<void>;
   getChefs: () => Promise<void>;
   fetchByServiceType: (serviceType: string) => Promise<Caregiver[]>;
+  getBookmarkedCaregivers: () => Promise<{ success: boolean; data: any }>;
 }
 
 export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
@@ -104,8 +105,17 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
       return [];
     }
   },
-
-  // Individual loaders
+  getBookmarkedCaregivers: async () => {
+    try {
+      const response = await caregiverService.getBookmarkedCaregivers();
+      return { success: true, data: response.data };
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || "Failed to fetch connections";
+      set({ error: errorMessage });
+      return { success: false, data: [] };
+    }
+  },
   getDrivers: async () => {
     const data = await get().fetchByServiceType("DRIVER");
     set({ drivers: data });

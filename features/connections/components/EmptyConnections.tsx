@@ -16,7 +16,7 @@ const EmptyConnections: React.FC<EmptyConnectionsProps> = ({
   const router = useRouter();
 
   return (
-    <Card className="bg-[#F9FAFB] shadow-none border-none mt-10">
+    <Card className="bg-[#F9FAFB] shadow-none border-none mt-10 self-center">
       <CardContent className="flex flex-col items-center justify-center text-center gap-4 py-20">
         <div className="bg-gray-200 p-6 rounded-full">
           <Users className="h-10 w-10 text-gray-500" />

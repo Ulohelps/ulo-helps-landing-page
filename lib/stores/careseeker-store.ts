@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { careseekersService } from "../services/careseekersService";
+import { subscriptionService } from "../services/subscriptionService";
 import type {
   CareseekerProfile,
   ChangePasswordPayload,
@@ -22,7 +23,7 @@ interface CareseekerStoreState {
   uploadProfilePicture: (file: File) => Promise<string>;
   connectWithCaregiver: (caregiverId: string) => Promise<{ success: boolean }>;
   getConnectedCaregivers: () => Promise<{ success: boolean; data: any }>;
-
+  getCurrentSubscription: () => Promise<{ success: boolean; data: any }>;
   reset: () => void;
 }
 
@@ -130,6 +131,18 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await careseekersService.getConnectedCaregivers();
+      return { success: true, data: response.data };
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || "Failed to fetch connections";
+      set({ error: errorMessage, isLoading: false });
+      return { success: false, data: [] };
+    }
+  },
+  getCurrentSubscription: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await subscriptionService.getCurrenctSubscription();
       return { success: true, data: response.data };
     } catch (error: any) {
       const errorMessage =
