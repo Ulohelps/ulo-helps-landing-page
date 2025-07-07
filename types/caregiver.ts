@@ -1,34 +1,78 @@
-// types/caregiver.ts
-export interface Caregiver {
-  additionalInfo: string;
-  availabilityComplete: boolean;
-  backgroundCheckConsent: boolean;
-  bio: string;
-  createdAt: string;
-  criminalBackground: boolean;
-  currentlyAvailable: string;
-  dateOfBirth: string;
-  educationLevel: "PRIMARY" | "SECONDARY" | "TERTIARY";
-  ethnicity: string;
-  expectedMonthlySalary: number;
-  experienceLevel: string;
-  firstName: string;
-  gender: string;
+export type Caregiver = {
   id: string;
-  isBookmarked: boolean;
-  isConnected: false;
-  isHired: false;
-  languagesSpoken: string[];
+  firstName: string;
   lastName: string;
-  lgaOfResidence: string;
-  literacyLevelDesc: string | null;
-  openToLiveIn: true;
-  personalDetailsComplete: boolean;
-  profileComplete: true;
-  profileImageUrl: string;
-  rejectionReason: null;
+  dateOfBirth: string;
+  gender: "MALE" | "FEMALE" | string;
+  email?: string;
+  phone?: string;
+  bio: string;
+  additionalInfo: string;
+  experienceLevel:
+    | "LESS_THAN_1_YEAR"
+    | "ONE_TO_TWO_YEARS"
+    | "THREE_TO_FOUR_YEARS"
+    | "FIVE_TO_SEVEN_YEARS"
+    | "EIGHT_TO_TEN_YEARS"
+    | "OVER_TEN_YEARS"
+    | string;
+  educationLevel: "PRIMARY" | "SECONDARY" | "TERTIARY" | string;
+  ethnicity: string;
+  religion: string;
+  languagesSpoken: string[];
   serviceTypes: string[];
-}
+  subServiceTypes: string[];
+  expectedMonthlySalary: number;
+  availabilityComplete: boolean;
+  currentlyAvailable: "AVAILABLE" | "NOT_AVAILABLE" | string;
+  openToLiveIn: boolean;
+  criminalBackground: boolean;
+  backgroundCheckConsent: boolean;
+  safetyScreeningComplete: boolean;
+  documentsComplete: boolean;
+  workExperienceComplete: boolean;
+  personalDetailsComplete: boolean;
+  profileComplete: boolean;
+  literacyLevelDesc: string | null;
+  previousEmployers: any[];
+  previousWorkplace: string;
+  workExperienceDesc: string;
+  relationshipToGuarantor: string;
+  rejectionReason: string | null;
+  verificationNotes: string | null;
+  verifiedAt: string | null;
+  isBookmarked: boolean;
+  isConnected: boolean;
+  isHired: boolean;
+  workType: "LIVE_IN" | "LIVE_OUT" | "EITHER" | string;
+  profileImageUrl: string;
+  userId: string;
+
+  // Location
+  location?: string;
+  stateOfOrigin: string;
+  stateOfResidence: string;
+  lgaOfResidence: string;
+  workAreas: string[];
+
+  // Metadata
+  createdAt: string;
+  updatedAt: string;
+
+  // User (nested)
+  user: {
+    id: string;
+    email: string;
+    phone: string;
+    role: string;
+    status: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+
+  // Verification (if any)
+  sumSubVerifications: any[];
+};
 
 export interface SearchCaregiversParams {
   page: number;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import CustomModal from "@/components/custom-modal";
 import ConnectionCard from "./components/ConnectionCard";
@@ -10,63 +10,128 @@ import { Calendar, CircleAlert, MapPin, Wallet } from "lucide-react";
 import Box from "./components/Box";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { TabsTrigger } from "@radix-ui/react-tabs";
-import { careseekersService } from "@/lib/services/careseekersService";
-
-const headerContent = [
-  {
-    icon: <Wallet stroke="#667185" />,
-    description: "NGN 50k- 80k",
-  },
-  {
-    icon: <Calendar stroke="#667185" strokeWidth={1.5} />,
-    description: "5 years experience",
-  },
-  {
-    icon: <MapPin strokeWidth={1.5} stroke="#667185" />,
-    description: "Ojodu, Lagos",
-  },
-];
-
-const userDetails = [
-  { label: "Age", detail: "29 years old" },
-  { label: "Gender", detail: "Female" },
-  { label: "Nationality", detail: "Nigerian" },
-  { label: "Ethnicity", detail: "Yoruba" },
-  { label: "Languages", detail: "English, Yoruba" },
-  { label: "Subskills", detail: "Singing, Driving" },
-  { label: "Highest Level of Education", detail: "OND" },
-  { label: "Availability status", detail: "Available for full time work" },
-  { label: "Open to live-in jobs?", detail: "Yes" },
-];
+import { caregiverService } from "@/lib/services/caregiverService";
+import { Caregiver } from "@/types/caregiver";
+import { useCareseekersStore } from "@/lib/stores/careseeker-store";
+import { useToast } from "@/hooks/use-toast";
+import FeedbackCard from "./components/FeedbackCard";
+import Guidelines from "./components/Guidelines";
 
 export default function CaregiverProfile({ id }: { id: string }) {
   const [connected, setConnected] = useState(false);
-  const [isSubscribed, SetIsSubscribed] = useState(false);
+  const [hired, setHired] = useState(false);
+  const [caregiver, setCaregiver] = useState<Caregiver | null>(null);
   const [open, setOpen] = useState(false);
+  const [loadingCaregiver, setLoadingCaregiver] = useState(true);
+  const [connecting, setConnecting] = useState(false);
+  const [openGuidelines, setOpenGuidelines] = useState(false);
+
+  const { profile, connectWithCaregiver } = useCareseekersStore();
+  const { toast } = useToast();
+
+  const subscriptionStatus = profile?.subscription.status === "ACTIVE";
 
   const handleConnectToCaregiver = async () => {
-    try {
-      const response = await careseekersService.connectWithCaregiver(id);
-    } catch (error) {
-      console.error("Error connecting to caregiver:", error);
+    if (!subscriptionStatus) {
+      setOpen(true);
+      return;
+    }
+
+    setConnecting(true);
+    const response = await connectWithCaregiver(id);
+    setConnecting(false);
+
+    if (response.success) {
+      toast({
+        title: "Connected",
+        description: `You're now connected with ${caregiver?.firstName}`,
+        variant: "success",
+      });
+      setConnected(true);
+    } else {
+      toast({
+        title: "Failed to connect",
+        description: `Could not connect with ${caregiver?.firstName}`,
+        variant: "error",
+      });
     }
   };
 
-  const handleSubscribe = () => {
-    // logic to start subscription
+  const fetchCaregiverDetails = async () => {
+    setLoadingCaregiver(true);
+    const response = await caregiverService.getSingleCaregiver(id);
+    setCaregiver(response.data);
+    setConnected(response.data.isConnected);
+    setHired(response.data.isHired);
+    setLoadingCaregiver(false);
+  };
+
+  const handleCloseSubscribe = () => {
     setOpen(false);
-    SetIsSubscribed(true);
-    setConnected(true);
+    // Start subscription logic
   };
-  const handleConnect = () => {
-    if (isSubscribed) {
-      setConnected(true);
-    } else {
-      setOpen(true);
-    }
-  };
+
+  const headerContent = [
+    {
+      icon: <Wallet stroke="#667185" />,
+      description: caregiver?.expectedMonthlySalary
+        ? `NGN ${caregiver.expectedMonthlySalary.toLocaleString()}`
+        : "--",
+    },
+    {
+      icon: <Calendar stroke="#667185" strokeWidth={1.5} />,
+      description:
+        caregiver?.experienceLevel?.replace(/_/g, " ").toLowerCase() || "--",
+    },
+    {
+      icon: <MapPin stroke="#667185" strokeWidth={1.5} />,
+      description: `${caregiver?.lgaOfResidence || "--"}, ${
+        caregiver?.stateOfResidence || "--"
+      }`,
+    },
+  ];
+
+  const userDetails = [
+    {
+      label: "Age",
+      detail: caregiver?.dateOfBirth
+        ? `${
+            new Date().getFullYear() -
+            new Date(caregiver.dateOfBirth).getFullYear()
+          } years old`
+        : "--",
+    },
+    { label: "Gender", detail: caregiver?.gender || "--" },
+    { label: "Nationality", detail: "Nigeria" },
+    { label: "Ethnicity", detail: caregiver?.ethnicity || "--" },
+    {
+      label: "Languages",
+      detail: caregiver?.languagesSpoken?.join(", ") || "--",
+    },
+    {
+      label: "Subskills",
+      detail: caregiver?.subServiceTypes?.join(", ").replace(/_/g, " ") || "--",
+    },
+    {
+      label: "Highest Level of Education",
+      detail: caregiver?.educationLevel.replace(/_/g, " ") || "--",
+    },
+    {
+      label: "Availability status",
+      detail: caregiver?.currentlyAvailable || "--",
+    },
+    {
+      label: "Open to live-in jobs?",
+      detail: caregiver?.openToLiveIn ? "Yes" : "No",
+    },
+  ];
+
+  useEffect(() => {
+    fetchCaregiverDetails();
+  }, []);
+
   return (
-    <div className="">
+    <div>
       <CustomModal
         open={open}
         success={false}
@@ -80,28 +145,41 @@ export default function CaregiverProfile({ id }: { id: string }) {
               className="w-[103px] bg-white"
               onClick={() => setOpen(false)}
             >
-              cancel
+              Cancel
             </Button>
             <Button
               className="w-[186px] bg-[#F6AA3D] hover:bg-[#e19a32] text-[#1D2739] font-semibold"
-              onClick={handleSubscribe}
+              onClick={handleCloseSubscribe}
             >
               Start subscription
             </Button>
           </>
         }
       />
+
       <HeaderWrapper>
         <div className="flex flex-col lg:flex-row lg:items-center gap-6 max-w-[1136px] mx-auto relative">
-          <Header />
-          {/* RIGHT: Contact Card */}
+          <Header headerDetails={caregiver} isLoading={loadingCaregiver} />
+
           <ConnectionCard
             connected={connected}
+            hired={hired}
             handleConnect={handleConnectToCaregiver}
+            email={caregiver?.user?.email || "--"}
+            lastName={caregiver?.lastName || "--"}
+            firstName={caregiver?.firstName || "--"}
+            phone={caregiver?.user?.phone || "--"}
+            loading={connecting}
+            setOpenGuidelines={setOpenGuidelines}
           />
         </div>
       </HeaderWrapper>
+
       <div className="max-w-[1136px] mx-auto mt-6 px-4 md:px-8 lg:px-12 py-8">
+        {connected && !hired && !loadingCaregiver && (
+          <FeedbackCard name={caregiver?.firstName || "--"} />
+        )}
+
         <Tabs defaultValue="profileDetails" className="w-full">
           <TabsList className="w-full md:w-[65%] flex items-center justify-start">
             <TabsTrigger
@@ -114,58 +192,87 @@ export default function CaregiverProfile({ id }: { id: string }) {
               value="employmentHistory"
               className="text-[#475367] px-0 pb-4 text-base font-semibold w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
             >
-              Employement History
+              Employment History
             </TabsTrigger>
           </TabsList>
+
           <TabsContent
             value="profileDetails"
             className="w-full lg:w-[65%] mt-8"
           >
-            <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
-              {headerContent.map((content, idx) => (
-                <Box
-                  key={idx}
-                  icon={content.icon}
-                  description={content.description}
-                />
-              ))}
-            </div>
-            <div className="">
-              {userDetails.map((detail, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between py-4 border-b border-[#E4E7EC]"
-                >
-                  <p className="text-base text-[#475367] font-normal">
-                    {detail.label}
-                  </p>
-                  <p className="text-base text-[#344054] font-semibold">
-                    {detail.detail}
-                  </p>
-                </div>
-              ))}
-              <div className="flex items-center justify-between py-4">
-                <p className="text-base text-[#475367] font-normal">Levels</p>
-                <p className="flex items-center gap-2 text-base text-[#344054] font-semibold">
-                  Level 1{" "}
-                  <CircleAlert className="text-[#1DA5DB]" strokeWidth={1.5} />
-                </p>
+            {loadingCaregiver ? (
+              <div className="space-y-4">
+                <div className="h-20 bg-gray-100 rounded-md animate-pulse" />
+                <div className="h-48 bg-gray-100 rounded-md animate-pulse" />
               </div>
-            </div>
+            ) : (
+              <>
+                <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
+                  {headerContent.map((item, index) => (
+                    <Box
+                      key={index}
+                      icon={item.icon}
+                      description={item.description}
+                    />
+                  ))}
+                </div>
+
+                <div className="mt-4">
+                  {userDetails.map((detail, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between py-4 border-b border-[#E4E7EC]"
+                    >
+                      <p className="text-base text-[#475367] font-normal">
+                        {detail.label}
+                      </p>
+                      <p className="text-base text-[#344054] font-semibold">
+                        {detail.detail}
+                      </p>
+                    </div>
+                  ))}
+                  <div className="flex items-center justify-between py-4">
+                    <p className="text-base text-[#475367] font-normal">
+                      Levels
+                    </p>
+                    <p className="flex items-center gap-2 text-base capitalize text-[#344054] font-semibold">
+                      {caregiver?.literacyLevelDesc?.replace(/_/g, " ") || "--"}
+                      <CircleAlert
+                        className="text-[#1DA5DB]"
+                        strokeWidth={1.5}
+                      />
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
           </TabsContent>
+
           <TabsContent
             value="employmentHistory"
             className="w-full lg:w-[65%] mt-8"
           >
-            <h2 className="text-base text-[#344054] font-semibold">
-              Head Housekeeper
-            </h2>
-            <p className="text-sm text-[#667185] font-normal mt-2">
-              May 2023 - June 2025
-            </p>
+            {loadingCaregiver ? (
+              <div className="h-24 bg-gray-100 rounded-md animate-pulse" />
+            ) : (
+              caregiver?.previousEmployers?.map((employer, index) => (
+                <div key={index}>
+                  <h2 className="text-base text-[#344054] font-semibold">
+                    {employer.role}
+                  </h2>
+                  <p className="text-sm text-[#667185] font-normal mt-2">
+                    {employer.startDate}-{employer.endDate}
+                  </p>
+                </div>
+              ))
+            )}
           </TabsContent>
         </Tabs>
       </div>
+      <Guidelines
+        open={openGuidelines}
+        onClose={() => setOpenGuidelines(false)}
+      />
     </div>
   );
 }

@@ -15,10 +15,13 @@ interface CareseekerStoreState {
   // Actions
   fetchProfile: () => Promise<CareseekerProfile>;
   updateProfile: (payload: UpdateProfilePayload) => Promise<CareseekerProfile>;
-  changePassword: (payload: ChangePasswordPayload) => Promise<void>;
+  changePassword: (
+    payload: ChangePasswordPayload
+  ) => Promise<{ success: boolean }>;
+  deleteProfilePicture: () => Promise<void>;
   uploadProfilePicture: (file: File) => Promise<string>;
-  connectWithCaregiver: (caregiverId: string) => Promise<void>;
-  getConnectedCaregivers: () => Promise<void>;
+  connectWithCaregiver: (caregiverId: string) => Promise<{ success: boolean }>;
+  getConnectedCaregivers: () => Promise<{ success: boolean; data: any }>;
 
   reset: () => void;
 }
@@ -43,7 +46,6 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
       const errorMessage =
         error.response?.data?.message || "Failed to fetch profile";
       set({ error: errorMessage, isLoading: false });
-      throw new Error(errorMessage);
     }
   },
 
@@ -58,19 +60,34 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
       const errorMessage =
         error.response?.data?.message || "Profile update failed";
       set({ error: errorMessage, isUpdating: false });
-      throw new Error(errorMessage);
     }
   },
-
+  deleteProfilePicture: async () => {
+    set({ isUpdating: true, error: null });
+    try {
+      await careseekersService.deleteProfilePicture();
+      set((state) => ({
+        profile: state.profile
+          ? { ...state.profile, profileImageUrl: null }
+          : null,
+        isUpdating: false,
+      }));
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || "Profile picture deletion failed";
+      set({ error: errorMessage, isUpdating: false });
+    }
+  },
   changePassword: async (payload) => {
     set({ isUpdating: true, error: null });
     try {
       await careseekersService.changePassword(payload);
       set({ isUpdating: false });
+      return { success: true };
     } catch (error: any) {
       const errorMessage = error || "Password change failed";
       set({ error: errorMessage, isUpdating: false });
-      throw new Error(errorMessage);
+      return { success: false };
     }
   },
 
@@ -95,7 +112,6 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
       const errorMessage =
         error.response?.data?.message || "Profile picture upload failed";
       set({ error: errorMessage, isUpdating: false });
-      throw new Error(errorMessage);
     }
   },
   connectWithCaregiver: async (caregiverId) => {
@@ -103,21 +119,23 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
     try {
       await careseekersService.connectWithCaregiver(caregiverId);
       set({ isUpdating: false });
+      return { success: true };
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "Connection failed";
       set({ error: errorMessage, isUpdating: false });
-      throw new Error(errorMessage);
+      return { success: false };
     }
   },
   getConnectedCaregivers: async () => {
     set({ isLoading: true, error: null });
     try {
       const response = await careseekersService.getConnectedCaregivers();
+      return { success: true, data: response.data };
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || "Failed to fetch connections";
       set({ error: errorMessage, isLoading: false });
-      throw new Error(errorMessage);
+      return { success: false, data: [] };
     }
   },
   reset: () =>

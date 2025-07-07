@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { Loader } from "lucide-react";
 
 interface CustomModalProps {
   open: boolean;
@@ -56,7 +57,9 @@ const SettingsModal = ({
           <Button variant="outline" onClick={onClose}>
             {btnText1}
           </Button>
-          <Button onClick={onConfirm}>{loading ? "loading" : btnText2}</Button>
+          <Button onClick={onConfirm}>
+            {loading ? <Loader className="animate-spin" /> : btnText2}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

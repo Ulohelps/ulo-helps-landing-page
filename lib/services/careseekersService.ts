@@ -1,4 +1,3 @@
-import { connect } from "http2";
 import { api } from "../api/api";
 
 interface ChangePasswordPayload {
@@ -53,6 +52,9 @@ export const careseekersService = {
         "Content-Type": "multipart/form-data",
       },
     });
+  },
+  deleteProfilePicture: async () => {
+    return api.delete("/careseekers/profile/photo");
   },
   getConnectedCaregivers: async () => {
     return api.get("/connections/connected");

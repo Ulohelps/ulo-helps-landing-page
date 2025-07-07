@@ -21,24 +21,25 @@ const SecuritySettings = () => {
   const handleChangePassword = async () => {
     setIsLoading(true);
     const payload = { oldPassword, newPassword };
-    try {
-      await changePassword(payload);
 
+    const res = await changePassword(payload);
+    if (res.success) {
       setIsLoading(false);
       toast({
         title: "Change password",
         description: "Password changed successfully",
         variant: "success",
       });
+    } else {
       setOpenModal(false);
-    } catch (err) {
       toast({
         title: "Failed",
-        description: `${error || err}`,
+        description: `${error}||"failed to change password"`,
         variant: "error",
       });
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
   };
 
   return (

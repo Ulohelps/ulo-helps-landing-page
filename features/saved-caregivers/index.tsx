@@ -1,9 +1,27 @@
 "use client";
 import HeaderWrapper from "@/components/header-wrap";
-import React from "react";
+import React, { use, useEffect } from "react";
 import EmptySaveCaregivers from "./components/EmptyConnections";
+import { caregiverService } from "@/lib/services/caregiverService";
 
 const SavedCaregivers = () => {
+  const { getBookmarkedCaregivers } = caregiverService;
+
+  // Fetch bookmarked caregivers
+  const fetchBookmarkedCaregivers = async () => {
+    try {
+      const response = await getBookmarkedCaregivers();
+      // Handle the response as needed
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching bookmarked caregivers:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBookmarkedCaregivers();
+  }, []);
+
   return (
     <div>
       <HeaderWrapper>

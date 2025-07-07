@@ -79,15 +79,12 @@ export function CaregiverFilterBar() {
       location: selectedLocation !== "all" ? selectedLocation : undefined,
     };
 
-    try {
-      await searchCaregivers(params);
-
-      const queryString = buildQueryParams();
-      if (queryString) {
-        router.push(`/find-caregiver?${queryString}`);
-      }
-    } catch (error) {
-      console.error("Search failed:", error);
+    const queryString = buildQueryParams();
+    if (queryString) {
+      router.push(`/find-caregiver?${queryString}`);
+    } else {
+      // If no filters are applied, redirect to the main search page
+      router.push("/find-caregiver");
     }
   };
 

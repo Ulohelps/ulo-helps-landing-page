@@ -12,27 +12,26 @@ import Image from "next/image";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { useToast } from "@/hooks/use-toast";
 
-type ModalKeys =
-  | "uploadPhoto"
-  | "editName"
-  | "changePhone"
-  | "changeEmail"
-  | "deletePhoto";
+type ModalKeys = "uploadPhoto" | "editName" | "changePhone" | "deletePhoto";
 
 const ProfileSetting = () => {
-  const { profile, uploadProfilePicture, updateProfile, fetchProfile } =
-    useCareseekersStore();
+  const {
+    profile,
+    uploadProfilePicture,
+    updateProfile,
+    fetchProfile,
+    deleteProfilePicture,
+  } = useCareseekersStore();
 
   const [photo, setPhoto] = useState<File | null>(null);
-
   const [firstName, setFirstName] = useState(profile?.firstName || "");
   const [lastName, setLastName] = useState(profile?.lastName || "");
+  const [phone, setPhone] = useState(profile?.user.phone || "--");
 
   const [openModals, setOpenModals] = useState<Record<ModalKeys, boolean>>({
     uploadPhoto: false,
     editName: false,
     changePhone: false,
-    changeEmail: false,
     deletePhoto: false,
   });
 
@@ -42,27 +41,12 @@ const ProfileSetting = () => {
     uploadPhoto: "Change profile photo",
     editName: "Edit your name",
     changePhone: "Change phone number",
-    changeEmail: "Change email address",
     deletePhoto: "Remove profile photo",
   };
-  const [verificationStep, setVerificationStep] = useState<{
-    phone: "input" | "verify";
-    email: "input" | "verify";
-  }>({ phone: "input", email: "input" });
-  const [formData, setFormData] = useState({
-    phone: "+234 812 345 6789",
-    email: "nkechi@example.com",
-    verificationCode: "",
-  });
   const [isLoading, setIsLoading] = useState(false);
 
   const openModal = (key: ModalKeys) => {
     setOpenModals((prev) => ({ ...prev, [key]: true }));
-    // Reset verification step when opening modal
-    if (key === "changePhone")
-      setVerificationStep((prev) => ({ ...prev, phone: "input" }));
-    if (key === "changeEmail")
-      setVerificationStep((prev) => ({ ...prev, email: "input" }));
   };
 
   const handleClose = () => {
@@ -70,30 +54,9 @@ const ProfileSetting = () => {
       uploadPhoto: false,
       editName: false,
       changePhone: false,
-      changeEmail: false,
       deletePhoto: false,
     });
     setIsLoading(false);
-  };
-
-  const handleSendCode = (type: "phone" | "email", value: string) => {
-    setIsLoading(true);
-    // Simulate API call to send code
-    setTimeout(() => {
-      setIsLoading(false);
-      setVerificationStep((prev) => ({ ...prev, [type]: "verify" }));
-      setFormData((prev) => ({ ...prev, [type]: value }));
-    }, 1000);
-  };
-
-  const handleVerify = (type: "phone" | "email") => {
-    setIsLoading(true);
-    // Simulate API verification
-    setTimeout(() => {
-      setIsLoading(false);
-      handleClose();
-      // Update the verified value in your state/API here
-    }, 1000);
   };
 
   const handlePhotoUpload = async () => {
@@ -114,6 +77,27 @@ const ProfileSetting = () => {
       toast({
         title: "Failed upload",
         description: "Error uploading photo",
+        variant: "error",
+      });
+    }
+  };
+
+  const handleDeletePhoto = async () => {
+    setIsLoading(true);
+    try {
+      await deleteProfilePicture();
+      await fetchProfile();
+      setIsLoading(false);
+      toast({
+        title: "Photo deleted",
+        description: "Profile photo deleted successfully",
+        variant: "success",
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Failed delete",
+        description: "Error deleting profile photo",
         variant: "error",
       });
     }
@@ -140,25 +124,40 @@ const ProfileSetting = () => {
       });
     }
   };
+  const handlePhoneChange = async () => {
+    setIsLoading(true);
+    const payload = { phone };
+    try {
+      await updateProfile(payload);
+      await fetchProfile();
+      setIsLoading(false);
+      toast({
+        title: "profile update",
+        description: "updated your phone number successfully",
+        variant: "success",
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Failed update profile",
+        description: "Error updating profile",
+        variant: "error",
+      });
+    }
+  };
 
   const handleConfirm = (modalKey: ModalKeys) => {
     if (modalKey === "changePhone") {
-      if (verificationStep.phone === "input") {
-        handleSendCode("phone", formData.phone);
-      } else {
-        handleVerify("phone");
-      }
-    } else if (modalKey === "changeEmail") {
-      if (verificationStep.email === "input") {
-        handleSendCode("email", formData.email);
-      } else {
-        handleVerify("email");
-      }
+      handlePhoneChange();
+      handleClose();
     } else if (modalKey === "uploadPhoto") {
       handlePhotoUpload();
       handleClose();
     } else if (modalKey === "editName") {
       handleNameChange();
+      handleClose();
+    } else if (modalKey === "deletePhoto") {
+      handleDeletePhoto();
       handleClose();
     }
   };
@@ -177,27 +176,7 @@ const ProfileSetting = () => {
           />
         );
       case "changePhone":
-        return (
-          <VerifyPhoneModal
-            currentPhone={formData.phone}
-            step={verificationStep.phone}
-            onSendCode={(phone) => setFormData((prev) => ({ ...prev, phone }))}
-            onVerify={(code) =>
-              setFormData((prev) => ({ ...prev, verificationCode: code }))
-            }
-          />
-        );
-      case "changeEmail":
-        return (
-          <VerifyEmailModal
-            currentEmail={formData.email}
-            step={verificationStep.email}
-            onSendCode={(email) => setFormData((prev) => ({ ...prev, email }))}
-            onVerify={(code) =>
-              setFormData((prev) => ({ ...prev, verificationCode: code }))
-            }
-          />
-        );
+        return <VerifyPhoneModal currentPhone={phone} onChange={setPhone} />;
       case "deletePhoto":
         return (
           <p className="text-base text-[#344054] font-normal">
@@ -212,14 +191,7 @@ const ProfileSetting = () => {
 
   const getButtonText = (key: ModalKeys) => {
     if (key === "changePhone") {
-      return verificationStep.phone === "input"
-        ? "Send verification code"
-        : "Verify & Save changes";
-    }
-    if (key === "changeEmail") {
-      return verificationStep.email === "input"
-        ? "Send verification code"
-        : "Verify & Save changes";
+      return " Save changes";
     }
     if (key === "deletePhoto") {
       return "Yes, remove profile photo";
@@ -310,22 +282,6 @@ const ProfileSetting = () => {
           onClick={() => openModal("changePhone")}
         >
           Edit phone number
-        </Button>
-      </div>
-
-      <div className="flex flex-col items-center md:flex-row md:items-end gap-4 justify-between border-b border-[#E4E7EC] py-6">
-        <div className="flex md:flex-col items-center justify-center md:items-start md:justify-between gap-4 md:gap-2 w-full">
-          <p className="text-sm text-[#475367] font-normal">Email</p>
-          <p className="text-base text-[#344054] font-normal">
-            {profile?.user.email}
-          </p>
-        </div>
-        <Button
-          variant="outline"
-          className="text-base font-semibold"
-          onClick={() => openModal("changeEmail")}
-        >
-          Edit Email
         </Button>
       </div>
     </div>

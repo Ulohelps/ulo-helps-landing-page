@@ -57,11 +57,17 @@ export const caregiverService = {
     return api.get(`/caregivers/search?${queryParams.toString()}`);
   },
 
+  getSingleCaregiver: async (caregiverId: string) => {
+    return api.get(`/caregivers/${caregiverId}`);
+  },
   bookmarkCaregiver: async (caregiverId: string) => {
     return api.post(`/connections/${caregiverId}/bookmark`);
   },
 
   unbookmarkCaregiver: async (caregiverId: string) => {
     return api.post(`/connections/${caregiverId}/unbookmark`);
+  },
+  getBookmarkedCaregivers: async () => {
+    return api.get(`/connections/bookmarks`);
   },
 };
