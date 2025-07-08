@@ -27,7 +27,7 @@ export default function SubscriptionManagement() {
       <SubscriptionCard subscription={currentSub?.subscription ?? null} />
 
       {/* Billing History */}
-      <BillingHistoryTable />
+      <BillingHistoryTable history={currentSub?.billingHistory ?? null} />
     </div>
   );
 }

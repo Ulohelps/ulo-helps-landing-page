@@ -6,18 +6,29 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { CalendarIcon, Send } from "lucide-react";
+import { CalendarIcon, Loader, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import HeaderWrapper from "@/components/header-wrap";
 import CustomModal from "@/components/custom-modal";
+import { careseekersService } from "@/lib/services/careseekersService";
+import { useSearchParams } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
 
 export default function CaregiverFeedbackForm() {
   const [hired, setHired] = useState<"yes" | "no" | "">("yes");
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [hireDate, setHireDate] = useState("");
   const [rating, setRating] = useState<number>(0);
   const [reasons, setReasons] = useState<string[]>([]);
   const [feedback, setFeedback] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const searchParams = useSearchParams();
+
+  const connectId = searchParams.get("connectId");
+  const name = searchParams.get("name");
+
+  const { toast } = useToast();
 
   const reasonOptions = [
     "I didn’t like his voice",
@@ -38,17 +49,49 @@ export default function CaregiverFeedbackForm() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     const data = {
-      hired,
+      hired: true,
       hireDate,
       rating,
-      reasons,
-      feedback,
+      comments: feedback,
     };
-    console.log("Submitted feedback:", data);
-    // You can replace the log with an API call
+    const Payload = {
+      hired: true,
+      comments: feedback,
+      reasonsNotHired: reasons,
+    };
+
+    try {
+      await careseekersService.sendFeedback(
+        hired === "yes" ? data : Payload,
+        connectId as string
+      );
+
+      setOpen(true);
+      setHired("");
+      setHireDate("");
+      setRating(0);
+      setReasons([]);
+      setFeedback("");
+      toast({
+        title: "Feedback submitted",
+        description: "Thank you for your feedback!",
+        variant: "success",
+      });
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      toast({
+        title: "Error",
+        description:
+          error instanceof Error ? error.message : "An error occurred",
+        variant: "error",
+      });
+    }
   };
 
   return (
@@ -94,7 +137,7 @@ export default function CaregiverFeedbackForm() {
       >
         <div className=" px-8 mt-8">
           <Label className="mb-2 block text-sm text-[#344054] font-medium">
-            Did you hire Oluwatosin?
+            Did you hire {name}?
           </Label>
           <RadioGroup
             value={hired}
@@ -129,7 +172,7 @@ export default function CaregiverFeedbackForm() {
           <>
             <div className="px-8">
               <Label className="mb-2 block text-sm text-[#344054] font-medium">
-                When did you hire Oluwatosin?
+                When did you hire {name}?
               </Label>
               <div className="relative">
                 <Input
@@ -144,8 +187,8 @@ export default function CaregiverFeedbackForm() {
 
             <div className="px-8">
               <Label className="mb-2 block text-sm text-[#344054] font-medium">
-                How would you rate your hiring and working experience with
-                Oluwatosin?
+                How would you rate your hiring and working experience with{" "}
+                {name}?
               </Label>
               <div className="flex space-x-1">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -168,7 +211,7 @@ export default function CaregiverFeedbackForm() {
         {hired === "no" && (
           <div className="px-8">
             <Label className="mb-2 block text-sm text-[#344054] font-medium">
-              Why didn’t you hire Oluwatosin?
+              Why didn’t you hire {name}?
             </Label>
             <div className="space-y-3">
               {reasonOptions.map((reason) => (
@@ -206,7 +249,7 @@ export default function CaregiverFeedbackForm() {
         <div className="bg-[#F7F9FC] py-6 border-t border-[#D0D5DD] px-8 flex justify-center">
           <Button type="submit" className="text-[#1D2739] font-semibold">
             <Send />
-            Submit feedback
+            {loading ? <Loader className="animate-spin" /> : "Submit feedback"}
           </Button>
         </div>
       </form>

@@ -11,4 +11,7 @@ export const subscriptionService = {
   getCurrenctSubscription: async () => {
     return api.get("/subscriptions/me");
   },
+  cancelSubscription: async (payload: string) => {
+    return api.post("/subscriptions/cancel", { reason: payload });
+  },
 };

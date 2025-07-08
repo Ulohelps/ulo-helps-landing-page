@@ -18,7 +18,7 @@ const Header = ({ headerDetails, isLoading = false }: HeaderProps) => {
   }
 
   return (
-    <div className="flex flex-col items-center md:flex-row gap-4 lg:w-[70%]">
+    <div className="flex flex-col md:flex-row gap-4 lg:w-[70%]">
       <div className="w-[266px] h-[280px] relative overflow-hidden rounded-[12px] border border-gray-300">
         {headerDetails?.profileImageUrl ? (
           <Image

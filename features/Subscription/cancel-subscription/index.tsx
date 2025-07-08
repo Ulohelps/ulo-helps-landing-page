@@ -4,6 +4,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { subscriptionService } from "@/lib/services/subscriptionService";
+import { useToast } from "@/hooks/use-toast";
+import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const deleteReason = [
   "I found my caregiver through ULO",
@@ -15,6 +19,36 @@ const deleteReason = [
 
 const CancelSubscription = () => {
   const [reason, setReason] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { toast } = useToast();
+
+  const router = useRouter();
+
+  const handleCancelSubscription = async () => {
+    setIsLoading(true);
+    try {
+      await subscriptionService.cancelSubscription(reason);
+
+      toast({
+        title: "Subscription cancelled",
+        description: "Your subscription has been successfully cancelled.",
+        variant: "success",
+      });
+      setIsLoading(false);
+      router.push("/subscriptions");
+    } catch (error) {
+      setIsLoading(false);
+      toast({
+        title: "Error",
+        description: "There was an error cancelling your subscription.",
+        variant: "error",
+      });
+      console.error("Error cancelling subscription:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div>
       <div className="w-full bg-[#F0F2F5] border-y border-[#D0D5DD] py-8">
@@ -70,7 +104,13 @@ const CancelSubscription = () => {
             </div>
           )}
           <div className="bg-[#F7F9FC] border-t border-[#D0D5DD] py-6 w-full flex items-center justify-center">
-            <Button className="">Submit and cancel subscription</Button>
+            <Button className="" onClick={handleCancelSubscription}>
+              {isLoading ? (
+                <Loader className="animate-spin" />
+              ) : (
+                "Submit and cancel subscription"
+              )}
+            </Button>
           </div>
         </div>
       </div>

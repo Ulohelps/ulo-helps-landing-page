@@ -58,7 +58,7 @@ const ethnicityOptions = [
 ];
 
 const FilterPanel = ({ visible, onClose }: Props) => {
-  const [rateRange, setRateRange] = useState<[number, number]>([3, 300]);
+  const [rateRange, setRateRange] = useState<[number, number]>([0, 0]);
   const [experience, setExperience] = useState("");
   const [gender, setGender] = useState<string[]>([]);
   const [ethnicity, setEthnicity] = useState<string[]>([]);
@@ -112,7 +112,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
   };
 
   const clearFilters = () => {
-    setRateRange([3, 300]);
+    setRateRange([0, 0]);
     setExperience("");
     setGender([]);
     setEthnicity([]);

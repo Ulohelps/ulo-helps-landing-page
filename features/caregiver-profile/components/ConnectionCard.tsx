@@ -15,6 +15,8 @@ interface ConnectionCardProps {
   firstName: string;
   phone: string;
   loading: boolean;
+  connectDate: string;
+  hiredDate?: string;
   setOpenGuidelines: (val: boolean) => void;
 }
 
@@ -27,8 +29,17 @@ const ConnectionCard = ({
   lastName,
   hired,
   loading,
+  connectDate,
+  hiredDate,
   setOpenGuidelines,
 }: ConnectionCardProps) => {
+  function formatCustomDate(dateString: string): string {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = date.toLocaleString("en-US", { month: "long" });
+    const year = date.getFullYear();
+    return `${day} ${month}, ${year}.`;
+  }
   return (
     <Card className="w-full max-w-[347px] shadow-md lg:absolute lg:w-[30%] top-0 right-0 bg-white rounded-[20px] border border-[#E4E7EC]">
       <CardContent className="space-y-6 py-6">
@@ -98,8 +109,12 @@ const ConnectionCard = ({
               <Image src={CautionIcon} alt="caution icon" />
               <p className="text-sm text-white font-normal">
                 {hired
-                  ? `You hired ${firstName} on the 19th of June, 2025.`
-                  : `You connected with ${firstName} on the 19th of June, 2025.`}
+                  ? `You hired ${firstName} on the ${
+                      hiredDate ? formatCustomDate(hiredDate) : "--"
+                    }.`
+                  : `You connected with ${firstName} on ${
+                      connectDate ? formatCustomDate(connectDate) : "--"
+                    }.`}
               </p>
             </div>
             <Button

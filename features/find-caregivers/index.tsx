@@ -28,7 +28,6 @@ const FindCaregiver = () => {
     setSearchParams,
   } = useCaregiverStore();
 
-  // Only extract filters that belong to the filter panel
   const getActiveFilterParams = () => {
     const validKeys = [
       "experienceLevel",

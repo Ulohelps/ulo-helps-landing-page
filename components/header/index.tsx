@@ -1,20 +1,21 @@
 "use client";
 
 import {
-  Menu,
-  User,
-  LogOut,
-  User2,
-  Search,
   Bell,
   ChevronDown,
   Home,
   Users,
   Bookmark,
-  Check,
+  User,
+  LogOut,
+  User2,
+  Search,
+  Menu,
   SendIcon,
+  Check,
+  CircleCheck,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -36,6 +37,20 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/auth-store";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
+import { notificationService } from "@/lib/services/notificationService";
+import { useToast } from "@/hooks/use-toast";
+import { formatDistanceToNow } from "date-fns";
+
+interface Notification {
+  id: string;
+  title: string;
+  body: string;
+  type: "info" | "success" | "warning" | "error";
+  read: boolean;
+  createdAt: string;
+  updatedAt: string;
+  meta?: Record<string, any>;
+}
 
 const navLinks = [
   { href: "/dashboard", label: "Home", icon: Home },
@@ -45,6 +60,27 @@ const navLinks = [
   { href: "/request-caregiver", label: "Request caregiver", icon: SendIcon },
 ];
 
+const getNotificationIcon = (type: Notification["type"]) => {
+  switch (type) {
+    case "success":
+      return (
+        <div className="bg-[#F7F9FC] border border-[#F0F2F5] p-1 rounded-full h-10 w-10">
+          <CircleCheck className="text-[#22C45E] w-6 h-6" />
+        </div>
+      );
+    case "warning":
+      return "⚠️";
+    case "error":
+      return "❌";
+    default:
+      return (
+        <div className="bg-[#F7F9FC] border border-[#F0F2F5] p-1 rounded-full h-10 w-10">
+          <Bell className="text-[#F6AA3D] w-6 h-6" />
+        </div>
+      );
+  }
+};
+
 export default function Header() {
   const { profile } = useCareseekersStore();
   const { logout } = useAuthStore();
@@ -52,6 +88,57 @@ export default function Header() {
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchNotifications = async () => {
+    try {
+      setIsLoading(true);
+      const response = await notificationService.getNotifications();
+      setNotifications(response.data || []);
+      //setUnreadCount(response.unreadCount || 0);
+    } catch (error) {
+      console.error("Failed to fetch notifications:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  /* const markAsRead = async (id: string) => {
+    try {
+      await notificationService.markAsRead(id);
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+      );
+      setUnreadCount((prev) => prev - 1);
+    } catch (error) {
+      console.error("Failed to mark notification as read:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update notification status",
+        variant: "error",
+      });
+    }
+  }; */
+
+  /*  const markAllAsRead = async () => {
+    if (!user?.id) return;
+
+    try {
+      await notificationService.markAllAsRead(user.id);
+      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+      setUnreadCount(0);
+    } catch (error) {
+      console.error("Failed to mark all as read:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update notifications",
+        variant: "error",
+      });
+    }
+  }; */
 
   const handleLogout = () => {
     logout();
@@ -59,173 +146,313 @@ export default function Header() {
     setOpen(false);
   };
 
+  // Initial fetch and periodic refresh
+  useEffect(() => {
+    fetchNotifications();
+
+    const interval = setInterval(fetchNotifications, 300000); // Refresh every 5 minutes
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Refresh notifications when dropdown opens
+  useEffect(() => {
+    if (notificationOpen) {
+      fetchNotifications();
+    }
+  }, [notificationOpen]);
+
   return (
-    <header className="fixed w-full top-0 z-50 shadow-md bg-white px-4 md:px-12 py-4">
-      <div className="mx-auto flex max-w-[1136px] items-center justify-between">
-        {/* Left - Logo */}
+    <header className="fixed w-full top-0 z-50 bg-white shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between">
+        {/* Logo */}
         <Link href="/dashboard" className="flex items-center gap-2">
           <Image
             src={UloLogo}
             alt="Ulo logo"
-            width={1000}
-            height={1000}
-            className="w-[59px] h-[29px] md:w-[83px] md:h-[40px] object-contain"
+            width={83}
+            height={40}
+            className="w-[59px] h-[29px] md:w-[83px] md:h-[40px]"
+            priority
           />
         </Link>
 
-        {/* Right - Nav + Icons */}
-        <div className="flex items-center justify-between">
-          {/* Desktop Navigation */}
-          <nav className="hidden space-x-6 text-base text-[#475367] font-semibold md:flex">
+        {/* Navigation */}
+        <div className="flex items-center gap-4 md:gap-6">
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.slice(0, 3).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`${
-                  pathname === link.href ? "bg-[#E9F6FC]" : ""
-                } transition-colors py-2 px-3 rounded-[8px] text-[#475367]`}
+                className={`px-3 py-2 rounded-lg text-sm font-medium ${
+                  pathname === link.href
+                    ? "bg-[#F0F9FF] text-[#026AA2]"
+                    : "text-[#475467] hover:bg-[#F9FAFB]"
+                } transition-colors`}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Profile & Icons */}
-          <div className="flex items-center justify-between gap-2 md:gap-4 ml-4">
-            <Search className="w-5 h-5 text-[#475367] cursor-pointer" />
+          {/* Icons */}
+          <div className="flex items-center gap-3 md:gap-4">
+            {/* Search Icon - Mobile */}
+            <button
+              className="md:hidden p-2 text-[#475467]"
+              onClick={() => router.push("/find-caregiver")}
+            >
+              <Search className="w-5 h-5" />
+            </button>
 
-            <div className="relative">
-              <Bell className="w-5 h-5 text-[#475367] cursor-pointer" />
-              <Badge
-                variant="destructive"
-                className="absolute -top-1 -right-1 p-1.5 h-3 w-3 bg-[#F1473C] flex items-center justify-center text-white text-[10px] leading-none rounded-full"
-              >
-                3
-              </Badge>
-            </div>
-
-            {profile?.profileImageUrl ? (
-              <Image
-                src={profile.profileImageUrl}
-                alt="user profile picture"
-                width={32}
-                height={32}
-                className="w-8 h-8 rounded-full object-cover"
-              />
-            ) : (
-              <div className="flex rounded-full items-center justify-center border border-[#344054] h-8 w-8 ml-2">
-                <User2 className="text-[#475367] w-6 h-6" />
-              </div>
-            )}
-
-            {/* Desktop Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="hidden md:block" asChild>
-                <Button variant="ghost" size="icon">
-                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
-                </Button>
+            {/* Notification Dropdown */}
+            <DropdownMenu
+              open={notificationOpen}
+              onOpenChange={setNotificationOpen}
+            >
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="relative p-2 text-[#475467] hover:bg-[#F9FAFB] rounded-lg"
+                  aria-label="Notifications"
+                >
+                  <Bell className="w-5 h-5" />
+                  {unreadCount > 0 && (
+                    <Badge className="absolute -top-1 -right-1 h-4 w-4 p-0 flex items-center justify-center bg-[#F04438] text-white text-[10px]">
+                      {unreadCount}
+                    </Badge>
+                  )}
+                </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="end"
-                className="w-56 border-none rounded-[20px] px-0 bg-white shadow-lg"
+                className="max-w-[450px] rounded-2xl bg-white border border-[#EAECF0] shadow-xl mt-2 p-0 overflow-hidden"
+                onCloseAutoFocus={(e) => e.preventDefault()}
               >
-                <DropdownMenuItem
-                  className="flex items-center gap-3 px-6 py-4 cursor-pointer"
-                  onClick={() => router.push("/account-settings")}
+                {/* Header */}
+                <div className="px-4 py-3 border-b border-[#EAECF0] bg-white">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-semibold text-[#101828]">
+                      Notifications
+                    </h3>
+                    {/* {unreadCount > 0 && (
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          markAllAsRead();
+                        }}
+                        className="text-sm font-medium text-[#5E8AFF] hover:text-[#4670EA]"
+                        disabled={isLoading}
+                      >
+                        Mark all as read
+                      </button>
+                    )} */}
+                  </div>
+                </div>
+
+                {/* Notifications List */}
+                <div className="max-h-[480px] overflow-y-auto">
+                  {isLoading ? (
+                    <div className="p-4 text-center text-sm text-[#475467]">
+                      Loading notifications...
+                    </div>
+                  ) : notifications.length === 0 ? (
+                    <div className="p-4 text-center text-sm text-[#475467]">
+                      No notifications yet
+                    </div>
+                  ) : (
+                    notifications.map((notification) => (
+                      <DropdownMenuItem
+                        key={notification.id}
+                        className={`px-4 py-3 cursor-pointer focus:bg-[#F9FAFB] ${
+                          !notification.read ? "bg-[#F9FAFB]" : "bg-white"
+                        }`}
+                        onClick={() => {}}
+                      >
+                        <div className="flex gap-3 w-full">
+                          <div className="flex-shrink-0 mt-0.5 text-lg">
+                            {getNotificationIcon(notification.type)}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex justify-between items-start">
+                              <h4
+                                className={`text-base font-semibold ${
+                                  !notification.read
+                                    ? "text-[#344054]"
+                                    : "text-[#475467]"
+                                } truncate`}
+                              >
+                                {notification.title}
+                              </h4>
+                              {!notification.read && (
+                                <div className="ml-2 flex-shrink-0 w-2 h-2 rounded-full bg-[#5E8AFF]" />
+                              )}
+                            </div>
+                            <p className="mt-1 text-sm text-[#475367]">
+                              {notification.body}
+                            </p>
+                            <p className="mt-2 text-sm text-[#667185]">
+                              {formatDistanceToNow(
+                                new Date(notification.createdAt),
+                                {
+                                  addSuffix: true,
+                                }
+                              )}
+                            </p>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))
+                  )}
+                </div>
+
+                {/* Footer */}
+                {/* <div className="px-4 py-3 border-t border-[#EAECF0] bg-white">
+                  <button
+                    className="w-full text-center text-sm font-medium text-[#5E8AFF] hover:text-[#4670EA]"
+                    onClick={() => {
+                      setNotificationOpen(false);
+                      router.push("/notifications");
+                    }}
+                  >
+                    View all notifications
+                  </button>
+                </div> */}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="flex items-center gap-2 focus:outline-none"
+                  aria-label="User menu"
                 >
                   {profile?.profileImageUrl ? (
                     <Image
                       src={profile.profileImageUrl}
-                      alt="user profile picture"
-                      width={80}
-                      height={80}
-                      className="h-4 w-4 rounded-full object-cover"
+                      alt="Profile"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 rounded-full object-cover border border-[#EAECF0]"
                     />
                   ) : (
-                    <div className="flex items-center justify-center h-6 w-6 rounded-full border-2 border-[#344054] p-1">
-                      <User className="text-[#475367] h-4 w-4" />
+                    <div className="w-8 h-8 rounded-full border border-[#D0D5DD] flex items-center justify-center bg-white">
+                      <User2 className="w-5 h-5 text-[#475467]" />
                     </div>
                   )}
-                  <span className="text-sm font-normal text-[#344054]">
-                    Account settings
-                  </span>
+                  <ChevronDown className="hidden md:block w-4 h-4 text-[#98A2B3]" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="w-56 bg-white rounded-xl border border-[#EAECF0] shadow-xl mt-2 p-0"
+              >
+                <DropdownMenuItem
+                  className="px-4 py-3 cursor-pointer focus:bg-[#F9FAFB]"
+                  onClick={() => router.push("/account-settings")}
+                >
+                  <div className="flex items-center gap-3">
+                    {profile?.profileImageUrl ? (
+                      <Image
+                        src={profile.profileImageUrl}
+                        alt="Profile"
+                        width={40}
+                        height={40}
+                        className="w-6 h-6 rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-6 h-6 rounded-full border border-[#D0D5DD] flex items-center justify-center bg-white">
+                        <User2 className="w-4 h-4 text-[#475467]" />
+                      </div>
+                    )}
+                    <span className="text-sm font-medium text-[#101828]">
+                      Account settings
+                    </span>
+                  </div>
                 </DropdownMenuItem>
-
-                <div className="px-6 py-5 bg-[#F7F9FC] border-t border-b border-[#D0D5DD]">
-                  <p className="text-sm text-[#344054] font-normal">
-                    Subscription status:
+                <div className="px-4 py-3 border-y border-[#EAECF0] bg-[#F9FAFB]">
+                  <p className="text-xs font-medium text-[#475467] mb-1">
+                    Subscription status
                   </p>
-                  <div className="mt-1 border border-[#5FC381] rounded-[120px] bg-[#E7F6EC] p-3 text-base font-semibold text-[#036B26] text-center">
-                    Active
+                  <div className="px-3 py-1.5 bg-[#ECFDF3] border border-[#ABEFC6] rounded-full text-center">
+                    <span className="text-xs font-medium text-[#067647]">
+                      Active
+                    </span>
                   </div>
                 </div>
-
                 <DropdownMenuItem
-                  className="text-[#D42620] px-6 py-4 cursor-pointer"
+                  className="px-4 py-3 cursor-pointer text-[#D92D20] focus:bg-[#F9FAFB]"
                   onClick={handleLogout}
                 >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span className="text-sm font-normal">Log out</span>
+                  <div className="flex items-center gap-3">
+                    <LogOut className="w-5 h-5" />
+                    <span className="text-sm font-medium">Log out</span>
+                  </div>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Mobile Hamburger */}
-            <div className="md:hidden">
-              <Sheet open={open} onOpenChange={setOpen}>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Menu className="h-5 w-5 text-[#344054]" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent
-                  side="right"
-                  className="w-full bg-white rounded-b-[16px] p-0 py-6"
+            {/* Mobile Menu */}
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <button
+                  className="md:hidden p-2 text-[#475467] hover:bg-[#F9FAFB] rounded-lg"
+                  aria-label="Menu"
                 >
-                  <SheetHeader>
-                    <SheetTitle className="text-base font-semibold">
+                  <Menu className="w-5 h-5" />
+                </button>
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="w-full max-w-xs p-0 bg-white"
+              >
+                <div className="h-full flex flex-col">
+                  <SheetHeader className="px-4 pt-5 pb-4 border-b border-[#EAECF0]">
+                    <SheetTitle className="text-sm font-semibold text-[#101828]">
                       Menu
                     </SheetTitle>
                   </SheetHeader>
-
-                  {/* Nav List */}
-                  <nav className="flex flex-col mt-6">
+                  <nav className="flex-1 overflow-y-auto">
                     {navLinks.map(({ href, label, icon: Icon }) => (
                       <Link
                         key={href}
                         href={href}
                         onClick={() => setOpen(false)}
-                        className={`flex items-center gap-3 py-4 px-6 text-sm border-b border-[#E4E7EC] font-medium ${
-                          pathname === href ? "bg-[#E9F6FC] rounded-md" : ""
-                        } text-[#344054]`}
+                        className={`flex items-center gap-3 px-4 py-3 text-sm font-medium ${
+                          pathname === href
+                            ? "bg-[#F0F9FF] text-[#026AA2]"
+                            : "text-[#475467]"
+                        } border-b border-[#EAECF0]`}
                       >
-                        <Icon className="w-4 h-4" />
+                        <Icon className="w-5 h-5" />
                         {label}
                       </Link>
                     ))}
-                  </nav>
-
-                  {/* Subscription Active */}
-                  <div className="flex items-center gap-2 px-6 py-4  border-b border-[#E4E7EC]">
-                    <div className="flex items-center justify-center bg-[#0F973D] rounded-full p-[2px]">
-                      <Check className="w-4 h-4 text-white" />
+                    <div
+                      className="flex items-center gap-3 px-3 py-2"
+                      onClick={() => router.push("/subscriptions")}
+                    >
+                      <div className="w-6 h-6 rounded-full bg-[#ECFDF3] flex items-center justify-center">
+                        <Check className="w-4 h-4 text-[#12B76A]" />
+                      </div>
+                      <span className="text-sm font-medium text-[#067647]">
+                        Subscription active
+                      </span>
                     </div>
-                    <span className="text-sm font-medium text-[#099137]">
-                      Subscription active
-                    </span>
+                  </nav>
+                  <div className="p-4 border-t border-[#EAECF0]">
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-3 px-3 py-2 mt-2 text-sm font-medium text-[#D92D20]"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      Log out
+                    </button>
                   </div>
-
-                  {/* Logout */}
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center px-6 py-4 gap-3 text-[#D42620] text-sm font-medium"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    Log out
-                  </button>
-                </SheetContent>
-              </Sheet>
-            </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>

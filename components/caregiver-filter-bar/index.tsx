@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Search, ChevronDown } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useCaregiverStore } from "@/lib/stores/caregiver-store";
 import { useState, useEffect } from "react";
 
@@ -48,10 +48,19 @@ const serviceTypes = [
 
 export function CaregiverFilterBar() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { searchCaregivers } = useCaregiverStore();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<string>("all");
+
+  // Initialize state from URL params
+  const [searchTerm, setSearchTerm] = useState(
+    searchParams.get("search") || ""
+  );
+  const [selectedServices, setSelectedServices] = useState<string[]>(
+    searchParams.get("serviceTypes")?.split(",") || []
+  );
+  const [selectedLocation, setSelectedLocation] = useState<string>(
+    searchParams.get("location") || "all"
+  );
 
   const toggleService = (id: string) => {
     setSelectedServices((prev) =>
@@ -71,19 +80,10 @@ export function CaregiverFilterBar() {
   };
 
   const handleSearch = async () => {
-    const params = {
-      page: 1,
-      limit: 10,
-      search: searchTerm.trim(),
-      serviceTypes: selectedServices.length > 0 ? selectedServices : undefined,
-      location: selectedLocation !== "all" ? selectedLocation : undefined,
-    };
-
     const queryString = buildQueryParams();
     if (queryString) {
       router.push(`/find-caregiver?${queryString}`);
     } else {
-      // If no filters are applied, redirect to the main search page
       router.push("/find-caregiver");
     }
   };
@@ -121,8 +121,9 @@ export function CaregiverFilterBar() {
               <Checkbox
                 checked={selectedServices.includes(service.id)}
                 onCheckedChange={() => toggleService(service.id)}
+                className="border-[#D0D5DD] rounded-md h-4 w-4"
               />
-              <span className="text-sm text-gray-800">{service.label}</span>
+              <span className="text-base text-[#667185] ">{service.label}</span>
             </label>
           ))}
         </PopoverContent>

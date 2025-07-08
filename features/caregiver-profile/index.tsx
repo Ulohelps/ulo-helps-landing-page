@@ -163,6 +163,8 @@ export default function CaregiverProfile({ id }: { id: string }) {
 
           <ConnectionCard
             connected={connected}
+            connectDate={caregiver?.connectedAt || ""}
+            hiredDate={caregiver?.hiredAt || ""}
             hired={hired}
             handleConnect={handleConnectToCaregiver}
             email={caregiver?.user?.email || "--"}
@@ -177,7 +179,10 @@ export default function CaregiverProfile({ id }: { id: string }) {
 
       <div className="max-w-[1136px] mx-auto mt-6 px-4 md:px-8 lg:px-12 py-8">
         {connected && !hired && !loadingCaregiver && (
-          <FeedbackCard name={caregiver?.firstName || "--"} />
+          <FeedbackCard
+            name={caregiver?.firstName || "--"}
+            connectId={caregiver?.connectionId || ""}
+          />
         )}
 
         <Tabs defaultValue="profileDetails" className="w-full">

@@ -4,7 +4,13 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const FeedbackCard = ({ name }: { name: string }) => {
+const FeedbackCard = ({
+  name,
+  connectId,
+}: {
+  name: string;
+  connectId: string;
+}) => {
   const router = useRouter();
   return (
     <div className="border border-[#E4E7EC] rounded-[24px] p-6 flex items-center gap-4 w-full md:w-[65%] mb-6">
@@ -23,7 +29,11 @@ const FeedbackCard = ({ name }: { name: string }) => {
         <Button
           variant="outline"
           className="font-semibold mt-1"
-          onClick={() => router.push("/caregiver-feedback")}
+          onClick={() =>
+            router.push(
+              `/caregiver-feedback?connectId=${connectId}&name=${name}`
+            )
+          }
         >
           Give post-connection feedback <ArrowL />
         </Button>

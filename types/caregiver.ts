@@ -69,8 +69,9 @@ export type Caregiver = {
     createdAt: string;
     updatedAt: string;
   };
-
-  // Verification (if any)
+  connectionId: string;
+  connectedAt: string;
+  hiredAt: string;
   sumSubVerifications: any[];
 };
 

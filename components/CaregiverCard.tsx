@@ -3,18 +3,17 @@
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 import { Bookmark, MapPin, Wallet } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import Bag from "@/components/icons/bag.svg";
 import VerifiedIcon from "@/components/icons/verified.svg";
 
 import { caregiverService } from "@/lib/services/caregiverService";
 import { removeUnderscores, formatCurrency } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
-export interface Caregiver {
+interface Caregiver {
   id: string;
   firstName: string;
   lastName: string;
@@ -27,42 +26,68 @@ export interface Caregiver {
   isBookmarked: boolean;
 }
 
-export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
+interface CaregiverCardProps {
+  caregiver: Caregiver;
+}
+
+export function CaregiverCard({ caregiver }: CaregiverCardProps) {
   const router = useRouter();
+  const { toast } = useToast();
   const [hovered, setHovered] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(caregiver.isBookmarked);
 
+  const fullName = `${caregiver.firstName} ${caregiver.lastName}`;
+  const isAvailable = caregiver.currentlyAvailable === "AVAILABLE";
+
   const handleBookmarkToggle = useCallback(async () => {
-    setIsBookmarked((prev) => !prev);
+    const newBookmarkState = !isBookmarked;
+    setIsBookmarked(newBookmarkState);
+
     try {
-      if (isBookmarked) {
-        await caregiverService.unbookmarkCaregiver(caregiver.id);
-        router.refresh();
-      } else {
-        await caregiverService.bookmarkCaregiver(caregiver.id);
-        router.refresh();
-      }
+      const action = newBookmarkState
+        ? caregiverService.bookmarkCaregiver
+        : caregiverService.unbookmarkCaregiver;
+
+      await action(caregiver.id);
+
+      toast({
+        title: newBookmarkState ? "Bookmark added" : "Bookmark removed",
+        description: newBookmarkState
+          ? "Caregiver has been bookmarked"
+          : "Caregiver has been removed from bookmarks",
+        variant: "success",
+      });
+
+      router.refresh();
     } catch (error) {
       console.error("Error updating bookmark:", error);
-      // Revert UI change if request fails
-      setIsBookmarked((prev) => !prev);
+      setIsBookmarked(!newBookmarkState); // Revert on error
+      toast({
+        title: "Error",
+        description: "Failed to update bookmark status",
+        variant: "error",
+      });
     }
-  }, [isBookmarked, caregiver.id]);
+  }, [isBookmarked, caregiver.id, router, toast]);
+
+  const navigateToProfile = () =>
+    router.push(`/find-caregiver/${caregiver.id}`);
 
   return (
-    <div className="flex-shrink-0 w-full flex flex-col lg:flex-row border border-[#D0D5DD] rounded-[24px] p-4 shadow-sm group transition">
+    <article className="flex-shrink-0 w-full flex flex-col lg:flex-row border border-gray-300 rounded-3xl p-4 shadow-sm group transition hover:shadow-md">
       {/* Image Section */}
       <div
-        className="relative w-full lg:w-1/2 h-[240px] md:h-auto rounded-[12px] overflow-hidden"
+        className="relative w-full lg:w-1/2 h-60 md:h-auto rounded-xl overflow-hidden"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
         <Image
-          src={caregiver?.profileImageUrl}
-          alt={`${caregiver?.firstName} ${caregiver?.lastName}`}
-          width={1000}
-          height={1000}
-          className="object-cover w-full h-full rounded-[12px]"
+          src={caregiver.profileImageUrl}
+          alt={fullName}
+          fill
+          className="object-cover rounded-xl"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority={false}
         />
 
         <div
@@ -73,16 +98,18 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
           <Button
             onClick={handleBookmarkToggle}
             variant="outline"
-            className={`${
-              isBookmarked ? "text-[#F6AA3D]" : "text-[#344054]"
-            } hover:bg-white border-[#D0D5DD] rounded-full h-12 w-12 p-[24px]`}
+            size="icon"
+            className={`rounded-full h-12 w-12 ${
+              isBookmarked ? "text-amber-500" : "text-gray-700"
+            } bg-white border-gray-300 hover:bg-gray-50`}
+            aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
           >
             <Bookmark fill={isBookmarked ? "#F6AA3D" : "none"} />
           </Button>
 
           <Button
-            onClick={() => router.push(`/find-caregiver/${caregiver?.id}`)}
-            className="text-[#344054] font-medium px-6 py-2 rounded-full w-full"
+            onClick={navigateToProfile}
+            className="text-gray-700 font-medium px-6 py-3 rounded-full w-full hover:bg-gray-100"
           >
             View profile
           </Button>
@@ -90,55 +117,56 @@ export function CaregiverCard({ caregiver }: { caregiver: Caregiver }) {
       </div>
 
       {/* Info Section */}
-      <div className="px-0 md:px-6 py-5 flex flex-col justify-between flex-1">
+      <section className="px-0 md:px-6 py-5 flex flex-col justify-between flex-1">
         <div>
-          <div className="flex items-center gap-2 mt-2">
-            <h3 className="text-base text-[#344054] font-semibold">
-              {caregiver?.firstName} {caregiver?.lastName}
+          <header className="flex items-center gap-2">
+            <h3 className="text-base text-gray-700 font-semibold">
+              {fullName}
             </h3>
-            <Image src={VerifiedIcon} alt="Verified" />
-          </div>
+            <Image src={VerifiedIcon} alt="Verified" width={16} height={16} />
+          </header>
 
           <div className="flex items-center gap-2 mt-2">
-            <Image src={Bag} alt="bag icon" />
-            <div className="flex items-center gap-1 flex-wrap">
-              {caregiver?.serviceTypes?.map((service, idx) => (
+            <Image src={Bag} alt="Services" width={16} height={16} />
+            <div className="flex flex-wrap gap-1">
+              {caregiver.serviceTypes.map((service, idx) => (
                 <span
-                  key={idx}
-                  className="text-sm text-[#344054] font-normal capitalize"
+                  key={`${service}-${idx}`}
+                  className="text-sm text-gray-700 font-normal capitalize"
                 >
                   {removeUnderscores(service)}
+                  {idx < caregiver.serviceTypes.length - 1 && ","}
                 </span>
               ))}
             </div>
           </div>
 
-          <p className="text-sm text-[#667185] font-normal mt-3">
-            {caregiver?.bio}
+          <p className="text-sm text-gray-500 font-normal mt-3 line-clamp-3">
+            {caregiver.bio}
           </p>
         </div>
 
-        <div className="border-t border-[#E4E7EC] mt-4 pt-4 space-y-3">
-          <div className="flex items-center text-sm gap-2 text-[#475367]">
+        <div className="border-t border-gray-200 mt-4 pt-4 space-y-3">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
             <MapPin size={16} />
-            <span>{caregiver?.lgaOfResidence}</span>
+            <span>{caregiver.lgaOfResidence}</span>
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-[#475367]">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
             <Wallet size={16} />
-            <span>{formatCurrency(caregiver?.expectedMonthlySalary)}</span>
+            <span>{formatCurrency(caregiver.expectedMonthlySalary)}</span>
           </div>
 
-          {caregiver?.currentlyAvailable === "AVAILABLE" && (
-            <div className="flex items-center gap-2 text-sm text-[#475367]">
-              <div className="flex items-center justify-center h-5 w-5 bg-[#B5E3C4] rounded-full">
-                <div className="h-2 w-2 bg-[#0F973D] rounded-full animate-pulse" />
+          {isAvailable && (
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="flex items-center justify-center h-5 w-5 bg-green-100 rounded-full">
+                <div className="h-2 w-2 bg-green-600 rounded-full animate-pulse" />
               </div>
               <span>Available</span>
             </div>
           )}
         </div>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 }

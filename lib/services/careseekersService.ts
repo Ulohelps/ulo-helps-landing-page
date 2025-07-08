@@ -11,6 +11,13 @@ interface ProfileData {
   email?: string;
   phone?: string;
 }
+interface FeedbackPayload {
+  hired: boolean;
+  hireDate?: string;
+  rating?: number;
+  comments: string;
+  reasonsNotHired?: string[];
+}
 
 export const careseekersService = {
   /**
@@ -61,5 +68,11 @@ export const careseekersService = {
   },
   connectWithCaregiver: async (caregiverId: string) => {
     return api.post(`/connections/${caregiverId}`);
+  },
+  sendFeedback: async (payload: FeedbackPayload, connectId: string) => {
+    return api.post(`/connections/${connectId}/feedback`, payload);
+  },
+  getCaregiverFeedback: async (connectId: string) => {
+    return api.get(`/connections/${connectId}/feedback`);
   },
 };
