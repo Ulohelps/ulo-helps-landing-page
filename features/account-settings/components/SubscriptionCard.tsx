@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Subscription } from "@/types/subscription";
 import Link from "next/link";
+import { formatCurrency } from "@/lib/utils";
 
 interface SubscriptionCardProps {
   subscription: Subscription | null;
@@ -59,7 +60,7 @@ export default function SubscriptionCard({
             ULO monthly subscription
           </p>
           <p className="text-2xl font-semibold text-[#06212C] mt-2">
-            NGN{subscription.amount.toLocaleString()}
+            {formatCurrency(subscription.amount / 100)}
           </p>
           <p className="text-sm text-[#475367] font-normal mt-1">per month</p>
         </div>

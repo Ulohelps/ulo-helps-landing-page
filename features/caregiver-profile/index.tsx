@@ -158,7 +158,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
       />
 
       <HeaderWrapper>
-        <div className="flex flex-col lg:flex-row lg:items-center gap-6 max-w-[1136px] mx-auto relative">
+        <div className="flex flex-col lg:flex-row items-center gap-6 max-w-[1136px] mx-auto relative">
           <Header headerDetails={caregiver} isLoading={loadingCaregiver} />
 
           <ConnectionCard
@@ -231,7 +231,12 @@ export default function CaregiverProfile({ id }: { id: string }) {
                       <p className="text-base text-[#475367] font-normal">
                         {detail.label}
                       </p>
-                      <p className="text-base text-[#344054] font-semibold">
+                      <p
+                        className={`text-base text-[#344054]  font-semibold ${
+                          detail.label === "Subskills" &&
+                          "flex items-center w-[60%] overflow-hidden overflow-x-scroll scrollbar-hide capitalize"
+                        } `}
+                      >
                         {detail.detail}
                       </p>
                     </div>

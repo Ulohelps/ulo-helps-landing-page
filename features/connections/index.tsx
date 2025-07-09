@@ -19,17 +19,27 @@ export default function Connections() {
   const [connectedCaregivers, setConnectedcaregivers] = useState<
     ConnectionsProps[] | null
   >(null);
+  const [hiredCaregivers, setHiredcaregivers] = useState<Caregiver[] | null>(
+    null
+  );
 
-  const { getConnectedCaregivers } = useCareseekersStore();
+  const { getConnectedCaregivers, getHiredCaregivers } = useCareseekersStore();
 
   // Fetch connected caregivers on mount
   const fetchConnectedCaregivers = async () => {
     const res = await getConnectedCaregivers();
-    console.log("Connected Caregivers:", res);
     setConnectedcaregivers(res.data);
   };
+
+  const fetchHiredCaregivers = async () => {
+    const res = await getHiredCaregivers();
+    setHiredcaregivers(res.data);
+    console.log(res);
+  };
+
   useEffect(() => {
     fetchConnectedCaregivers();
+    fetchHiredCaregivers();
   }, []);
 
   return (
@@ -94,10 +104,23 @@ export default function Connections() {
 
           {/* Hired Tab Content */}
           <TabsContent value="hired">
-            <EmptyConnections
-              title="You aren’t currently hiring any caregivers"
-              description="Caregivers you connect with and hire on the ULO platform will show up here."
-            />
+            {Array.isArray(hiredCaregivers) && hiredCaregivers.length < 0 && (
+              <EmptyConnections
+                title="You aren’t currently hiring any caregivers"
+                description="Caregivers you connect with and hire on the ULO platform will show up here."
+              />
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1136px] mx-auto px-2 my-8">
+              {hiredCaregivers === null
+                ? Array.from({ length: 4 }).map((_, idx) => (
+                    <SkeletonCard key={idx} />
+                  ))
+                : Array.isArray(hiredCaregivers) &&
+                  hiredCaregivers.length > 0 &&
+                  hiredCaregivers.map((caregiver) => (
+                    <CaregiverCard key={caregiver.id} caregiver={caregiver} />
+                  ))}
+            </div>
           </TabsContent>
         </Tabs>
       </div>

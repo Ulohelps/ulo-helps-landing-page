@@ -147,7 +147,7 @@ const ContactItem = ({ icon, label, value, connected }: ContactItemProps) => (
       <span className="text-sm text-[#667185]">{label}</span>
     </div>
     <p
-      className={`text-lg text-[#344054] ${
+      className={`text-lg text-[#344054] overflow-hidden overflow-x-scroll scrollbar-hide ${
         !connected ? "filter blur-sm pointer-events-none select-none" : ""
       }`}
     >

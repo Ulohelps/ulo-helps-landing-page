@@ -14,6 +14,7 @@ import {
   SendIcon,
   Check,
   CircleCheck,
+  Loader,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -177,30 +178,30 @@ export default function Header() {
           />
         </Link>
 
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.slice(0, 3).map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`px-3 py-2 rounded-lg text-sm font-medium ${
+                pathname === link.href
+                  ? "bg-[#F0F9FF] text-[#026AA2]"
+                  : "text-[#475467] hover:bg-[#F9FAFB]"
+              } transition-colors`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
         {/* Navigation */}
         <div className="flex items-center gap-4 md:gap-6">
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.slice(0, 3).map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium ${
-                  pathname === link.href
-                    ? "bg-[#F0F9FF] text-[#026AA2]"
-                    : "text-[#475467] hover:bg-[#F9FAFB]"
-                } transition-colors`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
           {/* Icons */}
           <div className="flex items-center gap-3 md:gap-4">
             {/* Search Icon - Mobile */}
             <button
-              className="md:hidden p-2 text-[#475467]"
+              className=" p-2 text-[#475467]"
               onClick={() => router.push("/find-caregiver")}
             >
               <Search className="w-5 h-5" />
@@ -226,7 +227,7 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="end"
-                className="max-w-[450px] rounded-2xl bg-white border border-[#EAECF0] shadow-xl mt-2 p-0 overflow-hidden"
+                className="md:w-[450px] rounded-2xl bg-white border border-[#EAECF0] shadow-xl mt-2 p-0 overflow-hidden"
                 onCloseAutoFocus={(e) => e.preventDefault()}
               >
                 {/* Header */}
@@ -235,26 +236,14 @@ export default function Header() {
                     <h3 className="text-sm font-semibold text-[#101828]">
                       Notifications
                     </h3>
-                    {/* {unreadCount > 0 && (
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          markAllAsRead();
-                        }}
-                        className="text-sm font-medium text-[#5E8AFF] hover:text-[#4670EA]"
-                        disabled={isLoading}
-                      >
-                        Mark all as read
-                      </button>
-                    )} */}
                   </div>
                 </div>
 
                 {/* Notifications List */}
                 <div className="max-h-[480px] overflow-y-auto">
                   {isLoading ? (
-                    <div className="p-4 text-center text-sm text-[#475467]">
-                      Loading notifications...
+                    <div className="p-4 flex items-center justify-center ">
+                      <Loader className="animate-spin text-[#F6AA3D]" />
                     </div>
                   ) : notifications.length === 0 ? (
                     <div className="p-4 text-center text-sm text-[#475467]">
@@ -305,19 +294,6 @@ export default function Header() {
                     ))
                   )}
                 </div>
-
-                {/* Footer */}
-                {/* <div className="px-4 py-3 border-t border-[#EAECF0] bg-white">
-                  <button
-                    className="w-full text-center text-sm font-medium text-[#5E8AFF] hover:text-[#4670EA]"
-                    onClick={() => {
-                      setNotificationOpen(false);
-                      router.push("/notifications");
-                    }}
-                  >
-                    View all notifications
-                  </button>
-                </div> */}
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -375,9 +351,23 @@ export default function Header() {
                   <p className="text-xs font-medium text-[#475467] mb-1">
                     Subscription status
                   </p>
-                  <div className="px-3 py-1.5 bg-[#ECFDF3] border border-[#ABEFC6] rounded-full text-center">
-                    <span className="text-xs font-medium text-[#067647]">
-                      Active
+                  <div
+                    className={`px-3 py-1.5 ${
+                      profile?.subscription.status !== "ACTIVE"
+                        ? "bg-[#ECFDF3]"
+                        : "bg-[#E7F6EC]"
+                    }  border border-[#ABEFC6] rounded-full text-center`}
+                  >
+                    <span
+                      className={`text-xs font-medium ${
+                        profile?.subscription.status === "ACTIVE"
+                          ? "text-[#067647]"
+                          : "text-[#CB1A14] "
+                      } `}
+                    >
+                      {profile?.subscription.status === "ACTIVE"
+                        ? "Active"
+                        : "Inactive"}
                     </span>
                   </div>
                 </div>

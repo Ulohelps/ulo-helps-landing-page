@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function removeUnderscores(input: string): string {
-  return input.replace(/_/g, " ");
+  return input.replace(/_/g, " ").toLocaleLowerCase();
 }
 export function formatCurrency(
   amount: number,

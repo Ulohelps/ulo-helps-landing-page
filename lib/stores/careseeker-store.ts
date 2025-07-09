@@ -23,6 +23,7 @@ interface CareseekerStoreState {
   uploadProfilePicture: (file: File) => Promise<string>;
   connectWithCaregiver: (caregiverId: string) => Promise<{ success: boolean }>;
   getConnectedCaregivers: () => Promise<{ success: boolean; data: any }>;
+  getHiredCaregivers: () => Promise<{ success: boolean; data: any }>;
   getCurrentSubscription: () => Promise<{ success: boolean; data: any }>;
   reset: () => void;
 }
@@ -131,6 +132,18 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await careseekersService.getConnectedCaregivers();
+      return { success: true, data: response.data };
+    } catch (error: any) {
+      const errorMessage =
+        error.response?.data?.message || "Failed to fetch connections";
+      set({ error: errorMessage, isLoading: false });
+      return { success: false, data: [] };
+    }
+  },
+  getHiredCaregivers: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await careseekersService.getHiredCaregiver();
       return { success: true, data: response.data };
     } catch (error: any) {
       const errorMessage =

@@ -75,4 +75,7 @@ export const careseekersService = {
   getCaregiverFeedback: async (connectId: string) => {
     return api.get(`/connections/${connectId}/feedback`);
   },
+  getHiredCaregiver: async () => {
+    return api.get("/caregivers/hired");
+  },
 };

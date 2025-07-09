@@ -1,4 +1,5 @@
 import { Subscription } from "@/types/subscription";
+import { formatCurrency } from "@/lib/utils";
 
 interface BillingHistoryProps {
   history: Subscription[] | null;
@@ -49,7 +50,7 @@ export default function BillingHistoryTable({ history }: BillingHistoryProps) {
                     : ""}
                 </td>
                 <td className="px-6 py-4 text-base text-[#344054] font-normal">
-                  {entry.amount}
+                  {formatCurrency(entry.amount / 100)}
                 </td>
                 <td className="px-6 py-4 text-base text-[#1DA5DB] font-semibold hover:underline cursor-pointer">
                   Download receipt

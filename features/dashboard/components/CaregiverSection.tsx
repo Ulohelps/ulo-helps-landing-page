@@ -1,9 +1,10 @@
 "use client";
 
-import { CaregiverCard, Caregiver } from "../../../components/CaregiverCard";
+import { CaregiverCard } from "../../../components/CaregiverCard";
 import ArrowLeft from "@/components/icons/arrowleft.svg";
 import ArrowRight from "@/components/icons/arrowright.svg";
 import EmptyStateIcon from "@/components/icons/EmptyStateICon";
+import { Caregiver } from "@/types/caregiver";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -94,7 +95,7 @@ export function CaregiverSection({
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex justify-center gap-6 pt-6 border-t border-[#D0D5DD]">
+              <div className="flex justify-center gap-6 pt-6 border-t mt-6 border-[#D0D5DD]">
                 <button
                   onClick={handlePrev}
                   disabled={currentPage === 0}

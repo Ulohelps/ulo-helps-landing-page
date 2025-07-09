@@ -117,7 +117,7 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
       </div>
 
       {/* Info Section */}
-      <section className="px-0 md:px-6 py-5 flex flex-col justify-between flex-1">
+      <section className="px-0 md:px-6 py-5 flex flex-col justify-between w-full lg:w1/2 flex-1  overflow-hidden">
         <div>
           <header className="flex items-center gap-2">
             <h3 className="text-base text-gray-700 font-semibold">
@@ -128,11 +128,11 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
 
           <div className="flex items-center gap-2 mt-2">
             <Image src={Bag} alt="Services" width={16} height={16} />
-            <div className="flex flex-wrap gap-1">
+            <div className="flex items-center scrollbar-hide overflow-x-scroll gap-1">
               {caregiver.serviceTypes.map((service, idx) => (
                 <span
                   key={`${service}-${idx}`}
-                  className="text-sm text-gray-700 font-normal capitalize"
+                  className="flex text-sm text-gray-700 font-normal capitalize"
                 >
                   {removeUnderscores(service)}
                   {idx < caregiver.serviceTypes.length - 1 && ","}
@@ -141,7 +141,7 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
             </div>
           </div>
 
-          <p className="text-sm text-gray-500 font-normal mt-3 line-clamp-3">
+          <p className="text-sm text-gray-500 font-normal mt-3 line-clamp-3 h-10">
             {caregiver.bio}
           </p>
         </div>
