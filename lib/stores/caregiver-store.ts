@@ -19,6 +19,7 @@ interface CaregiverStoreState {
   searchCaregivers: (params: SearchCaregiversParams) => Promise<void>;
   resetSearch: () => void;
   setSearchParams: (params: Partial<SearchCaregiversParams>) => void;
+  clearSearchParams: () => void;
 
   getDrivers: () => Promise<void>;
   getNannies: () => Promise<void>;
@@ -87,6 +88,17 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
         ...state.searchParams,
         ...params,
         page: 1,
+      },
+    }));
+  },
+  clearSearchParams: () => {
+    set((state) => ({
+      searchParams: {
+        page: 1,
+        limit: 10,
+        search: "",
+        serviceTypes: [],
+        location: "",
       },
     }));
   },

@@ -42,13 +42,6 @@ export const careseekersService = {
   },
 
   /**
-   * Delete care seeker account
-   */
-  deleteAccount: async () => {
-    return api.delete("/careseekers");
-  },
-
-  /**
    * Upload profile picture
    */
   uploadProfilePicture: async (file: File) => {
@@ -77,5 +70,8 @@ export const careseekersService = {
   },
   getHiredCaregiver: async () => {
     return api.get("/caregivers/hired");
+  },
+  deleteCareseeker: async (payload: any) => {
+    return api.delete("/careseekers", payload);
   },
 };

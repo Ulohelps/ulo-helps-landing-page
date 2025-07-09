@@ -132,7 +132,7 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
               {caregiver.serviceTypes.map((service, idx) => (
                 <span
                   key={`${service}-${idx}`}
-                  className="flex text-sm text-gray-700 font-normal capitalize"
+                  className="flex text-sm text-gray-700 font-normal capitalize whitespace-nowrap"
                 >
                   {removeUnderscores(service)}
                   {idx < caregiver.serviceTypes.length - 1 && ","}

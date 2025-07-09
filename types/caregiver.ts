@@ -83,6 +83,13 @@ export interface SearchCaregiversParams {
   location?: string;
   minSalary?: number;
   maxSalary?: number;
+  experienceLevel?: string;
+  genders?: string;
+  ethnicities?: string;
+  languages?: string[];
+  availability?: string;
+  liveInAvailable?: boolean;
+  status?: string;
 }
 
 export interface CaregiverSearchResult {

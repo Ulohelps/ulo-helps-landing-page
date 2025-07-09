@@ -4,6 +4,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { careseekersService } from "@/lib/services/careseekersService";
+import { useAuthStore } from "@/lib/stores/auth-store";
 
 const deleteReason = [
   "I found my caregiver through ULO",
@@ -15,14 +17,24 @@ const deleteReason = [
 
 const DeleteAccount = () => {
   const [reason, setReason] = useState("");
+
+  const handleDeleteAccount = async () => {
+    const payLoad = {
+      reason,
+    };
+    try {
+      const res = await careseekersService.deleteCareseeker(payLoad);
+    } catch (error) {}
+  };
+
   return (
-    <div>
+    <div className="mx-auto w-full">
       <div className="w-full bg-[#F0F2F5] border-y border-[#D0D5DD] py-8">
         <div className="max-w-[1136px] mx-auto">
-          <h2 className="text-[28px] text-[#06212C] font-semibold">
+          <h2 className="text-[28px] text-[#06212C] font-semibold text-center">
             Delete your ULO account
           </h2>
-          <p className="text-base text-[#667185] font-normal md:w-1/2">
+          <p className="text-base text-[#667185] font-normal  text-center">
             We’re sad to see you go, but we hope you got what you came to ULO
             for. Please let us know why you’re deleting your account by
             selecting one of the options below.
@@ -30,7 +42,7 @@ const DeleteAccount = () => {
         </div>
       </div>
       <div className="max-w-[1136px] mx-auto mt-8">
-        <div className="max-w-[556px] border border-[#E4E7EC] rounded-[20px] overflow-hidden">
+        <div className="max-w-[556px] border border-[#E4E7EC] rounded-[20px] overflow-hidden mx-auto">
           <div className="p-6">
             <Label className="text-sm text-[#344054] font-light mb-4 block">
               Why are you deleting your ULO account?
@@ -70,7 +82,10 @@ const DeleteAccount = () => {
             </div>
           )}
           <div className="bg-[#F7F9FC] border-t border-[#D0D5DD] py-6 w-full flex items-center justify-center">
-            <Button className="bg-[#D42620] text-white">
+            <Button
+              className="bg-[#D42620] text-white"
+              onClick={handleDeleteAccount}
+            >
               Submit and delete account
             </Button>
           </div>

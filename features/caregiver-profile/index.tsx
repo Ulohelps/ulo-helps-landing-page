@@ -110,7 +110,11 @@ export default function CaregiverProfile({ id }: { id: string }) {
     },
     {
       label: "Subskills",
-      detail: caregiver?.subServiceTypes?.join(", ").replace(/_/g, " ") || "--",
+      detail:
+        caregiver?.subServiceTypes
+          ?.join(", ")
+          .replace(/_/g, " ")
+          .toLocaleLowerCase() || "--",
     },
     {
       label: "Highest Level of Education",

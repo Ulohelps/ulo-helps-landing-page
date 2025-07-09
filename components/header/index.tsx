@@ -353,19 +353,22 @@ export default function Header() {
                   </p>
                   <div
                     className={`px-3 py-1.5 ${
-                      profile?.subscription.status !== "ACTIVE"
+                      profile?.subscription &&
+                      profile?.subscription.status === "ACTIVE"
                         ? "bg-[#ECFDF3]"
                         : "bg-[#E7F6EC]"
                     }  border border-[#ABEFC6] rounded-full text-center`}
                   >
                     <span
                       className={`text-xs font-medium ${
+                        profile?.subscription &&
                         profile?.subscription.status === "ACTIVE"
                           ? "text-[#067647]"
                           : "text-[#CB1A14] "
                       } `}
                     >
-                      {profile?.subscription.status === "ACTIVE"
+                      {profile?.subscription &&
+                      profile?.subscription.status === "ACTIVE"
                         ? "Active"
                         : "Inactive"}
                     </span>

@@ -66,7 +66,8 @@ const FilterPanel = ({ visible, onClose }: Props) => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { searchCaregivers, setSearchParams } = useCaregiverStore();
+  const { searchCaregivers, setSearchParams, clearSearchParams } =
+    useCaregiverStore();
 
   // Prefill from URL query
   useEffect(() => {
@@ -98,11 +99,12 @@ const FilterPanel = ({ visible, onClose }: Props) => {
     if (rateRange[0]) query.minSalary = rateRange[0];
     if (rateRange[1]) query.maxSalary = rateRange[1];
     if (experience) query.experienceLevel = experience;
-    if (gender.length) query.gender = gender.join(",");
-    if (ethnicity.length) query.ethnicity = ethnicity.join(",");
+    if (gender.length) query.genders = gender.join(",");
+    if (ethnicity.length) query.ethnicities = ethnicity.join(",");
     if (languages.length) query.languages = languages.join(",");
 
     const queryString = new URLSearchParams(query).toString();
+    console.log(queryString);
 
     setSearchParams({ ...query, page: 1, limit: 10 });
     searchCaregivers({ ...query, page: 1, limit: 10 });
@@ -117,6 +119,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
     setGender([]);
     setEthnicity([]);
     setLanguages([]);
+    clearSearchParams();
   };
 
   return (

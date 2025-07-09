@@ -243,7 +243,13 @@ export default function UserDetailsForm({ email }: { email: string }) {
               <Button
                 type="submit"
                 className="text-base text-[#06212C] w-full hover:bg-[#F6AA3D]/50 font-semibold p-6 rounded-[80px] cursor-pointer"
-                disabled={isLoading || !agree}
+                disabled={
+                  isLoading ||
+                  !agree ||
+                  password.length >= 6 ||
+                  /[a-z]/.test(password) ||
+                  (/[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password))
+                }
               >
                 {isLoading ? (
                   <Loader className="animate-spin" />

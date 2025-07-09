@@ -76,7 +76,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1124px] mx-auto md:px-10 py-4 md:py-10 md:my-20">
+    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1240px] mx-auto md:px-10 py-4 md:py-10 md:my-20">
       <Slideshow />
       <div className="flex flex-col w-full md:w-2/5 px-4">
         <div className="w-full gap-2">
