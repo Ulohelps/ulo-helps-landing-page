@@ -355,9 +355,9 @@ export default function Header() {
                     className={`px-3 py-1.5 ${
                       profile?.subscription &&
                       profile?.subscription.status === "ACTIVE"
-                        ? "bg-[#ECFDF3]"
-                        : "bg-[#E7F6EC]"
-                    }  border border-[#ABEFC6] rounded-full text-center`}
+                        ? "bg-[#E7F6EC] border border-[#ABEFC6] ada"
+                        : "bg-[#F0F2F5]"
+                    }   rounded-full text-center`}
                   >
                     <span
                       className={`text-xs font-medium ${

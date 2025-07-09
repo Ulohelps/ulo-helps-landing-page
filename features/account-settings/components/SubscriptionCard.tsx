@@ -30,8 +30,8 @@ export default function SubscriptionCard({
     return `${day} ${month}, ${year}.`;
   }
 
-  if (!subscription) {
-    // 🔄 Skeleton loader
+  // Loading state (optional, can be removed if not needed)
+  if (subscription === undefined) {
     return (
       <div className="w-full rounded-[24px] animate-pulse">
         <div className="flex justify-between border border-[#E4E7EC] rounded-t-[24px]">
@@ -52,6 +52,40 @@ export default function SubscriptionCard({
     );
   }
 
+  // No subscription state (new user)
+  if (subscription === null) {
+    return (
+      <div className="w-full rounded-[24px] border border-[#E4E7EC]">
+        <div className="flex justify-between rounded-t-[24px]">
+          <div className="flex flex-col p-6 w-2/3">
+            <p className="text-base text-[#344054] font-normal">
+              ULO monthly subscription
+            </p>
+            <p className="text-2xl font-semibold text-[#06212C] mt-2">
+              {formatCurrency(30000)}
+            </p>
+            <p className="text-sm text-[#475367] font-normal mt-1">per month</p>
+          </div>
+          <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-1/3">
+            <Button
+              className="font-semibold"
+              onClick={() => router.push("/subscriptions")}
+            >
+              Start your subscription
+            </Button>
+          </div>
+        </div>
+        <div className="bg-[#F0F2F5] border border-[#D0D5DD] rounded-b-[24px] p-6 flex items-center justify-between">
+          <p className="text-base text-[#344054] font-normal">Status</p>
+          <Button className="bg-[#D0D5DD] text-[#344054] py-2 px-6 rounded-[200px] text-lg font-semibold">
+            inactive
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Existing subscription state
   return (
     <div className="w-full rounded-[24px]">
       <div className="flex justify-between border border-[#E4E7EC] rounded-t-[24px]">
@@ -65,18 +99,17 @@ export default function SubscriptionCard({
           <p className="text-sm text-[#475367] font-normal mt-1">per month</p>
         </div>
 
-        {subscription.status !== "ACTIVE" && (
+        {subscription.status !== "ACTIVE" ? (
           <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-1/3">
             <Button
               className="font-semibold"
               onClick={() => router.push("/subscriptions")}
             >
-              Start your subscription
+              {subscription.status === "CANCELLED" ? "Renew" : "Start"} your
+              subscription
             </Button>
           </div>
-        )}
-
-        {subscription.status === "ACTIVE" && (
+        ) : (
           <div className="flex flex-col gap-4 border-l border-[#E4E7EC] p-6 w-1/3">
             <p className="text-base text-[#344054] font-normal">Expiry date</p>
             <div>
@@ -115,7 +148,11 @@ export default function SubscriptionCard({
               : "bg-[#04802E] text-white"
           } py-2 px-6 rounded-[200px] text-lg font-semibold`}
         >
-          {subscription.status !== "ACTIVE" ? "In-active" : "Active"}
+          {subscription.status === "ACTIVE"
+            ? "Active"
+            : subscription.status === "CANCELLED"
+            ? "Cancelled"
+            : "Inactive"}
         </Button>
       </div>
     </div>
