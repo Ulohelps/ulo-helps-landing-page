@@ -66,8 +66,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { searchCaregivers, setSearchParams, clearSearchParams } =
-    useCaregiverStore();
+  const { searchCaregivers, setSearchParams } = useCaregiverStore();
 
   // Prefill from URL query
   useEffect(() => {
@@ -104,7 +103,6 @@ const FilterPanel = ({ visible, onClose }: Props) => {
     if (languages.length) query.languages = languages.join(",");
 
     const queryString = new URLSearchParams(query).toString();
-    console.log(queryString);
 
     setSearchParams({ ...query, page: 1, limit: 10 });
     searchCaregivers({ ...query, page: 1, limit: 10 });
@@ -119,7 +117,6 @@ const FilterPanel = ({ visible, onClose }: Props) => {
     setGender([]);
     setEthnicity([]);
     setLanguages([]);
-    clearSearchParams();
   };
 
   return (
@@ -243,7 +240,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
               {["Male", "Female"].map((label) => (
                 <ToggleGroupItem
                   key={label}
-                  value={label.toLowerCase()}
+                  value={label.toLocaleUpperCase()}
                   className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white"
                 >
                   {label}

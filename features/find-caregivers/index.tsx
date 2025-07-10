@@ -31,9 +31,9 @@ const FindCaregiver = () => {
   const getActiveFilterParams = () => {
     const validKeys = [
       "experienceLevel",
-      "gender",
-      "ethnicity",
-      "languagesSpoken",
+      "genders",
+      "ethnicities",
+      "languages",
       "minSalary",
       "maxSalary",
       "availability",
@@ -55,9 +55,10 @@ const FindCaregiver = () => {
   useEffect(() => {
     const fetchCaregivers = async () => {
       const query: any = {};
+      const arrayKeys = ["serviceTypes", "genders", "ethnicities", "languages"];
       searchParams.forEach((value, key) => {
-        if (key === "serviceTypes") {
-          query[key] = value.split(",");
+        if (arrayKeys.includes(key)) {
+          query[key] = value.split(",").filter(Boolean); // avoid empty strings
         } else if (key === "liveInAvailable") {
           query[key] = value === "true";
         } else if (["minSalary", "maxSalary"].includes(key)) {

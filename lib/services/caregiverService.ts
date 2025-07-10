@@ -38,10 +38,11 @@ export const caregiverService = {
       types.forEach((type: string) => queryParams.append("serviceTypes", type));
     }
 
-    if (params.gender) queryParams.append("gender", params.gender);
+    if (params.genders) queryParams.append("genders", params.genders);
 
     // ✅ Ethnicity: single value
-    if (params.ethnicity) queryParams.append("ethnicity", params.ethnicity);
+    if (params.ethnicities)
+      queryParams.append("ethnicities", params.ethnicities);
 
     // ✅ Languages: multiple values
     if (params.languages) {

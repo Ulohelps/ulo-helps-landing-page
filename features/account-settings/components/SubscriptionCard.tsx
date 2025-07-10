@@ -6,32 +6,36 @@ import { formatCurrency } from "@/lib/utils";
 
 interface SubscriptionCardProps {
   subscription: Subscription | null;
+  isLoading: boolean;
 }
 
 export default function SubscriptionCard({
   subscription,
+  isLoading = false,
 }: SubscriptionCardProps) {
   const router = useRouter();
 
-  function calculateDaysLeft(endDate: string): number {
+  const calculateDaysLeft = (endDate: string | null): number => {
+    if (!endDate) return 0;
     const today = new Date();
     const expiryDate = new Date(endDate);
     const timeDiff = expiryDate.getTime() - today.getTime();
     const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
     return daysLeft > 0 ? daysLeft : 0;
-  }
+  };
 
-  function formatCustomDate(dateString: string): string {
+  const formatCustomDate = (dateString: string): string => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, "0");
     const month = date.toLocaleString("en-US", { month: "long" });
     const year = date.getFullYear();
     return `${day} ${month}, ${year}.`;
-  }
+  };
 
-  // Loading state (optional, can be removed if not needed)
-  if (subscription === undefined) {
+  const isActive = subscription?.status === "ACTIVE";
+
+  // ✅ 1. Real loading state
+  if (isLoading) {
     return (
       <div className="w-full rounded-[24px] animate-pulse">
         <div className="flex justify-between border border-[#E4E7EC] rounded-t-[24px]">
@@ -52,8 +56,8 @@ export default function SubscriptionCard({
     );
   }
 
-  // No subscription state (new user)
-  if (subscription === null) {
+  // ✅ 2. No subscription (user has never subscribed)
+  if (!subscription) {
     return (
       <div className="w-full rounded-[24px] border border-[#E4E7EC]">
         <div className="flex justify-between rounded-t-[24px]">
@@ -62,7 +66,7 @@ export default function SubscriptionCard({
               ULO monthly subscription
             </p>
             <p className="text-2xl font-semibold text-[#06212C] mt-2">
-              {formatCurrency(30000)}
+              {formatCurrency(5000)} {/* fallback default price */}
             </p>
             <p className="text-sm text-[#475367] font-normal mt-1">per month</p>
           </div>
@@ -75,17 +79,17 @@ export default function SubscriptionCard({
             </Button>
           </div>
         </div>
-        <div className="bg-[#F0F2F5] border border-[#D0D5DD] rounded-b-[24px] p-6 flex items-center justify-between">
+        <div className="bg-[#F0F2F5] border-t border-[#D0D5DD] rounded-b-[24px] p-6 flex items-center justify-between">
           <p className="text-base text-[#344054] font-normal">Status</p>
           <Button className="bg-[#D0D5DD] text-[#344054] py-2 px-6 rounded-[200px] text-lg font-semibold">
-            inactive
+            Inactive
           </Button>
         </div>
       </div>
     );
   }
 
-  // Existing subscription state
+  // ✅ 3. Subscription exists (either ACTIVE or INACTIVE)
   return (
     <div className="w-full rounded-[24px]">
       <div className="flex justify-between border border-[#E4E7EC] rounded-t-[24px]">
@@ -99,60 +103,50 @@ export default function SubscriptionCard({
           <p className="text-sm text-[#475367] font-normal mt-1">per month</p>
         </div>
 
-        {subscription.status !== "ACTIVE" ? (
+        {isActive ? (
+          <div className="flex flex-col gap-4 border-l border-[#E4E7EC] p-6 w-1/3">
+            <p className="text-base text-[#344054] font-normal">Expiry date</p>
+            <div>
+              <p className="text-2xl text-[#06212C] font-semibold">
+                {subscription.endDate
+                  ? formatCustomDate(subscription.endDate)
+                  : "--"}
+              </p>
+              <p className="text-sm text-[#475367] font-normal">
+                {calculateDaysLeft(subscription.endDate)} days left
+              </p>
+            </div>
+            <Link
+              href="/subscriptions/cancel-subscription"
+              className="text-base text-[#CB1A14] underline font-semibold"
+            >
+              Cancel subscription
+            </Link>
+          </div>
+        ) : (
           <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-1/3">
             <Button
               className="font-semibold"
               onClick={() => router.push("/subscriptions")}
             >
-              {subscription.status === "CANCELLED" ? "Renew" : "Start"} your
-              subscription
+              Renew subscription
             </Button>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-4 border-l border-[#E4E7EC] p-6 w-1/3">
-            <p className="text-base text-[#344054] font-normal">Expiry date</p>
-            <div>
-              <p className="text-2xl text-[#06212C] font-semibold">
-                {subscription?.endDate
-                  ? formatCustomDate(subscription?.endDate)
-                  : "--"}
-              </p>
-              <p className="text-sm text-[#475367] font-normal">
-                {subscription?.endDate
-                  ? calculateDaysLeft(subscription.endDate)
-                  : "--"}{" "}
-                days left
-              </p>
-            </div>
-            <Link
-              href="subscriptions/cancel-subscription"
-              className="text-base text-[#CB1A14] underline font-semibold"
-            >
-              Cancel subscription
-            </Link>
           </div>
         )}
       </div>
 
       <div
         className={`${
-          subscription.status !== "ACTIVE" ? "bg-[#F0F2F5]" : "bg-[#E7F6EC]"
+          isActive ? "bg-[#E7F6EC]" : "bg-[#F0F2F5]"
         } border border-[#D0D5DD] rounded-b-[24px] p-6 flex items-center justify-between`}
       >
         <p className="text-base text-[#344054] font-normal">Status</p>
         <Button
-          className={`${
-            subscription.status !== "ACTIVE"
-              ? "bg-[#D0D5DD] text-[#344054]"
-              : "bg-[#04802E] text-white"
-          } py-2 px-6 rounded-[200px] text-lg font-semibold`}
+          className={`py-2 px-6 rounded-[200px] text-lg font-semibold ${
+            isActive ? "bg-[#04802E] text-white" : "bg-[#D0D5DD] text-[#344054]"
+          }`}
         >
-          {subscription.status === "ACTIVE"
-            ? "Active"
-            : subscription.status === "CANCELLED"
-            ? "Cancelled"
-            : "Inactive"}
+          {isActive ? "Active" : "Inactive"}
         </Button>
       </div>
     </div>

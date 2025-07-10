@@ -103,6 +103,7 @@ export default function Login() {
               type="text"
               required
               value={email}
+              placeholder="Enter your email address"
               onChange={(e) => setEmail(e.target.value)}
               className="mt-[2px] rounded-[12px] bg-white border-[#D0D5DD] text-sm text-[#344054] font-normal py-3"
             />

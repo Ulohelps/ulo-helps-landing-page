@@ -1,4 +1,5 @@
 "use client";
+
 import SubscriptionCard from "./SubscriptionCard";
 import SubscriptionStatusCard from "./SubscriptionStatusCard";
 import { SubscriptionResponse } from "@/types/subscription";
@@ -10,12 +11,18 @@ export default function SubscriptionManagement() {
   const [currentSub, setCurrentSub] = useState<SubscriptionResponse | null>(
     null
   );
+  const [loading, setLoading] = useState<boolean>(true); // ✅ track loading
   const { getCurrentSubscription } = useCareseekersStore();
 
   const handleGetCurrentSubscription = async () => {
-    const subscription = await getCurrentSubscription();
-    console.log("Current Subscription:", subscription);
-    setCurrentSub(subscription.data);
+    try {
+      const subscription = await getCurrentSubscription();
+      setCurrentSub(subscription.data);
+    } catch (error) {
+      console.error("Failed to fetch subscription:", error);
+    } finally {
+      setLoading(false); // ✅ stop loading regardless of success or failure
+    }
   };
 
   useEffect(() => {
@@ -24,10 +31,16 @@ export default function SubscriptionManagement() {
 
   return (
     <div className="w-full">
-      <SubscriptionCard subscription={currentSub?.subscription ?? null} />
+      {/* ✅ Pass loading to SubscriptionCard */}
+      <SubscriptionCard
+        subscription={currentSub?.subscription ?? null}
+        isLoading={loading}
+      />
 
-      {/* Billing History */}
-      <BillingHistoryTable history={currentSub?.billingHistory ?? null} />
+      {/* ✅ Show billing history only after loading completes */}
+      {!loading && (
+        <BillingHistoryTable history={currentSub?.billingHistory ?? null} />
+      )}
     </div>
   );
 }

@@ -29,10 +29,11 @@ export default function CaregiverProfile({ id }: { id: string }) {
   const { profile, connectWithCaregiver } = useCareseekersStore();
   const { toast } = useToast();
 
-  const subscriptionStatus = profile?.subscription.status === "ACTIVE";
+  const subscriptionStatus =
+    profile?.subscription && profile?.subscription.status === "ACTIVE";
 
   const handleConnectToCaregiver = async () => {
-    if (!subscriptionStatus) {
+    if (profile?.subscription || !subscriptionStatus) {
       setOpen(true);
       return;
     }

@@ -89,7 +89,7 @@ export function CaregiverFilterBar() {
   };
 
   return (
-    <div className="w-full max-w-[1136px] mx-auto bg-white border border-[#D0D5DD] rounded-[16px] mt-8 flex flex-col md:flex-row md:items-center md:h-[72px] overflow-hidden md:gap-2">
+    <div className="w-full max-w-[1136px] mx-auto bg-white  rounded-[16px] mt-8 flex flex-col md:flex-row md:items-center md:h-[72px] overflow-hidden md:gap-2">
       {/* Search input */}
       <Input
         placeholder="Search by keyword"
