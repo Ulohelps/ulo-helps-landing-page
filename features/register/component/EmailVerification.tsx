@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useAuthStore } from "@/lib/stores/auth-store";
 import { toast } from "@/hooks/use-toast";
-import { set } from "date-fns";
 
 const EmailVerification = ({
   email,
@@ -78,6 +77,7 @@ const EmailVerification = ({
                 id="email"
                 type="text"
                 required
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="mt-[2px] bg-white rounded-[12px] border-[#D0D5DD] text-sm text-[#344054] font-normal py-3"

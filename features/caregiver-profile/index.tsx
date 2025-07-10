@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import CustomModal from "@/components/custom-modal";
 import ConnectionCard from "./components/ConnectionCard";
@@ -16,6 +16,7 @@ import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { useToast } from "@/hooks/use-toast";
 import FeedbackCard from "./components/FeedbackCard";
 import Guidelines from "./components/Guidelines";
+import { useRouter } from "next/navigation";
 
 export default function CaregiverProfile({ id }: { id: string }) {
   const [connected, setConnected] = useState(false);
@@ -25,15 +26,19 @@ export default function CaregiverProfile({ id }: { id: string }) {
   const [loadingCaregiver, setLoadingCaregiver] = useState(true);
   const [connecting, setConnecting] = useState(false);
   const [openGuidelines, setOpenGuidelines] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(caregiver?.isBookmarked);
 
   const { profile, connectWithCaregiver } = useCareseekersStore();
+
   const { toast } = useToast();
+
+  const { push, refresh } = useRouter();
 
   const subscriptionStatus =
     profile?.subscription && profile?.subscription.status === "ACTIVE";
 
   const handleConnectToCaregiver = async () => {
-    if (profile?.subscription || !subscriptionStatus) {
+    if (!profile?.subscription || !subscriptionStatus) {
       setOpen(true);
       return;
     }
@@ -68,9 +73,40 @@ export default function CaregiverProfile({ id }: { id: string }) {
   };
 
   const handleCloseSubscribe = () => {
+    push("/subscriptions");
     setOpen(false);
-    // Start subscription logic
   };
+
+  const handleBookmarkToggle = useCallback(async () => {
+    const newBookmarkState = !isBookmarked;
+    setIsBookmarked(newBookmarkState);
+
+    try {
+      const action = newBookmarkState
+        ? caregiverService.bookmarkCaregiver
+        : caregiverService.unbookmarkCaregiver;
+
+      await action(id);
+
+      toast({
+        title: newBookmarkState ? "Bookmark added" : "Bookmark removed",
+        description: newBookmarkState
+          ? "Caregiver has been bookmarked"
+          : "Caregiver has been removed from bookmarks",
+        variant: "success",
+      });
+
+      refresh();
+    } catch (error) {
+      console.error("Error updating bookmark:", error);
+      setIsBookmarked(!newBookmarkState); // Revert on error
+      toast({
+        title: "Error",
+        description: "Failed to update bookmark status",
+        variant: "error",
+      });
+    }
+  }, [isBookmarked, id, toast]);
 
   const headerContent = [
     {
@@ -178,6 +214,8 @@ export default function CaregiverProfile({ id }: { id: string }) {
             phone={caregiver?.user?.phone || "--"}
             loading={connecting}
             setOpenGuidelines={setOpenGuidelines}
+            saved={caregiver?.isBookmarked ?? false}
+            handleSaveCaregiver={handleBookmarkToggle}
           />
         </div>
       </HeaderWrapper>

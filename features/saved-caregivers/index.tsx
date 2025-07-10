@@ -58,7 +58,7 @@ const SavedCaregivers = () => {
               ))}
         </div>
         {Array.isArray(bookmarkedCaregivers) &&
-          bookmarkedCaregivers.length < 0 && (
+          bookmarkedCaregivers.length <= 0 && (
             <EmptySaveCaregivers
               title={"You haven’t saved any caregiver profiles"}
               description={

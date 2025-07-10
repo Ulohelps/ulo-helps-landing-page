@@ -79,7 +79,7 @@ export default function Connections() {
           {/* Active Tab Content */}
           <TabsContent value="active">
             {Array.isArray(connectedCaregivers) &&
-              connectedCaregivers.length < 0 && (
+              connectedCaregivers.length <= 0 && (
                 <EmptyConnections
                   title="You haven’t connected with any caregivers"
                   description="Explore and connect with caregivers on the ULO platform by clicking the button below."
@@ -104,7 +104,7 @@ export default function Connections() {
 
           {/* Hired Tab Content */}
           <TabsContent value="hired">
-            {Array.isArray(hiredCaregivers) && hiredCaregivers.length < 0 && (
+            {Array.isArray(hiredCaregivers) && hiredCaregivers.length <= 0 && (
               <EmptyConnections
                 title="You aren’t currently hiring any caregivers"
                 description="Caregivers you connect with and hire on the ULO platform will show up here."

@@ -71,7 +71,7 @@ export const careseekersService = {
   getHiredCaregiver: async () => {
     return api.get("/caregivers/hired");
   },
-  deleteCareseeker: async (payload: any) => {
-    return api.delete("/careseekers", payload);
+  deleteCareseeker: async (payload: { reason: string }) => {
+    return api.delete("/careseekers", { data: payload });
   },
 };

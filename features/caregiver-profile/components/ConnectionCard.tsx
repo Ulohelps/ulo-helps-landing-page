@@ -18,9 +18,13 @@ interface ConnectionCardProps {
   connectDate: string;
   hiredDate?: string;
   setOpenGuidelines: (val: boolean) => void;
+  saved: boolean;
+  handleSaveCaregiver: () => void;
 }
 
 const ConnectionCard = ({
+  saved,
+  handleSaveCaregiver,
   connected,
   handleConnect,
   email,
@@ -33,6 +37,8 @@ const ConnectionCard = ({
   hiredDate,
   setOpenGuidelines,
 }: ConnectionCardProps) => {
+  console.log(saved);
+
   function formatCustomDate(dateString: string): string {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, "0");
@@ -92,8 +98,9 @@ const ConnectionCard = ({
             <Button
               variant="outline"
               className="w-full text-base text-[#344054] font-semibold"
+              onClick={handleSaveCaregiver}
             >
-              Save profile
+              {saved ? "Profile saved" : " Save profile"}
             </Button>
           </div>
         )}

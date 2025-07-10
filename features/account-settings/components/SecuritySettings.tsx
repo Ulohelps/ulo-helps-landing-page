@@ -22,24 +22,43 @@ const SecuritySettings = () => {
     setIsLoading(true);
     const payload = { oldPassword, newPassword };
 
-    const res = await changePassword(payload);
-    if (res.success) {
+    if (
+      newPassword.length >= 6 &&
+      /[A-Z]/.test(newPassword) &&
+      /[a-z]/.test(newPassword) &&
+      /[0-9]/.test(newPassword) &&
+      /[^A-Za-z0-9]/.test(newPassword)
+    ) {
+      const res = await changePassword(payload);
+      if (res.success) {
+        setIsLoading(false);
+        toast({
+          title: "Change password",
+          description: "Password changed successfully",
+          variant: "success",
+        });
+      } else {
+        setOpenModal(false);
+        toast({
+          title: "Failed",
+          description: `${error}||"failed to change password"`,
+          variant: "error",
+        });
+      }
+
       setIsLoading(false);
-      toast({
-        title: "Change password",
-        description: "Password changed successfully",
-        variant: "success",
-      });
-    } else {
       setOpenModal(false);
+      setNewPassword("");
+      setOldPassword("");
+    } else {
       toast({
-        title: "Failed",
-        description: `${error}||"failed to change password"`,
+        title: "invalid password type",
+        description:
+          "Password must be great than 6,must contain Uppercase,lowercase and a special character",
         variant: "error",
       });
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (

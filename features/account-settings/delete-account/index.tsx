@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { careseekersService } from "@/lib/services/careseekersService";
 import { useAuthStore } from "@/lib/stores/auth-store";
+import { useToast } from "@/hooks/use-toast";
 
 const deleteReason = [
   "I found my caregiver through ULO",
@@ -17,6 +18,8 @@ const deleteReason = [
 
 const DeleteAccount = () => {
   const [reason, setReason] = useState("");
+  const { logout } = useAuthStore();
+  const { toast } = useToast();
 
   const handleDeleteAccount = async () => {
     const payLoad = {
@@ -24,7 +27,19 @@ const DeleteAccount = () => {
     };
     try {
       const res = await careseekersService.deleteCareseeker(payLoad);
-    } catch (error) {}
+      toast({
+        title: "Account Deleted",
+        variant: "success",
+        description: "You have successfuly delete your account",
+      });
+      logout();
+    } catch (error) {
+      toast({
+        title: "Failed",
+        variant: "error",
+        description: "Failed too delete account",
+      });
+    }
   };
 
   return (
