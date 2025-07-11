@@ -10,12 +10,9 @@ import Slideshow from "@/components/slide-show";
 export default function Register() {
   const [email, setEmail] = useState("");
   const { step } = useAuthStore();
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Image cycling logic
 
   return (
-    <div className="flex items-center flex-col md:flex-row justify-between gap-4 max-w-[1124px] px-3 mx-auto md:px-10 py-4 md:py-10 md:my-20">
+    <div className="flex items-center flex-col md:flex-row justify-between gap-4 max-w-[1124px] px-3 mx-auto md:px-10 py-4 md:py-10 md:my-10">
       <Slideshow />
       {step === 1 && <EmailVerification email={email} setEmail={setEmail} />}
       {step === 2 && <Verify email={email} />}

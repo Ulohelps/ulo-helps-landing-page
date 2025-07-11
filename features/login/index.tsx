@@ -76,7 +76,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1240px] mx-auto md:px-10 py-4 md:py-10 md:my-20">
+    <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1240px] mx-auto md:px-10 py-4 md:py-10 md:my-10">
       <Slideshow />
       <div className="flex flex-col w-full md:w-2/5 px-4">
         <div className="w-full gap-2">
@@ -129,7 +129,7 @@ export default function Login() {
           </div>
           <Link
             href="/auth/forgot-password"
-            className="text-base block text-[#1DA5DB] font-semibold mt-4"
+            className="text-base block text-[#1DA5DB] font-semibold mt-4 hover:underline"
           >
             Forgot your password?
           </Link>
@@ -150,7 +150,7 @@ export default function Login() {
             </span>
             <Link
               href="/auth/register"
-              className="text-sm font-medium text-[#1DA5DB] hover:text-blue-300"
+              className="text-sm font-medium text-[#1DA5DB] hover:text-blue-300 hover:underline"
             >
               Sign up
             </Link>

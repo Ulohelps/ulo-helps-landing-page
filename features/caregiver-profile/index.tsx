@@ -220,7 +220,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
         </div>
       </HeaderWrapper>
 
-      <div className="max-w-[1136px] mx-auto mt-6 px-4 md:px-8 lg:px-12 py-8">
+      <div className="max-w-[1136px] mx-auto mt-6 py-8">
         {connected && !hired && !loadingCaregiver && (
           <FeedbackCard
             name={caregiver?.firstName || "--"}
@@ -246,7 +246,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
 
           <TabsContent
             value="profileDetails"
-            className="w-full lg:w-[65%] mt-8"
+            className="w-full lg:w-[65%] mt-8 p-0"
           >
             {loadingCaregiver ? (
               <div className="space-y-4">
@@ -303,7 +303,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
 
           <TabsContent
             value="employmentHistory"
-            className="w-full lg:w-[65%] mt-8"
+            className="w-full lg:w-[65%] mt-8 p-0"
           >
             {loadingCaregiver ? (
               <div className="h-24 bg-gray-100 rounded-md animate-pulse" />

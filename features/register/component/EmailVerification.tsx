@@ -19,6 +19,22 @@ const EmailVerification = ({
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { sendEmailVerification, setStep } = useAuthStore();
+  const [googleLoading, setGoogleLoading] = useState(false);
+
+  const handleGoogleSignIn = () => {
+    setGoogleLoading(true);
+    try {
+      // Redirect to backend OAuth endpoint
+      window.location.href = `https://ulo-v1-stagging-be-b9a3d3832785.herokuapp.com/api/v1/auth/google`;
+    } catch (error) {
+      toast({
+        title: "Google sign-in failed",
+        description: "Please try again",
+        variant: "error",
+      });
+      setGoogleLoading(false);
+    }
+  };
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -106,7 +122,7 @@ const EmailVerification = ({
               </span>
               <Link
                 href="/auth/login"
-                className="text-base font-medium text-[#1DA5DB] hover:text-blue-300"
+                className="text-base font-medium text-[#1DA5DB] hover:text-blue-300 hover:underline"
               >
                 Log in
               </Link>
@@ -122,15 +138,16 @@ const EmailVerification = ({
           <Button
             type="button"
             className="text-base text-[#344054] w-full bg-white border border-[#D0D5DD] font-semibold p-6 rounded-[80px] cursor-pointer"
-            disabled={isLoading}
+            disabled={googleLoading}
+            onClick={handleGoogleSignIn}
           >
-            {false ? (
+            {googleLoading ? (
               <Loader className="animate-spin" />
             ) : (
-              <p className="flex items-center gap-2">
-                <Image src={GoogleIcon} width={20} height={20} alt="" /> Sign up
-                with Google
-              </p>
+              <span className="flex items-center justify-center gap-2">
+                <Image src={GoogleIcon} width={20} height={20} alt="Google" />
+                Sign in with Google
+              </span>
             )}
           </Button>
         </div>

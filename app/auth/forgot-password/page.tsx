@@ -26,7 +26,6 @@ export default function ForgotPasswordPage() {
     setIsLoading(true);
 
     try {
-      // TODO: Implement forgot password API call
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`,
         {
@@ -44,7 +43,7 @@ export default function ForgotPasswordPage() {
         toast({
           title: "Reset code sent",
           description: "We've sent a password reset code to your email",
-          variant:"success"
+          variant: "success",
         });
 
         router.push(`/auth/reset-password?email=${encodeURIComponent(email)}`);
@@ -105,7 +104,7 @@ export default function ForgotPasswordPage() {
         <div className="text-center">
           <Link
             href="/auth/login"
-            className="text-sm font-medium text-[#1DA5DB] hover:text-blue-400"
+            className="text-sm font-medium text-[#1DA5DB] hover:text-blue-400 hover:underline"
           >
             Back to login
           </Link>

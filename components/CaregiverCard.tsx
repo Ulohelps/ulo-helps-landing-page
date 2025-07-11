@@ -100,8 +100,10 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
             variant="outline"
             size="icon"
             className={`rounded-full h-12 w-12 ${
-              isBookmarked ? "text-amber-500" : "text-gray-700"
-            } bg-white border-gray-300 hover:bg-gray-50`}
+              isBookmarked
+                ? "text-amber-500 hover:text-amber-200"
+                : "text-gray-700 "
+            } bg-white hover:border-none hover:bg-white `}
             aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
           >
             <Bookmark fill={isBookmarked ? "#F6AA3D" : "none"} />
