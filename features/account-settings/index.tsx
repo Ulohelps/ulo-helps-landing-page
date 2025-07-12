@@ -36,13 +36,13 @@ export default function AccountSettings() {
                 </TabsTrigger>
                 <TabsTrigger
                   value="security"
-                  className="text-[#475367] px-0 font-semibold whitespace-nowrap min-w-max data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+                  className="text-[#475367] px-0 font-semibold whitespace-nowrap min-w-max data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[rgb(246,170,61)] rounded-none"
                 >
                   Security settings
                 </TabsTrigger>
                 <TabsTrigger
                   value="subscription"
-                  className="text-[#475367] px-0 font-semibold whitespace-nowrap min-w-max data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+                  className="text-[#475367] px-0 font-semibold whitespace-nowrap min-w-max data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[rgb(246,170,61)] rounded-none"
                 >
                   Subscription management
                 </TabsTrigger>
