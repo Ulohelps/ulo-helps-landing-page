@@ -146,7 +146,7 @@ const EmailVerification = ({
             ) : (
               <span className="flex items-center justify-center gap-2">
                 <Image src={GoogleIcon} width={20} height={20} alt="Google" />
-                Sign in with Google
+                Sign up with Google
               </span>
             )}
           </Button>

@@ -227,7 +227,7 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="end"
-                className="md:w-[450px] rounded-2xl bg-white border border-[#EAECF0] shadow-xl mt-2 p-0 overflow-hidden"
+                className="w-[90vw] sm:w-[400px] max-w-[95vw] rounded-2xl bg-white border border-[#EAECF0] shadow-xl mt-2 p-0 overflow-hidden"
                 onCloseAutoFocus={(e) => e.preventDefault()}
               >
                 {/* Header */}
@@ -240,7 +240,7 @@ export default function Header() {
                 </div>
 
                 {/* Notifications List */}
-                <div className="max-h-[480px] overflow-y-auto">
+                <div className="max-h-[480px] overflow-y-auto mb-5">
                   {isLoading ? (
                     <div className="p-4 flex items-center justify-center ">
                       <Loader className="animate-spin text-[#F6AA3D]" />
@@ -269,7 +269,7 @@ export default function Header() {
                                   !notification.read
                                     ? "text-[#344054]"
                                     : "text-[#475467]"
-                                } truncate`}
+                                } truncate max-w-[200px] sm:max-w-[300px]`}
                               >
                                 {notification.title}
                               </h4>
@@ -277,7 +277,7 @@ export default function Header() {
                                 <div className="ml-2 flex-shrink-0 w-2 h-2 rounded-full bg-[#5E8AFF]" />
                               )}
                             </div>
-                            <p className="mt-1 text-sm text-[#475367]">
+                            <p className="mt-1 text-sm text-[#475367] truncate max-w-[220px] sm:max-w-full">
                               {notification.body}
                             </p>
                             <p className="mt-2 text-sm text-[#667185]">

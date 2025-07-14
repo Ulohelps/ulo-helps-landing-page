@@ -34,7 +34,7 @@ const Header = ({ headerDetails, isLoading = false }: HeaderProps) => {
           </div>
         )}
       </div>
-      <div className="flex flex-col items-center md:items-start gap-2">
+      <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
           <h2 className="text-2xl font-semibold text-[#1D2739]">
             {headerDetails?.firstName || "--"} {headerDetails?.lastName || "--"}

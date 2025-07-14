@@ -8,6 +8,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Search, ChevronDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCaregiverStore } from "@/lib/stores/caregiver-store";
@@ -104,7 +111,7 @@ export function CaregiverFilterBar() {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className="justify-between w-full md:w-auto px-4 md:px-8 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none md:border-r h-full"
+            className="flex items-center justify-between w-full md:w-auto px-4 md:px-8 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none md:border-r h-full"
           >
             {selectedServices.length > 0
               ? `${selectedServices.length} selected`
@@ -130,23 +137,27 @@ export function CaregiverFilterBar() {
       </Popover>
 
       {/* Location select */}
-      <select
-        className="px-4 md:px-8 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none h-full"
+      <Select
         value={selectedLocation}
-        onChange={(e) => setSelectedLocation(e.target.value)}
+        onValueChange={(value) => setSelectedLocation(value)}
       >
-        <option value="all">Location: All</option>
-        {lagosLGA.map((lga) => (
-          <option key={lga} value={lga}>
-            {lga}
-          </option>
-        ))}
-      </select>
+        <SelectTrigger className="flex items-center justify-between px-4 md:px-8 py-3 text-base text-[#667185] border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none h-full">
+          <SelectValue placeholder="Location: All" />
+        </SelectTrigger>
+        <SelectContent className="w-64 p-2 bg-white rounded-[20px] border-none shadow-md text-base text-[#667185]">
+          <SelectItem value="all">Location: All</SelectItem>
+          {lagosLGA.map((lga) => (
+            <SelectItem key={lga} value={lga}>
+              {lga}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
 
       {/* Search button */}
       <Button
         onClick={handleSearch}
-        className="flex items-center justify-center gap-2 w-full md:w-auto py-3 h-full text-base text-[#1D2739] font-semibold rounded-t-none rounded-b-[12px] md:rounded-[12px] md:rounded-l-none md:rounded-r-[16px]"
+        className="flex items-center justify-center flex-row-reverse md:flex-row gap-2 w-full md:w-auto py-3 h-full text-base text-[#1D2739] font-semibold rounded-t-none rounded-b-[12px] md:rounded-[12px] md:rounded-l-none md:rounded-r-[16px]"
       >
         <Search size={18} />
         Find caregivers

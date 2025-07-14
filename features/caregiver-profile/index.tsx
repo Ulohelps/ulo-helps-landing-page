@@ -272,7 +272,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
         </div>
       </HeaderWrapper>
 
-      <div className="max-w-[1136px] mx-auto mt-6 py-8">
+      <div className="max-w-[1136px] mx-auto mt-6 py-8 px-4 md:px-0">
         {connected && !hired && !loadingCaregiver && (
           <FeedbackCard
             name={caregiver?.firstName || "--"}
@@ -284,13 +284,13 @@ export default function CaregiverProfile({ id }: { id: string }) {
           <TabsList className="w-full md:w-[65%] flex items-center justify-start gap-5 border-b border-[#E4E7EC]">
             <TabsTrigger
               value="profileDetails"
-              className="text-left text-[#475367] px-0 pb-4 text-base font-semibold data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-t-[4px]"
+              className="text-left text-[#475367] whitespace-nowrap px-0 pb-4 text-base font-semibold data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-t-[4px]"
             >
               Profile Details
             </TabsTrigger>
             <TabsTrigger
               value="employmentHistory"
-              className="text-[#475367] px-0 pb-4 text-base font-semibold data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+              className="text-[#475367] px-0 pb-4 whitespace-nowrap text-base font-semibold data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
             >
               Employment History
             </TabsTrigger>

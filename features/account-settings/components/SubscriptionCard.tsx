@@ -38,13 +38,13 @@ export default function SubscriptionCard({
   if (isLoading) {
     return (
       <div className="w-full rounded-[24px] animate-pulse">
-        <div className="flex justify-between border border-[#E4E7EC] rounded-t-[24px]">
-          <div className="flex flex-col p-6 w-2/3 space-y-2">
+        <div className="flex flex-col md:flex-row justify-between border border-[#E4E7EC] rounded-t-[24px]">
+          <div className="flex flex-col p-6 w-full md:w-2/3 space-y-2">
             <div className="h-4 w-1/2 bg-gray-300 rounded" />
             <div className="h-6 w-1/3 bg-gray-300 rounded" />
             <div className="h-3 w-1/4 bg-gray-300 rounded" />
           </div>
-          <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-1/3">
+          <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-full md:w-1/3">
             <div className="h-10 w-32 bg-gray-300 rounded-full" />
           </div>
         </div>
@@ -56,12 +56,11 @@ export default function SubscriptionCard({
     );
   }
 
-  // ✅ 2. No subscription (user has never subscribed)
   if (!subscription) {
     return (
       <div className="w-full rounded-[24px] border border-[#E4E7EC]">
         <div className="flex justify-between rounded-t-[24px]">
-          <div className="flex flex-col p-6 w-2/3">
+          <div className="flex flex-col p-6 w-full md:w-2/3">
             <p className="text-base text-[#344054] font-normal">
               ULO monthly subscription
             </p>
@@ -70,7 +69,7 @@ export default function SubscriptionCard({
             </p>
             <p className="text-sm text-[#475367] font-normal mt-1">per month</p>
           </div>
-          <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-1/3">
+          <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-full md:w-1/3">
             <Button
               className="font-semibold"
               onClick={() => router.push("/subscriptions")}
@@ -89,11 +88,10 @@ export default function SubscriptionCard({
     );
   }
 
-  // ✅ 3. Subscription exists (either ACTIVE or INACTIVE)
   return (
     <div className="w-full rounded-[24px]">
-      <div className="flex justify-between border border-[#E4E7EC] rounded-t-[24px]">
-        <div className="flex flex-col p-6 w-2/3">
+      <div className="flex flex-col md:flex-row justify-between border border-[#E4E7EC] rounded-t-[24px]">
+        <div className="flex flex-col p-6 w-full md:w-2/3">
           <p className="text-base text-[#344054] font-normal">
             ULO monthly subscription
           </p>
@@ -104,7 +102,7 @@ export default function SubscriptionCard({
         </div>
 
         {isActive ? (
-          <div className="flex flex-col gap-4 border-l border-[#E4E7EC] p-6 w-1/3">
+          <div className="flex flex-col gap-4 border-l border-[#E4E7EC] p-6 w-full md:w-1/3">
             <p className="text-base text-[#344054] font-normal">Expiry date</p>
             <div>
               <p className="text-2xl text-[#06212C] font-semibold">
@@ -124,7 +122,7 @@ export default function SubscriptionCard({
             </Link>
           </div>
         ) : (
-          <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-1/3">
+          <div className="flex items-center justify-end border-l border-[#E4E7EC] p-6 w-full md:w-1/3">
             <Button
               className="font-semibold"
               onClick={() => router.push("/subscriptions")}

@@ -33,44 +33,44 @@ const Guidelines: React.FC<CustomModalProps> = ({ open, onClose }) => {
           </DialogTitle>
         </DialogHeader>
         <DialogDescription className="text-base text-[#344054] font-normal mt-2 px-8 space-y-5">
-          <p>
-            <p className="font-semibold">
+          <ul>
+            <li className="font-semibold">
               1. Ask Direct Questions About Experience and Boundaries
-            </p>
-            <p>
+            </li>
+            <li>
               Even though caregivers are vetted, it’s important to ask your own
               questions. Clarify roles, comfort levels, and the kind of support
               you need. Be upfront and clear about your household routines and
               non-negotiables.
-            </p>
-          </p>
-          <p>
+            </li>
+          </ul>
+          <ul>
             {" "}
-            <p className="font-semibold">2. Conduct Your Own Health Checks</p>
-            <p>
+            <li className="font-semibold">2. Conduct Your Own Health Checks</li>
+            <li>
               Conduct Your Own Health Checks ULO doesn’t manage medical checks,
               so we encourage you to ask for recent health status or test
               results directly. If health is a priority, you can also request
               proof of vaccinations or a medical clearance.
-            </p>
-          </p>
-          <p>
-            <p className="font-semibold">
+            </li>
+          </ul>
+          <ul>
+            <li className="font-semibold">
               3. Conduct Interviews (Virtually or In-Person)
-            </p>
-            <p>
+            </li>
+            <li>
               Before hiring, schedule an interview. Prepare questions about
               experience, values, routines, and emergency handling. Trust your
               instincts during the conversation.
-            </p>
-          </p>
-          <p>
-            <p className="font-semibold">4. Leave Honest Reviews</p>
-            <p>
+            </li>
+          </ul>
+          <ul>
+            <li className="font-semibold">4. Leave Honest Reviews</li>
+            <li>
               After your experience, leave a review to help others make informed
               decisions and to keep the ULO community safe and transparent.
-            </p>
-          </p>
+            </li>
+          </ul>
         </DialogDescription>
         <DialogFooter
           className={` gap-4 mt-6 p-6 bg-[#F7F9FC] border-t border-[#F7F9FC] w-full`}

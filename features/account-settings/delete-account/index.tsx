@@ -44,7 +44,7 @@ const DeleteAccount = () => {
 
   return (
     <div className="mx-auto w-full">
-      <div className="w-full bg-[#F0F2F5] border-y border-[#D0D5DD] py-8">
+      <div className="w-full bg-[#F0F2F5] border-y border-[#D0D5DD] py-8 px-4 md:px-0">
         <div className="max-w-[1136px] mx-auto">
           <h2 className="text-[28px] text-[#06212C] font-semibold">
             Delete your ULO account
@@ -56,7 +56,7 @@ const DeleteAccount = () => {
           </p>
         </div>
       </div>
-      <div className="max-w-[1136px] mx-auto mt-8">
+      <div className="max-w-[1136px] mx-auto mt-8 px-4 md:p-0">
         <div className="max-w-[556px] border border-[#E4E7EC] rounded-[20px] overflow-hidden">
           <div className="p-6">
             <Label className="text-sm text-[#344054] font-light mb-4 block">

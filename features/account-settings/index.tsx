@@ -23,37 +23,35 @@ export default function AccountSettings() {
       </HeaderWrapper>
 
       {/* Tabs Section */}
-      <div className="max-w-[1136px] mx-auto relative">
+      <div className="max-w-[1136px] mx-auto relative px-4 md:px-0">
         <Tabs defaultValue="profile" className="w-full">
-          <div className=" h-12">
-            <div className="absolute inset-x-0 -top-[34px] overflow-x-auto scrollbar-hide">
-              <TabsList className="flex items-center justify-center w-full gap-4">
-                <TabsTrigger
-                  value="profile"
-                  className="text-[#475367] px-0 text-base font-semibold whitespace-nowrap w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
-                >
-                  Profile information
-                </TabsTrigger>
-                <TabsTrigger
-                  value="security"
-                  className="text-[#475367] px-0 font-semibold whitespace-nowrap w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[rgb(246,170,61)] rounded-none"
-                >
-                  Security settings
-                </TabsTrigger>
-                <TabsTrigger
-                  value="subscription"
-                  className="text-[#475367] px-0 font-semibold whitespace-nowrap w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[rgb(246,170,61)] rounded-none"
-                >
-                  Subscription management
-                </TabsTrigger>
-                <TabsTrigger
-                  value="notification"
-                  className="text-[#475367] px-0 font-semibold whitespace-nowrap w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
-                >
-                  Notification preferences
-                </TabsTrigger>
-              </TabsList>
-            </div>
+          <div className="absolute inset-x-0 -top-[42px] overflow-x-auto scrollbar-hide">
+            <TabsList className="flex w-max min-w-full gap-4 px-4 md:px-0">
+              <TabsTrigger
+                value="profile"
+                className="text-[#475367] text-sm md:text-base font-semibold whitespace-nowrap data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+              >
+                Profile information
+              </TabsTrigger>
+              <TabsTrigger
+                value="security"
+                className="text-[#475367] text-sm md:text-base font-semibold whitespace-nowrap data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+              >
+                Security settings
+              </TabsTrigger>
+              <TabsTrigger
+                value="subscription"
+                className="text-[#475367] text-sm md:text-base font-semibold whitespace-nowrap data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+              >
+                Subscription management
+              </TabsTrigger>
+              <TabsTrigger
+                value="notification"
+                className="text-[#475367] text-sm md:text-base font-semibold whitespace-nowrap data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+              >
+                Notification preferences
+              </TabsTrigger>
+            </TabsList>
           </div>
 
           {/* PROFILE Tab Content */}

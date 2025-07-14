@@ -1,13 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { User2 } from "lucide-react";
+import { User2, Edit } from "lucide-react";
 import { useState } from "react";
 import SettingsModal from "./SettingsModal";
 import UploadPhotoModal from "./modal-content/UploadPhotoModal";
 import EditNameModal from "./modal-content/EditNameModal";
 import VerifyPhoneModal from "./modal-content/EditPhoneModal";
-import VerifyEmailModal from "./modal-content/EditEmailModal";
 import Image from "next/image";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { useToast } from "@/hooks/use-toast";
@@ -218,8 +217,8 @@ const ProfileSetting = () => {
       ))}
 
       {/* Profile sections */}
-      <div className="flex flex-col items-center md:flex-row md:items-end justify-between gap-4 border-b border-[#E4E7EC] py-6">
-        <div className="flex flex-col">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#E4E7EC] py-6">
+        <div className="flex flex-col items-start">
           <p className="text-sm text-[#475367] font-normal">Profile photo</p>
           {profile?.profileImageUrl ? (
             <Image
@@ -235,7 +234,7 @@ const ProfileSetting = () => {
             </div>
           )}
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-2">
+        <div className="flex flex-col md:flex-row md:items-center gap-2">
           <Button
             variant="outline"
             className="text-base font-semibold"
@@ -253,8 +252,8 @@ const ProfileSetting = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center md:flex-row md:items-center gap-4 justify-between border-b border-[#E4E7EC] py-6">
-        <div className="flex md:flex-col items-center justify-center md:items-start md:justify-between gap-4 md:gap-2 w-full">
+      <div className="flex items-center gap-4 justify-between border-b border-[#E4E7EC] py-6">
+        <div className="flex flex-col justify-between gap-2 w-full">
           <p className="text-sm text-[#475367] font-normal">Name</p>
           <p className="text-base text-[#344054] font-normal capitalize">
             {firstName} {lastName}
@@ -262,15 +261,22 @@ const ProfileSetting = () => {
         </div>
         <Button
           variant="outline"
-          className="text-base font-semibold"
+          className="hidden md:block text-base font-semibold"
           onClick={() => openModal("editName")}
         >
           Edit name
         </Button>
+        <Button
+          variant="outline"
+          className=" md:hidden text-base font-semibold rounded-full h-12 w-12"
+          onClick={() => openModal("editName")}
+        >
+          <Edit />
+        </Button>
       </div>
 
-      <div className="flex flex-col items-center md:flex-row md:items-end gap-4 justify-between border-b border-[#E4E7EC] py-6">
-        <div className="flex md:flex-col items-center justify-center md:items-start md:justify-between gap-4 md:gap-2 w-full">
+      <div className="flex  items-center  gap-4 justify-between border-b border-[#E4E7EC] py-6">
+        <div className="flex flex-col justify-between gap-2 w-full">
           <p className="text-sm text-[#475367] font-normal">Phone number</p>
           <p className="text-base text-[#344054] font-normal">
             {profile?.user.phone}
@@ -278,10 +284,17 @@ const ProfileSetting = () => {
         </div>
         <Button
           variant="outline"
-          className="text-base font-semibold"
+          className="hidden md:block text-base font-semibold"
           onClick={() => openModal("changePhone")}
         >
           Edit phone number
+        </Button>
+        <Button
+          variant="outline"
+          className=" md:hidden text-base font-semibold rounded-full h-12 w-12"
+          onClick={() => openModal("changePhone")}
+        >
+          <Edit />
         </Button>
       </div>
     </div>
