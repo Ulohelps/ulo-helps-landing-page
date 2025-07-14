@@ -67,7 +67,7 @@ export default function Verify({ email }: { email: string }) {
       toast({
         title: "OTP sent",
         description: "A new verification code has been sent to your email",
-        variant:"success"
+        variant: "success",
       });
       setTimer(60); // Restart countdown
     } catch (error: any) {
@@ -82,7 +82,7 @@ export default function Verify({ email }: { email: string }) {
   };
 
   return (
-    <div className="flex flex-col w-full md:w-2/5 px-4">
+    <div className="flex flex-col w-full md:w-[42%] px-4">
       <div className="w-full gap-3">
         <Image src={Logo} alt="Ulo logo" width={67} height={32} />
         <p className="text-2xl text-[#344054] font-bold mt-2">
@@ -136,7 +136,7 @@ export default function Verify({ email }: { email: string }) {
           <div className="mt-6 text-center text-sm text-[#344054] font-normal">
             Didn’t get a code?{" "}
             {timer > 0 ? (
-              <span>
+              <span className="text-[#1DA5DB] hover:text-blue-300 hover:underline cursor-pointer">
                 Resend code in <span className="font-medium">{timer}s</span>
               </span>
             ) : (

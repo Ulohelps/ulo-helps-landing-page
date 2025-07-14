@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import HeaderWrapper from "@/components/header-wrap";
 import CustomModal from "@/components/custom-modal";
 import { careseekersService } from "@/lib/services/careseekersService";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 
 export default function CaregiverFeedbackForm() {
@@ -29,6 +29,8 @@ export default function CaregiverFeedbackForm() {
   const name = searchParams.get("name");
 
   const { toast } = useToast();
+
+  const { back } = useRouter();
 
   const reasonOptions = [
     "I didn’t like his voice",
@@ -98,7 +100,7 @@ export default function CaregiverFeedbackForm() {
     <div>
       <CustomModal
         open={open}
-        success={false}
+        success={true}
         onClose={() => setOpen(false)}
         title="Thank you for your feedback"
         description="We’ve received your feedback. Thank you for making ULO a better place for families everywhere."
@@ -113,7 +115,7 @@ export default function CaregiverFeedbackForm() {
             </Button>
             <Button
               className="w-[186px] bg-[#F6AA3D] hover:bg-[#e19a32] text-[#1D2739] font-semibold"
-              onClick={() => {}}
+              onClick={() => back()}
             >
               Done
             </Button>

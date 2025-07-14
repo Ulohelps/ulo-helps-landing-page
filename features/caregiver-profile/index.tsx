@@ -6,7 +6,14 @@ import CustomModal from "@/components/custom-modal";
 import ConnectionCard from "./components/ConnectionCard";
 import Header from "./components/Header";
 import HeaderWrapper from "@/components/header-wrap";
-import { Calendar, CircleAlert, MapPin, Wallet } from "lucide-react";
+import {
+  Calendar,
+  CircleAlert,
+  MapPin,
+  Phone,
+  Users,
+  Wallet,
+} from "lucide-react";
 import Box from "./components/Box";
 import { Tabs, TabsContent, TabsList } from "@/components/ui/tabs";
 import { TabsTrigger } from "@radix-ui/react-tabs";
@@ -17,6 +24,7 @@ import { useToast } from "@/hooks/use-toast";
 import FeedbackCard from "./components/FeedbackCard";
 import Guidelines from "./components/Guidelines";
 import { useRouter } from "next/navigation";
+import SettingsModal from "../account-settings/components/SettingsModal";
 
 export default function CaregiverProfile({ id }: { id: string }) {
   const [connected, setConnected] = useState(false);
@@ -24,15 +32,18 @@ export default function CaregiverProfile({ id }: { id: string }) {
   const [caregiver, setCaregiver] = useState<Caregiver | null>(null);
   const [open, setOpen] = useState(false);
   const [loadingCaregiver, setLoadingCaregiver] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const [openGuidelines, setOpenGuidelines] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(caregiver?.isBookmarked);
+  const [isGuarantor, setIsGuarantor] = useState(false);
+  const [openGuarantor, setOpenGuarantor] = useState(false);
 
   const { profile, connectWithCaregiver } = useCareseekersStore();
 
   const { toast } = useToast();
 
-  const { push, refresh } = useRouter();
+  const { push } = useRouter();
 
   const subscriptionStatus =
     profile?.subscription && profile?.subscription.status === "ACTIVE";
@@ -54,12 +65,36 @@ export default function CaregiverProfile({ id }: { id: string }) {
         variant: "success",
       });
       setConnected(true);
+      fetchCaregiverDetails();
     } else {
       toast({
         title: "Failed to connect",
         description: `Could not connect with ${caregiver?.firstName}`,
         variant: "error",
       });
+    }
+  };
+
+  const handleGetGuarantor = async () => {
+    setLoading(true);
+    try {
+      await caregiverService.getCaregiverGuarantor(id);
+      toast({
+        title: "successfully",
+        description: "fetched guarantor",
+        variant: "success",
+      });
+      setLoading(false);
+      setIsGuarantor(true);
+      fetchCaregiverDetails();
+      setOpenGuarantor(false);
+    } catch (error) {
+      toast({
+        title: "failed",
+        description: `${error || "Could not fetch Guarantor, try again"}`,
+        variant: "error",
+      });
+      setLoading(false);
     }
   };
 
@@ -95,8 +130,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
           : "Caregiver has been removed from bookmarks",
         variant: "success",
       });
-
-      refresh();
+      fetchCaregiverDetails();
     } catch (error) {
       console.error("Error updating bookmark:", error);
       setIsBookmarked(!newBookmarkState); // Revert on error
@@ -167,6 +201,24 @@ export default function CaregiverProfile({ id }: { id: string }) {
     },
   ];
 
+  const getLiteracyLevel = (value: string) => {
+    switch (value) {
+      case "BASIC_ENGLISH":
+        return "Level one";
+        break;
+      case "CONVERSATIONAL_ENGLISH":
+        return "Level two";
+        break;
+      case "FLUENT_ENGLISH":
+        return "Level three";
+        break;
+
+      default:
+        return "Level one";
+        break;
+    }
+  };
+
   useEffect(() => {
     fetchCaregiverDetails();
   }, []);
@@ -229,16 +281,16 @@ export default function CaregiverProfile({ id }: { id: string }) {
         )}
 
         <Tabs defaultValue="profileDetails" className="w-full">
-          <TabsList className="w-full md:w-[65%] flex items-center justify-start">
+          <TabsList className="w-full md:w-[65%] flex items-center justify-start gap-5 border-b border-[#E4E7EC]">
             <TabsTrigger
               value="profileDetails"
-              className="text-left text-[#475367] px-0 pb-4 text-base font-semibold w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+              className="text-left text-[#475367] px-0 pb-4 text-base font-semibold data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-t-[4px]"
             >
               Profile Details
             </TabsTrigger>
             <TabsTrigger
               value="employmentHistory"
-              className="text-[#475367] px-0 pb-4 text-base font-semibold w-full data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
+              className="text-[#475367] px-0 pb-4 text-base font-semibold data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
             >
               Employment History
             </TabsTrigger>
@@ -277,7 +329,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
                       <p
                         className={`text-base text-[#344054]  font-semibold ${
                           detail.label === "Subskills" &&
-                          "flex items-center w-[60%] overflow-hidden overflow-x-scroll scrollbar-hide capitalize"
+                          "flex items-center w-[60%] overflow-hidden text-right overflow-x-scroll scrollbar-hide capitalize"
                         } `}
                       >
                         {detail.detail}
@@ -289,7 +341,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
                       Levels
                     </p>
                     <p className="flex items-center gap-2 text-base capitalize text-[#344054] font-semibold">
-                      {caregiver?.literacyLevelDesc?.replace(/_/g, " ") || "--"}
+                      {getLiteracyLevel(caregiver?.literacyLevelDesc || "--")}
                       <CircleAlert
                         className="text-[#1DA5DB]"
                         strokeWidth={1.5}
@@ -319,12 +371,72 @@ export default function CaregiverProfile({ id }: { id: string }) {
                 </div>
               ))
             )}
+            {!isGuarantor && (
+              <Button
+                variant="outline"
+                className="font-semibold px-6 py-3 mt-8"
+                onClick={() => setOpenGuarantor(true)}
+              >
+                Display Guarantor details
+              </Button>
+            )}
+            {isGuarantor && (
+              <div className="mt-8">
+                <h3 className="text-base font-semibold border-b border-[#E4E7EC] pb-5">
+                  Guarantor details
+                </h3>
+                <div className="mt-6 space-y-4">
+                  <h4 className="text-base text-[#344054] font-semibold">
+                    {caregiver?.guarantors?.name}
+                  </h4>
+                  <div className="flex item-center gap-3">
+                    <Users
+                      width={24}
+                      height={24}
+                      className="text-[#475367] font-semibold"
+                    />
+                    <p className="text-[#344054] text-base">
+                      {caregiver?.guarantors?.relationship}
+                    </p>
+                  </div>
+                  <div className="flex item-center gap-3">
+                    <Phone
+                      width={24}
+                      height={24}
+                      className="text-[#475367] font-semibold"
+                    />
+                    <p className="text-[#344054] text-base">
+                      {caregiver?.guarantors?.phone}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>
       <Guidelines
         open={openGuidelines}
         onClose={() => setOpenGuidelines(false)}
+      />
+
+      <SettingsModal
+        open={openGuarantor}
+        onClose={() => setOpenGuarantor(false)}
+        title={"Important notice"}
+        onConfirm={handleGetGuarantor}
+        loading={loading}
+        children={
+          <p>
+            For data privacy reasons, we only reveal caregivers’ guarantor
+            information in the event of criminal offenses or similar occurrences
+            involving the caregiver while they’re in your employ. If a situation
+            like this has taken place, kindly describe it below so that our team
+            can support you through the next process and take necessary actions.
+          </p>
+        }
+        btnText2={"I agree to the terms"}
+        btnText1={"cancel"}
       />
     </div>
   );

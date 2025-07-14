@@ -46,10 +46,10 @@ const DeleteAccount = () => {
     <div className="mx-auto w-full">
       <div className="w-full bg-[#F0F2F5] border-y border-[#D0D5DD] py-8">
         <div className="max-w-[1136px] mx-auto">
-          <h2 className="text-[28px] text-[#06212C] font-semibold text-center">
+          <h2 className="text-[28px] text-[#06212C] font-semibold">
             Delete your ULO account
           </h2>
-          <p className="text-base text-[#667185] font-normal  text-center">
+          <p className="text-base text-[#667185] font-normal max-w-[556px]">
             We’re sad to see you go, but we hope you got what you came to ULO
             for. Please let us know why you’re deleting your account by
             selecting one of the options below.
@@ -57,7 +57,7 @@ const DeleteAccount = () => {
         </div>
       </div>
       <div className="max-w-[1136px] mx-auto mt-8">
-        <div className="max-w-[556px] border border-[#E4E7EC] rounded-[20px] overflow-hidden mx-auto">
+        <div className="max-w-[556px] border border-[#E4E7EC] rounded-[20px] overflow-hidden">
           <div className="p-6">
             <Label className="text-sm text-[#344054] font-light mb-4 block">
               Why are you deleting your ULO account?

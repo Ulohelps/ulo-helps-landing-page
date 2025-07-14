@@ -54,7 +54,7 @@ export default function Connections() {
       </HeaderWrapper>
 
       {/* Tabs Section */}
-      <div className="max-w-[1136px] mx-auto px-4 md:px-8 lg:px-12 mt-12 relative">
+      <div className="max-w-[1136px] mx-auto px-4 md:px-8 lg:px-0 mt-12 relative">
         <Tabs defaultValue="active" className="w-full">
           {/* Absolute TabsList with relative parent */}
           <div className="relative h-12 mb-16">

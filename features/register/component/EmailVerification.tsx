@@ -69,7 +69,7 @@ const EmailVerification = ({
   };
 
   return (
-    <div className="flex flex-col  w-full md:w-2/5 px-4">
+    <div className="flex flex-col  w-full md:w-[42%] px-4">
       <div className=" w-full">
         <Image src={Logo} alt="" width={67} height={32} />
         <p className="text-2xl text-[#344054] font-bold mt-2">Welcome to ULO</p>

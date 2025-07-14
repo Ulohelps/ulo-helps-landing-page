@@ -40,11 +40,9 @@ export const caregiverService = {
 
     if (params.genders) queryParams.append("genders", params.genders);
 
-    // ✅ Ethnicity: single value
     if (params.ethnicities)
       queryParams.append("ethnicities", params.ethnicities);
 
-    // ✅ Languages: multiple values
     if (params.languages) {
       const langs = Array.isArray(params.languages)
         ? params.languages
@@ -70,5 +68,8 @@ export const caregiverService = {
   },
   getBookmarkedCaregivers: async () => {
     return api.get(`/connections/bookmarks`);
+  },
+  getCaregiverGuarantor: async (caregiverId: string) => {
+    return api.get(`/caregivers/${caregiverId}/guarantor`);
   },
 };

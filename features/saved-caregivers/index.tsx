@@ -42,7 +42,7 @@ const SavedCaregivers = () => {
           </h1>
         </div>
       </HeaderWrapper>
-      <div className="max-w-[1136px] mx-auto px-4 md:px-8 lg:px-12 mt-12 ">
+      <div className="max-w-[1136px] mx-auto px-4 md:px-0 mt-12 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1136px] mx-auto px-2 my-8">
           {bookmarkedCaregivers === null
             ? Array.from({ length: 4 }).map((_, idx) => (

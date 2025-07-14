@@ -74,10 +74,10 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
     router.push(`/find-caregiver/${caregiver.id}`);
 
   return (
-    <article className="flex-shrink-0 w-full flex flex-col lg:flex-row border border-gray-300 rounded-3xl p-4 shadow-sm group transition hover:shadow-md">
+    <article className="flex-shrink-0 w-full flex flex-col lg:flex-row border border-gray-300 rounded-3xl p-[14px] shadow-sm group transition hover:shadow-md">
       {/* Image Section */}
       <div
-        className="relative w-full lg:w-1/2 h-60 md:h-auto rounded-xl overflow-hidden"
+        className="relative w-full lg:w-[55%] h-60 md:h-auto rounded-xl overflow-hidden"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -119,7 +119,7 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
       </div>
 
       {/* Info Section */}
-      <section className="px-0 md:px-6 py-5 flex flex-col justify-between w-full lg:w1/2 flex-1  overflow-hidden">
+      <section className="px-0 md:px-6 py-5 flex flex-col justify-between w-full lg:w-[45%] flex-1  overflow-hidden">
         <div>
           <header className="flex items-center gap-2">
             <h3 className="text-base text-gray-700 font-semibold">
@@ -143,7 +143,7 @@ export function CaregiverCard({ caregiver }: CaregiverCardProps) {
             </div>
           </div>
 
-          <p className="text-sm text-gray-500 font-normal mt-3 line-clamp-3 h-10">
+          <p className="text-sm text-gray-500 font-normal italic mt-3 line-clamp-3 h-10">
             {caregiver.bio}
           </p>
         </div>

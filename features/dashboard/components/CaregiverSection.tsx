@@ -67,7 +67,7 @@ export function CaregiverSection({
         {showAllLink && (
           <Link
             href={`/find-caregiver?serviceTypes=${showAllLink}`}
-            className="text-[#344054] border text-xs border-[#D0D5DD] px-3 py-1 whitespace-nowrap md:px-6 md:py-3 rounded-[80px] hover:underline md:text-base font-semibold lowercase"
+            className="text-[#344054] border text-xs border-[#D0D5DD] px-3 py-1 whitespace-nowrap md:px-6 md:py-3 rounded-[80px] hover:underline first-letter:uppercase md:text-base font-semibold lowercase"
           >
             See all {title} →
           </Link>

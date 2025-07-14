@@ -93,7 +93,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
   };
 
   return (
-    <div className="flex flex-col  w-full md:w-2/5 px-4">
+    <div className="flex flex-col  w-full md:w-[42%] px-4">
       <div className="w-full gap-2 ">
         <Image src={Logo} alt="" width={67} height={32} />
         <p className="text-2xl text-[#344054] font-bold mt-2">
@@ -246,9 +246,11 @@ export default function UserDetailsForm({ email }: { email: string }) {
                 disabled={
                   isLoading ||
                   !agree ||
-                  password.length >= 6 ||
-                  /[a-z]/.test(password) ||
-                  (/[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password))
+                  password.length < 6 ||
+                  !/[A-Z]/.test(password) ||
+                  !/[a-z]/.test(password) ||
+                  !/[0-9]/.test(password) ||
+                  !/[^A-Za-z0-9]/.test(password)
                 }
               >
                 {isLoading ? (

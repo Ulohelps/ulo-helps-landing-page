@@ -78,7 +78,7 @@ export default function Login() {
   return (
     <div className="flex items-center flex-col md:flex-row justify-between gap-6 px-3 max-w-[1240px] mx-auto md:px-10 py-4 md:py-10 md:my-10">
       <Slideshow />
-      <div className="flex flex-col w-full md:w-2/5 px-4">
+      <div className="flex flex-col w-full md:w-[42%] px-4">
         <div className="w-full gap-2">
           <Image src={Logo} alt="" width={67} height={32} />
           <p className="text-2xl text-[#344054] font-bold mt-2">

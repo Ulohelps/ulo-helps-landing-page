@@ -69,6 +69,11 @@ export type Caregiver = {
     createdAt: string;
     updatedAt: string;
   };
+  guarantors: {
+    name: string;
+    phone: string;
+    relationship: string;
+  };
   connectionId: string;
   connectedAt: string;
   hiredAt: string;

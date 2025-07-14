@@ -89,7 +89,7 @@ const FindCaregiver = () => {
       </HeaderWrapper>
 
       {/* Filter row */}
-      <div className="max-w-[1136px] flex items-center justify-between mx-auto px-4 md:px-8 mt-8">
+      <div className="max-w-[1136px] flex items-center justify-between mx-auto mt-8">
         <p className="text-base text-[#667185] font-normal">
           {totalResults} profiles found
         </p>
@@ -105,7 +105,7 @@ const FindCaregiver = () => {
 
       {/* Active filters display */}
       {getActiveFilterParams().length > 0 && (
-        <div className="max-w-[1136px] mx-auto px-4 md:px-8 mt-4 flex flex-wrap gap-2">
+        <div className="max-w-[1136px] mx-auto mt-4 flex flex-wrap gap-2">
           {getActiveFilterParams().map(([key, value]) => (
             <div
               key={key + value}
@@ -126,7 +126,7 @@ const FindCaregiver = () => {
       )}
 
       {/* Caregivers list */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[1136px] mx-auto px-4 md:px-8 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1136px] mx-auto  my-8">
         {loading
           ? Array.from({ length: 4 }).map((_, idx) => (
               <SkeletonCard key={idx} />

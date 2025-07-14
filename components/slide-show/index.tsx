@@ -41,7 +41,7 @@ export default function Slideshow() {
   };
 
   return (
-    <div className="bg-[#B4E1F3] hidden md:block h-[740px] w-full md:w-[3/5] rounded-[24px] relative overflow-hidden">
+    <div className="bg-[#B4E1F3] hidden md:block h-[740px] w-full md:w-[58%] rounded-[24px] relative overflow-hidden">
       <Image
         src={images[currentIndex].image}
         alt="Slideshow"

@@ -37,8 +37,6 @@ const ConnectionCard = ({
   hiredDate,
   setOpenGuidelines,
 }: ConnectionCardProps) => {
-  console.log(saved);
-
   function formatCustomDate(dateString: string): string {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, "0");
@@ -100,7 +98,7 @@ const ConnectionCard = ({
               className="w-full text-base text-[#344054] font-semibold"
               onClick={handleSaveCaregiver}
             >
-              {saved ? "Profile saved" : " Save profile"}
+              {saved ? "Unsave profile" : " Save profile"}
             </Button>
           </div>
         )}
