@@ -26,7 +26,7 @@ export default function AccountSettings() {
       <div className="max-w-[1136px] mx-auto relative px-4 md:px-0">
         <Tabs defaultValue="profile" className="w-full">
           <div className="absolute inset-x-0 -top-[42px] overflow-x-auto scrollbar-hide">
-            <TabsList className="flex w-max min-w-full gap-4 px-4 md:px-0">
+            <TabsList className="flex w-max justify-center md:justify-between min-w-full gap-4 px-4 md:px-0">
               <TabsTrigger
                 value="profile"
                 className="text-[#475367] text-sm md:text-base font-semibold whitespace-nowrap data-[state=active]:border-b-4 data-[state=active]:text-[#06212C] data-[state=active]:border-[#F6AA3D] rounded-none"
