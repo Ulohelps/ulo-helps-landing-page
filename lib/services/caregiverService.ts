@@ -6,6 +6,7 @@ export interface SearchCaregivers {
   search?: string;
   serviceTypes?: string[];
   location?: string;
+  workState?: string;
   minSalary?: number;
   maxSalary?: number;
   experienceLevel?: string;
@@ -25,6 +26,7 @@ export const caregiverService = {
     queryParams.append("limit", (params.limit ?? 6).toString());
 
     if (params.search) queryParams.append("search", params.search);
+    if (params.workState) queryParams.append("workState", params.workState);
     if (params.location) queryParams.append("location", params.location);
     if (params.minSalary)
       queryParams.append("minSalary", params.minSalary.toString());

@@ -53,6 +53,7 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
     availability: "",
     liveInAvailable: undefined,
     status: "",
+    workState: "",
   },
 
   searchCaregivers: async (params) => {
@@ -97,6 +98,7 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
         availability: "",
         liveInAvailable: undefined,
         status: "",
+        workState: "",
       },
       totalResults: 0,
       error: null,
@@ -130,6 +132,7 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
         availability: "",
         liveInAvailable: undefined,
         status: "",
+        workState: "",
       },
     });
   },

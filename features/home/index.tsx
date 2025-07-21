@@ -24,6 +24,8 @@ interface FilterParams {
   liveInAvailable?: boolean;
   status?: string;
   search?: string;
+  location?: string;
+  workState?: string;
 }
 
 const Home = () => {
@@ -98,18 +100,10 @@ const Home = () => {
   };
 
   const removeFilter = (key: keyof FilterParams) => {
-    setFilters((prev) => {
-      const newFilters = { ...prev };
-
-      // For array types, we need to set them to undefined to ensure they're removed
-      if (key === "genders" || key === "ethnicities" || key === "languages") {
-        newFilters[key] = undefined;
-      } else {
-        delete newFilters[key];
-      }
-
-      return newFilters;
-    });
+    setFilters((prev) => ({
+      ...prev,
+      [key]: undefined,
+    }));
     setCurrentPage(1);
   };
 
@@ -125,6 +119,8 @@ const Home = () => {
       liveInAvailable: undefined,
       status: undefined,
       search: undefined,
+      location: undefined,
+      workState: undefined,
     });
     setCurrentPage(1);
   };

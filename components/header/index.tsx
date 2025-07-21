@@ -39,7 +39,7 @@ import { useAuthStore } from "@/lib/stores/auth-store";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
 import { notificationService } from "@/lib/services/notificationService";
-import { useToast } from "@/hooks/use-toast";
+import { removeUnderscores } from "@/lib/utils";
 import { formatDistanceToNow } from "date-fns";
 import ServiceIcon from "../icons/ServiceIcon";
 import UserIcon from "../icons/UserIcon";
@@ -271,19 +271,33 @@ export default function Header() {
                   className="flex items-center gap-2 focus:outline-none"
                   aria-label="User menu"
                 >
-                  {profile?.profileImageUrl ? (
-                    <Image
-                      src={profile.profileImageUrl}
-                      alt="Profile"
-                      width={32}
-                      height={32}
-                      className="w-8 h-8 rounded-full object-cover border border-[#EAECF0]"
-                    />
-                  ) : (
-                    <div className="w-8 h-8 rounded-full border border-[#D0D5DD] flex items-center justify-center bg-white">
-                      <User2 className="w-5 h-5 text-[#475467]" />
+                  <div className="flex items-center gap-2 sm:gap-3 hover:bg-gray-50 rounded-lg transition-colors p-1">
+                    {/* Profile Image */}
+                    {profile?.profileImageUrl ? (
+                      <Image
+                        src={profile.profileImageUrl}
+                        alt="Profile"
+                        width={40}
+                        height={40}
+                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-[#EAECF0] flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-[#D0D5DD] flex items-center justify-center bg-white flex-shrink-0">
+                        <User2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#475467]" />
+                      </div>
+                    )}
+
+                    {/* Profile Info */}
+                    <div className="min-w-0 space-y-0.5">
+                      <p className="text-sm sm:text-base font-medium text-[#344054] line-clamp-1">
+                        {profile?.firstName} {profile?.lastName}
+                      </p>
+                      <p className="text-xs sm:text-sm font-normal text-[#667185] line-clamp-1">
+                        Looking for a{" "}
+                        {removeUnderscores(profile?.primaryService || "--")}
+                      </p>
                     </div>
-                  )}
+                  </div>
                   <ChevronDown className="hidden md:block w-4 h-4 text-[#98A2B3]" />
                 </button>
               </DropdownMenuTrigger>

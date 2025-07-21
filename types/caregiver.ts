@@ -95,6 +95,7 @@ export interface SearchCaregiversParams {
   availability?: string;
   liveInAvailable?: boolean;
   status?: string;
+  workState?: string;
 }
 
 export interface CaregiverSearchResult {

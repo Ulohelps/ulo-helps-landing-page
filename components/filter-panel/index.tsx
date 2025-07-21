@@ -14,6 +14,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
+import { nigerianStates, nigerianStatesWithLGAs } from "@/lib/nigeria-states";
 
 interface FilterValues {
   minSalary?: number;
@@ -22,6 +23,8 @@ interface FilterValues {
   genders?: string[];
   ethnicities?: string[];
   languages?: string[];
+  location?: string;
+  workState?: string;
 }
 
 interface FilterPanelProps {
@@ -80,8 +83,26 @@ const FilterPanel = ({
     genders: [],
     ethnicities: [],
     languages: [],
+    location: "",
+    workState: "",
   });
+  const [availableLGAs, setAvailableLGAs] = useState<string[]>([]);
 
+  useEffect(() => {
+    if (localFilters.workState) {
+      setAvailableLGAs(nigerianStatesWithLGAs[localFilters.workState] || []);
+      if (
+        !nigerianStatesWithLGAs[localFilters.workState]?.includes(
+          localFilters.location || ""
+        )
+      ) {
+        updateLocalFilter("location", "");
+      }
+    } else {
+      setAvailableLGAs([]);
+      updateLocalFilter("location", "");
+    }
+  }, [localFilters.workState]);
   useEffect(() => {
     if (visible) {
       setLocalFilters({
@@ -91,6 +112,8 @@ const FilterPanel = ({
         genders: initialFilters.genders || [],
         ethnicities: initialFilters.ethnicities || [],
         languages: initialFilters.languages || [],
+        workState: initialFilters.workState || "",
+        location: initialFilters.location || "",
       });
     }
   }, [visible, initialFilters]);
@@ -108,6 +131,8 @@ const FilterPanel = ({
       languages: localFilters.languages?.length
         ? localFilters.languages
         : undefined,
+      workState: localFilters.workState || undefined,
+      location: localFilters.location || undefined,
     };
 
     onApplyFilters(filtersToApply);
@@ -122,6 +147,8 @@ const FilterPanel = ({
       genders: [],
       ethnicities: [],
       languages: [],
+      location: "",
+      workState: "",
     });
 
     // Apply empty filters to reset
@@ -132,6 +159,8 @@ const FilterPanel = ({
       genders: undefined,
       ethnicities: undefined,
       languages: undefined,
+      location: undefined,
+      workState: undefined,
     });
   };
 
@@ -185,6 +214,64 @@ const FilterPanel = ({
 
         <div className="space-y-8 px-8 py-6">
           {/* Experience Level */}
+          <div>
+            <Label className="text-base font-semibold text-[#667185] block mb-4">
+              Filter by location
+            </Label>
+            <div className="flex items-center gap-6">
+              <div className="w-full">
+                <Label className="text-sm text-[#344054] font-normal">
+                  State
+                </Label>
+                <Select
+                  value={localFilters.workState}
+                  onValueChange={(value) =>
+                    updateLocalFilter("workState", value)
+                  }
+                >
+                  <SelectTrigger className="mt-1 h-11 rounded-xl border-gray-300 font-light">
+                    <SelectValue placeholder="Select option" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white rounded-xl font-light">
+                    {nigerianStates.map((state) => (
+                      <SelectItem key={state} value={state}>
+                        {state}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="w-full">
+                <Label className="text-sm text-[#344054] font-normal">
+                  LGA
+                </Label>
+                <Select
+                  value={localFilters.location}
+                  onValueChange={(value) =>
+                    updateLocalFilter("location", value)
+                  }
+                  disabled={!localFilters.workState}
+                >
+                  <SelectTrigger className="mt-1 h-11 rounded-xl border-gray-300 font-light">
+                    <SelectValue
+                      placeholder={
+                        localFilters.location
+                          ? "Select option"
+                          : "Select state first"
+                      }
+                    />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white rounded-xl font-light">
+                    {availableLGAs.map((lga) => (
+                      <SelectItem key={lga} value={lga}>
+                        {lga}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
           <div>
             <label className="text-base font-semibold text-[#667185] block mb-1">
               Filter by experience
