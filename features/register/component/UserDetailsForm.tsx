@@ -72,7 +72,7 @@ export default function UserDetailsForm({ email }: { email: string }) {
           description: "Please verify your phone number to continue",
           variant: "success",
         });
-        router.push("/dashboard");
+        router.push("/onboarding");
       }
     } catch (error: any) {
       toast({

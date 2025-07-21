@@ -445,7 +445,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
         open={openReport}
         onClose={() => setOpenReport(false)}
         name={caregiver?.firstName || ""}
-        connectId={id}
+        connectId={caregiver?.connectionId || ""}
       />
     </div>
   );

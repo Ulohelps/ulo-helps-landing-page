@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderWrapper from "@/components/header-wrap";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { careseekersService } from "@/lib/services/careseekersService";
@@ -15,7 +15,6 @@ import {
 } from "@/components/icons";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { title } from "process";
 import { useRouter } from "next/navigation";
 import { Check } from "lucide-react";
 
@@ -100,9 +99,11 @@ const Onboarding = () => {
     setError("");
   };
 
-  if (profile && !profile.primaryService) {
-    return null;
-  }
+  useEffect(() => {
+    if (profile?.primaryService) {
+      setService(profile.primaryService);
+    }
+  }, [profile?.primaryService]);
 
   return (
     <div>

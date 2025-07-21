@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { careseekersService } from "@/lib/services/careseekersService";
 import { useCareseekersStore } from "@/lib/stores/careseeker-store";
 import { Loader } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OnboardingContent from "./OnboardingContent";
 
 interface CustomModalProps {
@@ -60,9 +60,12 @@ const OnboardingModal = ({ open, onClose }: CustomModalProps) => {
     }
   };
 
-  if (profile && !profile.primaryService) {
-    return null;
-  }
+  useEffect(() => {
+    if (profile?.primaryService) {
+      setService(profile.primaryService);
+    }
+  }, [profile?.primaryService]);
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent
