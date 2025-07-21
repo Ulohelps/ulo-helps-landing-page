@@ -89,8 +89,8 @@ export interface SearchCaregiversParams {
   minSalary?: number;
   maxSalary?: number;
   experienceLevel?: string;
-  genders?: string;
-  ethnicities?: string;
+  genders?: string[];
+  ethnicities?: string[];
   languages?: string[];
   availability?: string;
   liveInAvailable?: boolean;

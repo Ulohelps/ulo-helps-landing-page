@@ -19,6 +19,12 @@ interface FeedbackPayload {
   reasonsNotHired?: string[];
 }
 
+interface ReportCaregiverPayload {
+  rating: number;
+  description: string;
+  actionsTaken: string;
+}
+
 export const careseekersService = {
   /**
    * Get care seeker profile
@@ -65,6 +71,12 @@ export const careseekersService = {
   sendFeedback: async (payload: FeedbackPayload, connectId: string) => {
     return api.post(`/connections/${connectId}/feedback`, payload);
   },
+  reportCaregiver: async (
+    payload: ReportCaregiverPayload,
+    connectId: string
+  ) => {
+    return api.post(`/connections/${connectId}/report`, payload);
+  },
   getCaregiverFeedback: async (connectId: string) => {
     return api.get(`/connections/${connectId}/feedback`);
   },
@@ -73,5 +85,8 @@ export const careseekersService = {
   },
   deleteCareseeker: async (payload: { reason: string }) => {
     return api.delete("/careseekers", { data: payload });
+  },
+  prefferedServiceType: async (payload: { primaryService: string }) => {
+    return api.patch("/careseekers/primary-service", payload);
   },
 };

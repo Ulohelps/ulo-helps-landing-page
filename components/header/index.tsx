@@ -41,6 +41,8 @@ import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
 import { notificationService } from "@/lib/services/notificationService";
 import { useToast } from "@/hooks/use-toast";
 import { formatDistanceToNow } from "date-fns";
+import ServiceIcon from "../icons/ServiceIcon";
+import UserIcon from "../icons/UserIcon";
 
 interface Notification {
   id: string;
@@ -83,7 +85,7 @@ const getNotificationIcon = (type: Notification["type"]) => {
 };
 
 export default function Header() {
-  const { profile } = useCareseekersStore();
+  const { profile, setOpenServiceModal } = useCareseekersStore();
   const { logout } = useAuthStore();
   const pathname = usePathname();
   const router = useRouter();
@@ -107,40 +109,6 @@ export default function Header() {
     }
   };
 
-  /* const markAsRead = async (id: string) => {
-    try {
-      await notificationService.markAsRead(id);
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-      );
-      setUnreadCount((prev) => prev - 1);
-    } catch (error) {
-      console.error("Failed to mark notification as read:", error);
-      toast({
-        title: "Error",
-        description: "Failed to update notification status",
-        variant: "error",
-      });
-    }
-  }; */
-
-  /*  const markAllAsRead = async () => {
-    if (!user?.id) return;
-
-    try {
-      await notificationService.markAllAsRead(user.id);
-      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
-      setUnreadCount(0);
-    } catch (error) {
-      console.error("Failed to mark all as read:", error);
-      toast({
-        title: "Error",
-        description: "Failed to update notifications",
-        variant: "error",
-      });
-    }
-  }; */
-
   const handleLogout = () => {
     logout();
     router.push("/auth/login");
@@ -151,12 +119,11 @@ export default function Header() {
   useEffect(() => {
     fetchNotifications();
 
-    const interval = setInterval(fetchNotifications, 300000); // Refresh every 5 minutes
+    const interval = setInterval(fetchNotifications, 300000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Refresh notifications when dropdown opens
   useEffect(() => {
     if (notificationOpen) {
       fetchNotifications();
@@ -322,30 +289,36 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 align="end"
-                className="w-56 bg-white rounded-xl border border-[#EAECF0] shadow-xl mt-2 p-0"
+                className="w-[248px ] bg-white rounded-xl border border-[#EAECF0] shadow-xl mt-2 p-0"
               >
                 <DropdownMenuItem
-                  className="px-4 py-3 cursor-pointer focus:bg-[#F9FAFB]"
+                  className="px-6 py-4 border-b border-[#E4E7EC] cursor-pointer focus:bg-[#F9FAFB]"
                   onClick={() => router.push("/account-settings")}
                 >
                   <div className="flex items-center gap-3">
-                    {profile?.profileImageUrl ? (
-                      <Image
-                        src={profile.profileImageUrl}
-                        alt="Profile"
-                        width={40}
-                        height={40}
-                        className="w-6 h-6 rounded-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-6 h-6 rounded-full border border-[#D0D5DD] flex items-center justify-center bg-white">
-                        <User2 className="w-4 h-4 text-[#475467]" />
-                      </div>
-                    )}
+                    <UserIcon />
                     <span className="text-sm font-medium text-[#101828]">
                       Account settings
                     </span>
                   </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center px-6 py-4 border-b border-[#E4E7EC] "
+                  onClick={() => setOpenServiceModal(true)}
+                >
+                  <ServiceIcon />
+                  <span className="text-sm font-medium text-[#101828]">
+                    Change service selection
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className="flex items-center px-6 py-4 border-b border-[#E4E7EC] "
+                  onClick={() => router.push("/request-caregiver")}
+                >
+                  <SendIcon className="text-[#475367]" />
+                  <span className="text-sm font-medium text-[#101828]">
+                    Request caregiver
+                  </span>
                 </DropdownMenuItem>
                 <div className="px-4 py-3 border-y border-[#EAECF0] bg-[#F9FAFB]">
                   <p className="text-xs font-medium text-[#475467] mb-1">

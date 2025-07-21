@@ -25,6 +25,7 @@ import FeedbackCard from "./components/FeedbackCard";
 import Guidelines from "./components/Guidelines";
 import { useRouter } from "next/navigation";
 import SettingsModal from "../account-settings/components/SettingsModal";
+import ReportModal from "./components/ReportModal";
 
 export default function CaregiverProfile({ id }: { id: string }) {
   const [connected, setConnected] = useState(false);
@@ -38,6 +39,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
   const [isBookmarked, setIsBookmarked] = useState(caregiver?.isBookmarked);
   const [isGuarantor, setIsGuarantor] = useState(false);
   const [openGuarantor, setOpenGuarantor] = useState(false);
+  const [openReport, setOpenReport] = useState(false);
 
   const { profile, connectWithCaregiver } = useCareseekersStore();
 
@@ -268,6 +270,7 @@ export default function CaregiverProfile({ id }: { id: string }) {
             setOpenGuidelines={setOpenGuidelines}
             saved={caregiver?.isBookmarked ?? false}
             handleSaveCaregiver={handleBookmarkToggle}
+            setOpenReport={setOpenReport}
           />
         </div>
       </HeaderWrapper>
@@ -437,6 +440,12 @@ export default function CaregiverProfile({ id }: { id: string }) {
         }
         btnText2={"I agree to the terms"}
         btnText1={"cancel"}
+      />
+      <ReportModal
+        open={openReport}
+        onClose={() => setOpenReport(false)}
+        name={caregiver?.firstName || ""}
+        connectId={id}
       />
     </div>
   );

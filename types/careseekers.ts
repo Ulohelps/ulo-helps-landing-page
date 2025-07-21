@@ -43,9 +43,11 @@ export interface CareseekerProfile {
   profileImageUrl: string | null;
   createdAt: string;
   updatedAt: string;
+  role?: string;
   newCaregiverMatchesNotifications: boolean;
   subscriptionRemindersNotifications: boolean;
   systemAnnouncementsNotifications: boolean;
+  primaryService: string | null;
   user: User;
   subscription: Subscription;
 }

@@ -16,9 +16,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Search, ChevronDown } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { useCaregiverStore } from "@/lib/stores/caregiver-store";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const lagosLGA = [
   "Agege",
@@ -53,108 +52,37 @@ const serviceTypes = [
   { id: "LAUNDRY_WASHER", label: "Laundry Man/Washer" },
 ];
 
-export function CaregiverFilterBar() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const { searchCaregivers } = useCaregiverStore();
-
-  // Initialize state from URL params
-  const [searchTerm, setSearchTerm] = useState(
-    searchParams.get("search") || ""
-  );
-  const [selectedServices, setSelectedServices] = useState<string[]>(
-    searchParams.get("serviceTypes")?.split(",") || []
-  );
-  const [selectedLocation, setSelectedLocation] = useState<string>(
-    searchParams.get("location") || "all"
-  );
-
-  const toggleService = (id: string) => {
-    setSelectedServices((prev) =>
-      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
-    );
+interface CaregiverFilterBarProps {
+  onSearch: (params: { search?: string }) => void;
+  initialFilters?: {
+    search?: string;
   };
+}
 
-  const buildQueryParams = () => {
-    const query: Record<string, string> = {};
+export function CaregiverFilterBar({
+  onSearch,
+  initialFilters = {},
+}: CaregiverFilterBarProps) {
+  const [searchTerm, setSearchTerm] = useState(initialFilters.search || "");
 
-    if (searchTerm.trim()) query.search = searchTerm.trim();
-    if (selectedServices.length > 0)
-      query.serviceTypes = selectedServices.join(",");
-    if (selectedLocation !== "all") query.location = selectedLocation;
-
-    return new URLSearchParams(query).toString();
-  };
-
-  const handleSearch = async () => {
-    const queryString = buildQueryParams();
-    if (queryString) {
-      router.push(`/find-caregiver?${queryString}`);
-    } else {
-      router.push("/find-caregiver");
-    }
+  const handleSearch = () => {
+    const searchParams = {
+      search: searchTerm.trim() || undefined,
+    };
+    onSearch(searchParams);
   };
 
   return (
-    <div className="w-full max-w-[1136px] mx-auto bg-white  rounded-[16px] mt-8 flex flex-col md:flex-row md:items-center md:h-[72px] overflow-hidden md:gap-2">
+    <div className="w-full max-w-[1136px] mx-auto bg-white rounded-[16px] mt-8 flex flex-col md:flex-row md:items-center md:h-[72px] overflow-hidden md:gap-2">
       {/* Search input */}
       <Input
         placeholder="Search by keyword"
-        className="py-3 text-base text-[#667185] font-normal px-4 md:px-8 border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none md:border-r"
+        className="py-3 text-base text-[#667185] font-normal px-4 md:px-8 border-none"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSearch()}
       />
 
-      {/* Multi-select service types */}
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            className="flex items-center justify-between w-full md:w-auto px-4 md:px-8 py-3 text-base text-[#667185] font-normal border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none md:border-r h-full"
-          >
-            {selectedServices.length > 0
-              ? `${selectedServices.length} selected`
-              : "Service: All"}
-            <ChevronDown className="ml-2 h-4 w-4" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-64 p-2 bg-white rounded-[20px] border-none shadow-md">
-          {serviceTypes.map((service) => (
-            <label
-              key={service.id}
-              className="flex items-center gap-2 py-1 px-2 rounded hover:bg-gray-50 cursor-pointer"
-            >
-              <Checkbox
-                checked={selectedServices.includes(service.id)}
-                onCheckedChange={() => toggleService(service.id)}
-                className="border-[#D0D5DD] rounded-md h-4 w-4"
-              />
-              <span className="text-base text-[#667185] ">{service.label}</span>
-            </label>
-          ))}
-        </PopoverContent>
-      </Popover>
-
-      {/* Location select */}
-      <Select
-        value={selectedLocation}
-        onValueChange={(value) => setSelectedLocation(value)}
-      >
-        <SelectTrigger className="flex items-center justify-between px-4 md:px-8 py-3 text-base text-[#667185] border md:border-0 border-[#D0D5DD] rounded-md md:rounded-none h-full">
-          <SelectValue placeholder="Location: All" />
-        </SelectTrigger>
-        <SelectContent className="w-64 p-2 bg-white rounded-[20px] border-none shadow-md text-base text-[#667185]">
-          <SelectItem value="all">Location: All</SelectItem>
-          {lagosLGA.map((lga) => (
-            <SelectItem key={lga} value={lga}>
-              {lga}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      {/* Search button */}
       <Button
         onClick={handleSearch}
         className="flex items-center justify-center flex-row-reverse md:flex-row gap-2 w-full md:w-auto py-3 h-full text-base text-[#1D2739] font-semibold rounded-t-none rounded-b-[12px] md:rounded-[12px] md:rounded-l-none md:rounded-r-[16px]"

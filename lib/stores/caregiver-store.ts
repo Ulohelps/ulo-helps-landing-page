@@ -16,7 +16,7 @@ interface CaregiverStoreState {
   chefs: Caregiver[] | null;
 
   // Actions
-  searchCaregivers: (params: SearchCaregiversParams) => Promise<void>;
+  searchCaregivers: (params: Partial<SearchCaregiversParams>) => Promise<void>;
   resetSearch: () => void;
   setSearchParams: (params: Partial<SearchCaregiversParams>) => void;
   clearSearchParams: () => void;
@@ -44,18 +44,30 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
     search: "",
     serviceTypes: [],
     location: "",
-    maxSalary: 0,
     minSalary: 0,
+    maxSalary: 0,
+    experienceLevel: "",
+    genders: [],
+    ethnicities: [],
+    languages: [],
+    availability: "",
+    liveInAvailable: undefined,
+    status: "",
   },
 
   searchCaregivers: async (params) => {
     set({ loading: true, error: null });
     try {
-      const response = await caregiverService.getCaregivers(params);
+      // Merge new params with existing ones
+      const currentParams = get().searchParams;
+      const mergedParams = { ...currentParams, ...params };
+
+      const response = await caregiverService.getCaregivers(mergedParams);
+
       set({
         caregivers: response.data,
-        totalResults: response.data.total,
-        searchParams: params,
+        totalResults: response.data.length,
+        searchParams: mergedParams,
         loading: false,
       });
     } catch (error: any) {
@@ -76,6 +88,15 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
         search: "",
         serviceTypes: [],
         location: "",
+        minSalary: 0,
+        maxSalary: 0,
+        experienceLevel: "",
+        genders: [],
+        ethnicities: [],
+        languages: [],
+        availability: "",
+        liveInAvailable: undefined,
+        status: "",
       },
       totalResults: 0,
       error: null,
@@ -87,23 +108,32 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
       searchParams: {
         ...state.searchParams,
         ...params,
-        page: 1,
+        page: 1, // Reset to first page when filters change
       },
     }));
   },
+
   clearSearchParams: () => {
-    set((state) => ({
+    set({
       searchParams: {
         page: 1,
         limit: 10,
         search: "",
         serviceTypes: [],
         location: "",
+        minSalary: 0,
+        maxSalary: 0,
+        experienceLevel: "",
+        genders: [],
+        ethnicities: [],
+        languages: [],
+        availability: "",
+        liveInAvailable: undefined,
+        status: "",
       },
-    }));
+    });
   },
 
-  // Reusable function to fetch by service type
   fetchByServiceType: async (serviceType: string) => {
     try {
       const response = await caregiverService.getCaregivers({
@@ -117,6 +147,7 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
       return [];
     }
   },
+
   getBookmarkedCaregivers: async () => {
     try {
       const response = await caregiverService.getBookmarkedCaregivers();
@@ -128,18 +159,22 @@ export const useCaregiverStore = create<CaregiverStoreState>((set, get) => ({
       return { success: false, data: [] };
     }
   },
+
   getDrivers: async () => {
     const data = await get().fetchByServiceType("DRIVER");
     set({ drivers: data });
   },
+
   getNannies: async () => {
     const data = await get().fetchByServiceType("CHILDCARE_NANNY");
     set({ nannies: data });
   },
+
   getHousekeepers: async () => {
     const data = await get().fetchByServiceType("HOUSEKEEPER");
     set({ housekeepers: data });
   },
+
   getChefs: async () => {
     const data = await get().fetchByServiceType("CHEF");
     set({ chefs: data });

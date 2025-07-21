@@ -12,6 +12,7 @@ interface CareseekerStoreState {
   isLoading: boolean;
   isUpdating: boolean;
   error: string | null;
+  openServiceModal: boolean;
 
   // Actions
   fetchProfile: () => Promise<CareseekerProfile>;
@@ -26,6 +27,7 @@ interface CareseekerStoreState {
   getHiredCaregivers: () => Promise<{ success: boolean; data: any }>;
   getCurrentSubscription: () => Promise<{ success: boolean; data: any }>;
   reset: () => void;
+  setOpenServiceModal: (service: boolean) => void;
 }
 
 export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
@@ -33,6 +35,7 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
   isLoading: false,
   isUpdating: false,
   error: null,
+  openServiceModal: false,
 
   fetchProfile: async () => {
     set({ isLoading: true, error: null });
@@ -171,4 +174,5 @@ export const useCareseekersStore = create<CareseekerStoreState>((set, get) => ({
       isUpdating: false,
       error: null,
     }),
+  setOpenServiceModal: (service: boolean) => set({ openServiceModal: service }),
 }));

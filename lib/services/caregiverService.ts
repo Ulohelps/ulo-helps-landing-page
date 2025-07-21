@@ -9,8 +9,8 @@ export interface SearchCaregivers {
   minSalary?: number;
   maxSalary?: number;
   experienceLevel?: string;
-  genders?: string;
-  ethnicities?: string;
+  genders?: string[];
+  ethnicities?: string[];
   languages?: string[];
   availability?: string;
   liveInAvailable?: boolean;
@@ -22,7 +22,7 @@ export const caregiverService = {
     const queryParams = new URLSearchParams();
 
     queryParams.append("page", (params.page ?? 1).toString());
-    queryParams.append("limit", (params.limit ?? 10).toString());
+    queryParams.append("limit", (params.limit ?? 6).toString());
 
     if (params.search) queryParams.append("search", params.search);
     if (params.location) queryParams.append("location", params.location);

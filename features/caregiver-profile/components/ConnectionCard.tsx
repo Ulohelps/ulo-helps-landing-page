@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import whatsappIcon from "@/public/icons/Brands.svg";
 import CautionIcon from "@/public/icons/caution.svg";
-import { Loader, Mail, Phone } from "lucide-react";
+import { Loader, Mail, Phone, TriangleAlert } from "lucide-react";
 import Image from "next/image";
 
 interface ConnectionCardProps {
@@ -18,6 +18,7 @@ interface ConnectionCardProps {
   connectDate: string;
   hiredDate?: string;
   setOpenGuidelines: (val: boolean) => void;
+  setOpenReport: (val: boolean) => void;
   saved: boolean;
   handleSaveCaregiver: () => void;
 }
@@ -36,6 +37,7 @@ const ConnectionCard = ({
   connectDate,
   hiredDate,
   setOpenGuidelines,
+  setOpenReport,
 }: ConnectionCardProps) => {
   function formatCustomDate(dateString: string): string {
     const date = new Date(dateString);
@@ -129,6 +131,15 @@ const ConnectionCard = ({
             >
               View safety guidelines
             </Button>
+            {hired && (
+              <div
+                onClick={() => setOpenReport(true)}
+                className="flex items-center justify-center gap-6 text-base text-[#D42620] font-semibold cursor-pointer"
+              >
+                <TriangleAlert />
+                <p>Report</p>
+              </div>
+            )}
           </div>
         )}
       </CardContent>

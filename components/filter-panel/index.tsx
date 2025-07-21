@@ -8,8 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useCaregiverStore } from "@/lib/stores/caregiver-store";
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { X } from "lucide-react";
@@ -17,10 +15,21 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 
-type Props = {
+interface FilterValues {
+  minSalary?: number;
+  maxSalary?: number;
+  experienceLevel?: string;
+  genders?: string[];
+  ethnicities?: string[];
+  languages?: string[];
+}
+
+interface FilterPanelProps {
   visible: boolean;
   onClose: () => void;
-};
+  onApplyFilters: (filters: Partial<FilterValues>) => void;
+  initialFilters?: Partial<FilterValues>;
+}
 
 const experienceLevels = [
   { value: "LESS_THAN_1_YEAR", label: "Less than 1 year" },
@@ -44,6 +53,7 @@ const languageOptions = [
   "French",
   "Spanish",
 ];
+
 const ethnicityOptions = [
   "Igbo",
   "Yoruba",
@@ -57,66 +67,82 @@ const ethnicityOptions = [
   "Edo",
 ];
 
-const FilterPanel = ({ visible, onClose }: Props) => {
-  const [rateRange, setRateRange] = useState<[number, number]>([0, 0]);
-  const [experience, setExperience] = useState("");
-  const [gender, setGender] = useState<string[]>([]);
-  const [ethnicity, setEthnicity] = useState<string[]>([]);
-  const [languages, setLanguages] = useState<string[]>([]);
+const FilterPanel = ({
+  visible,
+  onClose,
+  onApplyFilters,
+  initialFilters = {},
+}: FilterPanelProps) => {
+  const [localFilters, setLocalFilters] = useState<Partial<FilterValues>>({
+    minSalary: 0,
+    maxSalary: 0,
+    experienceLevel: "",
+    genders: [],
+    ethnicities: [],
+    languages: [],
+  });
 
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const { searchCaregivers, setSearchParams } = useCaregiverStore();
-
-  // Prefill from URL query
   useEffect(() => {
-    const min = searchParams.get("minSalary");
-    const max = searchParams.get("maxSalary");
-    const exp = searchParams.get("experienceLevel");
-    const g = searchParams.get("gender");
-    const eth = searchParams.get("ethnicity");
-    const langs = searchParams.get("languages");
+    if (visible) {
+      setLocalFilters({
+        minSalary: initialFilters.minSalary || 0,
+        maxSalary: initialFilters.maxSalary || 0,
+        experienceLevel: initialFilters.experienceLevel || "",
+        genders: initialFilters.genders || [],
+        ethnicities: initialFilters.ethnicities || [],
+        languages: initialFilters.languages || [],
+      });
+    }
+  }, [visible, initialFilters]);
 
-    if (min && max) setRateRange([+min, +max]);
-    if (exp) setExperience(exp);
-    if (g) setGender(g.split(","));
-    if (eth) setEthnicity(eth.split(","));
-    if (langs) setLanguages(langs.split(","));
-  }, [visible]);
+  const handleApply = () => {
+    // Prepare the filters to apply
+    const filtersToApply: Partial<FilterValues> = {
+      minSalary: localFilters.minSalary || undefined,
+      maxSalary: localFilters.maxSalary || undefined,
+      experienceLevel: localFilters.experienceLevel || undefined,
+      genders: localFilters.genders?.length ? localFilters.genders : undefined,
+      ethnicities: localFilters.ethnicities?.length
+        ? localFilters.ethnicities
+        : undefined,
+      languages: localFilters.languages?.length
+        ? localFilters.languages
+        : undefined,
+    };
 
-  const handleApplyFilters = () => {
-    const query: Record<string, any> = {};
-
-    const search = searchParams.get("search");
-    const location = searchParams.get("location");
-    const serviceTypes = searchParams.get("serviceTypes");
-
-    if (search) query.search = search;
-    if (location) query.location = location;
-    if (serviceTypes) query.serviceTypes = serviceTypes;
-
-    if (rateRange[0]) query.minSalary = rateRange[0];
-    if (rateRange[1]) query.maxSalary = rateRange[1];
-    if (experience) query.experienceLevel = experience;
-    if (gender.length) query.genders = gender.join(",");
-    if (ethnicity.length) query.ethnicities = ethnicity.join(",");
-    if (languages.length) query.languages = languages.join(",");
-
-    const queryString = new URLSearchParams(query).toString();
-
-    setSearchParams({ ...query, page: 1, limit: 10 });
-    searchCaregivers({ ...query, page: 1, limit: 10 });
-
-    router.push(`/find-caregiver?${queryString}`);
+    onApplyFilters(filtersToApply);
     onClose();
   };
 
-  const clearFilters = () => {
-    setRateRange([0, 0]);
-    setExperience("");
-    setGender([]);
-    setEthnicity([]);
-    setLanguages([]);
+  const handleClear = () => {
+    setLocalFilters({
+      minSalary: 0,
+      maxSalary: 0,
+      experienceLevel: "",
+      genders: [],
+      ethnicities: [],
+      languages: [],
+    });
+
+    // Apply empty filters to reset
+    onApplyFilters({
+      minSalary: undefined,
+      maxSalary: undefined,
+      experienceLevel: undefined,
+      genders: undefined,
+      ethnicities: undefined,
+      languages: undefined,
+    });
+  };
+
+  const updateLocalFilter = <K extends keyof FilterValues>(
+    key: K,
+    value: FilterValues[K]
+  ) => {
+    setLocalFilters((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
   };
 
   return (
@@ -158,12 +184,17 @@ const FilterPanel = ({ visible, onClose }: Props) => {
         </div>
 
         <div className="space-y-8 px-8 py-6">
-          {/* Experience */}
+          {/* Experience Level */}
           <div>
             <label className="text-base font-semibold text-[#667185] block mb-1">
               Filter by experience
             </label>
-            <Select value={experience} onValueChange={setExperience}>
+            <Select
+              value={localFilters.experienceLevel || ""}
+              onValueChange={(value) =>
+                updateLocalFilter("experienceLevel", value)
+              }
+            >
               <SelectTrigger className="border-[#D0D5DD] rounded-[12px] py-3 px-4 text-[#667085] h-10">
                 <SelectValue placeholder="Select option" />
               </SelectTrigger>
@@ -177,7 +208,7 @@ const FilterPanel = ({ visible, onClose }: Props) => {
             </Select>
           </div>
 
-          {/* Salary range */}
+          {/* Salary Range */}
           <div>
             <Label className="text-base font-semibold text-[#667185] block mb-4">
               Filter by rate
@@ -193,12 +224,12 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                   </div>
                   <Input
                     type="number"
-                    value={rateRange[0]}
+                    value={localFilters.minSalary || 0}
                     onChange={(e) =>
-                      setRateRange([
-                        parseInt(e.target.value || "0"),
-                        rateRange[1],
-                      ])
+                      updateLocalFilter(
+                        "minSalary",
+                        Number(e.target.value) || 0
+                      )
                     }
                     className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px]"
                   />
@@ -212,12 +243,12 @@ const FilterPanel = ({ visible, onClose }: Props) => {
                   </div>
                   <Input
                     type="number"
-                    value={rateRange[1]}
+                    value={localFilters.maxSalary || 0}
                     onChange={(e) =>
-                      setRateRange([
-                        rateRange[0],
-                        parseInt(e.target.value || "0"),
-                      ])
+                      updateLocalFilter(
+                        "maxSalary",
+                        Number(e.target.value) || 0
+                      )
                     }
                     className="rounded-l-none flex-1 px-3 h-10 border-[#D0D5DD] rounded-r-[10px]"
                   />
@@ -233,14 +264,14 @@ const FilterPanel = ({ visible, onClose }: Props) => {
             </label>
             <ToggleGroup
               type="multiple"
-              value={gender}
-              onValueChange={setGender}
+              value={localFilters.genders || []}
+              onValueChange={(value) => updateLocalFilter("genders", value)}
               className="flex justify-start gap-2"
             >
               {["Male", "Female"].map((label) => (
                 <ToggleGroupItem
                   key={label}
-                  value={label.toLocaleUpperCase()}
+                  value={label.toUpperCase()}
                   className="data-[state=on]:bg-[var(--ulo-orange)] data-[state=on]:text-white"
                 >
                   {label}
@@ -256,8 +287,8 @@ const FilterPanel = ({ visible, onClose }: Props) => {
             </label>
             <ToggleGroup
               type="multiple"
-              value={ethnicity}
-              onValueChange={setEthnicity}
+              value={localFilters.ethnicities || []}
+              onValueChange={(value) => updateLocalFilter("ethnicities", value)}
               className="flex justify-start gap-2 flex-wrap"
             >
               {ethnicityOptions.map((label) => (
@@ -279,8 +310,8 @@ const FilterPanel = ({ visible, onClose }: Props) => {
             </label>
             <ToggleGroup
               type="multiple"
-              value={languages}
-              onValueChange={setLanguages}
+              value={localFilters.languages || []}
+              onValueChange={(value) => updateLocalFilter("languages", value)}
               className="flex justify-start gap-2 flex-wrap"
             >
               {languageOptions.map((label) => (
@@ -300,14 +331,14 @@ const FilterPanel = ({ visible, onClose }: Props) => {
         <div className="flex justify-between bg-[#F7F9FC] gap-2 p-8 border-t border-[#E4E7EC]">
           <Button
             variant="outline"
-            onClick={clearFilters}
+            onClick={handleClear}
             className="text-[#344054] bg-white border-[#D0D5DD] h-9"
           >
             Clear filters
           </Button>
           <Button
             className="bg-[var(--ulo-orange)] hover:bg-[var(--ulo-orange)]/90 h-9"
-            onClick={handleApplyFilters}
+            onClick={handleApply}
           >
             Apply filters
           </Button>
