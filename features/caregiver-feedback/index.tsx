@@ -108,13 +108,13 @@ export default function CaregiverFeedbackForm() {
           <>
             <Button
               variant="outline"
-              className="w-[103px] bg-white"
+              className="w-full md:w-[103px] bg-white"
               onClick={() => setOpen(false)}
             >
               cancel
             </Button>
             <Button
-              className="w-[186px] bg-[#F6AA3D] hover:bg-[#e19a32] text-[#1D2739] font-semibold"
+              className="w-full md:w-[186px] bg-[#F6AA3D] hover:bg-[#e19a32] text-[#1D2739] font-semibold"
               onClick={() => back()}
             >
               Done

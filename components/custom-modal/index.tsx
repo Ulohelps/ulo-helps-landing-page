@@ -34,7 +34,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent
-        className="sm:max-w-[560px] w-full max-w-full sm:rounded-[32px] p-0 rounded-none border-none sm:p-8 bg-white"
+        className="sm:max-w-[560px] w-full max-w-full sm:rounded-[32px] p-0 rounded-none border-none px-4 sm:p-8 bg-white"
         style={{
           top: "50%",
           left: "50%",
@@ -63,10 +63,9 @@ const CustomModal: React.FC<CustomModalProps> = ({
         </DialogHeader>
 
         <DialogFooter
-          className={` gap-4 mt-6 p-6 rounded-b-[32px] w-full ${
+          className={`flex items-start justify-between gap-4 mt-6 p-6 rounded-b-[32px] w-full ${
             success ? "bg-[#E7F6EC]" : "bg-[#FEE4E2]"
           }`}
-          style={{ display: "flex", justifyContent: "space-between" }}
         >
           {buttons}
         </DialogFooter>
