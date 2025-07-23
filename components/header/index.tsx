@@ -1,29 +1,9 @@
 "use client";
 
-import {
-  Bell,
-  ChevronDown,
-  Home,
-  Users,
-  Bookmark,
-  User,
-  LogOut,
-  User2,
-  Search,
-  Menu,
-  SendIcon,
-  Check,
-  CircleCheck,
-  Loader,
-} from "lucide-react";
-import { useEffect, useState } from "react";
+import { Home, Users, Bookmark, Menu } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import {
   Sheet,
   SheetContent,
@@ -31,23 +11,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
-
-interface Notification {
-  id: string;
-  title: string;
-  body: string;
-  type: "info" | "success" | "warning" | "error";
-  read: boolean;
-  createdAt: string;
-  updatedAt: string;
-  meta?: Record<string, any>;
-}
 
 const navLinks = [
   { href: "/about-us", label: "About us", icon: Home },
@@ -62,7 +30,7 @@ export default function Header() {
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between">
+      <div className="mx-auto flex max-w-[1136px] items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -93,9 +61,9 @@ export default function Header() {
         </nav>
 
         {/* Navigation */}
-        <div className="flex items-center gap-4 md:gap-6">
-          <Button variant="outline">Login</Button>
-          <Button variant="outline">Get Started</Button>
+        <div className="hidden md:flex items-center gap-4 md:gap-6">
+          <Button variant="outline">Log in</Button>
+          <Button>Get Started</Button>
         </div>
         {/* Mobile Menu */}
         <Sheet open={open} onOpenChange={setOpen}>
@@ -131,9 +99,9 @@ export default function Header() {
                   </Link>
                 ))}
               </nav>
-              <div className="p-4 border-t border-[#EAECF0]">
-                <Button variant="outline">Login</Button>
-                <Button variant="outline">Get Started</Button>
+              <div className="p-4 border-t border-[#EAECF0] flex items-center justify-between">
+                <Button variant="outline">Log in</Button>
+                <Button>Get Started</Button>
               </div>
             </div>
           </SheetContent>
