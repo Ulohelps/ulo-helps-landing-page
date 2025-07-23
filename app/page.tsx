@@ -1,3 +1,4 @@
+import { FAQs } from "@/components/FAQs";
 import { HeroSection } from "@/components/hero-section";
 import NoteSection from "@/components/note-section";
 import ServiceSection from "@/components/services-section";
@@ -10,6 +11,7 @@ export default function HomePage() {
       <NoteSection />
       <VerficationSection />
       <ServiceSection />
+      <FAQs />
     </>
   );
 }
