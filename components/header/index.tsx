@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
 
@@ -26,7 +26,6 @@ const navLinks = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
@@ -49,9 +48,9 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-3 py-2 rounded-lg text-sm font-medium ${
+              className={`px-3 py-2 rounded-[8px] text-base font-medium ${
                 pathname === link.href
-                  ? "bg-[#F0F9FF] text-[#026AA2]"
+                  ? "bg-[#FCE3BE4D] text-[#523914]"
                   : "text-[#475467] hover:bg-[#F9FAFB]"
               } transition-colors`}
             >
