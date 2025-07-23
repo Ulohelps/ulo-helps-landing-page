@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "../providers";
+import Header from "@/components/header";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body className={`${plusJakarta.className} bg-[#fafafa]  font-medium`}>
+        <Header />
         <Providers>{children}</Providers>
       </body>
     </html>
