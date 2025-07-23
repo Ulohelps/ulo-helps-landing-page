@@ -7,7 +7,7 @@ const NoteSection = () => {
   return (
     <div className="max-w-[1136px] mx-auto flex items-center justify-between gap-8 py-12">
       <div className="bg-[#F1473C08] rounded-[24px] p-6 border border-[#F1473C33] h-[360px] w-1/2">
-        <h2 className="text-[32px] text-[#344054] italic font-semibold">
+        <h2 className="text-[32px] text-[#344054] font-semibold">
           Hiring help shouldn’t be <span className="text-[#F1473C]">this</span>{" "}
           hard or risky
         </h2>
@@ -47,7 +47,7 @@ const NoteSection = () => {
       <Image
         src={HelpPic}
         alt=""
-        className="rounded-full w-[556px] h-[556px]"
+        className="rounded-full w-[556px] h-[556px] bg-contain"
       />
     </div>
   );

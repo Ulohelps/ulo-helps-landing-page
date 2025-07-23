@@ -58,7 +58,7 @@ export function FAQs() {
             </TabsTrigger>
             <TabsTrigger
               value="caregivers"
-              className="text-[#06212C] p-6 text-base font-semibold w-full data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FCE3BE] data-[state=active]:border-[#F6AA3D] data-[state=active]:border-b-[3px] rounded-none"
+              className="text-[#06212C] p-6 text-base border-b border-[#F6AA3D] font-semibold w-full data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FCE3BE] data-[state=active]:border-[#F6AA3D] data-[state=active]:border-b-[3px] rounded-none"
             >
               For caregivers
             </TabsTrigger>
