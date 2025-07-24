@@ -14,8 +14,9 @@ import { Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <div className="bg-[#06212C]">
-      <div className="mx-auto max-w-[1136px] py-12 flex flex-1 justify-between">
+    <footer className="bg-[#06212C]">
+      <div className="mx-auto max-w-[1136px] px-4 py-12 flex flex-col md:flex-row flex-wrap justify-between gap-10">
+        {/* Logo & Socials */}
         <div>
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -27,51 +28,87 @@ const Footer = () => {
               priority
             />
           </Link>
-          <div className="flex items-center gap-6 mt-5">
-            <FacebookICon /> <XICon /> <TiktokICon />
+
+          <nav className="flex items-center gap-6 mt-5">
+            <FacebookICon />
+            <XICon />
+            <TiktokICon />
             <InstagramICon />
-          </div>
+          </nav>
         </div>
 
-        <div className="space-y-6">
+        {/* Company Links */}
+        <div className="space-y-3">
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Company</h4>
-          <p className="text-base text-white font-semibold">About ULO</p>
-          <p className="text-base text-white font-semibold">Pricing</p>
-          <p className="text-base text-white font-semibold">For caregivers</p>
-          <p className="text-base text-white font-semibold">FAQs</p>
-        </div>
-        <div className="space-y-6">
-          <h4 className="text-sm text-[#FFFFFFB2] font-medium">Legal</h4>
-          <p className="text-base text-white font-semibold">Privacy policy</p>
-          <p className="text-base text-white font-semibold">
-            Terms & Conditions
-          </p>
+          <ul className="space-y-2">
+            <li>
+              <Link href="#" className="text-base text-white font-semibold">
+                About ULO
+              </Link>
+            </li>
+            <li>
+              <Link href="#" className="text-base text-white font-semibold">
+                Pricing
+              </Link>
+            </li>
+            <li>
+              <Link href="#" className="text-base text-white font-semibold">
+                For caregivers
+              </Link>
+            </li>
+            <li>
+              <Link href="#" className="text-base text-white font-semibold">
+                FAQs
+              </Link>
+            </li>
+          </ul>
         </div>
 
-        <div className="space-y-6 w-[242px]">
+        {/* Legal Links */}
+        <div className="space-y-3">
+          <h4 className="text-sm text-[#FFFFFFB2] font-medium">Legal</h4>
+          <ul className="space-y-2">
+            <li>
+              <Link href="#" className="text-base text-white font-semibold">
+                Privacy policy
+              </Link>
+            </li>
+            <li>
+              <Link href="#" className="text-base text-white font-semibold">
+                Terms & Conditions
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <address className="not-italic space-y-4 w-full md:w-[242px]">
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Contact us</h4>
-          <div className="flex gap-3">
+
+          <div className="flex gap-3 items-start">
             <Mail className="text-[#B4E1F3]" />
-            <p className="text-base text-white font-semibold">
+            <p className="text-base text-white font-semibold break-words">
               contact@ulohelps.com
             </p>
           </div>
-          <div className="flex gap-3">
+
+          <div className="flex gap-3 items-start">
             <PhoneICon />
             <p className="text-base text-white font-semibold">
               +234 813 145 1337
             </p>
           </div>
-          <div className="flex gap-3">
+
+          <div className="flex gap-3 items-start">
             <LocationICon />
             <p className="text-base text-white font-semibold w-[80%]">
               927/928 Bishop Ayobade Cole St, Victoria Island, 3rd Floor,
               Mansard Place, Lagos, 106104
             </p>
           </div>
-        </div>
+        </address>
       </div>
-    </div>
+    </footer>
   );
 };
 

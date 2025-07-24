@@ -54,17 +54,17 @@ const SERVICE_LIST = [
 const ServiceSection = () => {
   return (
     <div className="max-w-[1136px] mx-auto py-12">
-      <div className="w-[60%] mx-auto">
-        <h2 className="text-[32px] text-[#344054] text-center font-semibold">
+      <div className="w-full max-w-[640px] mx-auto text-center mb-12">
+        <h2 className="text-[32px] text-[#344054] font-semibold mb-3">
           Because the right help changes everything
         </h2>
-        <p className="text-base text-[#475367] text-center font-normal">
+        <p className="text-base text-[#475367]">
           Getting the help you need shouldn’t be hard. With ULO, it isn’t. We
           bring you verified caregivers, fast matching, and support every step
           of the way.
         </p>
       </div>
-      <div className="flex items-center justify-between gap-5 overflow-hidden mt-10">
+      <div className="flex items-center justify-between gap-5 overflow-hidden scrollbar-hide overflow-x-scroll mt-10">
         {SERVICE_LIST.map((service) => (
           <div
             key={service.label}

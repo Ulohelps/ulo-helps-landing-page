@@ -159,7 +159,7 @@ const TestimonialCard = ({
       muted ? "opacity-50" : ""
     }`}
   >
-    <div className="w-[52px] h-[52px] bg-[#FCE3BE] rounded-[12px]mb-4 flex items-center justify-center">
+    <div className="w-[52px] h-[52px] bg-[#FCE3BE] rounded-[12px] mb-4 flex items-center justify-center">
       <QouteICon />
       <QouteICon />
     </div>
