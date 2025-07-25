@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import UsersCard from "@/public/images/usercard.png";
+import UsersCard from "@/public/images/image 4.svg";
 import {
   CardICon,
   ShieldICon,
@@ -11,7 +11,7 @@ import {
 
 const VerficationSection = () => {
   return (
-    <section className="max-w-[1136px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-12 px-4">
+    <section className="max-w-[1136px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-20 px-4">
       <Image
         src={UsersCard}
         alt="User verification card"

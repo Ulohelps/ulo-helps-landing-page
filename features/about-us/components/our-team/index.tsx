@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
 
-import Debo from "@/public/images/debo.png";
-import Josh from "@/public/images/josh.png";
-import Hana from "@/public/images/hana.png";
-import Naomi from "@/public/images/naomi.png";
-import Stev from "@/public/images/stev.png";
-import Dan from "@/public/images/dan.png";
-import Mag from "@/public/images/mag.png";
-import Andy from "@/public/images/andy.png";
+import Debo from "@/public/images/theresa-ude-ute-FnZeIo8-unsplash.svg";
+import Josh from "@/public/images/bave-pictures-fl7bASYZgXo-unsplash.svg";
+import Hana from "@/public/images/jeff-kweba-kae-dlerBcw-unsplash.svg";
+import Naomi from "@/public/images/oluwaferanmi-caleb-Q1QRTSeZIxI-unsplash.svg";
+import Stev from "@/public/images/kingsley-osei-abrah-A8tMVOKvCxg-unsplash.svg";
+import Dan from "@/public/images/chris-ejike-tj_rCakvxE8-unsplash.svg";
+import Mag from "@/public/images/bave-pictures-LZf3AcfG7D4-unsplash.svg";
+import Andy from "@/public/images/chukselite-HunNgg3kl1w-unsplash.svg";
 
 const teamMembers = [
   { name: "Deborah Opuogbo", role: "Creative Director", image: Debo },
@@ -23,7 +23,7 @@ const teamMembers = [
 
 const OurTeam = () => {
   return (
-    <section className="max-w-[1136px] mx-auto py-24 px-4">
+    <section className="max-w-[1136px] mx-auto py-32 px-4">
       <h2 className="text-2xl md:text-3xl font-semibold text-center text-[#344054]">
         The team behind the dream
       </h2>

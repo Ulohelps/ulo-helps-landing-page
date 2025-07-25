@@ -1,5 +1,5 @@
 import React from "react";
-import TeamPic from "@/public/images/jointeam.png";
+import TeamPic from "@/public/images/image 4 (1).svg";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 

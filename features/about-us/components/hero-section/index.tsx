@@ -1,16 +1,16 @@
 import Image from "next/image";
-import User1 from "@/public/images/contact-user1.png";
-import User2 from "@/public/images/contact-user2.png";
-import User3 from "@/public/images/contact-user3.png";
-import BgImage from "@/public/images/bg-hero.png";
+import User1 from "@/public/images/francis-odeyemi-i7BZFBAh-dQ-unsplash.svg";
+import User2 from "@/public/images/francis-odeyemi-ezF3j_00bXE-unsplash.svg";
+import User3 from "@/public/images/francis-odeyemi-GUvIyE-_KK0-unsplash.svg";
+import BgImage from "@/public/images/image 6.svg";
 
 export function HeroSection() {
   return (
     <section
-      className="py-[96px] bg-gradient-to-br from-[#f9fcff] to-[#fff4ee]"
+      className="py-32 bg-gradient-to-br from-[#f9fcff] to-[#fff4ee]"
       style={{
         backgroundImage: `url(${BgImage.src})`,
-        backgroundSize: "cover",
+        backgroundSize: "contain",
         backgroundPosition: "center",
       }}
     >
@@ -26,7 +26,7 @@ export function HeroSection() {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 sm:gap-5 mt-6">
+        <div className="flex items-center overflow-x-scroll scrollbar-hide gap-4 sm:gap-5 mt-12">
           <Image
             src={User1}
             alt="user"

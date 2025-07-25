@@ -9,13 +9,13 @@ import {
   XICon,
   LocationICon,
   PhoneICon,
+  MailICon,
 } from "../icons";
-import { Mail } from "lucide-react";
 
 const Footer = () => {
   return (
     <footer className="bg-[#06212C]">
-      <div className="mx-auto max-w-[1136px] px-4 py-12 flex flex-col md:flex-row flex-wrap justify-between gap-10">
+      <div className="mx-auto max-w-[1136px] px-4 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         {/* Logo & Socials */}
         <div>
           <Link href="/" className="flex items-center gap-2">
@@ -42,7 +42,10 @@ const Footer = () => {
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Company</h4>
           <ul className="space-y-2">
             <li>
-              <Link href="#" className="text-base text-white font-semibold">
+              <Link
+                href="/about-us"
+                className="text-base text-white font-semibold"
+              >
                 About ULO
               </Link>
             </li>
@@ -52,12 +55,18 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-base text-white font-semibold">
+              <Link
+                href="/for-caregivers"
+                className="text-base text-white font-semibold"
+              >
                 For caregivers
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-base text-white font-semibold">
+              <Link
+                href="/#faqs"
+                className="text-base text-white font-semibold"
+              >
                 FAQs
               </Link>
             </li>
@@ -69,12 +78,18 @@ const Footer = () => {
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Legal</h4>
           <ul className="space-y-2">
             <li>
-              <Link href="#" className="text-base text-white font-semibold">
+              <Link
+                href="/privacy-and-policy"
+                className="text-base text-white font-semibold"
+              >
                 Privacy policy
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-base text-white font-semibold">
+              <Link
+                href="/terms-of-use"
+                className="text-base text-white font-semibold"
+              >
                 Terms & Conditions
               </Link>
             </li>
@@ -82,26 +97,26 @@ const Footer = () => {
         </div>
 
         {/* Contact */}
-        <address className="not-italic space-y-4 w-full md:w-[242px]">
+        <address className="not-italic space-y-4">
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Contact us</h4>
 
-          <div className="flex gap-3 items-start">
-            <Mail className="text-[#B4E1F3]" />
-            <p className="text-base text-white font-semibold break-words">
+          <div className="flex gap-3 items-center">
+            <MailICon className="w-5 h-5 text-white" />
+            <p className="text-base text-white font-semibold">
               contact@ulohelps.com
             </p>
           </div>
 
-          <div className="flex gap-3 items-start">
-            <PhoneICon />
+          <div className="flex gap-3 items-center">
+            <PhoneICon className="w-5 h-5 text-white" />
             <p className="text-base text-white font-semibold">
               +234 813 145 1337
             </p>
           </div>
 
           <div className="flex gap-3 items-start">
-            <LocationICon />
-            <p className="text-base text-white font-semibold w-[80%]">
+            <LocationICon className="w-5 h-5 text-white mt-1" />
+            <p className="text-base text-white font-semibold break-words w-[80%]">
               927/928 Bishop Ayobade Cole St, Victoria Island, 3rd Floor,
               Mansard Place, Lagos, 106104
             </p>

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import HelpPic from "@/public/images/help.jpg";
+import HelpPic from "@/public/images/baptista-ime-james-dNUviD82WnY-unsplash 2.svg";
 import { TriangleAlert } from "lucide-react";
 
 const NoteSection = () => {
   return (
-    <div className="max-w-[1136px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-12 px-4">
+    <div className="max-w-[1136px] mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-8 py-20 px-4">
       {/* Text Card */}
       <div className="bg-[#F1473C08] rounded-[24px] p-6 border border-[#F1473C33] w-full md:w-1/2 h-fit">
         <h2 className="text-[28px] md:text-[32px] text-[#344054] font-semibold">

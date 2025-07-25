@@ -43,14 +43,14 @@ export function FAQs() {
   ];
 
   return (
-    <section className="py-16 bg-[#f7fbfd]" id="faq">
-      <div className="max-w-[1136px] px-4 mx-auto">
-        <h2 className="text-[32px] font-bold text-center mb-6">
+    <section className="py-20 " id="faqs">
+      <div className="max-w-[1136px] px-4 mx-auto space-y-10">
+        <h2 className="text-[32px] font-bold text-center">
           Frequently asked questions
         </h2>
 
-        <Tabs defaultValue="careseekers" className="w-full mt-6">
-          <TabsList className="flex justify-center mx-auto max-w-full px-4">
+        <Tabs defaultValue="careseekers" className="w-full">
+          <TabsList className="flex justify-center mx-auto w-[328px] px-4">
             <TabsTrigger
               value="careseekers"
               className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-[#F6AA3D] flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FCE3BE] data-[state=active]:border-b-[3px] rounded-none text-center"
@@ -65,7 +65,7 @@ export function FAQs() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="careseekers" className="mt-8">
+          <TabsContent value="careseekers" className="mt-16">
             <Accordion type="single" collapsible className="space-y-5">
               {qas.map((item, idx) => (
                 <AccordionItem
@@ -98,7 +98,6 @@ export function FAQs() {
                   services. Once approved, clients will find and contact you.
                 </AccordionContent>
               </AccordionItem>
-              {/* Add more caregiver FAQs here */}
             </Accordion>
           </TabsContent>
         </Tabs>

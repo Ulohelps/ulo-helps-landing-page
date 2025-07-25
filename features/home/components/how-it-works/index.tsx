@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import CareseekerScreen from "@/public/images/careseeker.png";
+import CareseekerScreen from "@/public/images/How it works image 1.svg";
 
 const HowItWorks = () => {
   return (
@@ -33,18 +33,11 @@ const HowItWorks = () => {
           ))}
         </div>
 
-        {/* Image and Background */}
-        <div className="w-full lg:w-[829px] relative px-4">
-          <div className="p-5 w-full max-w-[749px] mx-auto rounded-[24px] bg-gradient-to-b from-[rgba(246,170,61,0.06)] to-[#F6AA3D]">
-            <Image
-              src={CareseekerScreen}
-              alt="Careseeker screenshot"
-              className="rounded"
-            />
-          </div>
-          {/* Restored blue background */}
-          <div className="hidden lg:block w-full h-[180px] bg-[#1DA5DB] rounded-[24px] absolute -z-10 -bottom-10 right-0"></div>
-        </div>
+        <Image
+          src={CareseekerScreen}
+          alt="Careseeker screenshot"
+          className=""
+        />
       </div>
     </div>
   );

@@ -25,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head></head>
-      <body className={`${plusJakarta.className} bg-[#fafafa]  font-medium`}>
+      <body
+        className={`${plusJakarta.className} bg-[#fafafa] scroll-smooth  font-medium`}
+      >
         <Header />
         <Providers>{children}</Providers>
         <Footer />

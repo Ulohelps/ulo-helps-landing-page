@@ -18,9 +18,9 @@ import { usePathname } from "next/navigation";
 import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
 
 const navLinks = [
-  { href: "/about-us", label: "About us", icon: Home },
-  { href: "/for-caregivers", label: "For caregivers", icon: Users },
-  { href: "/contacts", label: "Contacts", icon: Bookmark },
+  { href: "/about-us", label: "About us" },
+  { href: "/for-caregivers", label: "For caregivers" },
+  { href: "/contacts", label: "Contacts" },
 ];
 
 export default function Header() {
@@ -28,7 +28,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-white shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
+    <header className="fixed w-full top-0 z-[60] bg-white shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
       <div className="mx-auto flex max-w-[1136px] items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -71,29 +71,26 @@ export default function Header() {
               className="md:hidden p-2 text-[#475467] hover:bg-[#F9FAFB] rounded-lg"
               aria-label="Menu"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="w-6 h-6" />
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full max-w-xs p-0 bg-white">
+          <SheetContent side="top" className="w-full h-[320px] p-0 bg-white">
             <div className="h-full flex flex-col">
               <SheetHeader className="px-4 pt-5 pb-4 border-b border-[#EAECF0]">
-                <SheetTitle className="text-sm font-semibold text-[#101828]">
-                  Menu
-                </SheetTitle>
+                <SheetTitle className="text-sm font-semibold text-[#101828]"></SheetTitle>
               </SheetHeader>
               <nav className="flex-1 overflow-y-auto">
-                {navLinks.map(({ href, label, icon: Icon }) => (
+                {navLinks.map(({ href, label }) => (
                   <Link
                     key={href}
                     href={href}
                     onClick={() => setOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 text-sm font-medium ${
+                    className={`flex items-center gap-3 px-4 py-6 text-sm font-medium ${
                       pathname === href
                         ? "bg-[#F0F9FF] text-[#026AA2]"
-                        : "text-[#475467]"
+                        : "text-[#344054]"
                     } border-b border-[#EAECF0]`}
                   >
-                    <Icon className="w-5 h-5" />
                     {label}
                   </Link>
                 ))}

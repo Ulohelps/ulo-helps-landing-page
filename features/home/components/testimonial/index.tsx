@@ -57,7 +57,7 @@ const TestimonialSection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-20 px-4">
+    <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-gray-900 mb-14">
           Don't take our word for it
@@ -68,11 +68,7 @@ const TestimonialSection = () => {
           <div className="flex justify-center items-center gap-6 flex-wrap md:flex-nowrap">
             {/* Left card */}
             <div
-              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all duration-300 ${
-                currentSlide === 0
-                  ? "opacity-0 translate-x-[-20%]"
-                  : "opacity-30 scale-95"
-              }`}
+              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all opacity-30 scale-95 duration-300`}
             >
               <TestimonialCard
                 data={
@@ -92,11 +88,7 @@ const TestimonialSection = () => {
 
             {/* Right card */}
             <div
-              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all duration-300 ${
-                currentSlide === testimonials.length - 1
-                  ? "opacity-0 translate-x-[20%]"
-                  : "opacity-30 scale-95"
-              }`}
+              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all duration-300 opacity-30 scale-95 `}
             >
               <TestimonialCard
                 data={testimonials[(currentSlide + 1) % testimonials.length]}
@@ -155,7 +147,7 @@ const TestimonialCard = ({
   muted?: boolean;
 }) => (
   <div
-    className={`rounded-[24px] border border-[#FCE3BE] bg-[#FCE3BE4D] shadow-md p-8 transition-all ${
+    className={`rounded-[24px] max-w-[524px] border border-[#FCE3BE] bg-[#FCE3BE4D] shadow-md p-8 transition-all ${
       muted ? "opacity-50" : ""
     }`}
   >

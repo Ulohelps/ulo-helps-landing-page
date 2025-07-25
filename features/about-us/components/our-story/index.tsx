@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import ChefPic from "@/public/images/sign-up/emediong-umoh-fY9ZV9-475o-unsplash 1.png";
+import ChefPic from "@/public/images/Contact image.svg";
 
 const OurStory = () => {
   return (

@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone } from "lucide-react";
 import React, { useState } from "react";
-import BgImage from "@/public/images/bg-hero.png";
+import BgImage from "@/public/images/image 6.svg";
 
 const ContactUS = () => {
   const [email, setEmail] = useState("");
@@ -24,7 +24,7 @@ const ContactUS = () => {
         }}
       >
         <div className="max-w-[1136px] mx-auto">
-          <div className="max-w-[556px] py-12 md:py-[96px]">
+          <div className="max-w-[556px] py-32">
             <h2 className="text-2xl md:text-[32px] text-[#344054] font-semibold mb-4">
               Get in touch with our team
             </h2>
@@ -37,7 +37,7 @@ const ContactUS = () => {
       </div>
       <div className="flex flex-col md:flex-row gap-10 py-12 md:py-[96px] max-w-[1136px] mx-auto">
         {/* Contact Details */}
-        <div className="w-full md:w-1/2 space-y-6">
+        <div className="w-full md:w-1/2 space-y-10">
           {[
             {
               icon: <Mail fill="#1DA5DB" stroke="#fff" width={26} />,
@@ -58,7 +58,7 @@ const ContactUS = () => {
           ].map(({ icon, text }, idx) => (
             <div
               key={idx}
-              className="flex items-start gap-6 border-b pb-6 border-[#D0D5DD]"
+              className="flex items-center gap-6 border-b pb-10 border-[#D0D5DD]"
             >
               <div className="flex items-center justify-center p-3 w-14 h-14 rounded-full border border-[#B4E1F3] bg-[#E9F6FC] shrink-0">
                 {icon}
@@ -71,7 +71,7 @@ const ContactUS = () => {
         </div>
 
         {/* Form */}
-        <div className="w-full md:w-1/2 p-6 md:p-10 shadow-[0px_24px_56px_-4px_rgba(16,25,40,0.08)] rounded-[16px]">
+        <div className="w-full md:w-1/2 p-6 md:p-10 custom-shadow rounded-[16px]">
           <h3 className="text-xl md:text-[28px] text-[#06212C] font-semibold">
             Send us a message directly
           </h3>

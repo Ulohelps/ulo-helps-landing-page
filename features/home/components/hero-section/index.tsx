@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import HeroImage from "@/public/images/hero-pic.png";
-import BgImage from "@/public/images/bg-hero.png";
+import HeroImage from "@/public/images/Dashboard header.svg";
+import BgImage from "@/public/images/image 6.svg";
 
 export function HeroSection() {
   return (
     <section
-      className="bg-gradient-to-br from-[#f9fcff] to-[#fff4ee] pt-24 pb-12 md:pt-28 md:pb-16"
+      className="py-32"
       style={{
         backgroundImage: `url(${BgImage.src})`,
         backgroundSize: "cover",
@@ -15,15 +15,13 @@ export function HeroSection() {
     >
       <div className="max-w-[1136px] mx-auto px-4 text-center">
         <div className="max-w-[942px] mx-auto">
-          <h1 className="text-balance text-4xl md:text-5xl font-bold text-[#06212C] mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#06212C] mb-4 leading-tight">
             Find trusted, verified help — fast, safe and stress‑free
           </h1>
           <p className="text-lg text-[#475367] mb-6 max-w-2xl mx-auto">
             Connect with experienced caregivers verified by experts, all online.
           </p>
-          <Button size="lg" className="px-8">
-            Get started
-          </Button>
+          <Button className="shadow-md">Get started</Button>
         </div>
 
         <Image

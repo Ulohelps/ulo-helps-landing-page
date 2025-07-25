@@ -43,6 +43,10 @@
     @apply flex items-center text-sm font-medium;
   }
 
+  .custom-shadow {
+    box-shadow: 0px 8px 32px -4px #10192808, 0px 24px 56px -4px #10192814;
+  }
+
   .ulo-progress-step.active {
     @apply text-orange-600;
   }
