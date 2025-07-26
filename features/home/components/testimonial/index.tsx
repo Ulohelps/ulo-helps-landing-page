@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { QouteICon } from "../../../../components/icons";
 
@@ -55,6 +55,14 @@ const TestimonialSection = () => {
 
     setTimeout(() => setIsAnimating(false), 300);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="py-20 px-4">
