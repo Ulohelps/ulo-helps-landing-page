@@ -3,11 +3,11 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import BgCard1 from "@/public/images/verification-section/Profile cards + BG circle (3).svg";
+import BgCard1 from "@/public/images/verification-section/card1.svg";
 import BgCard2 from "@/public/images/verification-section/image 10.svg";
-import BgCard3 from "@/public/images/verification-section/Profile cards + BG circle.svg";
-import BgCard4 from "@/public/images/verification-section/Profile cards + BG circle (1).svg";
-import BgCard5 from "@/public/images/verification-section/Profile cards + BG circle (2).svg";
+import BgCard3 from "@/public/images/verification-section/card2.svg";
+import BgCard4 from "@/public/images/verification-section/card3.svg";
+import BgCard5 from "@/public/images/verification-section/card4.svg";
 
 import {
   CardICon,
