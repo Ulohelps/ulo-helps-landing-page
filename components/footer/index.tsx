@@ -14,8 +14,8 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#06212C]">
-      <div className="mx-auto max-w-[1136px] px-4 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <footer className="bg-[#06212C] py-12 ">
+      <div className="mx-auto max-w-[1136px] px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         {/* Logo & Socials */}
         <div>
           <Link href="/" className="flex items-center gap-2">
@@ -122,6 +122,12 @@ const Footer = () => {
             </p>
           </div>
         </address>
+      </div>
+      <div className="mx-auto max-w-[1136px] px-4 border-t border-[#FFFFFF26] mt-12 py-8">
+        <p className="text-sm text-[#FFFFFFB2] font-normal text-center">
+          Copyright © {new Date().getFullYear()} ULO Helps Limited. All Rights
+          Reserved.
+        </p>
       </div>
     </footer>
   );

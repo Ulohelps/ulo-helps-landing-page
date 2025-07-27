@@ -34,6 +34,7 @@ const NoteSection = () => {
         <Image
           src={HelpPic}
           alt="A caregiver assisting a person"
+          quality={1000}
           className="rounded-full w-[320px] h-[320px] md:w-[556px] md:h-[556px] object-cover"
         />
       </div>
