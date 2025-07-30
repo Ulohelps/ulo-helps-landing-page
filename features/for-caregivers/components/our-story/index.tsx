@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import ChefPic from "@/public/images/Contact image.svg";
+import User2Pic from "@/public/Contact image (3).svg";
+import User3Pic from "@/public/Contact image (4).svg";
 
 const OurStory = () => {
   return (
@@ -28,7 +30,7 @@ const OurStory = () => {
       </div>
       <div className="flex flex-col lg:flex-row-reverse items-center justify-between  gap-5 md:gap-8">
         <Image
-          src={ChefPic}
+          src={User2Pic}
           alt="Chef"
           width={1000}
           height={1000}
@@ -52,7 +54,7 @@ const OurStory = () => {
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-between  gap-5 md:gap-8">
         <Image
-          src={ChefPic}
+          src={User3Pic}
           alt="Chef"
           width={1000}
           height={1000}

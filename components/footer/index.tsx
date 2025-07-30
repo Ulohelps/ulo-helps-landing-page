@@ -79,7 +79,7 @@ const Footer = () => {
           <ul className="space-y-2">
             <li>
               <Link
-                href="/privacy-and-policy"
+                href="/privacy-policy"
                 className="text-base text-white font-semibold"
               >
                 Privacy policy
@@ -91,6 +91,14 @@ const Footer = () => {
                 className="text-base text-white font-semibold"
               >
                 Terms & Conditions
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cookie-policy"
+                className="text-base text-white font-semibold"
+              >
+                Cookie Policy
               </Link>
             </li>
           </ul>

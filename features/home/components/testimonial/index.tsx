@@ -76,7 +76,7 @@ const TestimonialSection = () => {
           <div className="flex justify-center items-center gap-6 flex-wrap md:flex-nowrap">
             {/* Left card */}
             <div
-              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all opacity-30 scale-95 duration-300`}
+              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all opacity-30 scale-95 duration-300 mr-[-100px]`}
             >
               <TestimonialCard
                 data={
@@ -90,13 +90,13 @@ const TestimonialSection = () => {
             </div>
 
             {/* Active card */}
-            <div className="flex-shrink-0 w-full max-w-md transition-all duration-300 transform scale-100 z-10">
+            <div className="flex-shrink-0 shadow-lg w-full max-w-md transition-all duration-300 transform scale-100 z-10">
               <TestimonialCard data={testimonials[currentSlide]} />
             </div>
 
             {/* Right card */}
             <div
-              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all duration-300 opacity-30 scale-95 `}
+              className={`hidden md:block flex-shrink-0 w-full ml-[-70px] max-w-md transition-all duration-300 opacity-30 scale-95 `}
             >
               <TestimonialCard
                 data={testimonials[(currentSlide + 1) % testimonials.length]}

@@ -1,7 +1,10 @@
+"use client";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const JoinUs = () => {
+  const router = useRouter();
   return (
     <div className="bg-[#1DA5DB] px-4 py-12 md:py-20">
       <div className="max-w-[1136px] mx-auto">
@@ -16,7 +19,14 @@ const JoinUs = () => {
           to care seekers who do too. 
         </p>
         <div className="flex justify-center mt-8">
-          <Button className="shadow-md">Join as a caregiver</Button>
+          <Button
+            className="shadow-md"
+            onClick={() =>
+              router.push("https://caregivers.ulohelps.com/auth/login")
+            }
+          >
+            Join as a caregiver
+          </Button>
         </div>
       </div>
     </div>

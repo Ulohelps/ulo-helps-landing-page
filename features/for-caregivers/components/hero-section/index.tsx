@@ -1,9 +1,12 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import HeroImage from "@/public/Images wrapper.svg";
+import HeroImage from "@/public/Image frame.svg";
 import BgImage from "@/public/images/image 6.svg";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
+  const router = useRouter();
   return (
     <section
       className="py-32"
@@ -13,8 +16,8 @@ export function HeroSection() {
         backgroundPosition: "center",
       }}
     >
-      <div className="max-w-[1136px] mx-auto px-4 text-center">
-        <div className="max-w-[942px]">
+      <div className="max-w-[1136px] flex items-center mx-auto px-4 text-center">
+        <div className="w-1/2">
           <h1 className="text-4xl md:text-5xl text-left font-bold text-[#06212C] mb-4 ">
             Take control of your work
           </h1>
@@ -23,13 +26,22 @@ export function HeroSection() {
             work. If this sounds like something you’re interested in, join our
             pool of caregivers and gain access to care employers across Lagos.
           </p>
-          <Button className="shadow-md">Join as a caregiver</Button>
+          <div className="flex items-center justify-start">
+            <Button
+              className="shadow-md text-left"
+              onClick={() =>
+                router.push("https://caregivers.ulohelps.com/auth/login")
+              }
+            >
+              Join as a caregiver
+            </Button>
+          </div>
         </div>
 
         <Image
           src={HeroImage}
           alt="Happy family smiling on a couch"
-          className="mt-10 w-full rounded-[24px] shadow-xl"
+          className="mt-10 w-1/2 rounded-[24px] shadow-xl"
           priority
         />
       </div>
