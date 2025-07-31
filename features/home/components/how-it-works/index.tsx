@@ -2,6 +2,10 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import CareseekerScreen from "@/public/images/How it works image 1.svg";
+import Img1 from "@/public/how-it-works/How it works image 1 (1).svg";
+import Img2 from "@/public/how-it-works/How it works image 1 (2).svg";
+import Img3 from "@/public/how-it-works/How it works image 1 (3).svg";
+import Img4 from "@/public/how-it-works/How it works image 1 (4).svg";
 
 const steps = [
   { label: "Step 1", description: "Create a free account" },
@@ -9,6 +13,8 @@ const steps = [
   { label: "Step 3", description: "Search for services" },
   { label: "Step 4", description: "Get matched and start" },
 ];
+
+const imgs = [Img1, Img2, Img3, Img4];
 
 const HowItWorks = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -69,7 +75,7 @@ const HowItWorks = () => {
           ))}
         </div>
 
-        <Image src={CareseekerScreen} alt="Careseeker screenshot" />
+        <Image src={imgs[activeStep]} alt="Careseeker screenshot" />
       </div>
     </div>
   );

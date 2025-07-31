@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "../providers";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import CookieBanner from "@/components/cookie-banner";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Header />
         <Providers>{children}</Providers>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

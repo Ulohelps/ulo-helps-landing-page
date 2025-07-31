@@ -93,9 +93,10 @@ const ServiceSection = () => {
     <section
       className="py-20"
       style={{
-        backgroundImage: `url(${BgImage.src})`,
+        backgroundImage: `url("/images/image 6.svg")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="max-w-[1136px] mx-auto">

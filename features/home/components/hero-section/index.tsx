@@ -8,9 +8,10 @@ export function HeroSection() {
     <section
       className="py-32"
       style={{
-        backgroundImage: `url(${BgImage.src})`,
+        backgroundImage: `url("/images/image 6.svg")`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="max-w-[1136px] mx-auto px-4 text-center">

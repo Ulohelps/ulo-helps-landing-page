@@ -155,11 +155,11 @@ const TestimonialCard = ({
   muted?: boolean;
 }) => (
   <div
-    className={`rounded-[24px] max-w-[524px] border border-[#FCE3BE] bg-[#FCE3BE4D] shadow-md p-8 transition-all ${
+    className={`rounded-[24px] max-w-[524px] bg-[#FCE3BE] bg-opacity-80 border border-[#FCE3BE] bg-[#FCE3BE4D] shadow-md p-8 transition-all ${
       muted ? "opacity-50" : ""
     }`}
   >
-    <div className="w-[52px] h-[52px] bg-[#FCE3BE] rounded-[12px] mb-4 flex items-center justify-center">
+    <div className="w-[52px] h-[52px]  rounded-[12px] mb-4 flex items-center justify-center">
       <QouteICon />
       <QouteICon />
     </div>

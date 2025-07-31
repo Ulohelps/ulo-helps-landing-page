@@ -11,17 +11,18 @@ export function HeroSection() {
     <section
       className="py-32"
       style={{
-        backgroundImage: `url(${BgImage.src})`,
+        backgroundImage: `url('/images/image 6.svg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-[1136px] flex items-center mx-auto px-4 text-center">
-        <div className="w-1/2">
+      <div className="max-w-[1136px] flex flex-col lg:flex-row items-center mx-auto px-4 text-center">
+        <div className="w-full lg:w-1/2">
           <h1 className="text-4xl md:text-5xl text-left font-bold text-[#06212C] mb-4 ">
             Take control of your work
           </h1>
-          <p className="text-lg text-left text-[#475367] mb-6 max-w-2xl">
+          <p className="text-lg text-left text-[#475367] mb-6 lg:max-w-2xl w-full">
             At ULO we have no middlemen, no extortion. Just honest, dignified
             work. If this sounds like something you’re interested in, join our
             pool of caregivers and gain access to care employers across Lagos.
@@ -41,7 +42,7 @@ export function HeroSection() {
         <Image
           src={HeroImage}
           alt="Happy family smiling on a couch"
-          className="mt-10 w-1/2 rounded-[24px] shadow-xl"
+          className="mt-10 w-1/2 rounded-[24px]"
           priority
         />
       </div>

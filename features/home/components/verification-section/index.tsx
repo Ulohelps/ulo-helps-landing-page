@@ -3,11 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import BgCard1 from "@/public/images/verification-section/card1.svg";
-import BgCard2 from "@/public/images/verification-section/image 10.svg";
-import BgCard3 from "@/public/images/verification-section/card2.svg";
-import BgCard4 from "@/public/images/verification-section/card3.svg";
-import BgCard5 from "@/public/images/verification-section/card4.svg";
+import BgCard1 from "@/public/Comp 2_2.gif";
 
 import {
   CardICon,
@@ -17,45 +13,19 @@ import {
   LocationBlackICon,
 } from "../../../../components/icons";
 
-const bgCards = [BgCard1, BgCard2, BgCard3, BgCard4, BgCard5];
-
 const VerficationSection = () => {
-  const [currentBgIndex, setCurrentBgIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBgIndex((prevIndex) =>
-        prevIndex === bgCards.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="max-w-[1136px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-20 px-4">
-      {/* Image Slider */}
       <div className="relative w-full md:w-[556px] h-[500px] overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentBgIndex}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={bgCards[currentBgIndex]}
-              alt="User verification card"
-              fill
-              style={{ objectFit: "contain" }}
-              quality={100}
-              priority
-              className="select-none"
-            />
-          </motion.div>
-        </AnimatePresence>
+        <Image
+          src={BgCard1}
+          alt="User verification card"
+          fill
+          style={{ objectFit: "contain" }}
+          quality={100}
+          priority
+          className="select-none"
+        />
       </div>
 
       {/* Text Content */}

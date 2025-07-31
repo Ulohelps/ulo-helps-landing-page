@@ -40,9 +40,10 @@ export function HeroSection() {
     <section
       className="py-32 bg-gradient-to-br from-[#f9fcff] to-[#fff4ee]"
       style={{
-        backgroundImage: `url(${BgImage.src})`,
+        backgroundImage: `url("/images/image 6.svg")`,
         backgroundSize: "contain",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="max-w-[1136px] mx-auto text-center px-4">
