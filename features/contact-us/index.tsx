@@ -307,7 +307,7 @@ const ContactUS = () => {
                 disabled={isLoading}
                 className="w-full md:w-auto"
               >
-                {isLoading ? "Sending..." : "Submit"}
+                {isLoading ? "Sending..." : "Send message"}
               </Button>
             </div>
           </form>
