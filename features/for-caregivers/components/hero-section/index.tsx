@@ -42,7 +42,7 @@ export function HeroSection() {
         <Image
           src={HeroImage}
           alt="Happy family smiling on a couch"
-          className="mt-10 w-1/2 rounded-[24px]"
+          className="lg:mt-10 w-full lg:w-1/2"
           priority
         />
       </div>
