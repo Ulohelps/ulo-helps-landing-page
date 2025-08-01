@@ -90,7 +90,7 @@ const TestimonialSection = () => {
             </div>
 
             {/* Active card */}
-            <div className="flex-shrink-0 shadow-lg w-full max-w-md transition-all duration-300 transform scale-100 z-10">
+            <div className="flex-shrink-0 rounded-[24px] shadow-lg w-full max-w-md transition-all duration-300 transform scale-100 z-10">
               <TestimonialCard data={testimonials[currentSlide]} />
             </div>
 
@@ -155,7 +155,7 @@ const TestimonialCard = ({
   muted?: boolean;
 }) => (
   <div
-    className={`rounded-[24px] max-w-[524px] bg-[#FCE3BE] bg-opacity-80 border border-[#FCE3BE] bg-[#FCE3BE4D] shadow-md p-8 transition-all ${
+    className={`rounded-[24px] max-w-[524px] bg-[#FCE3BE] bg-opacity-80 border border-[#FCE3BE] bg-[#FCE3BE4D] shadow-lg p-8 transition-all ${
       muted ? "opacity-50" : ""
     }`}
   >

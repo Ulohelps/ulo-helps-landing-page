@@ -10,8 +10,8 @@ export function HeroSection() {
       style={{
         backgroundImage: `url("/images/image 6.svg")`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundPosition: "top",
+        backgroundRepeat: "repeat",
       }}
     >
       <div className="max-w-[1136px] mx-auto px-4 text-center">
@@ -22,7 +22,7 @@ export function HeroSection() {
           <p className="text-lg text-[#475367] mb-6 max-w-2xl mx-auto">
             Connect with caregivers verified by experts, all online.
           </p>
-          <Button className="shadow-md">Get started</Button>
+          <Button>Join as a care seeker</Button>
         </div>
 
         <Image

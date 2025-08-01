@@ -113,8 +113,8 @@ const ServiceSection = () => {
 
         <div className="relative overflow-hidden">
           {/* Gradient overlays */}
-          <div className="absolute -left-10 top-0 bottom-0 w-[160px] bg-gradient-to-r from-[#fafafa] via-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute -right-10 top-0 bottom-0 w-[160px] bg-gradient-to-l from-[#fafafa] via-white to-transparent z-10 pointer-events-none" />
+          {/* <div className="absolute -left-10 top-0 bottom-0 w-[160px] bg-gradient-to-r from-[#fafafa] via-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute -right-10 top-0 bottom-0 w-[160px] bg-gradient-to-l from-[#fafafa] via-white to-transparent z-10 pointer-events-none" /> */}
 
           {/* Scroll container */}
           <div
@@ -129,7 +129,7 @@ const ServiceSection = () => {
               {SERVICE_LIST.map((service) => (
                 <div
                   key={service.value}
-                  className="flex flex-col items-center justify-center gap-4 p-6 border border-[#E4E7EC] rounded-[24px] w-[160px] h-[120px] flex-shrink-0 hover:shadow-md transition-shadow duration-300"
+                  className="flex flex-col bg-white items-center justify-center gap-4 p-6 border border-[#E4E7EC] rounded-[24px] w-[160px] h-[120px] flex-shrink-0 hover:shadow-md transition-shadow duration-300"
                 >
                   <div
                     className="w-12 h-12 flex items-center justify-center rounded-full"
@@ -150,9 +150,7 @@ const ServiceSection = () => {
         </div>
 
         <div className="flex items-center justify-center mt-16">
-          <Button className="shadow-md hover:scale-105 transition-transform duration-200">
-            Get started
-          </Button>
+          <Button>Join as a careseeker</Button>
         </div>
       </div>
     </section>

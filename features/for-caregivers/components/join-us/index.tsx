@@ -20,7 +20,6 @@ const JoinUs = () => {
         </p>
         <div className="flex justify-center mt-8">
           <Button
-            className="shadow-md"
             onClick={() =>
               router.push("https://caregivers.ulohelps.com/auth/login")
             }

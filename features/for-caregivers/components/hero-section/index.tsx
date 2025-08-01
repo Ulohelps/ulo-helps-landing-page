@@ -29,7 +29,6 @@ export function HeroSection() {
           </p>
           <div className="flex items-center justify-start">
             <Button
-              className="shadow-md text-left"
               onClick={() =>
                 router.push("https://caregivers.ulohelps.com/auth/login")
               }

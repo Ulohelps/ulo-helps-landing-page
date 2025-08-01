@@ -65,7 +65,10 @@ export function FAQs() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="careseekers" className="mt-16">
+          <TabsContent
+            value="careseekers"
+            className="mt-16 mx-auto max-w-[792px]"
+          >
             <Accordion type="single" collapsible className="space-y-5">
               {qas.map((item, idx) => (
                 <AccordionItem

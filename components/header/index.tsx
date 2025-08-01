@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
 
@@ -26,12 +26,16 @@ const navLinks = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
-    <header className="fixed w-full top-0 z-[60] bg-white shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
+    <header className="fixed w-full top-0 z-[60] bg-white h-20 shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
       <div className="mx-auto flex max-w-[1136px] items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <div
+          onClick={() => router.push("/")}
+          className="flex items-center gap-2"
+        >
           <Image
             src={UloLogo}
             alt="Ulo logo"
@@ -40,7 +44,7 @@ export default function Header() {
             className="w-[59px] h-[29px] md:w-[83px] md:h-[40px]"
             priority
           />
-        </Link>
+        </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
@@ -61,8 +65,7 @@ export default function Header() {
 
         {/* Navigation */}
         <div className="hidden md:flex items-center gap-4 md:gap-6">
-          <Button variant="outline">Log in</Button>
-          <Button>Get Started</Button>
+          <Button>Join as a care seeker</Button>
         </div>
         {/* Mobile Menu */}
         <Sheet open={open} onOpenChange={setOpen}>
@@ -96,8 +99,7 @@ export default function Header() {
                 ))}
               </nav>
               <div className="p-4 border-t border-[#EAECF0] flex items-center justify-between">
-                <Button variant="outline">Log in</Button>
-                <Button>Get Started</Button>
+                <Button>Join as a care seeker</Button>
               </div>
             </div>
           </SheetContent>

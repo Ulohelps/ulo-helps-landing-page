@@ -65,7 +65,10 @@ export function FAQs() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="caregivers" className="mt-16">
+          <TabsContent
+            value="caregivers"
+            className="mt-16  max-w-[792px] mx-auto"
+          >
             <Accordion type="single" collapsible className="space-y-5">
               {qas.map((item, idx) => (
                 <AccordionItem
@@ -84,7 +87,7 @@ export function FAQs() {
             </Accordion>
           </TabsContent>
 
-          <TabsContent value="caregivers" className="mt-8">
+          <TabsContent value="" className="mt-8">
             <Accordion type="single" collapsible className="space-y-5">
               <AccordionItem
                 value="caregiver-faq-1"
