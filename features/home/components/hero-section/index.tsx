@@ -20,7 +20,7 @@ export function HeroSection() {
             Find trusted, verified help — fast, safe and stress‑free
           </h1>
           <p className="text-lg text-[#475367] mb-6 max-w-2xl mx-auto">
-            Connect with experienced caregivers verified by experts, all online.
+            Connect with caregivers verified by experts, all online.
           </p>
           <Button className="shadow-md">Get started</Button>
         </div>

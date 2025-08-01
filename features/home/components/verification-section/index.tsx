@@ -45,11 +45,11 @@ const VerficationSection = () => {
           {[
             {
               icon: <VerifyICon />,
-              text: "No easy way to verify or trust caregivers",
+              text: "Verified caregivers with ID documents and background checks.",
             },
             {
               icon: <UserSearchICon />,
-              text: "Transparent profiles with experience, languages, and skills.",
+              text: "Transparent profiles.",
             },
             {
               icon: <CardICon />,
@@ -61,7 +61,7 @@ const VerficationSection = () => {
             },
             {
               icon: <ShieldICon />,
-              text: "Safe, agent-free hiring.",
+              text: "Safe hiring.",
             },
           ].map((item, index) => (
             <motion.div
