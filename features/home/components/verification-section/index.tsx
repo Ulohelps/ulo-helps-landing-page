@@ -58,7 +58,7 @@ const VerficationSection = () => {
               text: "Safe hiring.",
             },
           ].map((item, index) => (
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5" key={index}>
               <div className="bg-[#B4E1F3] p-2 rounded-[12px] flex items-center justify-center transition-transform">
                 {item.icon}
               </div>

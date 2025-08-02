@@ -9,8 +9,8 @@ export function HeroSection() {
       className="py-32"
       style={{
         backgroundImage: `url("/images/image 6.svg")`,
-        backgroundSize: "cover",
-        backgroundPosition: "top",
+        backgroundSize: "auto",
+        backgroundPosition: "top right",
         backgroundRepeat: "repeat",
       }}
     >
