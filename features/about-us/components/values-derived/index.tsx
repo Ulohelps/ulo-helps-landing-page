@@ -3,24 +3,29 @@ import { StarICon } from "@/components/icons";
 
 const values = [
   {
-    title: "Dignity",
-    description:
-      "We believe that all work especially care work deserves respect. We treat both caregivers and care seekers with the humanity and dignity they deserve.",
-  },
-  {
     title: "Transparency",
     description:
-      "We lead with honesty. From our matching process to our pricing, we are upfront and clear, so everyone can make informed, confident decisions.",
-  },
-  {
-    title: "Care",
-    description:
-      "We lead with honesty. From our matching process to our pricing, we are upfront and clear, so everyone can make informed, confident decisions.",
+      "This reflects our dedication to building trust through reliability, security, and verified connections.",
   },
   {
     title: "Empowerment",
     description:
-      "We open doors for caregivers to access real work opportunities, enabling them to earn and grow. For care seekers, we offer the confidence and control to choose help that truly fits creating a sense of empowerment on both sides of the match.",
+      "This shows our intention to elevate caregivers and care seekers with opportunities and support.",
+  },
+  {
+    title: "Community",
+    description:
+      "We are passionate about fostering meaningful relationships and shared growth.",
+  },
+  {
+    title: "Excellence",
+    description:
+      "We are committed to setting the standard for professionalism and quality in domestic services, and we take this commitment very seriously.",
+  },
+  {
+    title: "Seamless",
+    description:
+      "By design, we aim to make connections effortless and stress-free.",
   },
 ];
 
@@ -33,9 +38,8 @@ const ValuesDerived = () => {
             Our values drive and define us
           </h2>
           <p className="text-lg text-[#344054] font-normal">
-            We lead with honesty. From our matching process to our pricing, we
-            are upfront and clear, so everyone can make informed, confident
-            decisions.
+            We are driven by the core belief that care is the foundation of
+            thriving communities.
           </p>
         </div>
 
