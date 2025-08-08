@@ -2,10 +2,10 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import CareseekerScreen from "@/public/images/How it works image 1.svg";
-import Img1 from "@/public/how-it-works/How it works image 1 (1).svg";
-import Img2 from "@/public/how-it-works/How it works image 1 (2).svg";
-import Img3 from "@/public/how-it-works/How it works image 1 (3).svg";
-import Img4 from "@/public/how-it-works/How it works image 1 (4).svg";
+import Img1 from "@/public/home-page/how-it-works-01.png";
+import Img2 from "@/public/home-page/how-it-works-02.png";
+import Img3 from "@/public/home-page/how-it-works-03.png";
+import Img4 from "@/public/home-page/how-it-works-04.png";
 
 const steps = [
   {
@@ -105,7 +105,11 @@ const HowItWorks = () => {
           ))}
         </div>
 
-        <Image src={imgs[activeStep]} alt="Careseeker screenshot" />
+        <Image
+          src={imgs[activeStep]}
+          className="w-[789px]"
+          alt="Careseeker screenshot"
+        />
       </div>
     </div>
   );

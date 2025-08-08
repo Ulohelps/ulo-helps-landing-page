@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import HelpPic from "@/public/images/baptista-ime-james-dNUviD82WnY-unsplash 2.svg";
+import HelpPic from "@/public/home-page/first-section.png";
 import { TriangleAlert } from "lucide-react";
 
 const NoteSection = () => {

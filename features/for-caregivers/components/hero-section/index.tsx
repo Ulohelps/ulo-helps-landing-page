@@ -1,8 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import HeroImage from "@/public/Image frame.svg";
-import BgImage from "@/public/images/image 6.svg";
+import HeroImage from "@/public/caregiver's page/hero-image.png";
 import { useRouter } from "next/navigation";
 
 export function HeroSection() {

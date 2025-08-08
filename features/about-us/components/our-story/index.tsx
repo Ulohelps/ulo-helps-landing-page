@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import ChefPic from "@/public/images/Contact image.svg";
+import ChefPic from "@/public/about-us/about-ulo.png";
 
 const OurStory = () => {
   return (

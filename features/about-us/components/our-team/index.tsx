@@ -1,14 +1,14 @@
 import React from "react";
 import Image from "next/image";
 
-import Debo from "@/public/images/theresa-ude-ute-FnZeIo8-unsplash.svg";
-import Josh from "@/public/images/bave-pictures-fl7bASYZgXo-unsplash.svg";
-import Hana from "@/public/images/jeff-kweba-kae-dlerBcw-unsplash.svg";
-import Naomi from "@/public/images/oluwaferanmi-caleb-Q1QRTSeZIxI-unsplash.svg";
-import Stev from "@/public/images/kingsley-osei-abrah-A8tMVOKvCxg-unsplash.svg";
-import Dan from "@/public/images/chris-ejike-tj_rCakvxE8-unsplash.svg";
-import Mag from "@/public/images/bave-pictures-LZf3AcfG7D4-unsplash.svg";
-import Andy from "@/public/images/chukselite-HunNgg3kl1w-unsplash.svg";
+import Debo from "@/public/about-us/team-image-01.png";
+import Josh from "@/public/about-us/team-image-02.png";
+import Hana from "@/public/about-us/team-image-03.png";
+import Naomi from "@/public/about-us/team-image-04.png";
+import Stev from "@/public/about-us/team-image-05.png";
+import Dan from "@/public/about-us/team-image-06.png";
+import Mag from "@/public/about-us/team-image-07.png";
+import Andy from "@/public/about-us/team-image-08.png";
 
 const teamMembers = [
   { name: "Deborah Opuogbo", role: "Creative Director", image: Debo },

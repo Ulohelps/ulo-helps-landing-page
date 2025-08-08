@@ -2,10 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import User1 from "@/public/images/francis-odeyemi-i7BZFBAh-dQ-unsplash.svg";
-import User2 from "@/public/images/francis-odeyemi-ezF3j_00bXE-unsplash.svg";
-import User3 from "@/public/images/francis-odeyemi-GUvIyE-_KK0-unsplash.svg";
-import BgImage from "@/public/images/image 6.svg";
+import User1 from "@/public/about-us/about-us-hero-image-03.png";
+import User2 from "@/public/about-us/about-us-hero-image-01.png";
+import User3 from "@/public/about-us/about-us-hero-image-02.png";
 
 const images = [User1, User2, User3];
 

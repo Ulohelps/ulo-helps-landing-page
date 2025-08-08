@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import ChefPic from "@/public/images/Contact image.svg";
-import User2Pic from "@/public/Contact image (3).svg";
-import User3Pic from "@/public/Contact image (4).svg";
+import ChefPic from "@/public/caregiver's page/section-image-01.png";
+import User2Pic from "@/public/caregiver's page/section-image-02.png";
+import User3Pic from "@/public/caregiver's page/section-image-03.png";
 
 const OurStory = () => {
   return (

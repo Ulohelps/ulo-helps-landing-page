@@ -34,7 +34,7 @@ export default function Header() {
         {/* Logo */}
         <div
           onClick={() => router.push("/")}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 cursor-pointer"
         >
           <Image
             src={UloLogo}
