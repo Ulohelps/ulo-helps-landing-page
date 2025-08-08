@@ -28,7 +28,7 @@ const SERVICE_LIST = [
   {
     label: "Laundry man",
     value:
-      "Laundry isn’t just a chore it’s how homes stay clean, fresh, and functional. At ULO, we respect the effort that goes into your work. You bring value to every home you serve, and we help make sure you're paid fairly and treated with respect. Join us to gain access to honest, flexible jobs from families across Lagos. ",
+      "Laundry isn’t just a chore it’s how homes stay clean, fresh, and functional. At ULO, we respect the effort that goes into your work. You bring value to every home you serve, and we help make sure you're paid fairly and treated with respect. Join us to gain access to honest, flexible jobs from families across Nigeria. ",
     icon: <LaundryICon />,
     color: "#AB5BA6",
   },

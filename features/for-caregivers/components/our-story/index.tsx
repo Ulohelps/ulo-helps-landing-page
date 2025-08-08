@@ -20,7 +20,7 @@ const OurStory = () => {
             Your skills deserve respect
           </h2>
           <p className="text-base text-[#06212C] font-normal mt-4">
-            UAt ULO, we believe that honest work is honorable work. Whether you
+            At ULO, we believe that honest work is honorable work. Whether you
             cook, clean, care, or drive, your time, effort, and experience
             deserve recognition. That’s why we connect you directly with real
             families who value what you do. Join a community that sees you,
@@ -42,8 +42,8 @@ const OurStory = () => {
           </h2>
           <p className="text-base text-[#06212C] font-normal mt-4">
             Tired of promises that lead nowhere? ULO is different. Once you’re
-            verified, you gain real access to real jobs from people across Lagos
-            who need your services now.
+            verified, you gain real access to real jobs from people across
+            Nigeria who need your services now.
           </p>
           <p className="text-base text-[#06212C] font-normal mt-4">
             We don’t charge you to apply, and we don’t take a cut from your

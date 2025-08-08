@@ -44,7 +44,7 @@ const TermsAndConditions = () => {
               <p className="text-[#344054] font-normal text-base mt-2">
                 Ulo Helps is a trusted, transparent, and technology-driven
                 listing marketplace focused on connecting individuals, families,
-                and households across Nigeria particularly in Lagos State with
+                and households across Nigeria particularly in Nigeria State with
                 reliable, background-verified domestic workers. These include
                 but are not limited to nannies, drivers, housekeepers, cooks,
                 and other household support professionals.
