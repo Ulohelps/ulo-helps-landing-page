@@ -17,7 +17,7 @@ export function HeroSection() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-[1136px] flex flex-col lg:flex-row items-center mx-auto px-4 text-center">
+      <div className="max-w-[1136px] flex flex-col lg:flex-row items-center gap-4 mx-auto px-4 text-center">
         <div className="w-full lg:w-1/2">
           <h1 className="text-4xl md:text-5xl text-left font-bold text-[#06212C] mb-4 ">
             Take control of your work
