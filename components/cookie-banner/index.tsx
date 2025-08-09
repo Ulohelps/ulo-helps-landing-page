@@ -51,10 +51,7 @@ const CookieBanner = () => {
         </p>
       </div>
       <div className="flex gap-4 items-center">
-        <Button
-          className="bg-[#1DA5DB] shadow-[0px_4px_8px_0px_#06212C24]hover:bg-[#06212C] hover:text-white focus:border-2 focus:border-[#FFFFFF05] focus:shadow-[0px_0px_0px_2px_#1DA5DB80"
-          onClick={handleAccept}
-        >
+        <Button variant="secondary" onClick={handleAccept}>
           Accept
         </Button>
         <Button variant="outline" onClick={handleDeclineAndClose}>
