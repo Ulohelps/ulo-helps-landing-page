@@ -84,7 +84,7 @@ const ContactUS = () => {
 
     try {
       const response = await fetch(
-        "https://ulo-v1-stagging-be-b9a3d3832785.herokuapp.com/api/v1/contact/submit",
+        "https://ulo-v1-prod-be-f759b8cca92d.herokuapp.com/api/v1/contact/submit",
         {
           method: "POST",
           headers: {
