@@ -12,6 +12,7 @@ import {
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import BgImage from "@/public/images/image 6.svg";
+import { useRouter } from "next/navigation";
 
 const SERVICE_LIST = [
   {
@@ -51,6 +52,8 @@ const SERVICE_LIST = [
 const ServiceSection = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
@@ -150,7 +153,13 @@ const ServiceSection = () => {
         </div>
 
         <div className="flex items-center justify-center mt-16">
-          <Button>Join as a careseeker</Button>
+          <Button
+            onClick={() =>
+              router.push("https://careseekers.ulohelps.com/auth/register")
+            }
+          >
+            Join as a careseeker
+          </Button>
         </div>
       </div>
     </section>
