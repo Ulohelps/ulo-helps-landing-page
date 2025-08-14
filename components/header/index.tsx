@@ -65,7 +65,13 @@ export default function Header() {
 
         {/* Navigation */}
         <div className="hidden md:flex items-center gap-4 md:gap-6">
-          <Button>Join as a care seeker</Button>
+          <Button
+            onClick={() =>
+              router.push("https://careseekers.ulohelps.com/auth/register")
+            }
+          >
+            Join as a care seeker
+          </Button>
         </div>
         {/* Mobile Menu */}
         <Sheet open={open} onOpenChange={setOpen}>
@@ -99,7 +105,15 @@ export default function Header() {
                 ))}
               </nav>
               <div className="p-4 border-t border-[#EAECF0] flex items-center justify-between">
-                <Button>Join as a care seeker</Button>
+                <Button
+                  onClick={() =>
+                    router.push(
+                      "https://careseekers.ulohelps.com/auth/register"
+                    )
+                  }
+                >
+                  Join as a care seeker
+                </Button>
               </div>
             </div>
           </SheetContent>

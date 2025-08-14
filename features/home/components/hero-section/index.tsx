@@ -1,8 +1,11 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import HeroImage from "@/public/home-page/hero-image.png";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
+  const router = useRouter();
   return (
     <section
       className="py-32"
@@ -21,7 +24,13 @@ export function HeroSection() {
           <p className="text-lg text-[#475367] mb-6 max-w-2xl mx-auto">
             Connect with caregivers verified by experts, all online.
           </p>
-          <Button>Join as a care seeker</Button>
+          <Button
+            onClick={() =>
+              router.push("https://careseekers.ulohelps.com/auth/register")
+            }
+          >
+            Join as a care seeker
+          </Button>
         </div>
 
         <Image
