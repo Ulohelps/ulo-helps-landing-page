@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    NEXT_PUBLIC_API_URL: 'https://ulo-v1-stagging-be-b9a3d3832785.herokuapp.com/api/v1',
+    NEXT_PUBLIC_API_URL:
+      "https://ulo-v1-prod-be-f759b8cca92d.herokuapp.com/api/v1",
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -10,9 +11,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ["res.cloudinary.com"],
     unoptimized: true,
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;
