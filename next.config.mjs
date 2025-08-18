@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    NEXT_PUBLIC_API_URL:
-      "https://ulo-v1-prod-be-f759b8cca92d.herokuapp.com/api/v1",
+    NEXT_PUBLIC_API_URL: "https://api.ulohelps.com/api/v1",
   },
   eslint: {
     ignoreDuringBuilds: true,
