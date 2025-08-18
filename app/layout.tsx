@@ -6,6 +6,7 @@ import { Providers } from "../providers";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import CookieBanner from "@/components/cookie-banner";
+import { Analytics } from "@vercel/analytics/react";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -30,7 +31,10 @@ export default function RootLayout({
         className={`${plusJakarta.className} bg-[#fafafa] scroll-smooth  font-normal`}
       >
         <Header />
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Analytics />
+        </Providers>
         <Footer />
         <CookieBanner />
       </body>
