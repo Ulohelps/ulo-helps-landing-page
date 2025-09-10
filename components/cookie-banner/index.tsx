@@ -32,12 +32,12 @@ const CookieBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-[10%] left-1/2 -translate-x-1/2 max-h-[130px] max-w-[1136px]  flex gap-6 items-center border border-[#B4E1F3] rounded-[24px] p-6 w-full shadow-md bg-[#E9F6FC] z-50">
+    <div className="fixed bottom-4 inset-x-4 md:bottom-[10%] md:left-1/2 md:inset-x-auto md:-translate-x-1/2 md:w-full md:max-w-[1136px] md:max-h-[130px] flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-center border border-[#B4E1F3] rounded-[16px] md:rounded-[24px] p-4 md:p-6 shadow-md bg-[#E9F6FC] z-50">
       <div className="flex-1">
-        <h4 className="text-xl text-[#06212C] font-semibold">
+        <h4 className="text-lg md:text-xl text-[#06212C] font-semibold">
           We’ve got cookies!
         </h4>
-        <p className="text-base text-[#475367]">
+        <p className="text-sm md:text-base text-[#475367]">
           We use cookies on our website to aid our marketing efforts and improve
           your user experience. To learn more about our use of cookies, view our
           <Link
@@ -50,11 +50,11 @@ const CookieBanner = () => {
           .
         </p>
       </div>
-      <div className="flex gap-4 items-center">
-        <Button variant="secondary" onClick={handleAccept}>
+      <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-stretch md:items-center w-full md:w-auto">
+        <Button variant="secondary" className="w-full md:w-auto" onClick={handleAccept}>
           Accept
         </Button>
-        <Button variant="outline" onClick={handleDeclineAndClose}>
+        <Button variant="outline" className="w-full md:w-auto" onClick={handleDeclineAndClose}>
           decline
         </Button>
       </div>
