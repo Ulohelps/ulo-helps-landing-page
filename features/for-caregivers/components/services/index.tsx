@@ -25,6 +25,13 @@ const SERVICE_LIST = [
     icon: <HousekeeperICon />,
     color: "#8F76B8",
   },
+  /*   {
+    label: "Laundry man",
+    value:
+      "Laundry isn’t just a chore it’s how homes stay clean, fresh, and functional. At ULO, we respect the effort that goes into your work. You bring value to every home you serve, and we help make sure you're paid fairly and treated with respect. Join us to gain access to honest, flexible jobs from families across Nigeria. ",
+    icon: <LaundryICon />,
+    color: "#AB5BA6",
+  }, */
   {
     label: "Nanny",
     value:
@@ -38,6 +45,13 @@ const SERVICE_LIST = [
       "Whether you clean homes, offices, or short-lets, ULO connects you with real clients who value your attention to detail. Get matched based on your availability and location and take control of your schedule. ",
     icon: <CleanerIcon />,
     color: "#009987",
+  },
+  {
+    label: "Cook",
+    value:
+      "From home cooks to professional cook, ULO connects you with families and clients looking for your kind of flavor. Earn doing what you love in kitchens where your skill is respected and rewarded. ",
+    icon: <ChefICon />,
+    color: "#F1473C",
   },
   /* {
     label: "Elder care",
