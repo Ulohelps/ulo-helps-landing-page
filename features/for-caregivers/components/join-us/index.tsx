@@ -13,10 +13,10 @@ const JoinUs = () => {
         </h3>
         <p className="text-base text-center text-[#F0F2F5] font-normal mt-3 max-w-[816px] mx-auto">
           At ULO, we believe every caregiver deserves more than just work.
-          Whether you're a housekeeper, cook, cleaner, driver, or elder care
-          caregiver, you deserve choice, respect, and the freedom to grow on
-          your own terms. Join a platform that sees your worth and connects you
-          to care seekers who do too. 
+          Whether you're a housekeeper, nanny, cleaner, or driver caregiver, you
+          deserve choice, respect, and the freedom to grow on your own
+          terms. Join a platform that sees your worth and connects you to care
+          seekers who do too. 
         </p>
         <div className="flex justify-center mt-8">
           <Button
