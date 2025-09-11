@@ -33,7 +33,7 @@ const SERVICE_LIST = [
     icon: <HousekeeperICon />,
     color: "#8F76B8",
   },
-  /* { label: "Chef", value: "CHEF", icon: <ChefICon />, color: "#F1473C" }, */
+  { label: "Cook", value: "CHEF", icon: <ChefICon />, color: "#F1473C" },
   { label: "Driver", value: "DRIVER", icon: <DriverICon />, color: "#0D5EBA" },
   /* {
     label: "Elder care",
@@ -41,7 +41,7 @@ const SERVICE_LIST = [
     icon: <ElderCareICon />,
     color: "#E74A8A",
   }, */
- /*  {
+  /*  {
     label: "Laundry man",
     value: "LAUNDRY_WASHER",
     icon: <LaundryICon />,
