@@ -12,7 +12,7 @@ const AboutUs = () => {
       <OurStory />
       <ValuesDerived />
       <OurTeam />
-      <JoinTeam />
+      {/* <JoinTeam /> */}
     </div>
   );
 };
