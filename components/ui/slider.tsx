@@ -22,13 +22,13 @@ const Slider = React.forwardRef<
       )}
       {...props}
     >
-      <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-[4px] bg-[#B4E1F3]">
-        <SliderPrimitive.Range className="absolute h-full bg-[#1DA5DB]" />
+      <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-[4px] bg-[#17403A">
+        <SliderPrimitive.Range className="absolute h-full bg-[#F0EABA]" />
       </SliderPrimitive.Track>
       {safeValue.map((_, i) => (
         <SliderPrimitive.Thumb
           key={i}
-          className="block h-6 w-6 rounded-full border-2 border-[#1DA5DB] bg-white ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1DA5DB] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+          className="block h-6 w-6 rounded-full border-2 border-[#F0EABA] bg-white ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F0EABA] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
     </SliderPrimitive.Root>

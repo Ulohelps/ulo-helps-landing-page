@@ -159,19 +159,19 @@ const ContactUS = () => {
         <div className="w-full md:w-1/2 space-y-10">
           {[
             {
-              icon: <Mail fill="#1DA5DB" stroke="#fff" width={26} />,
+              icon: <Mail fill="#F0EABA" width={26} />,
               text: "contact@ulohelps.com",
             },
             {
-              icon: <PhoneICon color="#1DA5DB" />,
+              icon: <PhoneICon color="#F0EABA" />,
               text: "+234 813 145 1337",
             },
             {
-              icon: <Phone fill="#1DA5DB" color="#1DA5DB" />,
+              icon: <Phone fill="#F0EABA" color="#F0EABA" />,
               text: "+234 813 145 1337",
             },
             {
-              icon: <LocationICon color="#1DA5DB" />,
+              icon: <LocationICon color="#F0EABA" />,
               text: "927/928 Bishop Ayobade Cole St, Victoria Island, 3rd Floor, Mansard Place, Lagos, 106104",
             },
           ].map(({ icon, text }, idx) => (
@@ -179,7 +179,7 @@ const ContactUS = () => {
               key={idx}
               className="flex items-center gap-6 border-b pb-10 border-[#D0D5DD]"
             >
-              <div className="flex items-center justify-center p-3 w-14 h-14 rounded-full border border-[#B4E1F3] bg-[#E9F6FC] shrink-0">
+              <div className="flex items-center justify-center p-3 w-14 h-14 rounded-full border border-[#B4E1F3] bg-[#17403A] shrink-0">
                 {icon}
               </div>
               <p className="text-base text-[#0A3749] underline font-normal max-w-sm">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
+import UloLogo from "@/public/new-logo.png";
 import Image from "next/image";
 import {
   InstagramICon,
@@ -14,7 +14,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#06212C] py-12 ">
+    <footer className="bg-[#17403A] py-12 ">
       <div className="mx-auto max-w-[1136px] px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         {/* Logo & Socials */}
         <div>

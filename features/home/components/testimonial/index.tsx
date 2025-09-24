@@ -155,7 +155,7 @@ const TestimonialCard = ({
   muted?: boolean;
 }) => (
   <div
-    className={`rounded-[24px] max-w-[524px] bg-[#FCE3BE] bg-opacity-80 border border-[#FCE3BE] bg-[#FCE3BE4D] shadow-lg p-8 transition-all ${
+    className={`rounded-[24px] max-w-[524px] bg-[#FA6D4D] bg-opacity-80 border border-[#FA6D4D] bg-[#FA6D4D4D] shadow-lg p-8 transition-all ${
       muted ? "opacity-50" : ""
     }`}
   >

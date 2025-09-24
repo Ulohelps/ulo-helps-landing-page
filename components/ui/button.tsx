@@ -10,13 +10,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#F6AA3D] text-[#1D2739] hover:bg-[#523914] hover:text-white focus:border-2 focus:border-[#FFFFFF05] disabled:bg-[#FCE3BE] semibold py-3 px-6 rounded-[48px] shadow-[0px_4px_8px_0px_#52391424]",
+          "bg-primary text-[#1D2739] hover:bg-[#523914] hover:text-white focus:border-2 focus:border-[#FFFFFF05] disabled:bg-[#FA6D4D] semibold py-3 px-6 rounded-[48px] shadow-[0px_4px_8px_0px_#52391424]",
         destructive:
           "bg-destructive text-[#CB1A14] border border-[#E26E6A]  py-3 px-6 rounded-[48px] hover:bg-destructive/90",
         outline:
           "border text-[#1D2739] semibold border-[#D0D5DD] bg-white hover:bg-[#F9FAFB] hover:border-[#F0F2F5] focus:bg-[#F0F2F5] focus:border-none disabled:border-2 disabled:border-[#F0F2F5] disabled:text-[#98A2B3] py-3 px-6 rounded-[48px] ",
         secondary:
-          "bg-[#1DA5DB] text-[#06212C]  hover:bg-[#06212C] hover:text-white focus:border-2 focus:border-[#FFFFFF05] disabled:bg-[#1DA5DB] semibold py-3 px-6 rounded-[48px] shadow-[0px_4px_8px_0px_#52391424]",
+          "bg-[#F0EABA] text-[#06212C]  hover:bg-[#06212C] hover:text-white focus:border-2 focus:border-[#FFFFFF05] disabled:bg-[#F0EABA] semibold py-3 px-6 rounded-[48px] shadow-[0px_4px_8px_0px_#52391424]",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },

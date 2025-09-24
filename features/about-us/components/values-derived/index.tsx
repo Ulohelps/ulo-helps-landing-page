@@ -31,7 +31,7 @@ const values = [
 
 const ValuesDerived = () => {
   return (
-    <div className="bg-[#E9F6FC] py-24 px-4">
+    <div className="bg-[#D4E8DB] py-24 px-4">
       <div className="max-w-[1136px] mx-auto">
         <div className="max-w-[556px] mb-16">
           <h2 className="text-[32px] text-[#344054] font-semibold mb-4">
@@ -47,12 +47,12 @@ const ValuesDerived = () => {
           {values.map((value, index) => (
             <div
               key={value.title}
-              className={`flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-20  border-b border-[#B4E1F3] ${
+              className={`flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-20  border-b border-[#17403A] ${
                 index === 3 && "border-none"
               }`}
             >
               <div className="flex items-center gap-5">
-                <div className="flex items-center justify-center p-3 h-12 w-12 bg-[#B4E1F3] border border-[#1DA5DB] rounded-[12px]">
+                <div className="flex items-center justify-center p-3 h-12 w-12 bg-[#17403A] border border-[#F0EABA] rounded-[12px]">
                   <StarICon />
                 </div>
                 <p className="text-xl text-[#344054] font-bold">
