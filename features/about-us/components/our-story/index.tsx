@@ -12,7 +12,7 @@ const OurStory = () => {
         height={1000}
         className="rounded-[24px] w-full lg:w-[556px] h-auto object-cover"
       />
-      <div className="bg-[#E9F6FC] rounded-[24px] p-6 border border-[#B4E1F3] w-full">
+      <div className="bg-[#D4E8DB] rounded-[24px] p-6 border border-[#17403A] w-full">
         <h2 className="text-[28px] text-[#06212C] font-semibold">About ULO</h2>
         <p className="text-base text-[#06212C] font-normal mt-6">
           ULO Helps is a community-driven online marketplace designed to connect

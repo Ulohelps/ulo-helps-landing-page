@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 const JoinTeam = () => {
   return (
     <section className="max-w-[1136px] mx-auto py-24 px-4">
-      <div className="p-6 bg-[#E9F6FC80] border border-[#B4E1F3] rounded-[24px] flex flex-col md:flex-row items-center gap-10">
+      <div className="p-6 bg-[#D4E8DB80] border border-[#17403A] rounded-[24px] flex flex-col md:flex-row items-center gap-10">
         <div className="w-full md:w-1/2">
           <Image
             src={TeamPic}

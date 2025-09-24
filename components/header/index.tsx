@@ -15,7 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import UloLogo from "@/public/FINAL ULO Logo_approved_main.svg";
+import UloLogo from "@/public/new-logo.png";
 
 const navLinks = [
   { href: "/about-us", label: "About us" },
@@ -54,7 +54,7 @@ export default function Header() {
               href={link.href}
               className={`px-3 py-2 rounded-[8px] text-base font-medium ${
                 pathname === link.href
-                  ? "bg-[#FCE3BE4D] text-[#523914]"
+                  ? "bg-[#FA6D4D4D] text-[#523914]"
                   : "text-[#475467] hover:bg-[#F9FAFB]"
               } transition-colors`}
             >

@@ -71,7 +71,7 @@ const HowItWorks = () => {
             <div
               key={step.label}
               className={` ${
-                index === activeStep && "bg-[#FCE3BE4D]"
+                index === activeStep && "bg-[#FA6D4D4D]"
               } rounded-t-[24px]`}
               onClick={() => setActiveStep(index)}
             >
@@ -87,7 +87,7 @@ const HowItWorks = () => {
                 )}
               </div>
 
-              <div className="w-full flex items-center mt-3 bg-[#FCE3BE] h-[4px] rounded-[4px] overflow-hidden">
+              <div className="w-full flex items-center mt-3 bg-[#FA6D4D] h-[4px] rounded-[4px] overflow-hidden">
                 <div
                   className={`h-full transition-all duration-100`}
                   style={{
@@ -97,7 +97,7 @@ const HowItWorks = () => {
                         : index < activeStep
                         ? "100%"
                         : "0%",
-                    backgroundColor: "#F6AA3D",
+                    backgroundColor: "#fa6d4d",
                   }}
                 ></div>
               </div>

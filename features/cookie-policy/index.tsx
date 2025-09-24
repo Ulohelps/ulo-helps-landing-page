@@ -4,7 +4,7 @@ import React from "react";
 const CookiePolicy = () => {
   return (
     <div>
-      <section className="bg-[#E9F6FC] py-24 md:py-32">
+      <section className="bg-[#D4E8DB] py-24 md:py-32">
         <h2 className="text-[40px] text-[#344054] text-center font-bold">
           Cookies & Tracking Technologies
         </h2>
@@ -219,7 +219,7 @@ const CookiePolicy = () => {
                 Email:{" "}
                 <Link
                   href="mailto:contact@ulohelps.com"
-                  className="text-[#1da5db] underline"
+                  className="text-[#F0EABA] underline"
                 >
                   {" "}
                   contact@ulohelps.com

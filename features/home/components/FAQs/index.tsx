@@ -53,13 +53,13 @@ export function FAQs() {
           <TabsList className="flex justify-center mx-auto w-[328px] px-4">
             <TabsTrigger
               value="careseekers"
-              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-[#F6AA3D] flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FCE3BE] data-[state=active]:border-b-[3px] rounded-none text-center"
+              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
             >
               For careseekers
             </TabsTrigger>
             <TabsTrigger
               value="caregivers"
-              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-[#F6AA3D] flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FCE3BE] data-[state=active]:border-b-[3px] rounded-none text-center"
+              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
             >
               For caregivers
             </TabsTrigger>
@@ -74,7 +74,7 @@ export function FAQs() {
                 <AccordionItem
                   key={idx}
                   value={`faq-${idx}`}
-                  className="border-none bg-[#E9F6FC] p-5 rounded-[12px]"
+                  className="border-none bg-[#D4E8DB] p-5 rounded-[12px]"
                 >
                   <AccordionTrigger className="text-base text-[#0A3749] font-bold">
                     {item.q}
@@ -91,7 +91,7 @@ export function FAQs() {
             <Accordion type="single" collapsible className="space-y-5">
               <AccordionItem
                 value="caregiver-faq-1"
-                className="border-none bg-[#E9F6FC] p-5 rounded-[12px]"
+                className="border-none bg-[#D4E8DB] p-5 rounded-[12px]"
               >
                 <AccordionTrigger className="text-base text-[#0A3749] font-bold">
                   How do I get hired on ULO?

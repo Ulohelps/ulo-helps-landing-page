@@ -32,7 +32,7 @@ const CookieBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 inset-x-4 md:bottom-[10%] md:left-1/2 md:inset-x-auto md:-translate-x-1/2 md:w-full md:max-w-[1136px] md:max-h-[130px] flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-center border border-[#B4E1F3] rounded-[16px] md:rounded-[24px] p-4 md:p-6 shadow-md bg-[#E9F6FC] z-50">
+    <div className="fixed bottom-4 inset-x-4 md:bottom-[10%] md:left-1/2 md:inset-x-auto md:-translate-x-1/2 md:w-full md:max-w-[1136px] md:max-h-[130px] flex flex-col md:flex-row gap-4 md:gap-6 items-start md:items-center  border border-[#17403A] rounded-[16px] md:rounded-[24px] p-4 md:p-6 w-full shadow-md bg-[#D4E8DB] z-50">
       <div className="flex-1">
         <h4 className="text-lg md:text-xl text-[#06212C] font-semibold">
           We’ve got cookies!
@@ -42,7 +42,7 @@ const CookieBanner = () => {
           your user experience. To learn more about our use of cookies, view our
           <Link
             href="/privacy-policy"
-            className="text-[#1DA5DB] underline font-semibold"
+            className="text-[#F0EABA] underline font-semibold"
           >
             {" "}
             Privacy Policy
