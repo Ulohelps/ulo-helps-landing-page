@@ -11,11 +11,11 @@ import Mag from "@/public/about-us/team-image-07.png";
 import Andy from "@/public/about-us/team-image-08.png";
 
 const teamMembers = [
-  { name: "Deborah Opuogbo", role: "Founder/CEO", image: Debo },
-  { name: "Hannah Maduabuchi", role: "Marketing Lead", image: Hana },
-  { name: "Joshua Aluko", role: "Product Manager", image: Josh },
-  { name: "Daniel Wakili", role: "Engineering Lead", image: Dan },
-  { name: "Naomi Usman", role: "ARM", image: Naomi },
+  { name: "Amaka Igwe", role: "Founder/CEO", image: Debo },
+  { name: "Lawrence Martins", role: "Marketing Lead", image: Hana },
+  { name: "Chidinma ", role: "Product Manager", image: Josh },
+  { name: "Goodness Olaoluwa", role: "Engineering Lead", image: Dan },
+  { name: "Chinyere", role: "ARM", image: Naomi },
 ];
 
 const OurTeam = () => {

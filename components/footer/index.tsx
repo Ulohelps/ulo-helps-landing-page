@@ -30,10 +30,10 @@ const Footer = () => {
           </Link>
 
           <nav className="flex items-center gap-6 mt-5">
-            <FacebookICon />
-            <XICon />
-            <TiktokICon />
-            <InstagramICon />
+            {/* <Link href=''><FacebookICon /></Link> */}
+            {/* <XICon /> */}
+            <Link href='https://www.tiktok.com/search?q=ulohelps' target="_blank" rel="noopener noreferrer"><TiktokICon /></Link>
+            <Link href='https://www.instagram.com/ulohelps_' target="_blank" rel="noopener noreferrer"><InstagramICon /></Link>
           </nav>
         </div>
 
@@ -49,11 +49,11 @@ const Footer = () => {
                 About ULO
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="#" className="text-base text-white font-semibold">
                 Pricing
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href="/for-caregivers"
