@@ -96,9 +96,9 @@ const ServiceSection = () => {
     <section
       className="py-20"
       style={{
-        backgroundImage: `url("/images/image 6.svg")`,
+        backgroundImage: `url("bg-gradient.png")`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
       }}
     >
