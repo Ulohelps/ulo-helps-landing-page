@@ -42,7 +42,7 @@ const CookieBanner = () => {
           your user experience. To learn more about our use of cookies, view our
           <Link
             href="/privacy-policy"
-            className="text-[#F0EABA] underline font-semibold"
+            className="text-[#17403A] underline font-semibold"
           >
             {" "}
             Privacy Policy
@@ -55,7 +55,7 @@ const CookieBanner = () => {
           Accept
         </Button>
         <Button variant="outline" onClick={handleDeclineAndClose}>
-          decline
+          Decline
         </Button>
       </div>
     </div>
