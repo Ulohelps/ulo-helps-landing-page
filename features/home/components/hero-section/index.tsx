@@ -10,7 +10,7 @@ export function HeroSection() {
     <section
       className="py-32"
       style={{
-        backgroundImage: `url("/images/image 6.svg")`,
+        backgroundImage: `url("/bg-gradient.png")`,
         backgroundSize: "auto",
         backgroundPosition: "top right",
         backgroundRepeat: "repeat",

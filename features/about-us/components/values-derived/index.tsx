@@ -62,7 +62,7 @@ const ValuesDerived = () => {
               }`}
             >
               <div className="flex items-center gap-5">
-                <div className="flex items-center justify-center p-3 h-12 w-12 bg-[#17403A] border border-[#F0EABA] rounded-[12px]">
+                <div className="flex items-center justify-center p-3 h-12 w-12 bg-primary border border-[#F0EABA] rounded-[12px]">
                   <StarICon />
                 </div>
                 <p className="text-xl text-[#344054] font-bold">
