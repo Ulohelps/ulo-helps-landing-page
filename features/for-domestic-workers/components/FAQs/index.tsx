@@ -50,7 +50,7 @@ export function FAQs() {
         </h2>
 
         <Tabs defaultValue="caregivers" className="w-full">
-          <TabsList className="flex justify-center mx-auto w-[320px] px-4">
+          <TabsList className="flex justify-center mx-auto max-w-[420px] px-4">
             <TabsTrigger
               value="employers"
               className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
@@ -97,8 +97,9 @@ export function FAQs() {
                   How do I get hired on ULO?
                 </AccordionTrigger>
                 <AccordionContent className="text-base text-[#335867] font-normal">
-                  Sign up as a caregiver, fill in your profile and list your
-                  services. Once approved, clients will find and contact you.
+                  Sign up as a domestic worker, fill in your profile and list
+                  your services. Once approved, clients will find and contact
+                  you.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
