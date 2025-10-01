@@ -29,7 +29,7 @@ const VerficationSection = () => {
       {/* Text Content */}
       <div className="bg-[#D4E8DB80] p-6 rounded-[24px] border border-[#17403A] w-full md:w-1/2 shadow-sm">
         <h2 className="text-[32px] text-[#344054] font-semibold mb-4 leading-snug">
-          We're not just another platform. We're a movement for{" "}
+          We're a movement for{" "}
           <span className="text-[var(--ulo-orange)]">dignified care</span>.
         </h2>
 

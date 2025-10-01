@@ -3,29 +3,39 @@ import { StarICon } from "@/components/icons";
 
 const values = [
   {
-    title: "Transparency",
+    title: "Emotional Security:",
     description:
-      "This reflects our dedication to building trust through reliability, security, and verified connections.",
+      " Eliminates the panic and helplessness and provides peace of mind that help is available when needed. This transforms anxiety into confidence",
   },
   {
-    title: "Empowerment",
+    title: "Speed & Immediacy:",
     description:
-      "This shows our intention to elevate domestic workers and employers with opportunities and support.",
+      "Instant access to available Domestic workers. No long waiting periods. Fast matching based on your specific needs and location",
   },
   {
-    title: "Community",
+    title: " Quality Assurance:",
     description:
-      "We are passionate about fostering meaningful relationships and shared growth.",
+      "All Domestic workers are verified and background checked. Experience levels clearly displayed. Reviews and ratings from real families",
   },
   {
-    title: "Excellence",
+    title: "Technological Ease:",
     description:
-      "We are committed to setting the standard for professionalism and quality in domestic services, and we take this commitment very seriously.",
+      "  Intuitive platform that works like other apps you already love. Simple booking and communication process. Mobile-first experience for on-the-go needs",
   },
   {
-    title: "Seamless",
+    title: "Availability:",
     description:
-      "By design, we aim to make connections effortless and stress-free.",
+      "Domestic workers ready when you need them (including evenings,weekends, emergencies). Multiple domestic worker options to choose from",
+  },
+  {
+    title: "Dependability:",
+    description:
+      "Consistent service delivery every time. Backup solutions if plans change. Professional support when issues arise",
+  },
+  {
+    title: "Transparency:",
+    description:
+      "Clear pricing with no hidden fees. Detailed domestic worker profiles and credentials. Open communication channel",
   },
 ];
 
@@ -35,7 +45,7 @@ const ValuesDerived = () => {
       <div className="max-w-[1136px] mx-auto">
         <div className="max-w-[556px] mb-16">
           <h2 className="text-[32px] text-[#344054] font-semibold mb-4">
-            Our values drive and define us
+            Value points
           </h2>
           <p className="text-lg text-[#344054] font-normal">
             We are driven by the core belief that care is the foundation of
@@ -47,8 +57,8 @@ const ValuesDerived = () => {
           {values.map((value, index) => (
             <div
               key={value.title}
-              className={`flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-20  border-b border-[#17403A] ${
-                index === 3 && "border-none"
+              className={`flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-16  border-b border-[#17403A] ${
+                index === values.length - 1 && "border-none"
               }`}
             >
               <div className="flex items-center gap-5">

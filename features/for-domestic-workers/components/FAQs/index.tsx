@@ -49,7 +49,7 @@ export function FAQs() {
           Frequently asked questions
         </h2>
 
-        <Tabs defaultValue="caregivers" className="w-full">
+        <Tabs defaultValue="domestic-workers" className="w-full">
           <TabsList className="flex justify-center mx-auto max-w-[420px] px-4">
             <TabsTrigger
               value="employers"

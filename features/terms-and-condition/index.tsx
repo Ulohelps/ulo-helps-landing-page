@@ -400,7 +400,7 @@ const TermsAndConditions = () => {
               </h2>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
-                6.1 Rights of a Employer
+                6.1 Rights of an Employer
               </h3>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
@@ -423,7 +423,7 @@ const TermsAndConditions = () => {
                 6.1.2 Right to Select and Negotiate
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
-                A Employer reserves the right to review recommended Domestic
+                An Employer reserves the right to review recommended Domestic
                 Worker profiles and select a single preferred candidate from the
                 available matches. Once a selection is made:
               </p>
@@ -523,7 +523,7 @@ const TermsAndConditions = () => {
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
                 A Domestic Worker has the full right to decline any job offer or
-                engagement made by a Employer, without fear of penalty or
+                engagement made by an Employer, without fear of penalty or
                 exclusion from the platform. Acceptance of a job is entirely
                 voluntary and should be based on mutual agreement between both
                 parties regarding work expectations, conditions, and
@@ -562,7 +562,7 @@ const TermsAndConditions = () => {
                 <li>Abuse, harassment, discrimination, or exploitation</li>
                 <li>Unsafe or unacceptable working conditions</li>
                 <li>
-                  Any discomfort arising from the conduct of a Employer, or
+                  Any discomfort arising from the conduct of an Employer, or
                 </li>
                 <li>Propositioning for illegal activities</li>
               </ul>

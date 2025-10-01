@@ -70,7 +70,7 @@ export default function Header() {
               router.push("https://careseekers.ulohelps.com/auth/register")
             }
           >
-            Join as a employer
+            Join as an employer
           </Button>
         </div>
         {/* Mobile Menu */}
@@ -112,7 +112,7 @@ export default function Header() {
                     )
                   }
                 >
-                  Join as a employer
+                  Join as an employer
                 </Button>
               </div>
             </div>
