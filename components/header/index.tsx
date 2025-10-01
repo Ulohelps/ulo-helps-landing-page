@@ -29,7 +29,7 @@ export default function Header() {
   const router = useRouter();
 
   return (
-    <header className="fixed w-full top-0 z-[60] bg-white h-20 shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
+    <header className="fixed w-full top-0 z-[60] bg-[#FFFDF8] h-20 shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
       <div className="mx-auto flex max-w-[1136px] items-center justify-between">
         {/* Logo */}
         <div
@@ -55,7 +55,7 @@ export default function Header() {
               className={`px-3 py-2 rounded-[8px] text-base font-medium ${
                 pathname === link.href
                   ? "bg-[#FA6D4D4D] text-[#523914]"
-                  : "text-[#475467] hover:bg-[#F9FAFB]"
+                  : "text-[#475467] hover:bg-[#FA6D4D4D]"
               } transition-colors`}
             >
               {link.label}

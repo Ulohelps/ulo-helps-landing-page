@@ -1,21 +1,20 @@
 import React from "react";
 import Image from "next/image";
 
-import Debo from "@/public/about-us/team-image-01.png";
-import Josh from "@/public/about-us/team-image-02.png";
-import Hana from "@/public/about-us/team-image-03.png";
-import Naomi from "@/public/about-us/team-image-04.png";
-import Stev from "@/public/about-us/team-image-05.png";
-import Dan from "@/public/about-us/team-image-06.png";
-import Mag from "@/public/about-us/team-image-07.png";
-import Andy from "@/public/about-us/team-image-08.png";
+import Dinma from "@/public/about-us/Chidinma Onyemelukwe.jpg";
+import Usang from "@/public/about-us/Chinyere Usang.jpg";
+import Amaka from "@/public/about-us/Amaka.jpg";
+import Dan from "@/public/about-us/goodness.jpg";
 
 const teamMembers = [
-  { name: "Amaka Igwe", role: "Founder/CEO", image: Debo },
-  { name: "Lawrence Martins", role: "Marketing Lead", image: Hana },
-  { name: "Chidinma ", role: "Product Manager", image: Josh },
+  {
+    name: "Amaka Igwe",
+    role: "Founder/CEO",
+    image: Amaka,
+  },
+  { name: "Chinyere Usang", role: "ARM", image: Usang },
+  { name: "Chidinma Onyemelukwe", role: "Product Manager", image: Dinma },
   { name: "Goodness Olaoluwa", role: "Engineering Lead", image: Dan },
-  { name: "Chinyere", role: "ARM", image: Naomi },
 ];
 
 const OurTeam = () => {

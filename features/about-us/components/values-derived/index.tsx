@@ -48,11 +48,11 @@ const ValuesDerived = () => {
             <div
               key={value.title}
               className={`flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-20  border-b border-[#17403A] ${
-                index === 3 && "border-none"
+                index === 4 && "border-none"
               }`}
             >
               <div className="flex items-center gap-5">
-                <div className="flex items-center justify-center p-3 h-12 w-12 bg-[#17403A] border border-[#F0EABA] rounded-[12px]">
+                <div className="flex items-center justify-center p-3 h-12 w-12 bg-primary border border-[#F0EABA] rounded-[12px]">
                   <StarICon />
                 </div>
                 <p className="text-xl text-[#344054] font-bold">

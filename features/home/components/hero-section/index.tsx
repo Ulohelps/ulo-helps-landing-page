@@ -10,7 +10,7 @@ export function HeroSection() {
     <section
       className="py-32"
       style={{
-        backgroundImage: `url("/images/image 6.svg")`,
+        backgroundImage: `url("/bg-gradient.png")`,
         backgroundSize: "auto",
         backgroundPosition: "top right",
         backgroundRepeat: "repeat",
@@ -24,13 +24,23 @@ export function HeroSection() {
           <p className="text-lg text-[#475367] mb-6 max-w-2xl mx-auto">
             Connect with domestic workers verified by experts, all online.
           </p>
-          <Button
-            onClick={() =>
-              router.push("https://careseekers.ulohelps.com/auth/register")
-            }
-          >
-            Join as a care seeker
-          </Button>
+          <div className="flex items-center justify-center gap-5">
+            <Button
+              onClick={() =>
+                router.push("https://careseekers.ulohelps.com/auth/register")
+              }
+            >
+              Join as a care seeker
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() =>
+                router.push("https://caregivers.ulohelps.com/auth/login")
+              }
+            >
+              Join as a caregiveer
+            </Button>
+          </div>
         </div>
 
         <Image
