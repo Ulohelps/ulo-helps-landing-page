@@ -52,21 +52,21 @@ export function FAQs() {
         <Tabs defaultValue="caregivers" className="w-full">
           <TabsList className="flex justify-center mx-auto w-[320px] px-4">
             <TabsTrigger
-              value="careseekers"
+              value="employers"
               className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
             >
-              For careseekers
+              For employers
             </TabsTrigger>
             <TabsTrigger
-              value="caregivers"
+              value="domestic-workers"
               className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
             >
-              For caregivers
+              For domestic workers
             </TabsTrigger>
           </TabsList>
 
           <TabsContent
-            value="caregivers"
+            value="domestic-workers"
             className="mt-16  max-w-[792px] mx-auto"
           >
             <Accordion type="single" collapsible className="space-y-5">

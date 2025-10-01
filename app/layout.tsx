@@ -15,7 +15,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Ulohelps - landing page",
   description:
-    "Discover trusted caregivers and join a supportive community with the ULO Careseeker Network.",
+    "Discover trusted domestic workers and join a supportive community with the ULO employers' Network.",
   generator: "v0.dev",
 };
 

@@ -130,10 +130,10 @@ const TermsAndConditions = () => {
               </p>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
-                3.2 Caregivers Verification
+                3.2 Domestic Workers Verification
               </h3>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Every caregiver engaged through the platform is required to
+                Every domestic worker engaged through the platform is required to
                 undergo a standard verification process and is deemed to have
                 granted their consent for the verification process. Their
                 collection, storage, and sharing (with trusted verification
@@ -197,7 +197,7 @@ const TermsAndConditions = () => {
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
                 The company shall not be liable for any false information
-                provided by the user or caregiver that may be misleading or
+                provided by the user or domestic worker that may be misleading or
                 incorrect.
               </p>
 
@@ -223,7 +223,7 @@ const TermsAndConditions = () => {
                 3.4 Ongoing Monitoring
               </h3>
               <p className="text-[#344054] font-medium text-base mt-2">
-                We may conduct random or periodic checks on user and caregivers
+                We may conduct random or periodic checks on user and domestic workers
                 activity to safeguard against fraud, misuse, or unauthorized
                 transactions. If any suspicious or unlawful activity is
                 identified, we reserve the right to take appropriate action,

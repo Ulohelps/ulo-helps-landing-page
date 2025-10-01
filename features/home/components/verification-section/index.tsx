@@ -37,7 +37,7 @@ const VerficationSection = () => {
           {[
             {
               icon: <VerifyICon />,
-              text: "Verified caregivers with ID documents and background checks.",
+              text: "Verified domestic workers with ID documents and background checks.",
             },
             {
               icon: <UserSearchICon />,

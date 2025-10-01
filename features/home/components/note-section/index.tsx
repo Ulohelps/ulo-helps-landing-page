@@ -17,7 +17,7 @@ const NoteSection = () => {
         {[
           "Endless searching, unclear credentials",
           "Hidden agent fees and gatekeeping",
-          "No easy way to verifyt caregivers",
+          "No easy way to verify somestic workers",
         ].map((text, index) => (
           <div key={index} className="flex items-center gap-5 mt-4">
             <div className="bg-[#F1473C26] p-2 flex items-center justify-center rounded-[12px]">
@@ -32,7 +32,7 @@ const NoteSection = () => {
       <div className="w-full md:w-1/2 flex justify-center">
         <Image
           src={HelpPic}
-          alt="A caregiver assisting a person"
+          alt="A domestic worker assisting a person"
           quality={1000}
           className="rounded-full w-[320px] h-[320px] md:w-[556px] md:h-[556px] object-cover"
         />

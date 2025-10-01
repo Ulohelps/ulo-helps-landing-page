@@ -10,7 +10,7 @@ const values = [
   {
     title: "Empowerment",
     description:
-      "This shows our intention to elevate caregivers and care seekers with opportunities and support.",
+      "This shows our intention to elevate domestic workers and care seekers with opportunities and support.",
   },
   {
     title: "Community",

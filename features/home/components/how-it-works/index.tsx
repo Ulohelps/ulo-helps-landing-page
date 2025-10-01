@@ -10,25 +10,25 @@ import Img4 from "@/public/home-page/how-it-works-04.png";
 const steps = [
   {
     label: "Step 1",
-    description: "Take your first step towards finding your next caregiver.",
+    description: "Take your first step towards finding your next domestic worker.",
     title: "Create a free account",
   },
   {
     label: "Step 2",
     description:
-      "Tell us what type of caregiver you’re looking to find and we’ll handle the rest.",
+      "Tell us what type of domestic worker you’re looking to find and we’ll handle the rest.",
     title: "Complete your profile",
   },
   {
     label: "Step 3",
     description:
-      "We’ll show you a selection of caregivers based on your request. You can filter the list to find the exact match for you! ",
+      "We’ll show you a selection of domestic workers based on your request. You can filter the list to find the exact match for you! ",
     title: "Search for services",
   },
   {
     label: "Step 4",
     description:
-      "If you find your perfect match, you can subscribe to ULO, connect with your caregiver and reach out to hire them!",
+      "If you find your perfect match, you can subscribe to ULO, connect with your domestic workerS and reach out to hire them!",
     title: "Get matched and start",
   },
 ];
@@ -108,7 +108,7 @@ const HowItWorks = () => {
         <Image
           src={imgs[activeStep]}
           className="w-[789px]"
-          alt="Careseeker screenshot"
+          alt="Employers screenshot"
         />
       </div>
     </div>

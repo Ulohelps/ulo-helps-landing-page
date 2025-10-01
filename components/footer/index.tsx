@@ -56,10 +56,10 @@ const Footer = () => {
             </li> */}
             <li>
               <Link
-                href="/for-caregivers"
+                href="/for-domestic-workers"
                 className="text-base text-white font-semibold"
               >
-                For caregivers
+                For domestic workers
               </Link>
             </li>
             <li>

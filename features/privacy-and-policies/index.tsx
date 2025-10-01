@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
               <p className="text-[#344054] font-normal text-base mt-2">
                 In the course of operating our services, we collect and use your
                 Personal Data to deliver and personalize the services you
-                request, match you with the right caregivers or careseekers,
+                request, match you with the right domestic workers or employers,
                 communicate with you (such as sending confirmations and
                 updates), provide customer support, improve app performance and
                 overall user experience, and ensure safety and accountability

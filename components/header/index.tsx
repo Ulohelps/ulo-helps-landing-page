@@ -19,7 +19,7 @@ import UloLogo from "@/public/new-logo.png";
 
 const navLinks = [
   { href: "/about-us", label: "About us" },
-  { href: "/for-caregivers", label: "For caregivers" },
+  { href: "/for-domestic-workers", label: "For domestic workers" },
   { href: "/contacts", label: "Contacts" },
 ];
 

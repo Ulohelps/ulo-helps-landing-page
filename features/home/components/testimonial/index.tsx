@@ -22,7 +22,7 @@ const testimonials = [
   {
     id: 2,
     quote:
-      "Their platform is intuitive and their caregivers are amazing. A game changer.",
+      "Their platform is intuitive and their domestic workers are amazing. A game changer.",
     name: "Adebayo K.",
     title: "Son & Care Coordinator",
   },
