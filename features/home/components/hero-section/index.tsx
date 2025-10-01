@@ -29,7 +29,7 @@ export function HeroSection() {
               router.push("https://careseekers.ulohelps.com/auth/register")
             }
           >
-            Join as a care seeker
+            Join as a employer
           </Button>
         </div>
 

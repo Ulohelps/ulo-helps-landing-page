@@ -12,11 +12,11 @@ const JoinUs = () => {
           Ready to take your career into your own hands?
         </h3>
         <p className="text-base text-center text-[#F0F2F5] font-normal mt-3 max-w-[816px] mx-auto">
-          At ULO, we believe every caregiver deserves more than just work.
-          Whether you're a housekeeper,nanny, cook, cleaner, driver or
-          caregiver, you deserve choice, respect, and the freedom to grow on
-          your own terms. Join a platform that sees your worth and connects you
-          to care seekers who do too. 
+          At ULO, we believe every domestic worker deserves more than just work.
+          Whether you're a housekeeper,nanny, cook, cleaner, driver or domestic
+          worker, you deserve choice, respect, and the freedom to grow on your
+          own terms. Join a platform that sees your worth and connects you to
+          employers who do too. 
         </p>
         <div className="flex justify-center mt-8">
           <Button
@@ -24,7 +24,7 @@ const JoinUs = () => {
               router.push("https://caregivers.ulohelps.com/auth/login")
             }
           >
-            Join as a caregiver
+            Join as a domestic worker
           </Button>
         </div>
       </div>

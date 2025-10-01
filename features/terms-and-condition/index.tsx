@@ -133,8 +133,8 @@ const TermsAndConditions = () => {
                 3.2 Domestic Workers Verification
               </h3>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Every domestic worker engaged through the platform is required to
-                undergo a standard verification process and is deemed to have
+                Every domestic worker engaged through the platform is required
+                to undergo a standard verification process and is deemed to have
                 granted their consent for the verification process. Their
                 collection, storage, and sharing (with trusted verification
                 providers) in line with the company's Privacy Policy and data
@@ -148,7 +148,7 @@ const TermsAndConditions = () => {
               </p>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
-                3.2.1 Caregivers Premium Verification
+                3.2.1 Domestic Workers Premium Verification
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Unlike the standard checks, this process offers more
@@ -197,8 +197,8 @@ const TermsAndConditions = () => {
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
                 The company shall not be liable for any false information
-                provided by the user or domestic worker that may be misleading or
-                incorrect.
+                provided by the user or domestic worker that may be misleading
+                or incorrect.
               </p>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
@@ -223,11 +223,11 @@ const TermsAndConditions = () => {
                 3.4 Ongoing Monitoring
               </h3>
               <p className="text-[#344054] font-medium text-base mt-2">
-                We may conduct random or periodic checks on user and domestic workers
-                activity to safeguard against fraud, misuse, or unauthorized
-                transactions. If any suspicious or unlawful activity is
-                identified, we reserve the right to take appropriate action,
-                which may include:
+                We may conduct random or periodic checks on user and domestic
+                workers activity to safeguard against fraud, misuse, or
+                unauthorized transactions. If any suspicious or unlawful
+                activity is identified, we reserve the right to take appropriate
+                action, which may include:
               </p>
               <ul className="list-disc list-inside mt-2 space-y-1 text-[#344054] font-medium text-base">
                 <li>
@@ -291,11 +291,11 @@ const TermsAndConditions = () => {
               </h2>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Ulo Helps is a listing and matching platform that connects
-                individuals and families ("Care Seekers") with verified domestic
-                service providers ("Caregivers"). The platform enables
-                Caregivers to showcase their profiles and salary expectations,
-                and allows Care Seekers to view, connect with, and engage these
-                professionals directly.
+                individuals and families ("Employers") with verified domestic
+                service providers ("Domestic Workers"). The platform enables
+                Domestic Workers to showcase their profiles and salary
+                expectations, and allows Employers to view, connect with, and
+                engage these professionals directly.
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Ulo Helps operates strictly as an intermediary and is not a
@@ -305,29 +305,29 @@ const TermsAndConditions = () => {
                 <li>
                   Ulo Helps does not participate in the negotiation, collection,
                   disbursement, or management of salaries, wages, or
-                  compensation between Care Seekers and Caregivers
+                  compensation between Employers and Domestic Workers
                 </li>
                 <li>
                   Ulo Helps does not receive any commission or percentage from
-                  payments made to Caregivers by Care Seekers
+                  payments made to Domestic Workers by Employers
                 </li>
                 <li>
                   All payments, salary agreements, and working terms are
-                  independently arranged and finalized between the Caregiver and
-                  the Care Seeker, without the involvement or control of Ulo
-                  Helps
+                  independently arranged and finalized between the Domestic
+                  Worker and the Employer, without the involvement or control of
+                  Ulo Helps
                 </li>
                 <li>
-                  Caregivers set their own service rates or salary expectations,
-                  and these are made visible to Care Seekers for transparency
-                  and fair decision-making
+                  Domestic Workers set their own service rates or salary
+                  expectations, and these are made visible to Employers for
+                  transparency and fair decision-making
                 </li>
               </ul>
               <p className="text-[#344054] font-medium text-base mt-2">
-                To access and use the platform, Care Seekers are required to pay
-                a subscription or access fee. This fee is strictly for use of
-                the platform's tools, access to verified profiles, and enhanced
-                features not for the hiring or compensation of Caregivers.
+                To access and use the platform, Employers are required to pay a
+                subscription or access fee. This fee is strictly for use of the
+                platform's tools, access to verified profiles, and enhanced
+                features not for the hiring or compensation of Domestic Workers.
                 Subscription fees are non-refundable once access has been
                 granted and are separate from any payments made to service
                 providers.
@@ -400,15 +400,15 @@ const TermsAndConditions = () => {
               </h2>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
-                6.1 Rights of a Careseeker
+                6.1 Rights of a Employer
               </h3>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
-                6.1.1 Matching Based on Careseeker Requirements
+                6.1.1 Matching Based on Employer Requirements
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Upon subscribing to the platform and submitting the required
-                Careseeker form, users are matched with Caregivers whose
+                Employer form, users are matched with Domestic Workers whose
                 profiles best align with the specific needs, preferences, and
                 criteria indicated such as skill set, availability, language,
                 location, and expected salary range.
@@ -423,40 +423,39 @@ const TermsAndConditions = () => {
                 6.1.2 Right to Select and Negotiate
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
-                A Careseeker reserves the right to review recommended Caregiver
-                profiles and select a single preferred candidate from the
+                A Employer reserves the right to review recommended Domestic
+                Worker profiles and select a single preferred candidate from the
                 available matches. Once a selection is made:
               </p>
               <ul className="list-disc list-inside mt-2 space-y-1 text-[#344054] font-medium text-base">
                 <li>
-                  The profile details of the chosen Caregiver are made visible
-                  to the Careseeker
+                  The profile details of the chosen Domestic Worker are made
+                  visible to the Employer
                 </li>
                 <li>
-                  The Careseeker may initiate direct contact and negotiation
-                  with the Caregiver regarding terms of engagement, working
+                  The Employer may initiate direct contact and negotiation with
+                  the Domestic Worker regarding terms of engagement, working
                   conditions, and payment
                 </li>
                 <li>
                   Ulo Helps does not interfere with salary negotiations, and no
-                  commission is taken from the Caregiver's earnings
+                  commission is taken from the Domestic Worker's earnings
                 </li>
               </ul>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Only the selected candidate's details will remain accessible to
-                the Careseeker after selection, in line with our data
-                minimization policy and to protect the privacy of other
-                candidates.
+                the Employer after selection, in line with our data minimization
+                policy and to protect the privacy of other candidates.
               </p>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
                 6.1.3 Replacement Process and Support
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
-                If the Careseeker is dissatisfied with the selected Caregiver
-                for reasons such as misrepresentation, incompatibility, or
-                conduct issues, they may initiate a review process by contacting
-                Ulo Helps Customer Support at{" "}
+                If the Employer is dissatisfied with the selected Domestic
+                Worker for reasons such as misrepresentation, incompatibility,
+                or conduct issues, they may initiate a review process by
+                contacting Ulo Helps Customer Support at{" "}
                 <Link
                   href="mailto:contact@ulohelps.com"
                   className="text-[#1da5db] underline"
@@ -467,8 +466,8 @@ const TermsAndConditions = () => {
               </p>
               <ul className="list-disc list-inside mt-2 space-y-1 text-[#344054] font-medium text-base">
                 <li>
-                  The Careseeker must submit a written report clearly stating
-                  the issue
+                  The Employer must submit a written report clearly stating the
+                  issue
                 </li>
                 <li>
                   Ulo Helps will review the complaint and may contact both
@@ -477,9 +476,9 @@ const TermsAndConditions = () => {
                 <li>
                   If the complaint is deemed valid and aligns with platform
                   standards (e.g., within a reasonable period, not abusive or
-                  discriminatory), the Careseeker will be given access to
-                  another round of candidate profiles, limited by the terms and
-                  level of their subscription
+                  discriminatory), the Employer will be given access to another
+                  round of candidate profiles, limited by the terms and level of
+                  their subscription
                 </li>
               </ul>
               <p className="text-[#344054] font-medium text-base mt-2">
@@ -487,8 +486,8 @@ const TermsAndConditions = () => {
               </p>
               <ul className="list-disc list-inside mt-2 space-y-1 text-[#344054] font-medium text-base">
                 <li>
-                  The number of caregiver replacement opportunities is limited
-                  to a maximum of Two (2) times per subscription cycle
+                  The number of Domestic Worker replacement opportunities is
+                  limited to a maximum of Two (2) times per subscription cycle
                 </li>
                 <li>
                   Abuse of the replacement policy (e.g., frequent or baseless
@@ -497,42 +496,42 @@ const TermsAndConditions = () => {
               </ul>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
-                6.2 Right of Caregiver
+                6.2 Right of Domestic Worker
               </h3>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
-                6.2.1 Caregiver Matching and Profile Sharing
+                6.2.1 Domestic Worker Matching and Profile Sharing
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
-                When a Caregiver registers on the Ulo Helps platform, they are
-                required to complete a detailed onboarding process, including
-                identity verification and submission of relevant service
-                preferences and work experience. Based on this information, the
-                platform uses a matching system to recommend the Caregiver's
-                profile to Careseekers whose submitted forms align with the
-                Caregiver's skills, availability, and stated salary
-                expectations.
+                When a Domestic Worker registers on the Ulo Helps platform, they
+                are required to complete a detailed onboarding process,
+                including identity verification and submission of relevant
+                service preferences and work experience. Based on this
+                information, the platform uses a matching system to recommend
+                the Domestic Worker's profile to Employers whose submitted forms
+                align with the Domestic Worker's skills, availability, and
+                stated salary expectations.
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Caregivers are not randomly assigned to jobs. Their profile is
-                shared only with relevant Careseekers who match their criteria,
-                ensuring the opportunity is both suitable and safe.
+                Domestic Workers are not randomly assigned to jobs. Their
+                profile is shared only with relevant Employers who match their
+                criteria, ensuring the opportunity is both suitable and safe.
               </p>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
                 6.2.2 Right to Decline Offers
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
-                A Caregiver has the full right to decline any job offer or
-                engagement made by a Careseeker, without fear of penalty or
+                A Domestic Worker has the full right to decline any job offer or
+                engagement made by a Employer, without fear of penalty or
                 exclusion from the platform. Acceptance of a job is entirely
                 voluntary and should be based on mutual agreement between both
                 parties regarding work expectations, conditions, and
                 compensation.
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Ulo Helps upholds a no-coercion policy, where Caregivers are
-                never obligated to accept roles that do not align with their
+                Ulo Helps upholds a no-coercion policy, where Domestic Workers
+                are never obligated to accept roles that do not align with their
                 preferences or comfort.
               </p>
 
@@ -541,10 +540,10 @@ const TermsAndConditions = () => {
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Ulo Helps is a subscription-based listing platform that charges
-                only Careseekers a fee to access verified caregiver profiles.
-                Caregivers are not required to pay any registration,
-                subscription, or referral fees to Ulo Helps or to any third
-                party for placement or profile visibility.
+                only Employers a fee to access verified Domestic Worker
+                profiles. Domestic Workers are not required to pay any
+                registration, subscription, or referral fees to Ulo Helps or to
+                any third party for placement or profile visibility.
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Any request by individuals or agents for commissions, upfront
@@ -556,14 +555,14 @@ const TermsAndConditions = () => {
                 6.2.4 Protection from Abuse or Exploitation
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Ulo Helps is committed to the well-being of all Caregivers on
-                the platform. If a Caregiver experiences any form of:
+                Ulo Helps is committed to the well-being of all Domestic Workers
+                on the platform. If a Domestic Worker experiences any form of:
               </p>
               <ul className="list-disc list-inside mt-2 space-y-1 text-[#344054] font-medium text-base">
                 <li>Abuse, harassment, discrimination, or exploitation</li>
                 <li>Unsafe or unacceptable working conditions</li>
                 <li>
-                  Any discomfort arising from the conduct of a Careseeker, or
+                  Any discomfort arising from the conduct of a Employer, or
                 </li>
                 <li>Propositioning for illegal activities</li>
               </ul>
@@ -584,20 +583,20 @@ const TermsAndConditions = () => {
               <ol className="list-decimal list-inside mt-2 space-y-1 text-[#344054] font-medium text-base">
                 <li>Immediate investigation</li>
                 <li>
-                  Suspension or removal of the offending Careseeker from the
+                  Suspension or removal of the offending Employer from the
                   platform
                 </li>
                 <li>Criminal complaint to relevant authorities</li>
-                <li>Support or guidance for the Caregiver involved</li>
+                <li>Support or guidance for the Domestic Worker involved</li>
               </ol>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
                 6.3 Disclaimer
               </h3>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Ulo Helps makes every effort to ensure that Caregivers listed on
-                the platform are background-verified and meet basic quality
-                standards.
+                Ulo Helps makes every effort to ensure that Domestic Workers
+                listed on the platform are background-verified and meet basic
+                quality standards.
               </p>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
@@ -606,9 +605,9 @@ const TermsAndConditions = () => {
               <p className="text-[#344054] font-medium text-base mt-2">
                 To maintain a safe, respectful, and trustworthy environment for
                 all users, Ulo Helps reserves the right to suspend or
-                permanently remove the profile of any Caregiver or Careseeker
-                found to be in violation of platform standards, applicable laws,
-                or community expectations.
+                permanently remove the profile of any Domestic Worker or
+                Employer found to be in violation of platform standards,
+                applicable laws, or community expectations.
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
                 This action may be taken in response to:

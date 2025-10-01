@@ -24,7 +24,8 @@ export function HeroSection() {
           <p className="text-lg text-left text-[#475367] mb-6 lg:max-w-2xl w-full">
             At ULO we have no middlemen, no extortion. Just honest, dignified
             work. If this sounds like something you’re interested in, join our
-            pool of caregivers and gain access to care employers across Ngeria.
+            pool of domestic workers and gain access to care employers across
+            Ngeria.
           </p>
           <div className="flex items-center justify-start">
             <Button
@@ -32,7 +33,7 @@ export function HeroSection() {
                 router.push("https://caregivers.ulohelps.com/auth/login")
               }
             >
-              Join as a caregiver
+              Join as a domestic worker
             </Button>
           </div>
         </div>
