@@ -10,7 +10,7 @@ export default function OurMisson() {
         <p className="bg-[var(--ulo-dark-green)] rounded-[32px] mx-auto w-2/3 flex items-center justify-center text-center p-6 h-[200px]  text-[var(--ulo-light-green)]">
           {" "}
           Our mission is to empower families and individuals with instant access
-          to verified, skilled caregivers when they need support the most
+          to verified, skilled domestic workers when they need support the most
         </p>
       </div>
     </div>

@@ -30,7 +30,7 @@ const OurStory = () => {
         </p> */}
         <p className="text-base text-[#06212C] font-normal mt-4">
           Ulo helps provides fast and easy access to verified and skilled
-          caregivers for families and individuals who value convenience
+          domestic workers for families and individuals who value convenience
         </p>
       </div>
     </div>
