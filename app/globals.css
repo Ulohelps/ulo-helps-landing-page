@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --ulo-orange: #f6aa3d;
-  --ulo-blue: #0ea5e9;
+  --ulo-orange: #fa6d4d;
+  --ulo-secondary: #d4e8db;
+  --ulo-yellow: #f0eaba;
+  --ulo-light-green: #d4e8db;
+  --ulo-dark-green: #17403a;
   --ulo-dark: #1e293b;
   --ulo-gray: #64748b;
 }

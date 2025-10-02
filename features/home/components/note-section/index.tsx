@@ -17,7 +17,7 @@ const NoteSection = () => {
         {[
           "Endless searching, unclear credentials",
           "Hidden agent fees and gatekeeping",
-          "No easy way to verify somestic workers",
+          "No easy way to verify domestic workers",
         ].map((text, index) => (
           <div key={index} className="flex items-center gap-5 mt-4">
             <div className="bg-[#F1473C26] p-2 flex items-center justify-center rounded-[12px]">
