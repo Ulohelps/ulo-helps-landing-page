@@ -14,7 +14,7 @@ const OurStory = () => {
       />
       <div className="bg-[#D4E8DB] rounded-[24px] p-6 border border-[#17403A] w-full">
         <h2 className="text-[28px] text-[#06212C] font-semibold">About ULO</h2>
-        <p className="text-base text-[#06212C] font-normal mt-6">
+        {/*  <p className="text-base text-[#06212C] font-normal mt-6">
           ULO Helps is a community-driven online marketplace designed to connect
           families and individuals with a network of verified domestic workers,
           and service providers including maids, nannies, cooks, drivers,
@@ -27,6 +27,10 @@ const OurStory = () => {
           hiring process by directly connecting employers to a network of
           thoroughly-vetted service providers, ensuring users can hire with
           confidence and peace of mind.
+        </p> */}
+        <p className="text-base text-[#06212C] font-normal mt-4">
+          Ulo helps provides fast and easy access to verified and skilled
+          caregivers for families and individuals who value convenience
         </p>
       </div>
     </div>
