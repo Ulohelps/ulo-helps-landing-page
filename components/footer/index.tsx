@@ -118,7 +118,7 @@ const Footer = () => {
           <div className="flex gap-3 items-center">
             <PhoneICon className="w-5 h-5 text-[#D4E8DB]" />
             <p className="text-base text-white font-semibold">
-              +234 813 145 1337
+              +234 704 927 2828
             </p>
           </div>
 

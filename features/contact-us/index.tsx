@@ -165,11 +165,11 @@ const ContactUS = () => {
             },
             {
               icon: <PhoneICon color="#D4E8DB" />,
-              text: "+234 813 145 1337",
+              text: "+234 704 927 2828",
             },
             {
               icon: <Phone fill="#D4E8DB" color="#D4E8DB" />,
-              text: "+234 813 145 1337",
+              text: "+234 704 927 2828",
             },
             {
               icon: <LocationICon color="#D4E8DB" />,
