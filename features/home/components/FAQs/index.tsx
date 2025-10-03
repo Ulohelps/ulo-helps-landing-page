@@ -49,24 +49,24 @@ export function FAQs() {
           Frequently asked questions
         </h2>
 
-        <Tabs defaultValue="careseekers" className="w-full">
-          <TabsList className="flex justify-center mx-auto w-[328px] px-4">
+        <Tabs defaultValue="employers" className="w-full">
+          <TabsList className="flex justify-center mx-auto max-w-[420px] px-4">
             <TabsTrigger
-              value="careseekers"
+              value="employers"
               className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
             >
-              For careseekers
+              For employers
             </TabsTrigger>
             <TabsTrigger
-              value="caregivers"
+              value="for-domestic-workers"
               className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
             >
-              For caregivers
+              For domestic workers
             </TabsTrigger>
           </TabsList>
 
           <TabsContent
-            value="careseekers"
+            value="employers"
             className="mt-16 mx-auto max-w-[792px]"
           >
             <Accordion type="single" collapsible className="space-y-5">
@@ -87,7 +87,7 @@ export function FAQs() {
             </Accordion>
           </TabsContent>
 
-          <TabsContent value="caregivers" className="mt-8">
+          <TabsContent value="for-domestic-workers" className="mt-8">
             <Accordion type="single" collapsible className="space-y-5">
               <AccordionItem
                 value="caregiver-faq-1"
@@ -97,8 +97,9 @@ export function FAQs() {
                   How do I get hired on ULO?
                 </AccordionTrigger>
                 <AccordionContent className="text-base text-[#335867] font-normal">
-                  Sign up as a caregiver, fill in your profile and list your
-                  services. Once approved, clients will find and contact you.
+                  Sign up as a domestic worker, fill in your profile and list
+                  your services. Once approved, clients will find and contact
+                  you.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

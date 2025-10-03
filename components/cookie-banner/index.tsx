@@ -42,7 +42,7 @@ const CookieBanner = () => {
           your user experience. To learn more about our use of cookies, view our
           <Link
             href="/privacy-policy"
-            className="text-[#F0EABA] underline font-semibold"
+            className="text-[var(--ulo-orange)] underline font-semibold"
           >
             {" "}
             Privacy Policy
@@ -51,10 +51,18 @@ const CookieBanner = () => {
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-stretch md:items-center w-full md:w-auto">
-        <Button variant="secondary" className="w-full md:w-auto" onClick={handleAccept}>
+        <Button
+          variant="secondary"
+          className="w-full md:w-auto"
+          onClick={handleAccept}
+        >
           Accept
         </Button>
-        <Button variant="outline" className="w-full md:w-auto" onClick={handleDeclineAndClose}>
+        <Button
+          variant="outline"
+          className="w-full md:w-auto"
+          onClick={handleDeclineAndClose}
+        >
           decline
         </Button>
       </div>

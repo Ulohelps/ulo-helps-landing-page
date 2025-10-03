@@ -22,7 +22,7 @@ const testimonials = [
   {
     id: 2,
     quote:
-      "Their platform is intuitive and their caregivers are amazing. A game changer.",
+      "Their platform is intuitive and their domestic workers are amazing. A game changer.",
     name: "Adebayo K.",
     title: "Son & Care Coordinator",
   },
@@ -125,7 +125,7 @@ const TestimonialSection = () => {
                 aria-label={`Go to testimonial ${index + 1}`}
                 className={`w-3 h-3 rounded-full transition ${
                   index === currentSlide
-                    ? "bg-blue-600"
+                    ? "bg-[#17403A]"
                     : "bg-gray-300 hover:bg-gray-400"
                 }`}
                 disabled={isAnimating}
@@ -155,7 +155,7 @@ const TestimonialCard = ({
   muted?: boolean;
 }) => (
   <div
-    className={`rounded-[24px] max-w-[524px] bg-[#FA6D4D] bg-opacity-80 border border-[#FA6D4D] bg-[#FA6D4D4D] shadow-lg p-8 transition-all ${
+    className={`rounded-[24px] max-w-[524px] bg-[#F0EABA] bg-opacity-80 border border-[#F0EABA] bg-[#F0EABA4D] shadow-lg p-8 transition-all ${
       muted ? "opacity-50" : ""
     }`}
   >

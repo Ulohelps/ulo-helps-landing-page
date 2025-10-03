@@ -39,7 +39,7 @@ export function HeroSection() {
     <section
       className="py-32 bg-gradient-to-br from-[#f9fcff] to-[#fff4ee]"
       style={{
-        backgroundImage: `url("/images/image 6.svg")`,
+        backgroundImage: `url("/bg-gradient.png")`,
         backgroundSize: "contain",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -51,7 +51,7 @@ export function HeroSection() {
             Raising the standard of domestic work with trust at the heart
           </h1>
           <p className="text-base sm:text-lg text-[#344054] font-normal mb-6">
-            At ULO, we believe care is more than a service—it's the soul of
+            At ULO, we believe care is more than a service, it's the soul of
             every strong home and community. That’s why we’re building a world
             where domestic work is trusted, verified, and deeply respected.
           </p>

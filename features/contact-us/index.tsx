@@ -133,12 +133,13 @@ const ContactUS = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <div
         style={{
-          backgroundImage: `url("/images/image 6.svg")`,
-          backgroundSize: "contain",
-          backgroundPosition: "center",
+          backgroundImage: `url("/bg-gradient.png")`,
+          backgroundSize: "cover",
+          backgroundPosition: "top right",
+          backgroundRepeat: "no-repeat",
           width: "100%",
         }}
       >
@@ -154,24 +155,24 @@ const ContactUS = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row gap-10 py-12 md:py-[96px] max-w-[1136px] mx-auto">
+      <div className="flex flex-col md:flex-row md:items-center gap-10 py-12 md:py-[96px] max-w-[1136px] mx-auto">
         {/* Contact Details */}
         <div className="w-full md:w-1/2 space-y-10">
           {[
             {
-              icon: <Mail fill="#F0EABA" width={26} />,
+              icon: <Mail fill="#D4E8DB" width={26} />,
               text: "contact@ulohelps.com",
             },
             {
-              icon: <PhoneICon color="#F0EABA" />,
-              text: "+234 813 145 1337",
+              icon: <PhoneICon color="#D4E8DB" />,
+              text: "+234 704 927 2828",
             },
             {
-              icon: <Phone fill="#F0EABA" color="#F0EABA" />,
-              text: "+234 813 145 1337",
+              icon: <Phone fill="#D4E8DB" color="#D4E8DB" />,
+              text: "+234 704 927 2828",
             },
             {
-              icon: <LocationICon color="#F0EABA" />,
+              icon: <LocationICon color="#D4E8DB" />,
               text: "927/928 Bishop Ayobade Cole St, Victoria Island, 3rd Floor, Mansard Place, Lagos, 106104",
             },
           ].map(({ icon, text }, idx) => (
@@ -190,7 +191,7 @@ const ContactUS = () => {
         </div>
 
         {/* Form */}
-        <div className="w-full md:w-1/2 p-6 md:p-10 custom-shadow rounded-[16px]">
+        <div className="w-full md:w-1/2 p-6 md:p-10 bg-white custom-shadow rounded-[16px]">
           <h3 className="text-xl md:text-[28px] text-[#06212C] font-semibold">
             Send us a message directly
           </h3>

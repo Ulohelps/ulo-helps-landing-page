@@ -1,4 +1,4 @@
-import ForCaregivers from "@/features/for-caregivers";
+import ForCaregivers from "@/features/for-domestic-workers";
 import React from "react";
 
 const ForCaregiversPage = () => {

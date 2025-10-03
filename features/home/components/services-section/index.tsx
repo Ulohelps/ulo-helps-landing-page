@@ -96,9 +96,9 @@ const ServiceSection = () => {
     <section
       className="py-20"
       style={{
-        backgroundImage: `url("/images/image 6.svg")`,
+        backgroundImage: `url("bg-gradient.png")`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "bottom",
         backgroundRepeat: "no-repeat",
       }}
     >
@@ -109,7 +109,7 @@ const ServiceSection = () => {
           </h2>
           <p className="text-base text-[#475367]">
             Getting the help you need shouldn't be hard. With ULO, it isn't. We
-            bring you verified caregivers, fast matching, and support every step
+            bring you verified domestic workers, fast matching, and support every step
             of the way.
           </p>
         </div>
@@ -158,7 +158,7 @@ const ServiceSection = () => {
               router.push("https://careseekers.ulohelps.com/auth/register")
             }
           >
-            Join as a careseeker
+            Join as an employer
           </Button>
         </div>
       </div>

@@ -68,9 +68,9 @@ const OurStory = () => {
           <p className="text-base text-[#06212C] font-normal mt-4">
             Many agencies rely on keeping you dependent charging huge fees,
             delaying payments, and deciding when you work. ULO changes the game.
-            We give you direct access to care seekers, so you keep what you
-            earn, choose where you work, and finally have the freedom to say yes
-            to jobs that work for you.
+            We give you direct access to employers, so you keep what you earn,
+            choose where you work, and finally have the freedom to say yes to
+            jobs that work for you.
           </p>
           <p className="text-base text-[#06212C] font-normal mt-4">
             It’s not just a better way to find work it’s a better way to live. 

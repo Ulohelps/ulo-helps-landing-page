@@ -56,10 +56,10 @@ const Footer = () => {
             </li> */}
             <li>
               <Link
-                href="/for-caregivers"
+                href="/for-domestic-workers"
                 className="text-base text-white font-semibold"
               >
-                For caregivers
+                For domestic workers
               </Link>
             </li>
             <li>
@@ -109,21 +109,21 @@ const Footer = () => {
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Contact us</h4>
 
           <div className="flex gap-3 items-center">
-            <MailICon className="w-5 h-5 text-white" />
+            <MailICon className="w-5 h-5 text-[#D4E8DB]" />
             <p className="text-base text-white font-semibold">
               contact@ulohelps.com
             </p>
           </div>
 
           <div className="flex gap-3 items-center">
-            <PhoneICon className="w-5 h-5 text-white" />
+            <PhoneICon className="w-5 h-5 text-[#D4E8DB]" />
             <p className="text-base text-white font-semibold">
-              +234 813 145 1337
+              +234 704 927 2828
             </p>
           </div>
 
           <div className="flex gap-3 items-start">
-            <LocationICon className="w-5 h-5 text-white mt-1" />
+            <LocationICon className="w-5 h-5 text-[#D4E8DB] mt-1" />
             <p className="text-base text-white font-semibold break-words w-[80%]">
               927/928 Bishop Ayobade Cole St, Victoria Island, 3rd Floor,
               Mansard Place, Lagos, 106104
