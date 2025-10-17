@@ -29,7 +29,7 @@ export function HeroSection() {
               router.push("https://careseekers.ulohelps.com/auth/register")
             }
           >
-            Join as an employer
+            Hire your domestic worker
           </Button>
         </div>
 
