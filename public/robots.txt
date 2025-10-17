@@ -7,7 +7,7 @@ User-agent: *
 Allow: /
 
 # This line tells crawlers where to find the website's sitemap, which helps them discover all pages:
-Sitemap: https://ulohelps.com/sitemap.xml
+Sitemap: https://SITE_URL/sitemap.xml
 
 # The next two lines block crawlers from accessing sensitive or private areas of the site: (uncomment and customize if applicable)
 # Disallow: /admin/
