@@ -1,0 +1,17 @@
+# This is a robots.txt file, which tells web crawlers (like Googlebot) how to interact with your website.
+
+# The following line means these rules apply to all web crawlers:
+User-agent: *
+
+# This allows all web crawlers to access every part of the site by default:
+Allow: /
+
+# This line tells crawlers where to find the website's sitemap, which helps them discover all pages:
+Sitemap: https://SITE_URL/sitemap.xml
+
+# The next two lines block crawlers from accessing sensitive or private areas of the site: (uncomment and customize if applicable)
+# Disallow: /admin/
+# Disallow: /private/
+
+# This line suggests that crawlers should wait 1 second between requests to avoid overloading the server:
+Crawl-delay: 1
