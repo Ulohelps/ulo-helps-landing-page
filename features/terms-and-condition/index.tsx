@@ -289,6 +289,9 @@ const TermsAndConditions = () => {
               <h2 className="font-semibold text-2xl text-[#0A3749]">
                 4. Payment Terms and Platform Role
               </h2>
+              <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
+                4.1 Payment Terms
+              </h3>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Ulo Helps is a listing and matching platform that connects
                 individuals and families ("Employers") with verified domestic
@@ -350,6 +353,18 @@ const TermsAndConditions = () => {
                   laws, including employment, tax, and labor regulations
                 </li>
               </ul>
+              <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
+                4.2 No Refund Policy
+              </h3>
+              <p className="text-[#344054] font-medium text-base mt-2">
+                All payments made for subscriptions, assisted hiring services, or other paid features on Ulo Helps are non-refundable once access to the service has been granted or the matching process has commenced.
+              </p>
+              <p className="text-[#344054] font-medium text-base mt-2">
+                Refunds shall not be issued due to change of mind, dissatisfaction after candidate presentation, or any issue arising from user decisions made outside the platform’s control.
+              </p>
+              <p className="text-[#344054] font-medium text-base mt-2">
+In exceptional cases where a verified technical or administrative error occurs on our part, Ulo Helps may, at its sole discretion, issue a partial or full refund. Such requests must be submitted in writing to contact@ulohelps.com within seven (7) days of the transaction date.
+              </p>
               <p className="text-[#344054] font-medium text-base mt-2">
                 If you have questions or concerns about our subscription model
                 or payment policies, please contact us at{" "}
@@ -449,7 +464,17 @@ const TermsAndConditions = () => {
               </p>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
-                6.1.3 Replacement Process and Support
+                6.1.3 Concierge Mode
+              </h4>
+              <p className="text-[#344054] font-medium text-base mt-2">
+              Ulo Helps has introduced a Concierge mode designed to streamline, simplify and accelerate our process for employers.Through this feature, employers can submit their service requests directly on the platform, while our team using AI-powered analysis oversees the accelerated process. We carefully evaluate candidates and present the top two vetted options for the employer’s final decision. This feature is designed to save time while ensuring reliable, high-quality placements through thorough assessment.
+              </p>
+              <p className="text-[#344054] font-medium text-base mt-2">
+              Given the additional resources and effort required for candidate evaluation, this Concierge Mode attracts an extra service fee payable by the User. Please note that all fees are non-refundable once access to the service has been granted.
+              </p>
+
+              <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
+                6.1.4 Replacement Process and Support
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
                 If the Employer is dissatisfied with the selected Domestic
@@ -883,36 +908,10 @@ const TermsAndConditions = () => {
                 12. Limitations of Liability
               </h2>
               <p className="text-[#344054] font-medium text-base mt-2">
-                To the fullest extent permitted by applicable law, including the
-                Nigerian Data Protection Act (NDPA) and other relevant
-                regulatory frameworks, Ulo and its affiliates, (directors,
-                employees, and authorized agents) shall not be liable for any
-                indirect, incidental, special, punitive, or consequential
-                damages such as loss of income, emotional distress, reputational
-                damage, data loss, or business disruption arising from your use
-                of the platform. The Company is not responsible for: (i) Any
-                delays or disruptions due to maintenance, technical issues, or
-                account suspension. (ii) Any cost, inconvenience, or difficulty
-                you may experience in sourcing alternative domestic services
-                outside the platform. (iii) Any behavior, fraud, or poor
-                performance by domestic workers or users, since Ulo Helps only
-                connects people and does not employ or directly supervise
-                service providers. (iv) Financial or personal decisions made by
-                users based on the content of the platform (including profiles,
-                reviews, or ratings) or communications exchanged through the
-                service. (v) Any loss or misuse of your information caused by
-                third parties, unless it was due to our own proven negligence.
-                (vi) Any harm caused by hacking, phishing, or other cyber
-                threats despite our best efforts to secure the platform.
+              To the fullest extent permitted by applicable law, including the Nigerian Data Protection Act (NDPA) and other relevant regulatory frameworks, Ulo and its affiliates, (directors, employees, and authorized agents) shall not be liable for any indirect, incidental, special, punitive, or consequential damages such as loss of income, emotional distress, reputational damage, data loss, or business disruption arising from your use of the platform. The Company is not responsible for: (i) Any delays or disruptions due to maintenance, technical issues, or account suspension. (ii) Any cost, inconvenience, or difficulty you may experience in sourcing alternative domestic services outside the platform. (iii) Any behavior, fraud, or poor performance by domestic workers or users, since Ulo Helps only connects people and does not employ or directly supervise service providers. (iv) Financial or personal decisions made by users based on the content of the platform (including profiles, reviews, or ratings) or communications exchanged through the service. (v) Any loss or misuse of your information caused by third parties, unless it was due to our own proven negligence. (vi) Any harm caused by hacking, phishing, or other cyber threats despite our best efforts to secure the platform.
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Notwithstanding any contrary provision, the total aggregate
-                liability of Ulo Helps to you for any claims or causes of action
-                arising under or in connection with the use of this platform or
-                these Terms whether in contract, tort, negligence, or otherwise
-                shall not exceed the total amount paid by you to Ulo Helps
-                within the one (1) month immediately preceding the event giving
-                rise to the claim, whichever is lesser.
+              Notwithstanding any contrary provision, the total aggregate liability of Ulo Helps to you for any claims or causes of action arising under or in connection with the use of this platform or these Terms whether in contract, tort, negligence, or otherwise shall not exceed the total amount paid by you to Ulo Helps within the One (1) month for regular application and Six (6) months for the Concierge mode immediately preceding the event giving rise to the claim, whichever is lesser.
               </p>
             </div>
 
@@ -1108,6 +1107,9 @@ const TermsAndConditions = () => {
                   {" "}
                   contact@ulohelps.com
                 </Link>
+              </p>
+              <p className="text-[#344054] font-medium text-base mt-2">
+              To ensure quicker and more efficient responses, we have introduced a customer support chatbot feature designed to enhance user experience by providing instant support, addressing common inquiries, and offering real-time assistance throughout the hiring process.
               </p>
             </div>
           </div>
