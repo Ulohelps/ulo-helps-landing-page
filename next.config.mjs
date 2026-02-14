@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env: {
-    NEXT_PUBLIC_API_URL: "https://api.ulohelps.com/api/v1",
-  },
+  // Do NOT set NEXT_PUBLIC_API_URL here — use .env.local (local) or .env (prod).
+  // Config env overrides .env, so it was preventing your .env.local from being used.
   eslint: {
     ignoreDuringBuilds: true,
   },
