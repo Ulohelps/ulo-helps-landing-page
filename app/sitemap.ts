@@ -1,7 +1,24 @@
 import { MetadataRoute } from 'next'
+import { fetchPublishedList } from '@/lib/blog'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://ulohelps.com' // Replace with your actual domain
+
+  let blogUrls: MetadataRoute.Sitemap = []
+  try {
+    const { data: posts } = await fetchPublishedList({ limit: 500 })
+    blogUrls = [
+      { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+      ...(posts ?? []).map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      })),
+    ]
+  } catch {
+    blogUrls = [{ url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 }]
+  }
   
   return [
     {
@@ -46,5 +63,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    ...blogUrls,
   ]
 }

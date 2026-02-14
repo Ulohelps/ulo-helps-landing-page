@@ -20,6 +20,7 @@ import UloLogo from "@/public/new-logo.png";
 const navLinks = [
   { href: "/about-us", label: "About us" },
   { href: "/for-domestic-workers", label: "For domestic workers" },
+  { href: "/blog", label: "Blog" },
   { href: "/contacts", label: "Contacts" },
 ];
 
@@ -48,19 +49,24 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`px-3 py-2 rounded-[8px] text-base font-medium ${
-                pathname === link.href
-                  ? "bg-[#FA6D4D4D] text-[#523914]"
-                  : "text-[#475467] hover:bg-[#FA6D4D4D]"
-              } transition-colors`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active =
+              pathname === link.href ||
+              (link.href === "/blog" && pathname.startsWith("/blog"));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`px-3 py-2 rounded-[8px] text-base font-medium ${
+                  active
+                    ? "bg-[#FA6D4D4D] text-[#523914]"
+                    : "text-[#475467] hover:bg-[#FA6D4D4D]"
+                } transition-colors`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Navigation */}
@@ -89,20 +95,25 @@ export default function Header() {
                 <SheetTitle className="text-sm font-semibold text-[#101828]"></SheetTitle>
               </SheetHeader>
               <nav className="flex-1 overflow-y-auto">
-                {navLinks.map(({ href, label }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => setOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-6 text-sm font-medium ${
-                      pathname === href
-                        ? "bg-[#F0F9FF] text-[#026AA2]"
-                        : "text-[#344054]"
-                    } border-b border-[#EAECF0]`}
-                  >
-                    {label}
-                  </Link>
-                ))}
+                {navLinks.map(({ href, label }) => {
+                  const active =
+                    pathname === href ||
+                    (href === "/blog" && pathname.startsWith("/blog"));
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      className={`flex items-center gap-3 px-4 py-6 text-sm font-medium ${
+                        active
+                          ? "bg-[#F0F9FF] text-[#026AA2]"
+                          : "text-[#344054]"
+                      } border-b border-[#EAECF0]`}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
               </nav>
               <div className="p-4 border-t border-[#EAECF0] flex items-center justify-between">
                 <Button
