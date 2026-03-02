@@ -125,8 +125,7 @@ const Footer = () => {
           <div className="flex gap-3 items-start">
             <LocationICon className="w-5 h-5 text-[#D4E8DB] mt-1" />
             <p className="text-base text-white font-semibold break-words w-[80%]">
-              927/928 Bishop Ayobade Cole St, Victoria Island, 3rd Floor,
-              Mansard Place, Lagos, 106104
+              373 Agege Motor Road Mushin, Lagos, Nigeria
             </p>
           </div>
         </address>
