@@ -13,9 +13,9 @@ const JoinUs = () => {
         </h3>
         <p className="text-base text-center text-[#F0F2F5] font-normal mt-3 max-w-[816px] mx-auto">
           At ULO, we believe every domestic worker deserves more than just work.
-          Whether you're a housekeeper,nanny, cook, cleaner, driver or domestic
-          worker, you deserve choice, respect, and the freedom to grow on your
-          own terms. Join a platform that sees your worth and connects you to
+          Whether you're a chef, cook, housekeeper, or nanny, you deserve choice,
+          respect, and the freedom to grow on your own terms. Join a platform
+          that sees your worth and connects you to
           employers who do too. 
         </p>
         <div className="flex justify-center mt-8">

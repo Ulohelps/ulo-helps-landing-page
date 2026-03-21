@@ -10,11 +10,11 @@ export function FAQs() {
   const qas = [
     {
       q: "How do I find someone to help me on ULO?",
-      a: "Just go to the ULO website and open an account. Once you're done, tell us the kind of help you need like cleaner, nanny or cook and we’ll show you trusted people that match.",
+      a: "Just go to the ULO website and open an account. Once you're done, tell us the kind of help you need—chef, cook, housekeeper, or nanny—and we’ll show you trusted people that match.",
     },
     {
       q: "What kind of workers can I get on ULO?",
-      a: "You can get cleaners, nannies, cooks, and other home helpers that fit your needs.",
+      a: "You can find chefs, cooks, housekeepers, and nannies that fit your needs.",
     },
     {
       q: "Do I need to pay to use ULO?",

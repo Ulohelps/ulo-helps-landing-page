@@ -1,65 +1,39 @@
 import React from "react";
 import {
   NannyIcon,
-  PetCareICon,
-  DriverICon,
   ChefICon,
-  ElderCareICon,
   HousekeeperICon,
-  LaundryICon,
-  CleanerIcon,
 } from "@/components/icons";
 
 const SERVICE_LIST = [
   {
-    label: "Driver",
+    label: "Chef",
     value:
-      "With ULO, you get direct access to families and professionals looking for trusted drivers. We verify clients, match you with real jobs, and help you move forward literally and professionally.",
-    icon: <DriverICon />,
-    color: "#0D5EBA",
-  },
-  {
-    label: "Housekeeper",
-    value:
-      "At ULO, housekeeping isn’t just about chores, it’s about care. We connect you with families who see and respect the value you bring to their homes. Say goodbye to middlemen, and hello to honest, consistent work. ",
-    icon: <HousekeeperICon />,
-    color: "#8F76B8",
-  },
-  /*   {
-    label: "Laundry man",
-    value:
-      "Laundry isn’t just a chore it’s how homes stay clean, fresh, and functional. At ULO, we respect the effort that goes into your work. You bring value to every home you serve, and we help make sure you're paid fairly and treated with respect. Join us to gain access to honest, flexible jobs from families across Nigeria. ",
-    icon: <LaundryICon />,
-    color: "#AB5BA6",
-  }, */
-  {
-    label: "Nanny",
-    value:
-      "Being a nanny means shaping the early days of someone’s life. At ULO, we connect you with families who trust and appreciate your role. No middlemen, no stress just real work, from real  people who need your love and experience. If you're ready to turn your talent into meaningful, rewarding work, this is your sign to join.  ",
-    icon: <NannyIcon />,
-    color: "#0E92C7",
-  },
-  {
-    label: "Cleaner",
-    value:
-      "Whether you clean homes, offices, or short-lets, ULO connects you with real clients who value your attention to detail. Get matched based on your availability and location and take control of your schedule. ",
-    icon: <CleanerIcon />,
-    color: "#009987",
+      "From plated courses to busy family kitchens, ULO connects professional chefs with clients who want your expertise. Show your skills, set your terms, and get matched with people who value what you bring to the table.",
+    icon: <ChefICon />,
+    color: "#F1473C",
   },
   {
     label: "Cook",
     value:
-      "From home cooks to professional cook, ULO connects you with families and clients looking for your kind of flavor. Earn doing what you love in kitchens where your skill is respected and rewarded. ",
+      "From home cooks to professional cook, ULO connects you with families and clients looking for your kind of flavor. Earn doing what you love in kitchens where your skill is respected and rewarded.",
     icon: <ChefICon />,
-    color: "#F1473C",
+    color: "#E85D4C",
   },
-  /* {
-    label: "Elder care",
+  {
+    label: "Housekeeper",
     value:
-      "At ULO, we know elder care is more than just support it's about companionship, patience, and honoring a life well lived. If you have the heart and hands to care for our elderly with dignity, then ULO is the right place for you. Get matched with families who value your kindness and pay you fairly for your time and care. ",
-    icon: <ElderCareICon />,
-    color: "#E74A8A",
-  }, */
+      "At ULO, housekeeping isn’t just about chores, it’s about care. We connect you with families who see and respect the value you bring to their homes. Say goodbye to middlemen, and hello to honest, consistent work.",
+    icon: <HousekeeperICon />,
+    color: "#8F76B8",
+  },
+  {
+    label: "Nanny",
+    value:
+      "Being a nanny means shaping the early days of someone’s life. At ULO, we connect you with families who trust and appreciate your role. No middlemen, no stress just real work, from real  people who need your love and experience. If you're ready to turn your talent into meaningful, rewarding work, this is your sign to join.",
+    icon: <NannyIcon />,
+    color: "#0E92C7",
+  },
 ];
 
 const Services = () => {
