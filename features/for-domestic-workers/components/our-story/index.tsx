@@ -21,8 +21,8 @@ const OurStory = () => {
           </h2>
           <p className="text-base text-[#06212C] font-normal mt-4">
             At ULO, we believe that honest work is honorable work. Whether you
-            cook, clean, care, or drive, your time, effort, and experience
-            deserve recognition. That’s why we connect you directly with real
+            lead a kitchen, cook for a family, keep a home running, or care for
+            children, your time, effort, and experience deserve recognition. That’s why we connect you directly with real
             families who value what you do. Join a community that sees you,
             respects you, and is ready to support your growth. 
           </p>
