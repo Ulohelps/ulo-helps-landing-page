@@ -173,7 +173,7 @@ const ContactUS = () => {
             },
             {
               icon: <LocationICon color="#D4E8DB" />,
-              text: "927/928 Bishop Ayobade Cole St, Victoria Island, 3rd Floor, Mansard Place, Lagos, 106104",
+              text: "373 Agege Motor Road Mushin, Lagos, Nigeria",
             },
           ].map(({ icon, text }, idx) => (
             <div

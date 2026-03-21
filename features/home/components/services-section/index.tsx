@@ -2,51 +2,28 @@
 import React, { useEffect, useRef } from "react";
 import {
   NannyIcon,
-  PetCareICon,
-  DriverICon,
   ChefICon,
-  ElderCareICon,
   HousekeeperICon,
-  LaundryICon,
-  CleanerIcon,
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import BgImage from "@/public/images/image 6.svg";
 import { useRouter } from "next/navigation";
 
 const SERVICE_LIST = [
-  {
-    label: "Nanny",
-    value: "CHILDCARE_NANNY",
-    icon: <NannyIcon />,
-    color: "#0E92C7",
-  },
-  {
-    label: "Cleaner",
-    value: "CLEANER",
-    icon: <CleanerIcon />,
-    color: "#009987",
-  },
+  { label: "Chef", value: "CHEF", icon: <ChefICon />, color: "#F1473C" },
+  { label: "Cook", value: "COOK", icon: <ChefICon />, color: "#E85D4C" },
   {
     label: "Housekeeper",
     value: "HOUSEKEEPER",
     icon: <HousekeeperICon />,
     color: "#8F76B8",
   },
-  { label: "Cook", value: "CHEF", icon: <ChefICon />, color: "#F1473C" },
-  { label: "Driver", value: "DRIVER", icon: <DriverICon />, color: "#0D5EBA" },
-  /* {
-    label: "Elder care",
-    value: "ELDER_CARE",
-    icon: <ElderCareICon />,
-    color: "#E74A8A",
-  }, */
-  /*  {
-    label: "Laundry man",
-    value: "LAUNDRY_WASHER",
-    icon: <LaundryICon />,
-    color: "#AB5BA6",
-  }, */
+  {
+    label: "Nanny",
+    value: "CHILDCARE_NANNY",
+    icon: <NannyIcon />,
+    color: "#0E92C7",
+  },
 ];
 
 const ServiceSection = () => {
