@@ -20,27 +20,35 @@ export async function LatestBlogPosts() {
   if (!posts.length) return null;
 
   return (
-    <section className="max-w-[1136px] mx-auto px-4 py-20" aria-label="Latest blog posts">
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-        <div>
-          <h2 className="text-[28px] md:text-[32px] font-semibold text-[#344054]">
-            Latest from our blog
-          </h2>
-          <p className="text-base text-[#475367] mt-2 max-w-xl">
-            Tips, guides, and updates on hiring and working with domestic workers.
-          </p>
+    <section
+      className="border-t border-white/[0.08] bg-[#17403A] py-20"
+      aria-label="Latest blog posts"
+    >
+      <div className="mx-auto max-w-[1136px] px-4">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 className="font-serif text-[28px] font-semibold text-[#FDFCF7] md:text-[32px]">
+              Latest from our blog
+            </h2>
+            <p className="mt-2 max-w-xl text-base text-[#E8F5EC]/90">
+              Tips, guides, and updates on hiring and working with domestic workers.
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            asChild
+            className="w-fit rounded-xl border-white/35 bg-transparent text-white hover:bg-white/10 hover:text-white"
+          >
+            <Link href="/blog">View all posts</Link>
+          </Button>
         </div>
-        <Button variant="outline" asChild className="w-fit border-[#F1473C] text-[#F1473C] hover:bg-[#F1473C08]">
-          <Link href="/blog">View all posts</Link>
-        </Button>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3" role="list">
         {posts.map((post) => (
           <Link
             key={post.id}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col rounded-[16px] overflow-hidden bg-white border border-[#EAECF0] shadow-sm hover:shadow-md hover:border-[#F1473C33] transition-all"
+            className="group flex flex-col rounded-[16px] overflow-hidden bg-white border border-[#EEF0EB] shadow-sm hover:shadow-md hover:border-[#1B5E37]/25 transition-all"
             role="listitem"
           >
             <div className="aspect-[16/10] relative bg-[#F9FAFB] overflow-hidden">
@@ -73,6 +81,7 @@ export async function LatestBlogPosts() {
             </div>
           </Link>
         ))}
+        </div>
       </div>
     </section>
   );

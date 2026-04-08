@@ -1,7 +1,7 @@
 import React from "react";
 import { HeroSection } from "./components/hero-section";
 import OurStory from "./components/our-story";
-import { FAQs } from "./components/FAQs";
+// import { FAQs } from "./components/FAQs";
 import Services from "./components/services";
 import JoinUs from "./components/join-us";
 
@@ -12,7 +12,7 @@ const ForCaregivers = () => {
       <OurStory />
       <Services />
       <JoinUs />
-      <FAQs />
+      {/* <FAQs /> */}
     </>
   );
 };
