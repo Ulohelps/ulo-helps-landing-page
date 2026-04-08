@@ -12,6 +12,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
+        serif: ["var(--font-fraunces)", "Georgia", "serif"],
       },
       colors: {
         background: "hsl(var(--background))",

@@ -1,84 +1,78 @@
 "use client";
-import React from "react";
-import {
-  NannyIcon,
-  ChefICon,
-  HousekeeperICon,
-} from "@/components/icons";
+
 import { Button } from "@/components/ui/button";
+import { CARESEEKER_REGISTER_URL } from "@/lib/site";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const SERVICE_LIST = [
-  { label: "Chef", value: "CHEF", icon: <ChefICon />, color: "#F1473C" },
-  { label: "Cook", value: "COOK", icon: <ChefICon />, color: "#E85D4C" },
-  {
-    label: "Housekeeper",
-    value: "HOUSEKEEPER",
-    icon: <HousekeeperICon />,
-    color: "#8F76B8",
-  },
   {
     label: "Nanny",
-    value: "CHILDCARE_NANNY",
-    icon: <NannyIcon />,
-    color: "#0E92C7",
+    iconSrc: "/icons/nanny.png",
   },
-];
+  {
+    label: "Housekeeper",
+    iconSrc: "/icons/housekeeper.png",
+  },
+] as const;
 
 const ServiceSection = () => {
   const router = useRouter();
 
   return (
-    <section
-      className="py-20"
-      style={{
-        backgroundImage: `url("bg-gradient.png")`,
-        backgroundSize: "cover",
-        backgroundPosition: "bottom",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="max-w-[1136px] mx-auto">
-        <div className="w-full max-w-[640px] mx-auto text-center mb-12">
-          <h2 className="text-[32px] text-[#344054] font-semibold mb-3">
-            Because the right help changes everything
-          </h2>
-          <p className="text-base text-[#475367]">
-            Getting the help you need shouldn't be hard. With ULO, it isn't. We
-            bring you verified domestic workers, fast matching, and support every step
-            of the way.
-          </p>
-        </div>
+    <section className="border-t border-[#E8E6E0]/80 bg-transparent py-16 md:py-24">
+      <div className="mx-auto max-w-[1136px] px-4">
+        <h2 className="font-serif text-3xl font-semibold tracking-tight text-[#1a2e24] md:text-[2rem] text-center mb-10 md:mb-14">
+          Services we offer
+        </h2>
 
-        <div className="flex flex-wrap items-center justify-center gap-5 py-4">
+        <div
+          className="mx-4 flex gap-4 overflow-x-auto px-4 pb-2 snap-x snap-mandatory scrollbar-hide md:mx-auto md:grid md:max-w-xl md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0"
+          role="list"
+        >
           {SERVICE_LIST.map((service) => (
             <div
-              key={service.value}
-              className="flex flex-col bg-white items-center justify-center gap-4 p-6 border border-[#E4E7EC] rounded-[24px] w-[160px] h-[120px] flex-shrink-0 hover:shadow-md transition-shadow duration-300"
+              key={service.label}
+              role="listitem"
+              className="flex min-w-[148px] shrink-0 snap-center flex-col items-center justify-center  rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:border-[#1B5E37]/20 hover:shadow-md md:min-w-0"
             >
               <div
-                className="w-12 h-12 flex items-center justify-center rounded-full"
-                style={{ backgroundColor: `${service.color}1A` }}
+                className="flex  items-center justify-center rounded-2xl"
               >
-                {service.icon}
+                <Image
+                  src={service.iconSrc}
+                  alt=""
+                  width={78}
+                  height={78}
+                  className=" object-contain"
+                />
               </div>
-              <p
-                className="text-sm font-semibold whitespace-nowrap"
-                style={{ color: service.color }}
-              >
+              <p className="text-center text-sm font-semibold text-[#1a2e24]">
                 {service.label}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="flex items-center justify-center mt-16">
+        <div className="mx-auto mt-12 flex w-full max-w-2xl flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap">
           <Button
-            onClick={() =>
-              router.push("https://careseekers.ulohelps.com/auth/register")
-            }
+            onClick={() => router.push(CARESEEKER_REGISTER_URL)}
+            className="h-auto min-h-12 w-full shrink-0 rounded-xl bg-[#1B5E37] px-8 py-3 text-center text-base font-semibold leading-snug text-white shadow-[0_4px_14px_rgba(27,94,55,0.28)] hover:bg-[#154a2d] hover:text-white whitespace-normal sm:w-auto"
           >
-            Hire your domestic worker
+            Find a verified worker
+          </Button>
+          <Button
+            variant="outline"
+            asChild
+            className="h-auto min-h-12 w-full shrink-0 rounded-xl border-[#1B5E37]/40 bg-white px-6 py-3 text-center text-base font-semibold leading-snug text-[#1B5E37] shadow-sm hover:border-[#1B5E37]/55 hover:bg-[#F9FAFB] hover:text-[#154a2d] whitespace-normal sm:w-auto"
+          >
+            <Link
+              href="/for-domestic-workers"
+              className="inline-flex items-center justify-center text-center"
+            >
+              Register as a domestic worker
+            </Link>
           </Button>
         </div>
       </div>

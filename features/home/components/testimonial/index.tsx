@@ -1,176 +1,66 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { QouteICon } from "../../../../components/icons";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
     id: 0,
     quote:
-      "ULO Helps made finding care for my father easy and stress-free. Highly recommended!",
-    name: "Samuel A.",
-    title: "Elderly Care Client",
+      "I found a reliable nanny within 2 days. Very professional.",
+    name: "Sarah",
+    location: "Lekki",
   },
   {
     id: 1,
     quote:
-      "The vetting process reassured me every step of the way. Their team really cares.",
-    name: "Miriam O.",
-    title: "Family Member",
+      "No stress, no bad experiences. Highly recommend Ulo.",
+    name: "Tunde",
+    location: "Yaba",
   },
-  {
-    id: 2,
-    quote:
-      "Their platform is intuitive and their domestic workers are amazing. A game changer.",
-    name: "Adebayo K.",
-    title: "Son & Care Coordinator",
-  },
-  {
-    id: 3,
-    quote:
-      "This service allowed me to return to work knowing my mother is in good hands.",
-    name: "Lilian N.",
-    title: "Working Professional",
-  },
-];
+] as const;
+
+function Stars() {
+  return (
+    <div className="flex gap-0.5" aria-hidden>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className="h-4 w-4 fill-amber-400 text-amber-400"
+          strokeWidth={0}
+        />
+      ))}
+    </div>
+  );
+}
 
 const TestimonialSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const handleNavigation = (direction: "prev" | "next" | number) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-
-    if (direction === "prev") {
-      setCurrentSlide(
-        (prev) => (prev - 1 + testimonials.length) % testimonials.length
-      );
-    } else if (direction === "next") {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-    } else {
-      setCurrentSlide(direction);
-    }
-
-    setTimeout(() => setIsAnimating(false), 300);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-14">
-          Don't take our word for it
+    <section className="border-t border-[#E8E6E0]/80 bg-transparent py-16 md:py-24 px-4">
+      <div className="mx-auto max-w-4xl">
+        <h2 className="font-serif text-3xl font-semibold tracking-tight text-[#1a2e24] md:text-[2rem] text-center mb-10 md:mb-14">
+          What our customers say
         </h2>
 
-        {/* Card Slider */}
-        <div className="relative mb-10 overflow-hidden">
-          <div className="flex justify-center items-center gap-6 flex-wrap md:flex-nowrap">
-            {/* Left card */}
-            <div
-              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all opacity-30 scale-95 duration-300 mr-[-100px]`}
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-2 md:gap-6">
+          {testimonials.map((t) => (
+            <figure
+              key={t.id}
+              className="rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.05)] md:p-8"
             >
-              <TestimonialCard
-                data={
-                  testimonials[
-                    (currentSlide - 1 + testimonials.length) %
-                      testimonials.length
-                  ]
-                }
-                muted
-              />
-            </div>
-
-            {/* Active card */}
-            <div className="flex-shrink-0 rounded-[24px] shadow-lg w-full max-w-md transition-all duration-300 transform scale-100 z-10">
-              <TestimonialCard data={testimonials[currentSlide]} />
-            </div>
-
-            {/* Right card */}
-            <div
-              className={`hidden md:block flex-shrink-0 w-full ml-[-70px] max-w-md transition-all duration-300 opacity-30 scale-95 `}
-            >
-              <TestimonialCard
-                data={testimonials[(currentSlide + 1) % testimonials.length]}
-                muted
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-center space-x-4">
-          <button
-            onClick={() => handleNavigation("prev")}
-            aria-label="Previous testimonial"
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow hover:shadow-lg transition active:scale-95"
-            disabled={isAnimating}
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-500" />
-          </button>
-
-          <div className="flex space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleNavigation(index)}
-                aria-label={`Go to testimonial ${index + 1}`}
-                className={`w-3 h-3 rounded-full transition ${
-                  index === currentSlide
-                    ? "bg-[#17403A]"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-                disabled={isAnimating}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={() => handleNavigation("next")}
-            aria-label="Next testimonial"
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow hover:shadow-lg transition active:scale-95"
-            disabled={isAnimating}
-          >
-            <ChevronRight className="w-5 h-5 text-gray-500" />
-          </button>
+              <Stars />
+              <blockquote className="mt-4 text-[15px] leading-relaxed text-[#344054] md:text-base">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <figcaption className="mt-5 text-sm">
+                <span className="font-semibold text-[#1a2e24]">{t.name}</span>
+                <span className="text-[#475467]">, {t.location}</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
   );
 };
-
-const TestimonialCard = ({
-  data,
-  muted = false,
-}: {
-  data: { quote: string; name: string; title: string };
-  muted?: boolean;
-}) => (
-  <div
-    className={`rounded-[24px] max-w-[524px] bg-[#F0EABA] bg-opacity-80 border border-[#F0EABA] bg-[#F0EABA4D] shadow-lg p-8 transition-all ${
-      muted ? "opacity-50" : ""
-    }`}
-  >
-    <div className="w-[52px] h-[52px]  rounded-[12px] mb-4 flex items-center justify-center">
-      <QouteICon />
-      <QouteICon />
-    </div>
-    <p className="text-[#344054] text-lg font-normal mb-4 leading-relaxed">
-      {data.quote}
-    </p>
-    <div>
-      <p className="font-semibold text-lg text-[#344054]">{data.name}</p>
-      <p className="text-base text-[#475367]">{data.title}</p>
-    </div>
-  </div>
-);
 
 export default TestimonialSection;
