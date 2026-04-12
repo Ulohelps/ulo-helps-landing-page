@@ -1,8 +1,5 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
-import { Fragment } from "react";
-
 const STEPS = [
   { n: 1, title: "Tell us what you need" },
   { n: 2, title: "Pay securely to confirm your request" },
@@ -18,26 +15,19 @@ const HowItWorks = () => {
           How it works
         </h2>
 
-        <div className="mx-auto flex max-w-5xl flex-row items-center gap-4 md:items-start md:justify-center md:gap-4">
-          {STEPS.map((step, i) => (
-            <Fragment key={step.n}>
-              <div className="flex min-w-0 flex-1 flex-col items-center text-center md:w-auto md:max-w-[220px] md:flex-1">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D9EAD3] text-lg font-bold text-[#17403A] shadow-md">
-                  {step.n}
-                </div>
-                <p className="mt-4 text-[15px] font-medium leading-snug text-[#E8F5EC]/95">
-                  {step.title}
-                </p>
+        <div className="mx-auto grid max-w-3xl grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-10 md:gap-x-12 md:gap-y-12">
+          {STEPS.map((step) => (
+            <div
+              key={step.n}
+              className="flex min-w-0 flex-col items-center text-center"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#D9EAD3] text-lg font-bold text-[#17403A] shadow-md">
+                {step.n}
               </div>
-              {i < STEPS.length - 1 && (
-                <div
-                  className="hidden shrink-0 text-white/35 md:flex md:items-center md:self-center md:pb-10 md:pt-0"
-                  aria-hidden
-                >
-                  <ChevronRight className="h-6 w-6" strokeWidth={2} />
-                </div>
-              )}
-            </Fragment>
+              <p className="mt-4 text-[15px] font-medium leading-snug text-[#E8F5EC]/95">
+                {step.title}
+              </p>
+            </div>
           ))}
         </div>
       </div>
