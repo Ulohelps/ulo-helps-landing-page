@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CARESEEKER_REGISTER_URL } from "@/lib/site";
+import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,10 +20,12 @@ export function GuaranteeCta() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="text-lg font-semibold text-[#1B5E37] md:text-xl">
-              72 hours placement guarantee
+            Connection time is usually within 72 hours
           </h2>
           <p className="mt-2 text-[15px] leading-relaxed text-[#475467]">
-            We&apos;ll get you a domestic worker quickly without stress.
+            That&apos;s what many employers experience—it isn&apos;t a guaranteed
+            timeline, but it&apos;s what you can typically expect while we work to
+            connect you with a domestic worker without unnecessary stress.
           </p>
         </motion.div>
 
@@ -40,7 +42,7 @@ export function GuaranteeCta() {
             className="h-auto min-h-12 w-full shrink-0 rounded-xl border-[#1B5E37]/40 bg-white px-6 py-3 text-center text-base font-semibold leading-snug text-[#1B5E37] shadow-sm hover:border-[#1B5E37]/55 hover:bg-[#F9FAFB] hover:text-[#154a2d] whitespace-normal sm:w-auto sm:max-w-none"
           >
             <Link
-              href="/for-domestic-workers"
+              href={DOMESTIC_WORKER_CTA_URL}
               className="inline-flex items-center justify-center text-center"
             >
               Register as a domestic worker

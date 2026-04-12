@@ -6,16 +6,21 @@ const testimonials = [
   {
     id: 0,
     quote:
-      "I found a reliable nanny within 2 days. Very professional.",
-    name: "Sarah",
-    location: "Lekki",
+      "The representative was very professional and supportive throughout the process of scanning through several potential candidates until I found a suitable person. Many thanks.",
+    name: "Temidayo Odulaja",
   },
   {
     id: 1,
     quote:
-      "No stress, no bad experiences. Highly recommend Ulo.",
-    name: "Tunde",
-    location: "Yaba",
+      "I hired my housekeeper from Ulo helps. It's been 8 months since I hired her and she's doing perfectly fine.",
+    name: "Chiamaka Igwe",
+  },
+  {
+    id: 2,
+    quote:
+      "I had a very good experience with Ulohelps in searching for a job, I was interviewed the second day of my registration and immediately got a job, luckily for me it was an immediate resumption job. Thank you Ulohelps because I'd have been stranded in Lagos with no place to stay…. Ulohelps registration and getting a job is the fastest I've ever seen…. thank you so much ulohelps",
+    name: "Morenike Blessing",
+    location: "Lagos",
   },
 ] as const;
 
@@ -41,11 +46,15 @@ const TestimonialSection = () => {
           What our customers say
         </h2>
 
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-2 md:gap-6">
+        <div
+          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible px-4 pb-2 [-webkit-overflow-scrolling:touch] scrollbar-hide md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:snap-none"
+          role="region"
+          aria-label="Customer testimonials"
+        >
           {testimonials.map((t) => (
             <figure
               key={t.id}
-              className="rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.05)] md:p-8"
+              className="w-[min(22rem,calc(100vw-2rem))] shrink-0 snap-center rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.05)] md:w-auto md:min-w-0 md:shrink md:p-8"
             >
               <Stars />
               <blockquote className="mt-4 text-[15px] leading-relaxed text-[#344054] md:text-base">
@@ -53,7 +62,9 @@ const TestimonialSection = () => {
               </blockquote>
               <figcaption className="mt-5 text-sm">
                 <span className="font-semibold text-[#1a2e24]">{t.name}</span>
-                <span className="text-[#475467]">, {t.location}</span>
+                {"location" in t && t.location ? (
+                  <span className="text-[#475467]">, {t.location}</span>
+                ) : null}
               </figcaption>
             </figure>
           ))}

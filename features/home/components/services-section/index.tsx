@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CARESEEKER_REGISTER_URL } from "@/lib/site";
+import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -68,7 +68,7 @@ const ServiceSection = () => {
             className="h-auto min-h-12 w-full shrink-0 rounded-xl border-[#1B5E37]/40 bg-white px-6 py-3 text-center text-base font-semibold leading-snug text-[#1B5E37] shadow-sm hover:border-[#1B5E37]/55 hover:bg-[#F9FAFB] hover:text-[#154a2d] whitespace-normal sm:w-auto"
           >
             <Link
-              href="/for-domestic-workers"
+              href={DOMESTIC_WORKER_CTA_URL}
               className="inline-flex items-center justify-center text-center"
             >
               Register as a domestic worker

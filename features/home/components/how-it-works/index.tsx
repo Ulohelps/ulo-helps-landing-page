@@ -5,8 +5,9 @@ import { Fragment } from "react";
 
 const STEPS = [
   { n: 1, title: "Tell us what you need" },
-  { n: 2, title: "We match you with verified workers" },
-  { n: 3, title: "Hire & get started" },
+  { n: 2, title: "Pay securely to confirm your request" },
+  { n: 3, title: "We match you with verified workers" },
+  { n: 4, title: "Hire & get started" },
 ] as const;
 
 const HowItWorks = () => {
