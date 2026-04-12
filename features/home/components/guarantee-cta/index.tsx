@@ -20,12 +20,10 @@ export function GuaranteeCta() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2 className="text-lg font-semibold text-[#1B5E37] md:text-xl">
-            Connection time is usually within 72 hours
+            72 hours
           </h2>
           <p className="mt-2 text-[15px] leading-relaxed text-[#475467]">
-            That&apos;s what many employers experience—it isn&apos;t a guaranteed
-            timeline, but it&apos;s what you can typically expect while we work to
-            connect you with a domestic worker without unnecessary stress.
+          Connection time is usually within 72 hours
           </p>
         </motion.div>
 
