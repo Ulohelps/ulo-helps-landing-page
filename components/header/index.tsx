@@ -15,7 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import { CARESEEKER_REGISTER_URL } from "@/lib/site";
+import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import UloLogo from "@/public/new-logo.png";
 
@@ -157,7 +157,7 @@ export default function Header() {
                   className="h-auto min-h-11 w-full whitespace-normal rounded-xl border-[#1B5E37]/40 py-3 text-center text-sm font-semibold leading-snug text-[#1B5E37] hover:bg-[#1B5E37]/8"
                 >
                   <Link
-                    href="/for-domestic-workers"
+                    href={DOMESTIC_WORKER_CTA_URL}
                     className="inline-flex justify-center px-2 text-center"
                     onClick={() => setOpen(false)}
                   >

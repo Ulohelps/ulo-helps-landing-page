@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CARESEEKER_REGISTER_URL } from "@/lib/site";
+import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronRight, ShieldCheck, Zap } from "lucide-react";
@@ -247,7 +247,7 @@ export function HeroSection() {
                   className="h-auto min-h-11 rounded-full border-[#1B5E37]/40 bg-white/80 px-6 py-2.5 text-center text-sm font-semibold leading-snug text-[#1B5E37] shadow-sm backdrop-blur-sm hover:border-[#1B5E37]/55 hover:bg-white hover:text-[#154a2d] whitespace-normal"
                 >
                   <Link
-                    href="/for-domestic-workers"
+                    href={DOMESTIC_WORKER_CTA_URL}
                     className="group inline-flex flex-wrap items-center justify-center gap-1.5 px-1 text-center"
                   >
                     <span className="text-balance">Register as a domestic worker</span>
