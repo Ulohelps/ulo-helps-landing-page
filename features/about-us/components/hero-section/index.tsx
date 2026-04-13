@@ -7,10 +7,10 @@ export function HeroSection() {
 
   return (
     <section
-      className="py-32 bg-gradient-to-br from-[#f9fcff] to-[#fff4ee]"
+      className="py-32 bg-gradient-to-br w-full from-[#f9fcff] to-[#fff4ee]"
       style={{
         backgroundImage: `url("/bg-gradient.png")`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
