@@ -39,6 +39,37 @@ function Stars() {
   );
 }
 
+function ReadMoreQuote({
+  quote,
+  clampChars = 140,
+}: {
+  quote: string;
+  clampChars?: number;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const normalized = quote.trim();
+  const needsClamp = normalized.length > clampChars;
+  const shown = !needsClamp || expanded ? normalized : `${normalized.slice(0, clampChars).trimEnd()}…`;
+
+  return (
+    <div className="mt-4">
+      <blockquote className="text-[15px] leading-relaxed text-[#344054] md:text-base">
+        &ldquo;{shown}&rdquo;
+      </blockquote>
+      {needsClamp ? (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mt-2 text-sm font-semibold text-[#1B5E37] hover:text-[#154a2d] underline underline-offset-2"
+          aria-expanded={expanded}
+        >
+          {expanded ? "Read less" : "Read more"}
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
 const TestimonialSection = () => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
@@ -96,9 +127,7 @@ const TestimonialSection = () => {
                 className="w-[min(22rem,calc(100vw-2rem))] shrink-0 snap-center rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.05)] md:w-auto md:min-w-0 md:shrink md:p-8"
               >
                 <Stars />
-                <blockquote className="mt-4 text-[15px] leading-relaxed text-[#344054] md:text-base">
-                  &ldquo;{t.quote}&rdquo;
-                </blockquote>
+                <ReadMoreQuote quote={t.quote} />
                 <figcaption className="mt-5 text-sm">
                   <span className="font-semibold text-[#1a2e24]">{t.name}</span>
                   {"location" in t && t.location ? (

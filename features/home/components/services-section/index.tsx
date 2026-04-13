@@ -1,9 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
+// import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
+import { StartNowModal } from "@/components/start-now-modal";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const SERVICE_LIST = [
@@ -56,24 +57,9 @@ const ServiceSection = () => {
         </div>
 
         <div className="mx-auto mt-12 flex w-full max-w-2xl flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap">
-          <Button
-            onClick={() => router.push(CARESEEKER_REGISTER_URL)}
-            className="h-auto min-h-12 w-full shrink-0 rounded-xl bg-[#1B5E37] px-8 py-3 text-center text-base font-semibold leading-snug text-white shadow-[0_4px_14px_rgba(27,94,55,0.28)] hover:bg-[#154a2d] hover:text-white whitespace-normal sm:w-auto"
-          >
-            Find a verified worker
-          </Button>
-          <Button
-            variant="outline"
-            asChild
-            className="h-auto min-h-12 w-full shrink-0 rounded-xl border-[#1B5E37]/40 bg-white px-6 py-3 text-center text-base font-semibold leading-snug text-[#1B5E37] shadow-sm hover:border-[#1B5E37]/55 hover:bg-[#F9FAFB] hover:text-[#154a2d] whitespace-normal sm:w-auto"
-          >
-            <Link
-              href={DOMESTIC_WORKER_CTA_URL}
-              className="inline-flex items-center justify-center text-center"
-            >
-              Register as a domestic worker
-            </Link>
-          </Button>
+          <StartNowModal
+            triggerClassName="h-auto min-h-12 w-full shrink-0 rounded-xl bg-[#1B5E37] px-8 py-3 text-center text-base font-semibold leading-snug text-white shadow-[0_4px_14px_rgba(27,94,55,0.28)] hover:bg-[#154a2d] hover:text-white whitespace-normal sm:w-auto"
+          />
         </div>
       </div>
     </section>

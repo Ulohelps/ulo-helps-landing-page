@@ -15,7 +15,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
+import { CARESEEKER_REGISTER_URL } from "@/lib/site";
+import { StartNowModal } from "@/components/start-now-modal";
 import { cn } from "@/lib/utils";
 import UloLogo from "@/public/new-logo.png";
 
@@ -81,12 +82,9 @@ export default function Header() {
 
         {/* Navigation */}
         <div className="hidden md:flex shrink-0 items-center gap-3">
-          <Button
-            onClick={() => router.push(CARESEEKER_REGISTER_URL)}
-            className="shrink-0 rounded-xl bg-[#1B5E37] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(27,94,55,0.25)] hover:bg-[#154a2d] hover:text-white whitespace-normal"
-          >
-            Find a verified worker
-          </Button>
+          <StartNowModal
+            triggerClassName="shrink-0 rounded-xl bg-[#1B5E37] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(27,94,55,0.25)] hover:bg-[#154a2d] hover:text-white whitespace-normal"
+          />
           {/* <Button
             variant="outline"
             asChild
@@ -142,28 +140,10 @@ export default function Header() {
                 })}
               </nav>
               <div className="flex flex-col gap-2 border-t border-[#EAECF0] p-4">
-                <Button
-                  onClick={() => {
-                    router.push(CARESEEKER_REGISTER_URL);
-                    setOpen(false);
-                  }}
-                  className="w-full rounded-xl bg-[#1B5E37] text-white hover:bg-[#154a2d] hover:text-white"
-                >
-                  Find a verified worker
-                </Button>
-                <Button
-                  variant="outline"
-                  asChild
-                  className="h-auto min-h-11 w-full whitespace-normal rounded-xl border-[#1B5E37]/40 py-3 text-center text-sm font-semibold leading-snug text-[#1B5E37] hover:bg-[#1B5E37]/8"
-                >
-                  <Link
-                    href={DOMESTIC_WORKER_CTA_URL}
-                    className="inline-flex justify-center px-2 text-center"
-                    onClick={() => setOpen(false)}
-                  >
-                    Register as a domestic worker
-                  </Link>
-                </Button>
+                <StartNowModal
+                  triggerClassName="w-full rounded-xl bg-[#1B5E37] text-white hover:bg-[#154a2d] hover:text-white"
+                  triggerChildren="Start now"
+                />
               </div>
             </div>
           </SheetContent>
