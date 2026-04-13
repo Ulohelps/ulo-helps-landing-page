@@ -32,12 +32,12 @@ export function StartNowModal({
           {triggerChildren}
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-white border border-[#EAECF0] sm:rounded-2xl max-w-2xl">
+      <DialogContent className="bg-white border border-[#EAECF0] sm:rounded-2xl max-w-[90%] sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle className="text-[#101828]">Start now</DialogTitle>
         </DialogHeader>
 
-        <div className="grid gap-3 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2 py-10">
           <Button
             asChild
             className="h-14 rounded-2xl bg-[#1B5E37] text-white hover:bg-[#154a2d] hover:text-white text-base"
