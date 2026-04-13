@@ -6,33 +6,33 @@ const values = [
   "Global Standards",
   "Dependable Excellence",
   " Human-centered technology ",
-  " Speed and Simplicityover complexity",
+  " Speed and Simplicity over complexity",
 ];
 
 const CoreValues = () => {
   return (
-    <div className="bg-[var(--ulo-dark-green)] py-24 px-4">
-      <div className="max-w-[1136px] mx-auto">
-        <div className="max-w-[556px] mx-auto mb-16">
-          <h2 className="text-[32px] text-[#FFFDF8] text-center font-semibold mb-4">
+    <section className="border-t border-white/10 bg-[var(--ulo-dark-green)] px-4 py-16 md:py-24">
+      <div className="mx-auto max-w-[1136px]">
+        <header className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
+          <h2 className="text-2xl font-semibold tracking-tight text-[#FFFDF8] sm:text-[32px]">
             Core Values
           </h2>
-          <p className="text-lg text-[#FFFDF8] text-center font-normal">
+          <p className="mt-4 text-base leading-relaxed text-[#FFFDF8]/90 sm:text-lg">
             when you are vulnerable trust is not negotiable
           </p>
-        </div>
-        <div className=" grid grid-cols-3 gap-y-16">
+        </header>
+        <ul className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           {values.map((value) => (
-            <div
+            <li
               key={value}
-              className="bg-[var(--ulo-light-green)] rounded-[32px] max-w-[320px] h-[120px] text-center text-lg font-semibold text-[var(--ulo-dark-green)] flex items-center justify-center"
+              className="flex min-h-[96px] items-center justify-center rounded-2xl bg-[var(--ulo-light-green)] px-3 py-4 text-center text-sm font-semibold leading-snug text-[var(--ulo-dark-green)] shadow-sm sm:min-h-[120px] sm:px-5 sm:py-6 sm:text-lg sm:rounded-[28px] md:rounded-[32px]"
             >
-              {value}
-            </div>
+              {value.trim()}
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </div>
+    </section>
   );
 };
 
