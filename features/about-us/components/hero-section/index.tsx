@@ -1,46 +1,16 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef } from "react";
-import User1 from "@/public/about-us/about-us-hero-image-03.png";
-import User2 from "@/public/about-us/about-us-hero-image-01.png";
-import User3 from "@/public/about-us/about-us-hero-image-02.png";
-
-const images = [User1, User2, User3];
+// Hero images removed per request
 
 export function HeroSection() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el || window.innerWidth >= 640) return;
-
-    let scrollAmount = 0;
-    const scrollStep = 1;
-
-    const scrollInterval = setInterval(() => {
-      if (!el) return;
-
-      scrollAmount += scrollStep;
-
-      // When scrolled past the first set, reset to start smoothly
-      if (scrollAmount >= el.scrollWidth / 2) {
-        el.scrollLeft = 0;
-        scrollAmount = 0;
-      } else {
-        el.scrollLeft += scrollStep;
-      }
-    }, 20); // Adjust speed here
-
-    return () => clearInterval(scrollInterval);
-  }, []);
+  // Hero images removed per request (keep the copy-only hero).
 
   return (
     <section
-      className="py-32 bg-gradient-to-br from-[#f9fcff] to-[#fff4ee]"
+      className="py-32 bg-gradient-to-br w-full from-[#f9fcff] to-[#fff4ee]"
       style={{
         backgroundImage: `url("/bg-gradient.png")`,
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
@@ -57,21 +27,7 @@ export function HeroSection() {
           </p>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="flex items-center overflow-x-scroll scrollbar-hide gap-4 sm:gap-5 mt-12 whitespace-nowrap"
-        >
-          {[...images, ...images].map((img, i) => (
-            <Image
-              key={i}
-              src={img}
-              alt="user"
-              height={1000}
-              width={1000}
-              className="w-full sm:w-[300px] md:w-[340px] lg:w-[388px] rounded-[24px] object-cover flex-shrink-0"
-            />
-          ))}
-        </div>
+        {/* Hero images removed */}
       </div>
     </section>
   );

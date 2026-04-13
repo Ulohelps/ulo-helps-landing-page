@@ -1,6 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "../providers";
 import Header from "@/components/header";
@@ -11,6 +11,12 @@ import { Analytics } from "@vercel/analytics/react";
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-plus-jakarta",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
 });
 export const metadata: Metadata = {
   title: "Ulohelps - landing page",
@@ -28,7 +34,7 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body
-        className={`${plusJakarta.className} bg-[#fafafa] scroll-smooth  font-normal`}
+        className={`${plusJakarta.className} ${fraunces.variable} bg-[#FDFCF7] scroll-smooth font-normal antialiased`}
       >
         <Header />
         <Providers>

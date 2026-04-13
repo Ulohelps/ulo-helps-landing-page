@@ -2,22 +2,22 @@ import React from "react";
 import { HeroSection } from "./components/hero-section";
 import OurStory from "./components/our-story";
 import ValuesDerived from "./components/values-derived";
-import OurTeam from "./components/our-team";
-import JoinTeam from "./components/join-team/Index";
 import CoreValues from "./components/value-points";
 import OurMisson from "./components/our-mission";
 
 const AboutUs = () => {
   return (
-    <div>
+    <main className="bg-[var(--ulo-cream)]">
       <HeroSection />
-      <OurStory />
-      <OurMisson />
-      <ValuesDerived />
-      <CoreValues />
-      {/* <OurTeam /> */}
-      {/* <JoinTeam /> */}
-    </div>
+      <div className="border-t border-[#E8E6E0]/90">
+        <OurStory />
+        <OurMisson />
+        <ValuesDerived />
+        <CoreValues />
+        {/* <OurTeam /> */}
+        {/* <JoinTeam /> */}
+      </div>
+    </main>
   );
 };
 

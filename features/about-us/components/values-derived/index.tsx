@@ -17,11 +17,11 @@ const values = [
     description:
       "All Domestic workers are verified and background checked. Experience levels clearly displayed. Reviews and ratings from real families",
   },
-  {
-    title: "Technological Ease:",
-    description:
-      "  Intuitive platform that works like other apps you already love. Simple booking and communication process. Mobile-first experience for on-the-go needs",
-  },
+  // {
+  //   title: "Technological Ease:",
+  //   description:
+  //     "  Intuitive platform that works like other apps you already love. Simple booking and communication process. Mobile-first experience for on-the-go needs",
+  // },
   {
     title: "Availability:",
     description:
@@ -41,42 +41,40 @@ const values = [
 
 const ValuesDerived = () => {
   return (
-    <div className="bg-[#D4E8DB] py-24 px-4">
-      <div className="max-w-[1136px] mx-auto">
-        <div className="max-w-[556px] mb-16">
-          <h2 className="text-[32px] text-[#344054] font-semibold mb-4">
+    <section className="border-t border-[#17403A]/10 bg-[#D4E8DB] px-4 py-16 md:py-24">
+      <div className="mx-auto max-w-[1136px]">
+        <header className="mb-12 max-w-xl md:mb-16">
+          <h2 className="text-2xl font-semibold tracking-tight text-[#344054] sm:text-[32px]">
             Value points
           </h2>
-          <p className="text-lg text-[#344054] font-normal">
+          <p className="mt-4 text-base leading-relaxed text-[#475367] sm:text-lg">
             We are driven by the core belief that care is the foundation of
             thriving communities.
           </p>
-        </div>
+        </header>
 
-        <div className="space-y-12">
-          {values.map((value, index) => (
-            <div
+        <ul className="grid gap-4 sm:gap-5 md:grid-cols-2 md:gap-6">
+          {values.map((value) => (
+            <li
               key={value.title}
-              className={`flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 pb-16  border-b border-[#17403A] ${
-                index === values.length - 1 && "border-none"
-              }`}
+              className="flex h-full flex-col rounded-2xl border border-[#17403A]/30 bg-[#FDFCF7]/90 p-5 shadow-sm sm:p-6 md:rounded-3xl"
             >
-              <div className="flex items-center gap-5">
-                <div className="flex items-center justify-center p-3 h-12 w-12 bg-primary border border-[#F0EABA] rounded-[12px]">
+              <div className="mb-4 flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#F0EABA] bg-primary sm:h-12 sm:w-12">
                   <StarICon />
                 </div>
-                <p className="text-xl text-[#344054] font-bold">
-                  {value.title}
+                <p className="pt-0.5 text-lg font-semibold leading-snug text-[#1a2e24] sm:text-xl">
+                  {value.title.trim()}
                 </p>
               </div>
-              <p className="text-base text-[#475367] font-normal lg:w-[60%]">
-                {value.description}
+              <p className="text-sm leading-relaxed text-[#475367] sm:text-base">
+                {value.description.trim()}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

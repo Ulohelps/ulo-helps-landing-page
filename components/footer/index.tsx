@@ -14,7 +14,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#17403A] py-12 ">
+    <footer className="relative z-20 bg-[#17403A] py-12">
       <div className="mx-auto max-w-[1136px] px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         {/* Logo & Socials */}
         <div>
@@ -55,21 +55,21 @@ const Footer = () => {
               </Link>
             </li> */}
             <li>
-              <Link
+              {/* <Link
                 href="/for-domestic-workers"
                 className="text-base text-white font-semibold"
               >
                 For domestic workers
-              </Link>
+              </Link> */}
             </li>
-            <li>
+            {/* <li>
               <Link
                 href="/#faqs"
                 className="text-base text-white font-semibold"
               >
                 FAQs
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Users, Bookmark, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -15,11 +15,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
+import { CARESEEKER_REGISTER_URL } from "@/lib/site";
+import { StartNowModal } from "@/components/start-now-modal";
+import { cn } from "@/lib/utils";
 import UloLogo from "@/public/new-logo.png";
 
 const navLinks = [
   { href: "/about-us", label: "About us" },
-  { href: "/for-domestic-workers", label: "For domestic workers" },
+  // { href: "/for-domestic-workers", label: "For domestic workers" },
   { href: "/blog", label: "Blog" },
   { href: "/contacts", label: "Contacts" },
 ];
@@ -28,9 +31,17 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const isHome = pathname === "/";
 
   return (
-    <header className="fixed w-full top-0 z-[60] bg-[#FFFDF8] h-20 shadow-sm border-b border-[#EAECF0] px-4 md:px-8 py-3">
+    <header
+      className={cn(
+        "fixed top-0 z-[60] h-20 w-full border-b px-4 py-3 backdrop-blur-md transition-colors md:px-8",
+        isHome
+          ? "border-[#1B5E37]/[0.08] bg-[#d9ead3]/88 shadow-none backdrop-blur-lg"
+          : "border-[#E8E6E0] bg-[#FDFCF7]/95 shadow-sm"
+      )}
+    >
       <div className="mx-auto flex max-w-[1136px] items-center justify-between">
         {/* Logo */}
         <div
@@ -59,8 +70,8 @@ export default function Header() {
                 href={link.href}
                 className={`px-3 py-2 rounded-[8px] text-base font-medium ${
                   active
-                    ? "bg-[#FA6D4D4D] text-[#523914]"
-                    : "text-[#475467] hover:bg-[#FA6D4D4D]"
+                    ? "bg-[#1B5E37]/12 text-[#1B5E37]"
+                    : "text-[#475467] hover:bg-[#1B5E37]/8"
                 } transition-colors`}
               >
                 {link.label}
@@ -70,26 +81,39 @@ export default function Header() {
         </nav>
 
         {/* Navigation */}
-        <div className="hidden md:flex items-center gap-4 md:gap-6">
-          <Button
-            onClick={() =>
-              router.push("https://careseekers.ulohelps.com/auth/register")
-            }
+        <div className="hidden md:flex shrink-0 items-center gap-3">
+          <StartNowModal
+            triggerClassName="shrink-0 rounded-xl bg-[#1B5E37] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(27,94,55,0.25)] hover:bg-[#154a2d] hover:text-white whitespace-normal"
+          />
+          {/* <Button
+            variant="outline"
+            asChild
+            className="shrink-0 rounded-xl border-[#1B5E37]/40 bg-white/90 px-5 py-2.5 text-center text-sm font-semibold leading-snug text-[#1B5E37] shadow-sm hover:border-[#1B5E37]/55 hover:bg-white hover:text-[#154a2d] whitespace-normal"
           >
-            Hire your domestic worker
-          </Button>
+            <Link
+              href="/for-domestic-workers"
+              className="inline-flex items-center justify-center text-center"
+            >
+              Register as a domestic worker
+            </Link>
+          </Button> */}
         </div>
         {/* Mobile Menu */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <button
-              className="md:hidden p-2 text-[#475467] hover:bg-[#F9FAFB] rounded-lg"
+              className={cn(
+                "md:hidden rounded-lg p-2",
+                isHome
+                  ? "text-[#1a2e24] hover:bg-[#1B5E37]/10"
+                  : "text-[#475467] hover:bg-[#F9FAFB]"
+              )}
               aria-label="Menu"
             >
               <Menu className="w-6 h-6" />
             </button>
           </SheetTrigger>
-          <SheetContent side="top" className="w-full h-[320px] p-0 bg-white">
+          <SheetContent side="top" className="h-auto max-h-[min(420px,85vh)] w-full p-0 bg-white">
             <div className="h-full flex flex-col">
               <SheetHeader className="px-4 pt-5 pb-4 border-b border-[#EAECF0]">
                 <SheetTitle className="text-sm font-semibold text-[#101828]"></SheetTitle>
@@ -115,16 +139,11 @@ export default function Header() {
                   );
                 })}
               </nav>
-              <div className="p-4 border-t border-[#EAECF0] flex items-center justify-between">
-                <Button
-                  onClick={() =>
-                    router.push(
-                      "https://careseekers.ulohelps.com/auth/register"
-                    )
-                  }
-                >
-                  Hire your domestic worker
-                </Button>
+              <div className="flex flex-col gap-2 border-t border-[#EAECF0] p-4">
+                <StartNowModal
+                  triggerClassName="w-full rounded-xl bg-[#1B5E37] text-white hover:bg-[#154a2d] hover:text-white"
+                  triggerChildren="Start now"
+                />
               </div>
             </div>
           </SheetContent>

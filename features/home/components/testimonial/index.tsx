@@ -1,176 +1,165 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { QouteICon } from "../../../../components/icons";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const testimonials = [
   {
     id: 0,
     quote:
-      "ULO Helps made finding care for my father easy and stress-free. Highly recommended!",
-    name: "Samuel A.",
-    title: "Elderly Care Client",
+      "The representative was very professional and supportive throughout the process of scanning through several potential candidates until I found a suitable person. Many thanks.",
+    name: "Temidayo Odulaja",
   },
   {
     id: 1,
     quote:
-      "The vetting process reassured me every step of the way. Their team really cares.",
-    name: "Miriam O.",
-    title: "Family Member",
+      "I hired my housekeeper from Ulo helps. It's been 8 months since I hired her and she's doing perfectly fine.",
+    name: "Chiamaka Igwe",
   },
   {
     id: 2,
     quote:
-      "Their platform is intuitive and their domestic workers are amazing. A game changer.",
-    name: "Adebayo K.",
-    title: "Son & Care Coordinator",
+      "I had a very good experience with Ulohelps in searching for a job, I was interviewed the second day of my registration and immediately got a job, luckily for me it was an immediate resumption job. Thank you Ulohelps because I'd have been stranded in Lagos with no place to stay…. Ulohelps registration and getting a job is the fastest I've ever seen…. thank you so much ulohelps",
+    name: "Morenike Blessing",
+    location: "Lagos",
   },
-  {
-    id: 3,
-    quote:
-      "This service allowed me to return to work knowing my mother is in good hands.",
-    name: "Lilian N.",
-    title: "Working Professional",
-  },
-];
+] as const;
 
-const TestimonialSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+function Stars() {
+  return (
+    <div className="flex gap-0.5" aria-hidden>
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className="h-4 w-4 fill-amber-400 text-amber-400"
+          strokeWidth={0}
+        />
+      ))}
+    </div>
+  );
+}
 
-  const handleNavigation = (direction: "prev" | "next" | number) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-
-    if (direction === "prev") {
-      setCurrentSlide(
-        (prev) => (prev - 1 + testimonials.length) % testimonials.length
-      );
-    } else if (direction === "next") {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-    } else {
-      setCurrentSlide(direction);
-    }
-
-    setTimeout(() => setIsAnimating(false), 300);
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
+function ReadMoreQuote({
+  quote,
+  clampChars = 140,
+}: {
+  quote: string;
+  clampChars?: number;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const normalized = quote.trim();
+  const needsClamp = normalized.length > clampChars;
+  const shown = !needsClamp || expanded ? normalized : `${normalized.slice(0, clampChars).trimEnd()}…`;
 
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-gray-900 mb-14">
-          Don't take our word for it
+    <div className="mt-4">
+      <blockquote className="text-[15px] leading-relaxed text-[#344054] md:text-base">
+        &ldquo;{shown}&rdquo;
+      </blockquote>
+      {needsClamp ? (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mt-2 text-sm font-semibold text-[#1B5E37] hover:text-[#154a2d] underline underline-offset-2"
+          aria-expanded={expanded}
+        >
+          {expanded ? "Read less" : "Read more"}
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
+const TestimonialSection = () => {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+
+  const updateScrollState = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    const epsilon = 8;
+    setCanPrev(scrollLeft > epsilon);
+    setCanNext(scrollLeft < scrollWidth - clientWidth - epsilon);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    const ro = new ResizeObserver(updateScrollState);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", updateScrollState);
+      ro.disconnect();
+    };
+  }, [updateScrollState]);
+
+  const scrollByDir = (dir: "prev" | "next") => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const step = Math.min(el.clientWidth * 0.85, 320);
+    el.scrollBy({
+      left: dir === "next" ? step : -step,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <section className="border-t border-[#E8E6E0]/80 bg-transparent py-16 md:py-24 px-4">
+      <div className="mx-auto max-w-4xl">
+        <h2 className="font-serif text-3xl font-semibold tracking-tight text-[#1a2e24] md:text-[2rem] text-center mb-10 md:mb-14">
+          What our customers say
         </h2>
 
-        {/* Card Slider */}
-        <div className="relative mb-10 overflow-hidden">
-          <div className="flex justify-center items-center gap-6 flex-wrap md:flex-nowrap">
-            {/* Left card */}
-            <div
-              className={`hidden md:block flex-shrink-0 w-full max-w-md transition-all opacity-30 scale-95 duration-300 mr-[-100px]`}
-            >
-              <TestimonialCard
-                data={
-                  testimonials[
-                    (currentSlide - 1 + testimonials.length) %
-                      testimonials.length
-                  ]
-                }
-                muted
-              />
-            </div>
-
-            {/* Active card */}
-            <div className="flex-shrink-0 rounded-[24px] shadow-lg w-full max-w-md transition-all duration-300 transform scale-100 z-10">
-              <TestimonialCard data={testimonials[currentSlide]} />
-            </div>
-
-            {/* Right card */}
-            <div
-              className={`hidden md:block flex-shrink-0 w-full ml-[-70px] max-w-md transition-all duration-300 opacity-30 scale-95 `}
-            >
-              <TestimonialCard
-                data={testimonials[(currentSlide + 1) % testimonials.length]}
-                muted
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-center space-x-4">
-          <button
-            onClick={() => handleNavigation("prev")}
-            aria-label="Previous testimonial"
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow hover:shadow-lg transition active:scale-95"
-            disabled={isAnimating}
+        <div className="relative md:static">
+          <div
+            ref={scrollerRef}
+            className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible px-4 pb-2 [-webkit-overflow-scrolling:touch] scrollbar-hide md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:snap-none"
+            role="region"
+            aria-label="Customer testimonials"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-500" />
-          </button>
-
-          <div className="flex space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handleNavigation(index)}
-                aria-label={`Go to testimonial ${index + 1}`}
-                className={`w-3 h-3 rounded-full transition ${
-                  index === currentSlide
-                    ? "bg-[#17403A]"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-                disabled={isAnimating}
-              />
+            {testimonials.map((t) => (
+              <figure
+                key={t.id}
+                className="w-[min(22rem,calc(100vw-2rem))] shrink-0 snap-center rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.05)] md:w-auto md:min-w-0 md:shrink md:p-8"
+              >
+                <Stars />
+                <ReadMoreQuote quote={t.quote} />
+                <figcaption className="mt-5 text-sm">
+                  <span className="font-semibold text-[#1a2e24]">{t.name}</span>
+                  {"location" in t && t.location ? (
+                    <span className="text-[#475467]">, {t.location}</span>
+                  ) : null}
+                </figcaption>
+              </figure>
             ))}
           </div>
 
           <button
-            onClick={() => handleNavigation("next")}
-            aria-label="Next testimonial"
-            className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow hover:shadow-lg transition active:scale-95"
-            disabled={isAnimating}
+            type="button"
+            aria-label="Previous testimonials"
+            onClick={() => scrollByDir("prev")}
+            disabled={!canPrev}
+            className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#E8E6E0] bg-white/95 text-[#1a2e24] shadow-md backdrop-blur-sm transition-colors hover:border-[#1B5E37]/35 hover:bg-white disabled:pointer-events-none disabled:opacity-30 md:hidden"
           >
-            <ChevronRight className="w-5 h-5 text-gray-500" />
+            <ChevronLeft className="h-5 w-5" strokeWidth={2.2} />
+          </button>
+          <button
+            type="button"
+            aria-label="Next testimonials"
+            onClick={() => scrollByDir("next")}
+            disabled={!canNext}
+            className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#E8E6E0] bg-white/95 text-[#1a2e24] shadow-md backdrop-blur-sm transition-colors hover:border-[#1B5E37]/35 hover:bg-white disabled:pointer-events-none disabled:opacity-30 md:hidden"
+          >
+            <ChevronRight className="h-5 w-5" strokeWidth={2.2} />
           </button>
         </div>
       </div>
     </section>
   );
 };
-
-const TestimonialCard = ({
-  data,
-  muted = false,
-}: {
-  data: { quote: string; name: string; title: string };
-  muted?: boolean;
-}) => (
-  <div
-    className={`rounded-[24px] max-w-[524px] bg-[#F0EABA] bg-opacity-80 border border-[#F0EABA] bg-[#F0EABA4D] shadow-lg p-8 transition-all ${
-      muted ? "opacity-50" : ""
-    }`}
-  >
-    <div className="w-[52px] h-[52px]  rounded-[12px] mb-4 flex items-center justify-center">
-      <QouteICon />
-      <QouteICon />
-    </div>
-    <p className="text-[#344054] text-lg font-normal mb-4 leading-relaxed">
-      {data.quote}
-    </p>
-    <div>
-      <p className="font-semibold text-lg text-[#344054]">{data.name}</p>
-      <p className="text-base text-[#475367]">{data.title}</p>
-    </div>
-  </div>
-);
 
 export default TestimonialSection;

@@ -43,9 +43,9 @@ export function FAQs() {
   ];
 
   return (
-    <section className="py-20 " id="faqs">
+    <section className="border-t border-[#E8E6E0]/80 py-20 bg-transparent" id="faqs">
       <div className="max-w-[1136px] px-4 mx-auto space-y-10">
-        <h2 className="text-[32px] font-bold text-center">
+        <h2 className="font-serif text-[28px] md:text-[32px] font-semibold text-[#1a2e24] text-center">
           Frequently asked questions
         </h2>
 
@@ -53,13 +53,13 @@ export function FAQs() {
           <TabsList className="flex justify-center mx-auto max-w-[420px] px-4">
             <TabsTrigger
               value="employers"
-              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
+              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-[#1B5E37]/30 flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#1B5E37]/12 data-[state=active]:border-b-[3px] data-[state=active]:border-[#1B5E37] rounded-none text-center"
             >
               For employers
             </TabsTrigger>
             <TabsTrigger
               value="for-domestic-workers"
-              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-primary flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#FA6D4D4D] data-[state=active]:border-b-[3px] rounded-none text-center"
+              className="text-[#06212C] p-3 sm:p-6 text-sm sm:text-base font-semibold border-b border-[#1B5E37]/30 flex-1 min-w-[140px] data-[state=active]:rounded-t-[12px] data-[state=active]:bg-[#1B5E37]/12 data-[state=active]:border-b-[3px] data-[state=active]:border-[#1B5E37] rounded-none text-center"
             >
               For domestic workers
             </TabsTrigger>
@@ -74,7 +74,7 @@ export function FAQs() {
                 <AccordionItem
                   key={idx}
                   value={`faq-${idx}`}
-                  className="border-none bg-[#D4E8DB] p-5 rounded-[12px]"
+                  className="border border-[#EEF0EB] bg-white p-5 rounded-[12px] shadow-sm"
                 >
                   <AccordionTrigger className="text-base text-[#0A3749] font-bold">
                     {item.q}
@@ -91,7 +91,7 @@ export function FAQs() {
             <Accordion type="single" collapsible className="space-y-5">
               <AccordionItem
                 value="caregiver-faq-1"
-                className="border-none bg-[#D4E8DB] p-5 rounded-[12px]"
+                className="border border-[#EEF0EB] bg-white p-5 rounded-[12px] shadow-sm"
               >
                 <AccordionTrigger className="text-base text-[#0A3749] font-bold">
                   How do I get hired on ULO?
