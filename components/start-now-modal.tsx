@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type React from "react";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -37,23 +38,65 @@ export function StartNowModal({
           <DialogTitle className="text-[#101828]">Start now</DialogTitle>
         </DialogHeader>
 
-        <div className="grid gap-3 sm:grid-cols-2 py-10">
-          <Button
-            asChild
-            className="h-14 rounded-2xl bg-[#1B5E37] text-white hover:bg-[#154a2d] hover:text-white text-base"
+        <div className="grid gap-4 sm:grid-cols-2 py-6">
+          <Link
+            href={CARESEEKER_REGISTER_URL}
             onClick={() => setOpen(false)}
+            className="group rounded-2xl border border-[#EAECF0] bg-white p-4 shadow-sm transition hover:border-[#1B5E37]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#1B5E37]/30"
           >
-            <Link href={CARESEEKER_REGISTER_URL}>Employer</Link>
-          </Button>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-[#F9FAFB]">
+              <Image
+                src="/modal-image/employer.png"
+                alt="Employer"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                sizes="(max-width: 640px) 90vw, 520px"
+                priority
+              />
+            </div>
+            <div className="mt-4 flex items-center justify-between gap-3">
+              <div>
+                <div className="text-base font-semibold text-[#101828]">
+                  Employer
+                </div>
+                <div className="text-sm text-[#475467]">
+                  Find a verified worker
+                </div>
+              </div>
+              <span className="inline-flex h-10 items-center rounded-xl bg-[#1B5E37] px-4 text-sm font-semibold text-white">
+                Continue
+              </span>
+            </div>
+          </Link>
 
-          <Button
-            asChild
-            variant="outline"
-            className="h-14 rounded-2xl border-[#1B5E37]/40 text-[#1B5E37] hover:bg-[#1B5E37]/8 text-base"
+          <Link
+            href={DOMESTIC_WORKER_CTA_URL}
             onClick={() => setOpen(false)}
+            className="group rounded-2xl border border-[#EAECF0] bg-white p-4 shadow-sm transition hover:border-[#1B5E37]/30 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#1B5E37]/30"
           >
-            <Link href={DOMESTIC_WORKER_CTA_URL}>Worker</Link>
-          </Button>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-[#F9FAFB]">
+              <Image
+                src="/modal-image/worker.png"
+                alt="Worker"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                sizes="(max-width: 640px) 90vw, 520px"
+              />
+            </div>
+            <div className="mt-4 flex items-center justify-between gap-3">
+              <div>
+                <div className="text-base font-semibold text-[#101828]">
+                  Worker
+                </div>
+                <div className="text-sm text-[#475467]">
+                  Register as a domestic worker
+                </div>
+              </div>
+              <span className="inline-flex h-10 items-center rounded-xl border border-[#1B5E37]/40 bg-white px-4 text-sm font-semibold text-[#1B5E37]">
+                Continue
+              </span>
+            </div>
+          </Link>
         </div>
       </DialogContent>
     </Dialog>
