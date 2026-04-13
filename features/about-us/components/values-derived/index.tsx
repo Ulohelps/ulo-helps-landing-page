@@ -17,11 +17,11 @@ const values = [
     description:
       "All Domestic workers are verified and background checked. Experience levels clearly displayed. Reviews and ratings from real families",
   },
-  {
-    title: "Technological Ease:",
-    description:
-      "  Intuitive platform that works like other apps you already love. Simple booking and communication process. Mobile-first experience for on-the-go needs",
-  },
+  // {
+  //   title: "Technological Ease:",
+  //   description:
+  //     "  Intuitive platform that works like other apps you already love. Simple booking and communication process. Mobile-first experience for on-the-go needs",
+  // },
   {
     title: "Availability:",
     description:

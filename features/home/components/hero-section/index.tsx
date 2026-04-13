@@ -1,10 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
+import { StartNowModal } from "@/components/start-now-modal";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "framer-motion";
-import { ChevronRight, ShieldCheck, Zap } from "lucide-react";
+import { ShieldCheck, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -146,6 +146,7 @@ function HeroVisual({ reduceMotion }: { reduceMotion: boolean }) {
 }
 
 export function HeroSection() {
+  // router is used for other hero actions; CTA now uses modal links
   const router = useRouter();
   const reduceMotion = useReducedMotion();
 
@@ -226,34 +227,12 @@ export function HeroSection() {
                 whileTap={reduceMotion ? undefined : { scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 24 }}
               >
-                <Button
-                  onClick={() => router.push(CARESEEKER_REGISTER_URL)}
-                  className={cn(
+                <StartNowModal
+                  triggerClassName={cn(
                     "h-11 rounded-full bg-[#1B5E37] px-7 text-sm font-semibold text-white",
                     "shadow-[0_4px_14px_rgba(27,94,55,0.28)] hover:bg-[#154a2d] hover:text-white"
                   )}
-                >
-                  Find a verified worker
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 24 }}
-              >
-                <Button
-                  variant="outline"
-                  asChild
-                  className="h-auto min-h-11 rounded-full border-[#1B5E37]/40 bg-white/80 px-6 py-2.5 text-center text-sm font-semibold leading-snug text-[#1B5E37] shadow-sm backdrop-blur-sm hover:border-[#1B5E37]/55 hover:bg-white hover:text-[#154a2d] whitespace-normal"
-                >
-                  <Link
-                    href={DOMESTIC_WORKER_CTA_URL}
-                    className="group inline-flex flex-wrap items-center justify-center gap-1.5 px-1 text-center"
-                  >
-                    <span className="text-balance">Register as a domestic worker</span>
-                    <ChevronRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </Button>
+                />
               </motion.div>
             </motion.div>
           </div>
