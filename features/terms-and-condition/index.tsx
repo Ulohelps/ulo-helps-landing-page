@@ -518,6 +518,12 @@ In exceptional cases where a verified technical or administrative error occurs o
                   Abuse of the replacement policy (e.g., frequent or baseless
                   complaints) may lead to account review or suspension
                 </li>
+                <li>
+                  Where a replacement is approved under these terms, Ulo Helps
+                  ordinarily aims to complete the replacement process within{" "}
+                  <span className="font-semibold">two (2) weeks</span>; timing may
+                  vary with candidate availability and verification.
+                </li>
               </ul>
 
               <h3 className="font-semibold text-xl text-[#0A3749] mt-4">
@@ -561,14 +567,21 @@ In exceptional cases where a verified technical or administrative error occurs o
               </p>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
-                6.2.3 No Commission or Third-Party Charges
+                6.2.3 Registration, commissions, and third-party charges
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
-                Ulo Helps is a subscription-based listing platform that charges
-                only Employers a fee to access verified Domestic Worker
-                profiles. Domestic Workers are not required to pay any
-                registration, subscription, or referral fees to Ulo Helps or to
-                any third party for placement or profile visibility.
+                Domestic Workers are required to pay a{" "}
+                <span className="font-semibold">one-time registration fee of ₦5,000</span>{" "}
+                (plus applicable VAT where the platform charges it) to join and use
+                Ulo Helps&apos; domestic-worker onboarding and listing services, unless
+                Ulo Helps waives this for your account in writing. Domestic Workers are
+                not required to pay ongoing subscription or referral fees to Ulo Helps
+                for profile visibility.
+              </p>
+              <p className="text-[#344054] font-medium text-base mt-2">
+                Employers may pay separate fees (for example subscriptions or placement
+                services) to access verified Domestic Worker profiles and related
+                features, as described elsewhere in these terms.
               </p>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Any request by individuals or agents for commissions, upfront
@@ -577,7 +590,37 @@ In exceptional cases where a verified technical or administrative error occurs o
               </p>
 
               <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
-                6.2.4 Protection from Abuse or Exploitation
+                6.2.4 Ending employment and notice (Domestic Workers)
+              </h4>
+              <p className="text-[#344054] font-medium text-base mt-2">
+                If a Domestic Worker wishes to leave an engagement because the role
+                is no longer suitable, they must give the Employer and Ulo Helps
+                reasonable written notice before their last working day, based on
+                length of service with that Employer in the same role:
+              </p>
+              <ul className="list-disc list-inside mt-2 space-y-1 text-[#344054] font-medium text-base">
+                <li>
+                  After <span className="font-semibold">one (1) to three (3) months</span>: at
+                  least <span className="font-semibold">two (2) weeks&apos;</span> notice.
+                </li>
+                <li>
+                  After <span className="font-semibold">four (4) months or more</span>: at
+                  least <span className="font-semibold">one (1) month&apos;s</span> notice.
+                </li>
+              </ul>
+              <p className="text-[#344054] font-medium text-base mt-2">
+                Stopping work without the required notice—unless Ulo Helps or the
+                Employer agrees otherwise in writing—may be treated as a breach of
+                these terms and{" "}
+                <span className="font-semibold">
+                  may result in forfeiture of salary or other amounts otherwise due
+                </span>
+                , subject to applicable law and any lawful arrangement with the
+                Employer or Ulo Helps.
+              </p>
+
+              <h4 className="font-semibold text-lg text-[#0A3749] mt-3">
+                6.2.5 Protection from Abuse or Exploitation
               </h4>
               <p className="text-[#344054] font-medium text-base mt-2">
                 Ulo Helps is committed to the well-being of all Domestic Workers
