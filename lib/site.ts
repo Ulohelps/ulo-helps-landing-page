@@ -15,7 +15,7 @@ export const DOMESTIC_WORKER_CTA_URL =
   process.env.NEXT_PUBLIC_DOMESTIC_WORKER_CTA_URL ?? "/for-domestic-workers";
 
 /** WhatsApp chat (E.164 without +). Set NEXT_PUBLIC_WHATSAPP_PHONE in .env for production. */
-const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "2348012345678";
+const rawPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE ?? "2347049272828";
 
 export const WHATSAPP_CHAT_URL = `https://wa.me/${rawPhone.replace(/\D/g, "")}?text=${encodeURIComponent(
   "Hi Ulo — I'd like to find a verified domestic worker in Lagos."
