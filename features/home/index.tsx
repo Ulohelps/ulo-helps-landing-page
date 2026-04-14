@@ -27,9 +27,9 @@ const Home = () => {
         <Reveal delay={0.06}>
           <TestimonialSlider />
         </Reveal>
-        <Reveal delay={0.04}>
+        {/* <Reveal delay={0.04}>
           <GuaranteeCta />
-        </Reveal>
+        </Reveal> */}
         <Reveal delay={0.06}>
           <LatestBlogPosts />
         </Reveal>

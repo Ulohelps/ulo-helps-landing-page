@@ -8,19 +8,19 @@ const testimonials = [
     id: 0,
     quote:
       "The representative was very professional and supportive throughout the process of scanning through several potential candidates until I found a suitable person. Many thanks.",
-    name: "Temidayo Odulaja",
+    name: "Temidayo O.",
   },
   {
     id: 1,
     quote:
-      "I hired my housekeeper from Ulo helps. It's been 8 months since I hired her and she's doing perfectly fine.",
-    name: "Chiamaka Igwe",
+      "Thank you for the great service. My mom feels a lot of load off her now.",
+    name: "Cara R.",
   },
   {
     id: 2,
     quote:
       "I had a very good experience with Ulohelps in searching for a job, I was interviewed the second day of my registration and immediately got a job, luckily for me it was an immediate resumption job. Thank you Ulohelps because I'd have been stranded in Lagos with no place to stay…. Ulohelps registration and getting a job is the fastest I've ever seen…. thank you so much ulohelps",
-    name: "Morenike Blessing",
+    name: "Morenike B.",
     location: "Lagos",
   },
 ] as const;
