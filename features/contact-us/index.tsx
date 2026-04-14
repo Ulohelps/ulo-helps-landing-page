@@ -176,7 +176,7 @@ const ContactUS = () => {
             },
             {
               icon: <LocationICon color="#D4E8DB" />,
-              text: "373 Agege Motor Road Mushin, Lagos, Nigeria",
+              text: "373, Agege Motor Road, by Challenge Bus Stop mushin, Lagos, Nigeria",
             },
           ].map(({ icon, text, href }, idx) => (
             <div

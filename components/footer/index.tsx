@@ -123,14 +123,14 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-base text-white font-semibold hover:underline"
             >
-              +234 704 927 2828 (WhatsApp)
+              +234 704 927 2828
             </a>
           </div>
 
           <div className="flex gap-3 items-start">
             <LocationICon className="w-5 h-5 text-[#D4E8DB] mt-1" />
             <p className="text-base text-white font-semibold break-words w-[80%]">
-              373 Agege Motor Road Mushin, Lagos, Nigeria
+            373, Agege Motor Road, by Challenge Bus Stop mushin, Lagos, Nigeria
             </p>
           </div>
         </address>
