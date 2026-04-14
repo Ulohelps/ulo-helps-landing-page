@@ -117,9 +117,14 @@ const Footer = () => {
 
           <div className="flex gap-3 items-center">
             <PhoneICon className="w-5 h-5 text-[#D4E8DB]" />
-            <p className="text-base text-white font-semibold">
-              +234 704 927 2828
-            </p>
+            <a
+              href="https://wa.me/2347049272828"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base text-white font-semibold hover:underline"
+            >
+              +234 704 927 2828 (WhatsApp)
+            </a>
           </div>
 
           <div className="flex gap-3 items-start">
