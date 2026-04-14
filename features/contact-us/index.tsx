@@ -162,20 +162,23 @@ const ContactUS = () => {
             {
               icon: <Mail fill="#D4E8DB" width={26} />,
               text: "contact@ulohelps.com",
+              href: "mailto:contact@ulohelps.com",
             },
             {
               icon: <PhoneICon color="#D4E8DB" />,
               text: "+234 704 927 2828",
+              href: "https://wa.me/2347049272828",
             },
             {
               icon: <Phone fill="#D4E8DB" color="#D4E8DB" />,
               text: "+234 704 927 2828",
+              href: "https://wa.me/2347049272828",
             },
             {
               icon: <LocationICon color="#D4E8DB" />,
               text: "373 Agege Motor Road Mushin, Lagos, Nigeria",
             },
-          ].map(({ icon, text }, idx) => (
+          ].map(({ icon, text, href }, idx) => (
             <div
               key={idx}
               className="flex items-center gap-6 border-b pb-10 border-[#D0D5DD]"
@@ -183,9 +186,20 @@ const ContactUS = () => {
               <div className="flex items-center justify-center p-3 w-14 h-14 rounded-full border border-[#B4E1F3] bg-[#17403A] shrink-0">
                 {icon}
               </div>
-              <p className="text-base text-[#0A3749] underline font-normal max-w-sm">
-                {text}
-              </p>
+              {href ? (
+                <a
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="text-base text-[#0A3749] underline font-normal max-w-sm"
+                >
+                  {text}
+                </a>
+              ) : (
+                <p className="text-base text-[#0A3749] underline font-normal max-w-sm">
+                  {text}
+                </p>
+              )}
             </div>
           ))}
         </div>
