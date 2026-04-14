@@ -572,7 +572,7 @@ In exceptional cases where a verified technical or administrative error occurs o
               <p className="text-[#344054] font-medium text-base mt-2">
                 Domestic Workers are required to pay a{" "}
                 <span className="font-semibold">one-time registration fee of ₦5,000</span>{" "}
-                (plus applicable VAT where the platform charges it) to join and use
+                to join and use
                 Ulo Helps&apos; domestic-worker onboarding and listing services, unless
                 Ulo Helps waives this for your account in writing. Domestic Workers are
                 not required to pay ongoing subscription or referral fees to Ulo Helps
