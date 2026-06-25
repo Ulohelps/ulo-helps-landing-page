@@ -23,12 +23,14 @@ type FormState = {
   businessName: string;
   contactEmail: string;
   contactPhone: string;
+  businessNeeds: string;
 };
 
 const initialForm: FormState = {
   businessName: "",
   contactEmail: "",
   contactPhone: "",
+  businessNeeds: "",
 };
 
 export function ForBusinessModal({
@@ -82,10 +84,20 @@ export function ForBusinessModal({
 
     setIsLoading(true);
     try {
+      const requestBody: Record<string, string> = {
+        businessName: form.businessName.trim(),
+        contactEmail: form.contactEmail.trim(),
+        contactPhone: form.contactPhone.trim(),
+      };
+      const needs = form.businessNeeds.trim();
+      if (needs) {
+        requestBody.businessNeeds = needs;
+      }
+
       const response = await fetch(`${API_BASE_URL}/business-inquiries/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(requestBody),
       });
 
       const payload = await response.json().catch(() => ({}));
@@ -187,6 +199,20 @@ export function ForBusinessModal({
             {errors.contactPhone && (
               <p className="text-xs text-red-600">{errors.contactPhone}</p>
             )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="businessNeeds">
+              Tell us about your business needs{" "}
+              <span className="font-normal text-[#667085]">(optional)</span>
+            </Label>
+            <Input
+              id="businessNeeds"
+              type="text"
+              value={form.businessNeeds}
+              onChange={(e) => handleChange("businessNeeds", e.target.value)}
+              placeholder="e.g. We need housekeepers for our hotel"
+            />
           </div>
 
           <Button
