@@ -79,12 +79,12 @@ export default async function BlogPostPage({ params }: PageProps) {
         </Button>
 
         {post.coverImageUrl && (
-          <div className="aspect-[16/10] relative rounded-[16px] overflow-hidden bg-[#F9FAFB] mb-8">
+          <div className="rounded-[16px] overflow-hidden bg-[#F9FAFB] mb-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={post.coverImageUrl}
               alt=""
-              className="w-full h-full object-cover"
+              className="w-full h-auto"
             />
           </div>
         )}

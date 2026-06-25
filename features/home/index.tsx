@@ -6,6 +6,7 @@ import { HeroSection } from "@/features/home/components/hero-section";
 import HowItworks from "@/features/home/components/how-it-works";
 import { LatestBlogPosts } from "@/features/home/components/latest-blog-posts";
 import ServiceSection from "@/features/home/components/services-section";
+import { BusinessCtaBanner } from "@/features/home/components/business-cta-banner";
 import TestimonialSlider from "@/features/home/components/testimonial";
 import { WhyChooseSection } from "@/features/home/components/why-choose-section";
 
@@ -23,6 +24,9 @@ const Home = () => {
         </Reveal>
         <Reveal delay={0.06}>
           <ServiceSection />
+        </Reveal>
+        <Reveal delay={0.05}>
+          <BusinessCtaBanner />
         </Reveal>
         <Reveal delay={0.06}>
           <TestimonialSlider />
