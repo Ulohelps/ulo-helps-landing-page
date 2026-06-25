@@ -3,18 +3,35 @@
 import { Button } from "@/components/ui/button";
 // import { CARESEEKER_REGISTER_URL, DOMESTIC_WORKER_CTA_URL } from "@/lib/site";
 import { StartNowModal } from "@/components/start-now-modal";
-import Image from "next/image";
+import { ForBusinessModal } from "@/components/for-business-modal";
+import {
+  ChefICon,
+  HousekeeperICon,
+  NannyIcon,
+} from "@/components/icons";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const SERVICE_LIST = [
   {
     label: "Nanny",
-    iconSrc: "/icons/nanny.png",
+    icon: <NannyIcon />,
+    color: "#0E92C7",
   },
   {
     label: "Housekeeper",
-    iconSrc: "/icons/housekeeper.png",
+    icon: <HousekeeperICon />,
+    color: "#8F76B8",
+  },
+  {
+    label: "Cook",
+    icon: <ChefICon />,
+    color: "#E85D4C",
+  },
+  {
+    label: "Chef",
+    icon: <ChefICon />,
+    color: "#F1473C",
   },
 ] as const;
 
@@ -29,27 +46,22 @@ const ServiceSection = () => {
         </h2>
 
         <div
-          className="mx-4 flex gap-4 overflow-x-auto px-4 pb-2 snap-x snap-mandatory scrollbar-hide md:mx-auto md:grid md:max-w-xl md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0"
+          className="mx-4 flex gap-4 overflow-x-auto px-4 pb-2 snap-x snap-mandatory scrollbar-hide md:mx-auto md:grid md:max-w-3xl md:grid-cols-2 lg:grid-cols-4 md:gap-5 md:overflow-visible md:px-0 md:pb-0"
           role="list"
         >
           {SERVICE_LIST.map((service) => (
             <div
               key={service.label}
               role="listitem"
-              className="flex min-w-[148px] shrink-0 snap-center flex-col items-center justify-center  rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:border-[#1B5E37]/20 hover:shadow-md md:min-w-0"
+              className="flex min-w-[148px] shrink-0 snap-center flex-col items-center justify-center rounded-2xl border border-[#EEF0EB] bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:border-[#1B5E37]/20 hover:shadow-md md:min-w-0"
             >
               <div
-                className="flex  items-center justify-center rounded-2xl"
+                className="flex h-16 w-16 items-center justify-center rounded-2xl"
+                style={{ backgroundColor: `${service.color}1A` }}
               >
-                <Image
-                  src={service.iconSrc}
-                  alt=""
-                  width={78}
-                  height={78}
-                  className=" object-contain"
-                />
+                {service.icon}
               </div>
-              <p className="text-center text-sm font-semibold text-[#1a2e24]">
+              <p className="mt-3 text-center text-sm font-semibold text-[#1a2e24]">
                 {service.label}
               </p>
             </div>
@@ -59,6 +71,9 @@ const ServiceSection = () => {
         <div className="mx-auto mt-12 flex w-full max-w-2xl flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap">
           <StartNowModal
             triggerClassName="h-auto min-h-12 w-full shrink-0 rounded-xl bg-[#1B5E37] px-8 py-3 text-center text-base font-semibold leading-snug text-white shadow-[0_4px_14px_rgba(27,94,55,0.28)] hover:bg-[#154a2d] hover:text-white whitespace-normal sm:w-auto"
+          />
+          <ForBusinessModal
+            triggerClassName="h-auto min-h-12 w-full shrink-0 rounded-xl border-[#1B5E37]/40 bg-white px-8 py-3 text-center text-base font-semibold leading-snug text-[#1B5E37] shadow-sm hover:border-[#1B5E37]/55 hover:bg-white hover:text-[#154a2d] whitespace-normal sm:w-auto"
           />
         </div>
       </div>

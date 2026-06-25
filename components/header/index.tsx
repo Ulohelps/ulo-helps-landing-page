@@ -17,6 +17,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { CARESEEKER_REGISTER_URL } from "@/lib/site";
 import { StartNowModal } from "@/components/start-now-modal";
+import { ForBusinessModal } from "@/components/for-business-modal";
 import { cn } from "@/lib/utils";
 import UloLogo from "@/public/new-logo.png";
 
@@ -82,6 +83,10 @@ export default function Header() {
 
         {/* Navigation */}
         <div className="hidden md:flex shrink-0 items-center gap-3">
+          <ForBusinessModal
+            triggerVariant="outline"
+            triggerClassName="shrink-0 rounded-xl border-[#1B5E37]/40 bg-white/90 px-4 py-2.5 text-sm font-semibold text-[#1B5E37] shadow-sm hover:border-[#1B5E37]/55 hover:bg-white hover:text-[#154a2d] whitespace-normal"
+          />
           <StartNowModal
             triggerClassName="shrink-0 rounded-xl bg-[#1B5E37] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(27,94,55,0.25)] hover:bg-[#154a2d] hover:text-white whitespace-normal"
           />
@@ -140,6 +145,10 @@ export default function Header() {
                 })}
               </nav>
               <div className="flex flex-col gap-2 border-t border-[#EAECF0] p-4">
+                <ForBusinessModal
+                  triggerClassName="w-full rounded-xl border-[#1B5E37]/40 bg-white text-[#1B5E37] hover:bg-[#1B5E37]/5"
+                  triggerVariant="outline"
+                />
                 <StartNowModal
                   triggerClassName="w-full rounded-xl bg-[#1B5E37] text-white hover:bg-[#154a2d] hover:text-white"
                   triggerChildren="Start now"
