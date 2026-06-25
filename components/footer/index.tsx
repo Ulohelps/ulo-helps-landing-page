@@ -1,22 +1,21 @@
+"use client";
+
 import Link from "next/link";
-import React from "react";
-import UloLogo from "@/public/new-logo.png";
 import Image from "next/image";
 import {
   InstagramICon,
-  FacebookICon,
   TiktokICon,
-  XICon,
   LocationICon,
   PhoneICon,
   MailICon,
 } from "../icons";
+import UloLogo from "@/public/new-logo.png";
+import { ForBusinessModal } from "@/components/for-business-modal";
 
 const Footer = () => {
   return (
     <footer className="relative z-20 bg-[#17403A] py-12">
       <div className="mx-auto max-w-[1136px] px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-        {/* Logo & Socials */}
         <div>
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -30,14 +29,11 @@ const Footer = () => {
           </Link>
 
           <nav className="flex items-center gap-6 mt-5">
-            {/* <Link href=''><FacebookICon /></Link> */}
-            {/* <XICon /> */}
             <Link href='https://www.tiktok.com/search?q=ulohelps' target="_blank" rel="noopener noreferrer"><TiktokICon /></Link>
             <Link href='https://www.instagram.com/ulohelps_' target="_blank" rel="noopener noreferrer"><InstagramICon /></Link>
           </nav>
         </div>
 
-        {/* Company Links */}
         <div className="space-y-3">
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Company</h4>
           <ul className="space-y-2">
@@ -49,31 +45,16 @@ const Footer = () => {
                 About ULO
               </Link>
             </li>
-            {/* <li>
-              <Link href="#" className="text-base text-white font-semibold">
-                Pricing
-              </Link>
-            </li> */}
             <li>
-              {/* <Link
-                href="/for-domestic-workers"
-                className="text-base text-white font-semibold"
-              >
-                For domestic workers
-              </Link> */}
+              <ForBusinessModal
+                triggerVariant="ghost"
+                triggerClassName="h-auto p-0 text-base font-semibold text-white hover:bg-transparent hover:text-[#D4E8DB]"
+                triggerChildren="For business"
+              />
             </li>
-            {/* <li>
-              <Link
-                href="/#faqs"
-                className="text-base text-white font-semibold"
-              >
-                FAQs
-              </Link>
-            </li> */}
           </ul>
         </div>
 
-        {/* Legal Links */}
         <div className="space-y-3">
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Legal</h4>
           <ul className="space-y-2">
@@ -104,7 +85,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact */}
         <address className="not-italic space-y-4">
           <h4 className="text-sm text-[#FFFFFFB2] font-medium">Contact us</h4>
 

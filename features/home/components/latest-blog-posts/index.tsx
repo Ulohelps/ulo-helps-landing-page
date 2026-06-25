@@ -51,13 +51,13 @@ export async function LatestBlogPosts() {
             className="group flex flex-col rounded-[16px] overflow-hidden bg-white border border-[#EEF0EB] shadow-sm hover:shadow-md hover:border-[#1B5E37]/25 transition-all"
             role="listitem"
           >
-            <div className="aspect-[16/10] relative bg-[#F9FAFB] overflow-hidden">
+            <div className="aspect-[16/10] relative flex items-center justify-center bg-[#F9FAFB] overflow-hidden">
               {post.coverImageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={post.coverImageUrl}
                   alt=""
-                  className="w-full h-full object-cover"
+                  className="max-h-full max-w-full w-full h-full object-contain"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-[#9CA3AF]">

@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { StartNowModal } from "@/components/start-now-modal";
+import { ForBusinessModal } from "@/components/for-business-modal";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "framer-motion";
 import { ShieldCheck, Zap } from "lucide-react";
@@ -231,6 +232,18 @@ export function HeroSection() {
                   triggerClassName={cn(
                     "h-11 rounded-full bg-[#1B5E37] px-7 text-sm font-semibold text-white",
                     "shadow-[0_4px_14px_rgba(27,94,55,0.28)] hover:bg-[#154a2d] hover:text-white"
+                  )}
+                />
+              </motion.div>
+              <motion.div
+                whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 24 }}
+              >
+                <ForBusinessModal
+                  triggerClassName={cn(
+                    "h-11 rounded-full border-[#1B5E37]/40 bg-white px-7 text-sm font-semibold text-[#1B5E37]",
+                    "shadow-sm hover:border-[#1B5E37]/55 hover:bg-white hover:text-[#154a2d]"
                   )}
                 />
               </motion.div>
