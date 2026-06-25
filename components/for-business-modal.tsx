@@ -84,20 +84,20 @@ export function ForBusinessModal({
 
     setIsLoading(true);
     try {
-      const payload: Record<string, string> = {
+      const requestBody: Record<string, string> = {
         businessName: form.businessName.trim(),
         contactEmail: form.contactEmail.trim(),
         contactPhone: form.contactPhone.trim(),
       };
       const needs = form.businessNeeds.trim();
       if (needs) {
-        payload.businessNeeds = needs;
+        requestBody.businessNeeds = needs;
       }
 
       const response = await fetch(`${API_BASE_URL}/business-inquiries/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(requestBody),
       });
 
       const payload = await response.json().catch(() => ({}));
