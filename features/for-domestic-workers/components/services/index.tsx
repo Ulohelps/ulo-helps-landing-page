@@ -3,6 +3,7 @@ import {
   NannyIcon,
   ChefICon,
   HousekeeperICon,
+  DriverICon,
 } from "@/components/icons";
 
 const SERVICE_LIST = [
@@ -34,11 +35,18 @@ const SERVICE_LIST = [
     icon: <NannyIcon />,
     color: "#0E92C7",
   },
+  {
+    label: "Driver",
+    value:
+      "Safe, reliable drivers are always in demand. ULO connects you with families and businesses who need trusted transportation — school runs, office commute, and everyday errands — with clear terms and fair pay.",
+    icon: <DriverICon />,
+    color: "#1671D9",
+  },
 ];
 
 const Services = () => {
   return (
-    <div className="mx-auto max-w-[1136px] py-20 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6 md:gap-10 lg:gap-y-16">
+    <div className="mx-auto max-w-[1136px] py-20 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 md:gap-10 lg:gap-y-16">
       {SERVICE_LIST.map((service) => (
         <div key={service.label} className="flex flex-col h-full">
           <div

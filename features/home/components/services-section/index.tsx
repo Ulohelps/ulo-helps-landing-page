@@ -8,6 +8,7 @@ import {
   ChefICon,
   HousekeeperICon,
   NannyIcon,
+  DriverICon,
 } from "@/components/icons";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -33,6 +34,11 @@ const SERVICE_LIST = [
     icon: <ChefICon />,
     color: "#F1473C",
   },
+  {
+    label: "Driver",
+    icon: <DriverICon />,
+    color: "#1671D9",
+  },
 ] as const;
 
 const ServiceSection = () => {
@@ -46,7 +52,7 @@ const ServiceSection = () => {
         </h2>
 
         <div
-          className="mx-4 flex gap-4 overflow-x-auto px-4 pb-2 snap-x snap-mandatory scrollbar-hide md:mx-auto md:grid md:max-w-3xl md:grid-cols-2 lg:grid-cols-4 md:gap-5 md:overflow-visible md:px-0 md:pb-0"
+          className="mx-4 flex gap-4 overflow-x-auto px-4 pb-2 snap-x snap-mandatory scrollbar-hide md:mx-auto md:grid md:max-w-4xl md:grid-cols-3 lg:grid-cols-5 md:gap-5 md:overflow-visible md:px-0 md:pb-0"
           role="list"
         >
           {SERVICE_LIST.map((service) => (
