@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import BgImage from "@/public/images/image 6.svg";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import { API_BASE_URL } from "@/lib/api";
 
 const ContactUS = () => {
   const [formData, setFormData] = useState({
@@ -84,7 +85,7 @@ const ContactUS = () => {
 
     try {
       const response = await fetch(
-        "https://api.ulohelps.com/api/v1/contact/submit",
+        `${API_BASE_URL}/contact/submit`,
         {
           method: "POST",
           headers: {

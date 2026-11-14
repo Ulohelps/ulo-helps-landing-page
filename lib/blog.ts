@@ -1,5 +1,5 @@
 const getBaseUrl = () =>
-  process.env.NEXT_PUBLIC_API_URL || "https://api.ulohelps.com/api/v1";
+  process.env.NEXT_PUBLIC_API_URL || "https://caregivers.ulohelps.com/api/v1";
 
 export interface BlogPostListItem {
   id: string;
